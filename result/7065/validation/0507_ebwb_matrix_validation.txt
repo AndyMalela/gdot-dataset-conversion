@@ -1,0 +1,7 @@
+=== 0507_ebwb_matrix.jpg ===
+sensor: matrix   pair: ebwb   y_max detected: 3495 (18 labels)
+Eastbound  (blue line)  extracted total     18080   truth   18367   error   -1.6%   [trace coverage 96%, 2 empty bins]
+Westbound  (red line)  extracted total      8474   truth    8725   error   -2.9%   [trace coverage 98%, 1 empty bins]
+Combined                extracted total     26555   truth   27092   error   -2.0%
+Eastbound  peak hour: extracted 16:45-17:45 (2099 veh)   truth 4:45 PM - 5:45 PM (2108 vph)
+Westbound  peak hour: extracted 07:45-08:45 (695 veh)   truth 7:45 AM - 8:45 AM (710 vph)

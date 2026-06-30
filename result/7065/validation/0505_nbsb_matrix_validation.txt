@@ -1,0 +1,7 @@
+=== 0505_nbsb_matrix.jpg ===
+sensor: matrix   pair: nbsb   y_max detected: 10009 (51 labels)
+Northbound (blue line)  extracted total     28292   truth   30833   error   -8.2%   [trace coverage 67%, 25 empty bins]
+Southbound (red line)  extracted total     37177   truth   37106   error   +0.2%   [trace coverage 93%, 3 empty bins]
+Combined                extracted total     65469   truth   67939   error   -3.6%
+Northbound peak hour: extracted 16:15-17:15 (2513 veh)   truth 4:15 PM - 5:15 PM (2578 vph)
+Southbound peak hour: extracted 16:15-17:15 (3771 veh)   truth 4:15 PM - 5:15 PM (3843 vph)
