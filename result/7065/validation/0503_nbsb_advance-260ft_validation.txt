@@ -1,7 +1,0 @@
-=== 0503_nbsb_advance-260ft.jpg ===
-sensor: advance-260ft   pair: nbsb   y_max detected: 799 (5 labels)
-Northbound (blue line)  extracted total      1959   truth    2066   error   -5.2%   [trace coverage 88%, 7 empty bins]
-Southbound (red line)  extracted total      5370   truth    5555   error   -3.3%   [trace coverage 90%, 7 empty bins]
-Combined                extracted total      7329   truth    7621   error   -3.8%
-Northbound peak hour: extracted 14:30-15:30 (132 veh)   truth 12:30 AM - 1:30 AM (139 vph)
-Southbound peak hour: extracted 13:00-14:00 (422 veh)   truth 1:15 PM - 2:15 PM (440 vph)

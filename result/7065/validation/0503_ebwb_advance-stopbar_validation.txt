@@ -1,7 +1,0 @@
-=== 0503_ebwb_advance-stopbar.jpg ===
-sensor: advance-stopbar   pair: ebwb   y_max detected: 2496 (13 labels)
-Eastbound  (blue line)  extracted total      4769   truth    5008   error   -4.8%   [trace coverage 92%, 7 empty bins]
-Westbound  (red line)  extracted total     12492   truth   13485   error   -7.4%   [trace coverage 76%, 11 empty bins]
-Combined                extracted total     17261   truth   18493   error   -6.7%
-Eastbound  peak hour: extracted 14:15-15:15 (402 veh)   truth 2:30 PM - 3:30 PM (432 vph)
-Westbound  peak hour: extracted 13:00-14:00 (1283 veh)   truth 1:15 PM - 2:15 PM (1318 vph)

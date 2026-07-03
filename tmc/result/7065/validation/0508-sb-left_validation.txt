@@ -1,0 +1,4 @@
+=== 0508-sb-left.jpg ===
+Southbound Left  line: Total (black)
+OCR header: subtitle='SouthboundLeftVehicleLanes' PHF=None fLU=None peak_hour=None peak_hour_vph=None
+daily total: extracted     2565   OCR total: NOT READ   [coverage 89%, 4 empty 5-min bins]

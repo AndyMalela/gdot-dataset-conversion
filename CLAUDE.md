@@ -1,5 +1,9 @@
 # GDOT ATSPM Approach Volume — Digitization
 
+## Project
+
+I am making an adaptive traffic controller model for graduation research. 66132300144_CHEN_Thesis.pdf and APSIPA.pdf are the two papers from my senior in my lab. I plan to extend Sahachaiseree - Interpretable Intersection Control.pdf to make it perform in high saturation scenario, probably by extending state features.
+
 ## Goal
 
 Extract per-direction, 15-minute vehicle volume time series from GDOT ATSPM
@@ -18,6 +22,27 @@ extraction — never as a calibration input.
 
 ---
 
+## Two chart types / two pipeline modes
+
+The portal exports two chart families for this intersection; the pipeline has a
+mode for each (same fidelity rules — raw values, NaN gaps, validation never
+alters output):
+
+- **Approach Volume** (`atspm-digitizer process`) — 15-min per-direction volume.
+  Inputs in `volume/` ; matrix is the trusted sensor for both approaches (see
+  sensor section). This is the bulk of this document.
+- **Turning Movement Counts** (`atspm-digitizer tmc`) — **5-min per-movement
+  TOTAL** volume, the granular per-turn data. Inputs in `tmc/<code>/` named
+  `MMDD-<approach>-<movement>.jpg` (approach nb|sb|eb|wb, movement
+  thru|left|right). Outputs to `tmc/result/<code>/`. Only the movement TOTAL is
+  digitized (per-lane lines tangle at 5-min; their fLU is printed on the chart).
+  There is no `.md` — the printed header (Total Volume, Peak Hour, PHF, fLU) is
+  read by OCR (`rapidocr-onnxruntime`) for validation only. TMC gives the
+  turning-movement split that Approach Volume lacks — the correct basis for
+  per-lane-group v/c. See atspm_digitizer/README.md "TMC mode".
+
+---
+
 ## Folder structure
 
 ```
@@ -25,8 +50,10 @@ GDOT/
 ├── CLAUDE.md (this file)
 ├── data/
 │   └── 7065/ (intersection code)
-│       ├── MMDD.md, MMDD_*.jpg (daily volume data)
-│       └── ...
+│       ├── MMDD.md, MMDD_*_matrix.jpg (active daily volume data)
+│       └── archive/ (advance-sensor charts — excluded, see sensor section)
+├── result/7065/ (extracted CSVs, qa/, validation/, consolidated.csv; archive/ = advance)
+├── testing/7065/ (per-CSV plots; archive/ = advance)
 └── atspm_digitizer/ (pipeline: extracts 15-min volume time series from images)
 ```
 
@@ -113,24 +140,30 @@ parse). Do NOT digitize them from images.
 
 ## CRITICAL: sensor reliability — which source to trust
 
-Not all sensors are usable. Established from cross-checking three days
-(May 6, 7, 13):
+**Decision: use `matrix` (stop bar) for BOTH approaches (NS and EW).** The
+`advance` radar is treated as unreliable for vehicle counts (it is better
+suited to approach-speed tracking); all `advance` charts, their extracted CSVs,
+and their plots have been moved to `archive/` subfolders and are excluded from
+the active dataset. Rationale, verified across all 8 days (0502–0508, 0513):
 
-- **NS approach → USE `matrix` (stop bar). DISCARD `advance-260ft`.**
-  The NS `advance-260ft` unit reports daily totals ~10–12× LOWER than the
-  Matrix at the same intersection (e.g. May 6: 6,777 vs 83,460). This is not a
-  real traffic difference — it is consistent with the advance unit covering only
-  a partial set of lanes / a misconfigured detection zone. It is internally
-  self-consistent (its own peak/K math checks out), so it LOOKS clean but is
-  undercounting badly. The Matrix daily total (~75k–83k NS) is the physically
-  correct figure for this arterial (peak ~7–8k vph, K≈0.09–0.10 → ~10× daily).
+- **NS `advance-260ft` is broken for counts.** It reports daily totals
+  **7–12× LOWER** than the Matrix at the same intersection (e.g. May 6: 6,777
+  vs 83,460), and its directional split is wrong too (~75–81% SB vs the
+  Matrix's balanced ~52–55% SB) — consistent with covering only a partial set
+  of lanes / a misconfigured detection zone 260 ft upstream. The Matrix daily
+  total (~55k–83k NS) is the physically correct figure (peak ~7–8k vph,
+  K≈0.09–0.10 → ~10× daily).
 
-- **EW approach → USE `advance-stopbar`.** Here Advance and Matrix are both at
-  the stop bar and agree within ~30% (e.g. May 6: 19,802 vs 30,402). Use
-  Advance as the EW source.
+- **EW `advance-stopbar` was NOT broken** — it and the Matrix are both at the
+  stop bar and agree within ~7–54% (Matrix runs higher; e.g. May 6: 19,802 vs
+  30,402). Either was defensible; we standardize on **Matrix for EW too** for
+  consistency across both legs. Note this raises EW volumes ~28% on average vs
+  the earlier advance-stopbar choice.
 
-- There is **NO universal Advance-vs-Matrix multiplier.** The discrepancy is
-  specific to the NS advance-260ft unit. Decide per approach as above.
+- Consequence: the discrepancy is largest and disqualifying only for the NS
+  advance-260ft unit; the switch to Matrix-for-EW is a consistency choice, not
+  a correctness one. To reinstate any advance source, move its files back out
+  of the `archive/` folders.
 
 ---
 
