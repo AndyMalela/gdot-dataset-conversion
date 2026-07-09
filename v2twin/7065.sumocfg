@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SUMO digital twin of GDOT SIG#7065 (Peachtree Rd NE x Piedmont Rd NE).
+     Geometry-only build: network + signal + context polygons, no demand yet.
+     Add demand later by dropping a route file in and uncommenting <route-files>. -->
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+    <input>
+        <net-file value="7065.net.xml"/>
+        <!-- <route-files value="7065.rou.xml"/> -->  <!-- future: demand from volume/TMC CSVs -->
+    </input>
+    <gui_only>
+        <gui-settings-file value="7065.view.xml"/>
+    </gui_only>
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>
+    </time>
+    <processing>
+        <time-to-teleport value="-1"/>
+    </processing>
+</configuration>

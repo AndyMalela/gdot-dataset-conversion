@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<nodes><node id="J" x="150.00" y="150.00" type="traffic_light" /><node id="nN" x="118.17" y="244.80" type="priority" /><node id="nS" x="172.28" y="83.64" type="priority" /><node id="nNE" x="237.03" y="208.74" type="priority" /><node id="nSW" x="88.75" y="116.11" type="priority" /><node id="nNleft" x="137.27" y="187.92" type="priority" /></nodes>
