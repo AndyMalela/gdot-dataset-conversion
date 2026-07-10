@@ -1,6 +1,0 @@
-<viewsettings>
-    <scheme name="real world"/>
-    <delay value="30"/>
-    <!-- centered on the signalized junction (network coords), ~120m view -->
-    <viewport zoom="900" x="83" y="94"/>
-</viewsettings>

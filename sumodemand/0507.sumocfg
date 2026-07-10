@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Calibrated full-day run for sumotwin using the 0507 demand profile.
+     Network is shared with sumotwin/; only demand + timing differ. -->
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+    <input>
+        <net-file value="../sumotwin/7065.net.xml"/>
+        <route-files value="0507.rou.xml"/>
+    </input>
+    <gui_only>
+        <gui-settings-file value="../sumotwin/7065.view.xml"/>
+    </gui_only>
+    <time>
+        <begin value="0"/>
+        <end value="86400"/>
+    </time>
+    <processing>
+        <time-to-teleport value="300"/>
+    </processing>
+</configuration>

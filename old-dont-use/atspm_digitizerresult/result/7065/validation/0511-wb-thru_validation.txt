@@ -1,0 +1,4 @@
+=== 0511-wb-thru.jpg ===
+Westbound Thru  line: Total (black)
+OCR header: subtitle='WestboundThruVehicleLanes' PHF=0.83 fLU=0.618 peak_hour=7 peak_hour_vph=548
+daily total: extracted     6655   OCR     6717   error   -0.9%   [coverage 95%, 3 empty 5-min bins]

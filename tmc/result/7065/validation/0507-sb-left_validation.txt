@@ -1,4 +1,0 @@
-=== 0507-sb-left.jpg ===
-Southbound Left  line: Total (black)
-OCR header: subtitle='SouthboundLeftVehicleLanes' PHF=0.52 fLU=0.94 peak_hour=4 peak_hour_vph=230
-daily total: extracted     2559   OCR     2506   error   +2.1%   [coverage 89%, 8 empty 5-min bins]

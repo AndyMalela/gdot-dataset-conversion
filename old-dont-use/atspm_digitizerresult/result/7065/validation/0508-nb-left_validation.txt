@@ -1,0 +1,4 @@
+=== 0508-nb-left.jpg ===
+Northbound Left  line: Total (black)
+OCR header: subtitle='NorthboundLeftVehicleLanes' PHF=0.61 fLU=0.8 peak_hour=3 peak_hour_vph=218
+daily total: extracted     2804   OCR     2873   error   -2.4%   [coverage 95%, 1 empty 5-min bins]

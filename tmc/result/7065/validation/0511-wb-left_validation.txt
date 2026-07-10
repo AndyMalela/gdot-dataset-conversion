@@ -1,4 +1,0 @@
-=== 0511-wb-left.jpg ===
-Westbound Left  line: single lane (red)
-OCR header: subtitle='WestboundLeftVehicleLanes' PHF=0.68 fLU=1.0 peak_hour=11 peak_hour_vph=90
-daily total: extracted      923   OCR      981   error   -5.9%   [coverage 77%, 36 empty 5-min bins]

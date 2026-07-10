@@ -1,4 +1,0 @@
-=== 0507-sb-thru.jpg ===
-Southbound Thru  line: Total (black)
-OCR header: subtitle='SouthboundThruVehicleLanes' PHF=0.64 fLU=0.46 peak_hour=4 peak_hour_vph=1099
-daily total: extracted    10059   OCR    10121   error   -0.6%   [coverage 79%, 18 empty 5-min bins]
