@@ -1,0 +1,13 @@
+POLICY PROBE  (trained weights, 0508, 0.5x demand, PM window 15:00-17:00)
+decisions: 7151
+action counts: EXTEND=7142 ADVANCE=9  (advance fraction 0.0013)
+phase green-time (s): {'EW_LEFT': 20, 'EW_THRU': 7151, 'NS_LEFT': 20, 'NS_THRU': 6}
+phase visits: {'EW_LEFT': 2, 'EW_THRU': 3, 'NS_LEFT': 2, 'NS_THRU': 2}
+Q(EXTEND)-Q(ADVANCE): mean 191.61 min -157.27 max 287.87  (>0 => prefers EXTEND)
+
+WEIGHT ANALYSIS (EXTEND-ADVANCE):
+  phase-bias EW_LEFT: -172.08
+  phase-bias EW_THRU: +10.22
+  phase-bias NS_LEFT: -205.77
+  phase-bias NS_THRU: -41.40
+  lane-weight diff: mean -9.30 min -195.56 max 139.86 ; 11/32 push EXTEND

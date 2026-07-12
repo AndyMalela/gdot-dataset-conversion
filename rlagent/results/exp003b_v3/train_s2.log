@@ -1,0 +1,59 @@
+feature_mode=phase_gated_v3  n_features=136  params=272
+[ep 1/20] start day=0507 x0.74
+[ep 1/20] |##########################| done  reward=    -5021976 best=    -5021976 dec= 65337 sw= 3830   288s  ETA=1:31:03
+[ep 2/20] start day=0507 x0.82
+[ep 2/20] |##########################| done  reward=    -2542799 best=    -2542799 dec= 59258 sw= 4935    68s  ETA=53:23
+[ep 3/20] start day=0505 x0.82
+[ep 3/20] |##########################| done  reward=     -815195 best=     -815195 dec= 34134 sw= 9503    29s  ETA=36:32
+[ep 4/20] start day=0505 x0.66
+[ep 4/20] |##########################| done  reward=     -388965 best=     -388965 dec= 43187 sw= 7858    28s  ETA=27:45
+[ep 5/20] start day=0507 x0.57
+[ep 5/20] |##########################| done  reward=     -262822 best=     -262822 dec= 31824 sw= 9923    28s  ETA=22:19
+[ep 6/20] start day=0506 x1.03
+[ep 6/20] |##########################| done  reward=    -1182964 best=     -262822 dec= 45477 sw= 7441    44s  ETA=19:10
+[ep 7/20] start day=0507 x1.09
+[ep 7/20] |##########################| done  reward=     -704750 best=     -262822 dec= 39268 sw= 8570    43s  ETA=16:41
+[ep 8/20] start day=0506 x1.15
+[ep 8/20] |##########################| done  reward=    -1297612 best=     -262822 dec= 46598 sw= 7237    75s  ETA=15:26
+[ep 9/20] start day=0506 x1.04
+[ep 9/20] |##########################| done  reward=    -1057592 best=     -262822 dec= 44122 sw= 7688    55s  ETA=13:47
+[ep 10/20] start day=0505 x0.89
+[ep 10/20] |##########################| done  reward=     -467266 best=     -262822 dec= 36466 sw= 9079    47s  ETA=12:08
+[ep 11/20] start day=0507 x1.02
+[ep 11/20] |##########################| done  reward=     -615073 best=     -262822 dec= 37166 sw= 8952    54s  ETA=10:44
+[ep 12/20] start day=0507 x1.10
+[ep 12/20] |##########################| done  reward=     -728788 best=     -262822 dec= 38720 sw= 8670    59s  ETA=9:27
+[ep 13/20] start day=0506 x0.98
+[ep 13/20] |##########################| done  reward=     -973313 best=     -262822 dec= 43132 sw= 7867    63s  ETA=8:15
+[ep 14/20] start day=0505 x1.03
+[ep 14/20] |##########################| done  reward=     -591076 best=     -262822 dec= 38270 sw= 8751    62s  ETA=7:03
+[ep 15/20] start day=0506 x0.89
+[ep 15/20] |##########################| done  reward=     -729152 best=     -262822 dec= 40397 sw= 8364    66s  ETA=5:53
+[ep 16/20] start day=0505 x1.09
+[ep 16/20] |##########################| done  reward=     -633838 best=     -262822 dec= 38424 sw= 8723    69s  ETA=4:43
+[ep 17/20] start day=0506 x0.56
+[ep 17/20] |##########################| done  reward=     -307418 best=     -262822 dec= 34636 sw= 9412    64s  ETA=3:32
+[ep 18/20] start day=0507 x0.67
+[ep 18/20] |##########################| done  reward=     -331361 best=     -262822 dec= 31934 sw= 9903    66s  ETA=2:22
+[ep 19/20] start day=0505 x0.54
+[ep 19/20] |##########################| done  reward=     -242394 best=     -242394 dec= 33355 sw= 9645    67s  ETA=1:11
+[ep 20/20] start day=0506 x0.97
+[ep 20/20] |##########################| done  reward=     -902646 best=     -242394 dec= 42052 sw= 8064    80s  ETA=0:00
+
+--- held-out generalization: 0508 (never trained on) ---
+  scale=1.0 (in-range     ): throughput=51530  avg_delay=58.82s (timeLoss=19.94+insert=38.88)  avg_halts=0.820
+Traceback (most recent call last):
+  File "/home/andy/Downloads/GDOT/rlagent/train_random.py", line 207, in <module>
+    main()
+  File "/home/andy/Downloads/GDOT/rlagent/train_random.py", line 197, in main
+    m = metrics.read_tripinfo(ti)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/andy/Downloads/GDOT/rlagent/metrics.py", line 43, in read_tripinfo
+    root = ET.parse(path).getroot()
+           ^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/xml/etree/ElementTree.py", line 1204, in parse
+    tree.parse(source, parser)
+  File "/usr/lib/python3.12/xml/etree/ElementTree.py", line 569, in parse
+    self._root = parser._parse_whole(source)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+xml.etree.ElementTree.ParseError: not well-formed (invalid token): line 8877, column 0

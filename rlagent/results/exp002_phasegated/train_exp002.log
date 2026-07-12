@@ -1,0 +1,44 @@
+[ep 1/20] start day=0507 x0.72
+[ep 1/20] |##########################| done  reward=    -5761124 best=    -5761124 dec= 66146 sw= 3682   422s  ETA=2:13:44
+[ep 2/20] start day=0505 x1.27
+[ep 2/20] |##########################| done  reward=    -2189767 best=    -2189767 dec= 57245 sw= 5301   100s  ETA=1:18:25
+[ep 3/20] start day=0506 x0.69
+[ep 3/20] |##########################| done  reward=    -1140175 best=    -1140175 dec= 35747 sw= 9210    41s  ETA=53:25
+[ep 4/20] start day=0507 x1.20
+[ep 4/20] |##########################| done  reward=    -1460984 best=    -1140175 dec= 45244 sw= 7483    94s  ETA=44:06
+[ep 5/20] start day=0506 x0.83
+[ep 5/20] |##########################| done  reward=     -893124 best=     -893124 dec= 45779 sw= 7386    41s  ETA=35:12
+[ep 6/20] start day=0506 x0.59
+[ep 6/20] |##########################| done  reward=     -427220 best=     -427220 dec= 38618 sw= 8688    27s  ETA=28:32
+[ep 7/20] start day=0505 x1.12
+[ep 7/20] |##########################| done  reward=     -886605 best=     -427220 dec= 43209 sw= 7853    47s  ETA=24:15
+[ep 8/20] start day=0506 x0.85
+[ep 8/20] |##########################| done  reward=     -792530 best=     -427220 dec= 33058 sw= 9698    43s  ETA=20:45
+[ep 9/20] start day=0506 x0.90
+[ep 9/20] |##########################| done  reward=     -896169 best=     -427220 dec= 43276 sw= 7841    53s  ETA=18:03
+[ep 10/20] start day=0507 x0.81
+[ep 10/20] |##########################| done  reward=     -522474 best=     -427220 dec= 34211 sw= 9489    37s  ETA=15:27
+[ep 11/20] start day=0506 x1.05
+[ep 11/20] |##########################| done  reward=    -1192418 best=     -427220 dec= 48995 sw= 6802    82s  ETA=13:49
+[ep 12/20] start day=0507 x1.19
+[ep 12/20] |##########################| done  reward=    -1005494 best=     -427220 dec= 40175 sw= 8404    65s  ETA=12:02
+[ep 13/20] start day=0505 x1.15
+[ep 13/20] |##########################| done  reward=     -885404 best=     -427220 dec= 39722 sw= 8487    57s  ETA=10:16
+[ep 14/20] start day=0505 x0.79
+[ep 14/20] |##########################| done  reward=     -454974 best=     -427220 dec= 34359 sw= 9462    44s  ETA=8:32
+[ep 15/20] start day=0506 x1.13
+[ep 15/20] |##########################| done  reward=    -1335412 best=     -427220 dec= 37507 sw= 8890   105s  ETA=7:15
+[ep 16/20] start day=0505 x0.71
+[ep 16/20] |##########################| done  reward=     -372082 best=     -372082 dec= 26216 sw=10943    46s  ETA=5:39
+[ep 17/20] start day=0507 x0.98
+[ep 17/20] |##########################| done  reward=     -721846 best=     -372082 dec= 33256 sw= 9662    56s  ETA=4:10
+[ep 18/20] start day=0506 x0.61
+[ep 18/20] |##########################| done  reward=     -422229 best=     -372082 dec= 37159 sw= 8954    50s  ETA=2:44
+[ep 19/20] start day=0505 x0.92
+[ep 19/20] |##########################| done  reward=     -558133 best=     -372082 dec= 35542 sw= 9247    56s  ETA=1:21
+[ep 20/20] start day=0505 x0.66
+[ep 20/20] |##########################| done  reward=     -325685 best=     -325685 dec= 25713 sw=11034    53s  ETA=0:00
+
+--- held-out generalization: 0508 (never trained on) ---
+  scale=1.0 (in-range     ): throughput=51530  avg_delay=23.52s  avg_halts=0.848
+  scale=1.5 (EXTRAPOLATION): throughput=77827  avg_delay=29.49s  avg_halts=0.860

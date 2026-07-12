@@ -9,8 +9,7 @@ extended (see `rlagent/`); Chen's thesis and the APSIPA paper are a labmate's
 prior work (Recurrent PPO on a Taipei roundabout) kept for context/comparison.
 The extension goal is to make the base method perform well in **high
 saturation / traffic-spillover** conditions, likely by adding 1–2 state
-features — that extension work has not started yet (see "Next steps" below);
-everything built so far is groundwork and replication.
+features.
 
 ## Fidelity policy (governs every data step in this project)
 
@@ -79,17 +78,22 @@ second and third are live.
      written it would regenerate the network from the plain XML *without*
      the slip lane or the connectivity fix, silently destroying both.
    - **Possible construction-state mismatch (unverified, worth checking
-     before trusting saturation results):** `approachspeeddottedlinesinfo.txt`
-     (repo root) has research notes on an **active GDOT "Capacity
-     Improvement" widening project (SR 237)** at this exact intersection —
-     Piedmont Rd is being widened (notes say roughly 5→7 lanes total across
-     both directions) and lane configurations are actively changing. It's
-     not confirmed which build state `sumotwin`'s digitized lane counts
-     correspond to (current mid-construction vs. final post-widening), nor
-     whether the calibrated demand (`data.txt`, presumably reflecting
-     current/live traffic under construction) matches the geometry it's
-     being run against. Worth resolving before leaning on any
-     saturation/capacity finding.
+     before trusting saturation results):** research notes (formerly
+     `approachspeeddottedlinesinfo.txt`, intentionally deleted 2026-07-11
+     to clean up the repo root once its key facts were extracted into this
+     file and `rlagent/regulations.md`) documented an **active GDOT
+     "Capacity Improvement" widening project (SR 237)** at this exact
+     intersection — Piedmont Rd is being widened (roughly 5→7 lanes total
+     across both directions) and lane configurations are actively
+     changing. It's not confirmed which build state `sumotwin`'s digitized
+     lane counts correspond to (current mid-construction vs. final
+     post-widening), nor whether the calibrated demand (`data.txt`,
+     presumably reflecting current/live traffic under construction)
+     matches the geometry it's being run against. Worth resolving before
+     leaning on any saturation/capacity finding. (Separately, the 35 mph
+     posted-speed figure used throughout `sumotwin` and `rlagent` — see
+     `rlagent/regulations.md` §6 — has been confirmed correct by the user
+     directly, independent of the deleted notes file.)
 
 4. **`sumodemand/`** — calibrated demand builder, wiring the portal data
    into SUMO `<flow>` routes for all 4 days. Fully validated: all four
@@ -109,15 +113,51 @@ second and third are live.
 5. **`rlagent/`** — the active project: replicate Sahachaiseree's linear-FA
    + LSTDQ controller on the real twin, get initial metrics, *then* (a
    deliberately separate, later plan) extend it for high-saturation/
-   spillover performance. **No agent code exists yet** — `rlagent/plan.md`
-   is the phased implementation plan, currently at **Phase 0** (designing
-   the stage table / action space — not yet done). `rlagent/regulations.md`
-   is the supporting research backing that design: real GDOT left-turn
-   phasing warrant thresholds (Policy 6785-2's exact cross-product/volume/
-   crash criteria), the GDOT/NEMA phase-numbering convention, MUTCD/ITE
-   clearance-interval formulas, and Georgia's right-turn-on-red default —
-   all meant to make the stage table a computed, sourced design rather than
-   an arbitrary one borrowed wholesale from the paper's toy intersection.
+   spillover performance. **This section was stale — code now exists well
+   past Phase 0.** `stages.py` (8-stage action space + interstage timing),
+   `sumo_env.py` (TraCI environment), `lstdq.py` (linear-FA/LSTDQ solver),
+   `fixed_time.py` (Webster pretimed baseline), `train.py` /
+   `train_random.py` (training loops), `eval_heldout.py`, `metrics.py`,
+   and `watch.py` all exist, with results under `rlagent/results/`.
+   `rlagent/regulations.md` is the supporting research backing the phase
+   table's design (GDOT Policy 6785-2 left-turn warrants, NEMA
+   phase-numbering convention, MUTCD/ITE clearance formulas, Georgia's
+   RTOR default) plus a field-verification pass (§8) cross-checking it all
+   against photos of the real signal heads. **Action space redesigned
+   2026-07-11 to the realistic ordered-actuated model** (from the paper's
+   free 8-stage selection): the agent runs the fixed ring-barrier cycle
+   `EW_LEFT→EW_THRU→NS_LEFT→NS_THRU` with a binary EXTEND/ADVANCE action,
+   FYA protected-permissive lefts (EB/NB/SB protected + permissive,
+   WB-left permissive-only), protected NB/SB right-turn doghouse overlaps,
+   and selective interstage clearance — all matching the photographed real
+   heads (regulations.md §8). This changed the state (phase one-hot now 4
+   wide) and action (2 not 8) dimensions, so **the old `results/` weights
+   heads (regulations.md §8).
+
+   **Current status (2026-07-12): base method replicated and validated — it
+   now beats fixed-time.** The full experimentation trail (failures
+   included, for the progress report) lives in `rlagent/experiments/`;
+   `rlagent/experiments/README.md` is the live status index. The path
+   there mattered:
+   - **EXP-001 (negative):** the ordered-actuated action space (binary
+     EXTEND/ADVANCE) + linear FA over `[phase-onehot, lane-counts]`
+     produced a *degenerate* policy that parked on the busiest phase and
+     gridlocked at **every** demand level incl. 0.5×. Root cause: the 32
+     lane weights were shared across phases, so the phase×lane interaction
+     that signal timing needs wasn't representable.
+   - **EXP-002 (positive):** making the lane features **phase-gated**
+     (each active phase gets its own lane-weight block; `feature_mode=
+     "phase_gated"` in `sumo_env.py`, 132-dim state / 264 params) fixed
+     it. The agent now runs a ~43 s adaptive cycle and **beats Webster
+     fixed-time by 35–61% on delay at 100% throughput, scales 0.5–1.3×**,
+     on held-out day 0508 — matching the paper's "~½ pretimed delay"
+     claim. Training is full-day domain-randomized (day×scale), with the
+     0505/0506 sensor-outage bins masked; runs on `libsumo` (~5.5×) with
+     per-episode resumable checkpoints.
+   Known open fidelity item: the twin models EB-through as 3 lanes but the
+   real approach is likely ~2 (SR-237 widening) — correcting it makes 1.0×
+   a genuinely near-saturated test (see EXP-001 §4.3). Treat
+   `rlagent/plan.md`'s phase list as a rough historical map.
 
 ---
 
@@ -130,10 +170,10 @@ GDOT/
 ├── data/7065/{date}data.txt (live demand source: GDOT portal TMC report exports)
 ├── sumotwin/ (SUMO digital twin network — see its README.md)
 ├── sumodemand/ (calibrated demand built from data/7065/ — see its README.md)
-├── rlagent/ (active project: plan.md + regulations.md; no code yet)
+├── rlagent/ (active project: stages.py/train.py/lstdq.py/etc. + plan.md + regulations.md)
 ├── old-dont-use/ (retired chart-digitizer pipeline + raw chart images — historical only)
-└── approachspeeddottedlinesinfo.txt (scratch research notes on the real intersection's
-    active widening project + SUMO lane/geometry specifics — see caveat in #3 above)
+├── lastchat.md (most recent session's working notes — training status, bugs found/fixed)
+└── how-lsdtq-works.txt, command-notes.txt (scratch notes)
 ```
 
 ---
@@ -145,10 +185,29 @@ GDOT/
 - Reconcile `sumotwin/README.md` / `build.sh` / `digitize.py` with the
   current folder name and the hand-added slip lane (or at minimum, guard
   `build.sh` so it can't silently clobber the current network).
-- `rlagent/plan.md` Phase 0: compute the left-turn warrant criteria from
-  the calibrated demand, design the stage table, compute Georgia-consistent
-  interstage timing — then Phases 1–5 (environment wrapper, LSTDQ learner,
-  fixed-time baseline, initial training run, initial metrics report).
+- `rlagent/plan.md`'s Phase 0–5 list is largely done (stage table, env
+  wrapper, LSTDQ learner, fixed-time baseline, and training runs all exist
+  — see `stages.py`/`sumo_env.py`/`lstdq.py`/`fixed_time.py`/`train.py`).
+  What's actually outstanding, per `lastchat.md`: wire
+  `eval_heldout.py`'s unused `peak_window_rou()` helper into the eval
+  functions and re-run, to get a fair peak-vs-peak comparison against
+  fixed-time — the only clean result so far (full-day eval of a
+  peak-trained agent) is a known-unfair test, not evidence the method
+  doesn't work.
+- Retrain on the redesigned action space — the old `results/` (weights,
+  tripinfos, REPORT.md) were produced under the free 8-stage selector and
+  no longer match `stages.py`/`sumo_env.py`. Both `train.py`,
+  `train_random.py`, `fixed_time.py`, `eval_heldout.py`, and `watch.py`
+  have been updated to the new binary EXTEND/ADVANCE action and run clean
+  (smoke-tested: 0 teleports/collisions/warnings), but no fresh training
+  run has been done yet.
+- `sumotwin/README.md` references `digitize.py`, `build.sh`, and several
+  PNGs (`preview.png`, `redigitized_overlay.png`, etc.) that no longer
+  exist in `sumotwin/` at all (not just stale paths, as previously noted
+  here — they're gone). Only `7065.net.xml`, `7065_slip.net.xml`,
+  `7065.sumocfg`, `7065.view.xml`, `osm_raw.osm.xml`, and `plain/*.xml`
+  remain. Reconcile the README or restore those scripts before relying on
+  its "Rebuild" instructions.
 - Only 4 real calibrated days exist. Per `sumodemand/README.md`'s own
   closing note: don't train on one day scaled up/down — use these 4 to
   characterize the demand *range* (directional split, turning ratios, burst

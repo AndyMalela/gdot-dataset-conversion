@@ -1,0 +1,5 @@
+EXP-002 POLICY PROBE (phase-gated, 0508, 0.5x, PM 15:00-17:00)
+decisions: 3512 EXTEND=2841 ADVANCE=671 (advance frac 0.191)
+phase green-time (s): {'EW_LEFT': 1680, 'EW_THRU': 2721, 'NS_LEFT': 1726, 'NS_THRU': 1072}
+phase visits: {'EW_LEFT': 167, 'EW_THRU': 168, 'NS_LEFT': 168, 'NS_THRU': 168}
+=> cycles ~167 over 2h => ~43s/cycle

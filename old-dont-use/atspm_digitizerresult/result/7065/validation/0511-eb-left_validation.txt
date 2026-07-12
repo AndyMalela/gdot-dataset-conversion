@@ -1,4 +1,0 @@
-=== 0511-eb-left.jpg ===
-Eastbound Left  line: single lane (red)
-OCR header: subtitle='EastboundLeft VehicleLanes' PHF=0.52 fLU=1350.0 peak_hour=9 peak_hour_vph=161
-daily total: extracted     2066   OCR     2051   error   +0.7%   [coverage 95%, 8 empty 5-min bins]

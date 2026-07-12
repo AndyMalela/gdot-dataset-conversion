@@ -1,0 +1,186 @@
+================================================================================
+RL SIGNAL CONTROL ON SIG#7065 — CONSOLIDATED METRICS SUMMARY
+================================================================================
+Generated: 2026-07-13
+Scope: all experiments to date (EXP-001, EXP-002, EXP-003/003b).
+Source of every number: each experiment's report.md + its data/ snapshots.
+Nothing here is rescaled/smoothed/invented (project fidelity policy).
+
+Common setup (all experiments):
+  - Digital twin: sumotwin/7065.net.xml. Demand: sumodemand/{day}.rou.xml.
+  - Action space: fixed 4-phase ring-barrier cycle
+        EW_LEFT -> EW_THRU -> NS_LEFT -> NS_THRU (repeat),
+        binary action per 1 s decision: EXTEND (hold) / ADVANCE (next phase).
+  - Learner: linear FA, LSTDQ closed-form w=(A+ridge.I)^-1 b,
+        ridge=1e-4, gamma=0.99/s, eps-greedy eps=0.05, semi-MDP reward.
+  - Reward: -sum lane queue (veh < 5 km/h), summed per-second over a decision.
+  - Training: full-day domain-randomized, day in {0505,0506,0507} x scale in
+        [0.5,1.3]; 0508 HELD OUT for eval; sensor-outage bins masked; 20 eps.
+  - Backend: libsumo (headless).
+
+Metric definitions (metrics.py):
+  - throughput = trips COMPLETED within the drained sim (day run to 30 h).
+  - delay      = mean TOTAL delay = timeLoss + departDelay (s/trip).
+                 departDelay = insertion backlog (spillback to source).
+                 timeLoss-only (the fixed-2026-07-12 bug) hides oversaturation.
+  - Lower delay is better. Low delay next to LOW throughput = WORSE
+        (survivorship bias: gridlocked trips never enter the average).
+  - v/c figures are peak-window degree of saturation (s=1900 veh/h/lane, GDOT).
+
+================================================================================
+EXP-001 — flat features (binary extend/advance, lane weights SHARED)  [NEGATIVE]
+================================================================================
+State: [phase one-hot(4), lane counts(32)] = 36-dim, 72 params.
+Outcome: degenerate "park on EW_THRU" policy; gridlocks at EVERY scale incl 0.5x.
+
+Held-out 0508, full day, RL vs Webster fixed-time:
+  scale | controller | throughput      | delay(s) | RL vs fixed
+  ------+------------+-----------------+----------+------------
+  0.5x  | fixed      | 26,297 (~100%)  |   39.2   |  --
+  0.5x  | RL         | 16,961 (66%)    |  205.9*  | +425%
+  0.8x  | fixed      | 41,255 (~100%)  |   39.7   |  --
+  0.8x  | RL         | 25,755 (62%)    |  138.5*  | +249%
+  1.0x  | fixed      | 51,530 (100%)   |   39.9   |  --
+  1.0x  | RL         | 32,093 (62%)    |  112.7*  | +182%
+  1.3x  | fixed      | 67,124 (~100%)  |   41.8   |  --
+  1.3x  | RL         | 43,548 (65%)    |   93.8*  | +125%
+  * RL delay survivorship-biased (~38% of trips never complete -> true worse;
+    delay falling as load rises is the bias symptom, not a real trend).
+
+Root cause: 32 lane weights shared across phases -> phase x lane interaction
+not representable -> busiest lane (EB thru) never clears -> always extend
+EW_THRU -> parks there, starves side street + lefts -> gridlock at any load.
+
+================================================================================
+EXP-002 — phase-gated features (per-phase lane-weight block)  [POSITIVE + CORR.]
+================================================================================
+State: [phase one-hot(4), lane counts in ACTIVE phase's block (4x32)] = 132-dim,
+264 params. Degeneracy gone: ~43 s adaptive cycle, 100% throughput all scales.
+
+--- (a) Original timeLoss-only, day-averaged view (LOOKED like a clean win) ---
+Held-out 0508, full day, RL vs fixed:
+  scale | controller | throughput    | delay(s) | halts | RL vs fixed
+  ------+------------+---------------+----------+-------+------------
+  0.5x  | RL         | 26,297 (100%) |   15.3   | 0.725 | -61%
+  0.5x  | fixed      | 26,297 (100%) |   39.2   | 0.630 |  --
+  0.8x  | RL         | 41,255 (100%) |   20.5   | 0.798 | -48%
+  0.8x  | fixed      | 41,255 (100%) |   39.7   | 0.627 |  --
+  1.0x  | RL         | 51,530 (100%) |   23.5   | 0.848 | -41%
+  1.0x  | fixed      | 51,530 (100%) |   39.9   | 0.628 |  --
+  1.3x  | RL         | 67,124 (100%) |   27.0   | 0.855 | -35%
+  1.3x  | fixed      | 67,124 (100%) |   41.8   | 0.648 |  --
+
+--- (b) CORRECTED: total delay (timeLoss + departDelay). Reverses saturation ---
+Full-day TOTAL delay, 0508:
+  scale | v/c  |   RL   | fixed | RL vs fixed
+  ------+------+--------+-------+------------
+  0.5x  | 0.62 |    17s |   40s | -58%  (RL wins)
+  0.8x  | 0.82 |   165s |   48s | +247%
+  1.0x  | 0.92 |   507s |   94s | +440%
+  1.3x  | 1.20 | 1,931s |  537s | +259%
+  1.5x  | 1.38 | 3,362s | 1,313s| +156%
+  1.8x  | 1.66 | 6,566s | 3,311s| +98%
+
+Peak-window (15-18h) TOTAL delay, 0508:
+  scale | v/c  |   RL    | fixed | RL vs fixed
+  ------+------+---------+-------+------------
+  0.5x  | 0.62 |     26s |   43s | -40%  (RL wins)
+  0.8x  | 0.82 |    596s |   63s | +845%
+  1.0x  | 0.92 |  1,291s |  230s | +462%
+  1.3x  | 1.20 |  3,709s |  912s | +307%
+  1.5x  | 1.38 |  6,226s | 2,087s| +198%
+  1.8x  | 1.66 | 10,388s | 4,878s| +113%
+
+Corrected conclusion: RL beats Webster ONLY at 0.5x (v/c 0.62); crossover
+~v/c 0.7; from 0.8x up RL is substantially worse (worst near capacity).
+Throughput stays 100% (no gridlock -> EXP-002's real fix); the failure is
+delay/spillback, not lost vehicles.
+
+--- (c) Replication fidelity vs paper (paper's metric = in-network delay only) ---
+Peak-window, in-network delay, RL vs fixed:
+  our scale | v/c  | our RL vs fixed | paper Table 6
+  ----------+------+-----------------+--------------------------
+  0.5x      | 0.62 | -49.7%          | low-intensity  -48.7%
+  0.8x      | 0.82 | -16.8%          | principal/high -17.6%
+  1.0x      | 0.92 |  -5.4%          | (not tested by paper)
+  1.3x      | 1.20 | -11.6%          | (not tested)
+  1.5x      | 1.38 | -18.9%          | (not tested)
+  1.8x      | 1.66 | -36.5%          | (not tested)
+Finding: on the paper's metric AND regime our numbers match almost exactly ->
+replication is FAITHFUL, not underperforming. Paper never tested saturation
+(all its arrival patterns undersaturated, Sy~0.43). Saturation failure in (b)
+is beyond the paper's scope, not a replication defect.
+
+================================================================================
+EXP-003 / 003b — spillback features (normalized occupancy + phase-gated elapsed)
+================================================================================
+Two new feature_modes vs EXP-002:
+  - phase_gated_norm : counts normalized to occupancy = count/lane_storage in
+                       [0,1] (storage = length/7.5m). 132-dim. (ablation)
+  - phase_gated_v3   : norm + phase-gated normalized elapsed time
+                       (phase_elapsed/MAX_GREEN). 136-dim (272 params).
+
+--- Peak-window TOTAL delay, 0508 (single-seed headline, seed 0) ---
+  scale | v/c  | EXP-002 | norm-only |   v3     | FIXED
+  ------+------+---------+-----------+----------+------
+  0.5x  | 0.62 |    26s  |    18s(b) |    21s   |   43s
+  0.8x  | 0.82 |   596s  |   435s    |   166s(b)|   63s
+  1.0x  | 0.92 | 1,291s  | 1,119s    |   786s(b)|  230s
+  1.3x  | 1.20 | 3,709s  | 2,747s(b) | 8,910s ! |  912s
+  1.5x  | 1.38 | 6,226s  | 5,040s(b) | 7,729s   | 2,087s
+  1.8x  | 1.66 |10,388s  | 9,355s    | 7,149s(b)| 4,878s
+  (b) = best RL variant at that scale.  ! = v3 1.3x anomaly (see below).
+
+  - norm-only beats EXP-002 MONOTONICALLY at every scale (~15-30% lower) ->
+    fixing feature scaling reliably helps. Trustworthy part of EXP-003.
+  - v3 big gains at 0.8/1.0/1.8x, but 1.3x=8,910s is non-monotonic (worse than
+    its own 1.5x/1.8x) -> signature of a noisy single-seed policy, not a trend.
+
+--- EXP-003b: multi-seed v3 (seeds 0-4) — resolves the single-seed caveat ---
+Peak-window TOTAL delay per seed (s):
+  scale | seed0 | seed1 | seed2 | seed3 | seed4 | MEDIAN | mean | norm | fixed
+  ------+-------+-------+-------+-------+-------+--------+------+------+------
+  1.0x  |   786 |   489 |   185 |   575 |   430 |   489  |  493 | 1119 |  230
+  1.3x  | 8,910 | 1,403 | 4,420 | 1,855 | 1,673 | 1,855  | 3652 | 2747 |  912
+  1.8x  | 7,149 | 5,899 | 5,842 | 6,899 | 3,042 | 5,899  | 5766 | 9355 | 4878
+
+  - On the MEDIAN, v3 is the best RL variant so far (beats norm AND EXP-002 at
+    every scale; 1.3x: 1855 vs 2747 vs 3709). The "v3 worse at 1.3x" headline
+    was purely seed-0 bad luck.
+  - High VARIANCE is the real weakness: ~40% (2/5) of seeds hit a "parking
+    collapse" (park a low-demand phase, jam EB to max queue 60). Mean >> median.
+  - Still short of FIXED at saturation (1.3x median 1855 vs 912) but gap much
+    smaller than EXP-002. No code bug — a learned-policy collapse.
+
+--- EXP-003 §4c: numerical diagnosis (why the variance) ---
+LSTDQ solve is ill-conditioned:
+  feature mode      | cond(A)      | cond(A+1e-4 I) | ridge-sens.* | sym min-eig
+  ------------------+--------------+----------------+--------------+-----------
+  phase_gated       | inf (singular)| 1.9e10        | 0.27         | -2.8e3
+  phase_gated_norm  | inf (singular)| 8.9e8         | 1.48         | -1.3e2
+  phase_gated_v3    | ~1e69        | 3.7e8          | 1.50         | -1.2e2
+  * fractional change in w when ridge goes 1e-4 -> 1e-2.
+  - A is rank-deficient (ridge is load-bearing); solution ridge-determined,
+    not data-determined -> big seed-to-seed variance -> parking lottery.
+  - Normalization helps ~20x (1.9e10 -> 8.9e8) but doesn't fix it.
+  - Weight signs: occupancy weights sensible (high queue -> extend, strongest
+    EW_THRU ~1200-1600). Elapsed-time weight COUNTER-INTUITIVE (positive
+    extend-preference = "the longer I've sat, the more I want to stay") ->
+    self-parking; largest in exactly the parked phase of parked seeds.
+
+================================================================================
+BOTTOM LINE
+================================================================================
+- EXP-001 -> EXP-002: phase-gating is REQUIRED for the ordered extend/advance
+  action space under linear FA; without it -> gridlock at all loads.
+- EXP-002: replication is FAITHFUL to the paper (matches Table 6 on the paper's
+  metric/regime). On TOTAL delay, base method beats fixed-time only at low load
+  (<= ~v/c 0.7); worse near/above capacity. Throughput 100% everywhere.
+- EXP-003: normalization = clean monotonic gain (adopt). Phase-gated elapsed
+  (v3) = best RL median at every scale, but ~40% parking-collapse variance from
+  an ill-conditioned LSTDQ solve + partial observability.
+- OPEN: no variant beats fixed-time in saturation yet -> EXP-003c (robustness /
+  numerical fix) and EXP-004 (reward penalizing insertion backlog).
+- Fidelity caveat: twin models EB-through as 3 lanes; real approach likely ~2
+  (SR-237 widening) -> current 1.0x understates true saturation.
+================================================================================

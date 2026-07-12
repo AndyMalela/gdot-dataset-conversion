@@ -1,0 +1,6 @@
+v3 @ 1.3x peak window, per seed -- does it park in the wrong phase?
+seed 0:   adv=0.005 | dominant=NS_LEFT(8233s) | EBqmax=60 | PARKED in NS_LEFT | greens EW_LE=120,EW_TH=2258,NS_LE=8233,NS_TH=186
+seed 1:   adv=0.077 | dominant=EW_THRU(4963s) | EBqmax=47 | cycling | greens EW_LE=1700,EW_TH=4963,NS_LE=1827,NS_TH=2314
+seed 2:   adv=0.009 | dominant=NS_THRU(8341s) | EBqmax=60 | PARKED in NS_THRU | greens EW_LE=232,EW_TH=1961,NS_LE=263,NS_TH=8341
+seed 3:   adv=0.049 | dominant=EW_THRU(6066s) | EBqmax=46 | cycling | greens EW_LE=1309,EW_TH=6066,NS_LE=1612,NS_TH=1810
+seed 4:   adv=0.073 | dominant=EW_THRU(5347s) | EBqmax=57 | cycling | greens EW_LE=1573,EW_TH=5347,NS_LE=1790,NS_TH=2087

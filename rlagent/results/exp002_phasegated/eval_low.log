@@ -1,0 +1,10 @@
+Held-out day 0508, FULL DAY drained to 30:00, RL(domain-randomized) vs Webster fixed-time
+
+scale | controller |   thru |  delay[s] |  halts
+----------------------------------------------------
+  0.5 | RL in-range |  16961 |    205.85 |  0.717
+      | fixed-time |  51530 |     39.94 |  0.628  (RL delay +415.4%)
+----------------------------------------------------
+  0.8 | RL in-range |  25755 |    138.49 |  0.539
+      | fixed-time |  51530 |     39.94 |  0.628  (RL delay +246.7%)
+----------------------------------------------------

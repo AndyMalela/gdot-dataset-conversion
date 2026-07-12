@@ -1,0 +1,10 @@
+Held-out day 0508, FULL DAY drained to 30:00, RL(domain-randomized) vs Webster fixed-time
+
+scale | controller |   thru |  delay[s] |  halts
+----------------------------------------------------
+  1.5 | RL extrap  |  77827 |     29.49 |  0.860
+      | fixed-time |  77827 |     43.33 |  0.656  (RL delay -31.9%)
+----------------------------------------------------
+  1.8 | RL extrap  |  92785 |     31.99 |  0.753
+      | fixed-time |  92785 |     45.10 |  0.653  (RL delay -29.1%)
+----------------------------------------------------

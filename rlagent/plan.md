@@ -185,12 +185,45 @@ diverging or staying flat.
 
 ---
 
+## Phase 6 — Domain-randomized training (pulled forward from "deferred")
+
+Originally deferred until the single-day replication was validated — it
+now is (Phase 4/5), so this moved up. Also corrects a mistake found in
+Phase 5's first pass: the 07:00–09:00 window was assumed to be "AM peak"
+without checking the data; a direct check shows **all 4 calibrated days
+peak in the PM (~15:15–18:05)**, never the AM, so that run was a moderate-
+load case, not the hard one.
+
+- `train_random.py`: each episode samples a random real day from
+  {0505, 0506, 0507} and a random demand scale from [0.5×, 1.3×] (SUMO's
+  native `--scale`, verified to work exactly with our `number=`-based
+  flows), on the real PM peak window (15:00–18:00) — not one day scaled,
+  per the earlier finding that freezes directional split/burstiness.
+  **0508 held out entirely** for a genuine generalization test, evaluated
+  in-range (1.0×) and extrapolated (1.5×, 1.8×) after training.
+- Same accumulated-experience LSTDQ loop as Phase 4 (still closed-form).
+- Held-out evaluation is a **separate** script (`eval_heldout.py`), not the
+  inline eval in `train_random.py` — the inline one had a truncation bug
+  (stopped while congested → uncompleted vehicles dropped from the delay
+  average) and a windowing bug (full-day flows kept inserting past the
+  "window" when the sim was extended to drain). `eval_heldout.py` evaluates
+  over the full day with an end-of-day drain and an anchored fixed-time
+  baseline. See `results/REPORT.md` "Eval-methodology note".
+
+**Done when:** training converges (reward plateaus) across the randomized
+sampler [✓ — reward −950k→−250k, plateaus ~ep 20], and the held-out-day
+evaluation (`eval_heldout.py`, full-day, drained, vs fixed-time) produces a
+result at each scale (even if the finding is "it doesn't generalize well
+past 1.3×" — that's still useful information, not a failure to report).
+
+---
+
 ## Deferred to a later plan (do not pull into this one)
 
 - High-saturation / spillback state-feature extension (the 1–2 added
-  features discussed separately).
-- Domain-randomized training across multiple calibrated days + a
-  demand-scaling sweep into oversaturation.
+  features discussed separately) — Phase 6 uses the paper's original
+  state/reward; only after THAT is evaluated does adding new features
+  make sense, to isolate what the added features contribute.
 - Fixing approach-length/geometry fidelity in `sumotwin`, and digitizing
   the missing right-turn movements.
 
@@ -207,6 +240,11 @@ diverging or staying flat.
 - [x] Phase 2: LSTDQ verified on toy case (`lstdq.py`), wired to the env
 - [x] Phase 3: fixed-time baseline running and stable (`fixed_time.py`,
       AM-peak window; full-day pending)
-- [ ] Phase 4: RL agent trains and converges on 0507 (in progress —
-      first 20-episode AM-peak run)
-- [ ] Phase 5: initial metrics table + writeup produced
+- [x] Phase 4: RL agent trains and converges on 0507 AM peak — took 4 runs
+      and three documented adaptations (semi-MDP reward, accumulated-
+      experience refits, cycle-scale γ); reward plateaus stably from ~ep 14
+- [x] Phase 5 (initial pass): `results/REPORT.md` — converged agent beats
+      fixed-time on halts (0.633 vs 0.855) but not yet on delay/throughput
+      at the AM peak (46.1 s vs 33.5 s); consistent with the paper's own
+      shrinking-advantage-at-high-intensity finding. Off-peak windows,
+      multi-seed, and full-day eval still open

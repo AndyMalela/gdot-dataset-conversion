@@ -1,4 +1,0 @@
-=== 0507-nb-thru.jpg ===
-Northbound Thru  line: Total (black)
-OCR header: subtitle='NorthboundThruVehicleLanes' PHF=0.76 fLU=0.41 peak_hour=2 peak_hour_vph=589
-daily total: extracted     8345   OCR     8453   error   -1.3%   [coverage 98%, 0 empty 5-min bins]

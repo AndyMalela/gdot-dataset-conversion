@@ -1,0 +1,58 @@
+feature_mode=phase_gated_v3  n_features=136  params=272
+[ep 1/20] start day=0507 x0.69
+[ep 1/20] |##########################| done  reward=    -4696988 best=    -4696988 dec= 63814 sw= 4106   243s  ETA=1:16:52
+[ep 2/20] start day=0507 x1.25
+[ep 2/20] |##########################| done  reward=    -3314384 best=    -3314384 dec= 52724 sw= 6123   133s  ETA=56:28
+[ep 3/20] start day=0505 x1.29
+[ep 3/20] |##########################| done  reward=    -2197199 best=    -2197199 dec= 39460 sw= 8534   298s  ETA=1:03:48
+[ep 4/20] start day=0505 x0.59
+[ep 4/20] |##########################| done  reward=     -776323 best=     -776323 dec= 54165 sw= 5862    31s  ETA=47:12
+[ep 5/20] start day=0507 x0.68
+[ep 5/20] |##########################| done  reward=     -777021 best=     -776323 dec= 45323 sw= 7468    42s  ETA=37:38
+[ep 6/20] start day=0507 x0.67
+[ep 6/20] |##########################| done  reward=     -344792 best=     -344792 dec= 41922 sw= 8087    36s  ETA=30:47
+[ep 7/20] start day=0507 x1.18
+[ep 7/20] |##########################| done  reward=    -1009701 best=     -344792 dec= 54191 sw= 5856    52s  ETA=26:13
+[ep 8/20] start day=0506 x1.29
+[ep 8/20] |##########################| done  reward=    -1709409 best=     -344792 dec= 54880 sw= 5731   146s  ETA=24:55
+[ep 9/20] start day=0507 x1.28
+[ep 9/20] |##########################| done  reward=     -980398 best=     -344792 dec= 49094 sw= 6783    63s  ETA=21:42
+[ep 10/20] start day=0506 x0.51
+[ep 10/20] |##########################| done  reward=     -301569 best=     -301569 dec= 50983 sw= 6440    51s  ETA=18:41
+[ep 11/20] start day=0506 x0.80
+[ep 11/20] |##########################| done  reward=     -586353 best=     -301569 dec= 49666 sw= 6679    58s  ETA=16:09
+[ep 12/20] start day=0507 x0.58
+[ep 12/20] |##########################| done  reward=     -294040 best=     -294040 dec= 45002 sw= 7527    56s  ETA=13:51
+[ep 13/20] start day=0506 x1.20
+[ep 13/20] |##########################| done  reward=    -1404698 best=     -294040 dec= 55010 sw= 5708   136s  ETA=12:28
+[ep 14/20] start day=0505 x1.02
+[ep 14/20] |##########################| done  reward=     -573855 best=     -294040 dec= 43924 sw= 7723    69s  ETA=10:28
+[ep 15/20] start day=0505 x0.80
+[ep 15/20] |##########################| done  reward=     -396191 best=     -294040 dec= 43398 sw= 7818    69s  ETA=8:34
+[ep 16/20] start day=0507 x0.55
+[ep 16/20] |##########################| done  reward=     -254664 best=     -254664 dec= 39403 sw= 8545    68s  ETA=6:44
+[ep 17/20] start day=0506 x1.19
+[ep 17/20] |##########################| done  reward=    -1322493 best=     -254664 dec= 51877 sw= 6277   127s  ETA=5:09
+[ep 18/20] start day=0506 x1.03
+[ep 18/20] |##########################| done  reward=    -1028671 best=     -254664 dec= 48667 sw= 6861    94s  ETA=3:26
+[ep 19/20] start day=0505 x1.04
+[ep 19/20] |##########################| done  reward=     -592734 best=     -254664 dec= 43592 sw= 7784    83s  ETA=1:42
+[ep 20/20] start day=0505 x1.22
+[ep 20/20] |##########################| done  reward=     -799103 best=     -254664 dec= 45926 sw= 7359    94s  ETA=0:00
+
+--- held-out generalization: 0508 (never trained on) ---
+Traceback (most recent call last):
+  File "/home/andy/Downloads/GDOT/rlagent/train_random.py", line 207, in <module>
+    main()
+  File "/home/andy/Downloads/GDOT/rlagent/train_random.py", line 197, in main
+    m = metrics.read_tripinfo(ti)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/andy/Downloads/GDOT/rlagent/metrics.py", line 43, in read_tripinfo
+    root = ET.parse(path).getroot()
+           ^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/xml/etree/ElementTree.py", line 1204, in parse
+    tree.parse(source, parser)
+  File "/usr/lib/python3.12/xml/etree/ElementTree.py", line 569, in parse
+    self._root = parser._parse_whole(source)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+xml.etree.ElementTree.ParseError: not well-formed (invalid token): line 51570, column 6

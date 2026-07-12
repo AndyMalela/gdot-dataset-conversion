@@ -1,4 +1,0 @@
-=== 0508-eb-thru.jpg ===
-Eastbound Thru  line: Total (black)
-OCR header: subtitle='EastboundThruVehicleLanes' PHF=0.73 fLU=0.9 peak_hour=3 peak_hour_vph=2105
-daily total: extracted    17302   OCR    17495   error   -1.1%   [coverage 98%, 0 empty 5-min bins]

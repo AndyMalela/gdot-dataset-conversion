@@ -28,19 +28,28 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def run_episode(env: Sig7065Env, agent: LinearQ, eps: float,
-                rng: np.random.Generator):
+                rng: np.random.Generator, skip=None, on_step=None):
+    """skip: optional callable(time)->bool marking transitions to exclude
+    from the learning batch (on top of warmup) -- used to drop the known
+    sensor-outage bins (0505 late night, 0506 early morning), which read a
+    false exact-zero and are not genuine demand. They still simulate (empty
+    roads, zero reward); they just don't corrupt the fit.
+    on_step: optional callable(sim_time) called periodically for progress."""
     obs = env.reset()
     transitions, done = [], False
     tot_reward, n_steps, n_switch = 0.0, 0, 0
     while not done:
         a = agent.act_eps_greedy(obs, eps, rng)
-        if a != env.stage:
+        if a == st.ADVANCE:
             n_switch += 1
         res = env.step(a)
-        if not env.in_warmup(res.time):
+        drop = env.in_warmup(res.time) or (skip is not None and skip(res.time))
+        if not drop:
             transitions.append((obs, a, res.reward, res.state, res.duration))
         tot_reward += res.reward
         n_steps += 1
+        if on_step is not None and n_steps % 200 == 0:
+            on_step(res.time)
         obs, done = res.state, res.done
     env.close()
     return transitions, tot_reward, n_steps, n_switch
@@ -67,7 +76,7 @@ def main():
     env = Sig7065Env(rou, begin=args.begin, end=args.end,
                      seed=args.seed, label="train")
     env.reset()
-    agent = LinearQ(env.n_state_features, st.N_STAGES, seed=args.seed)
+    agent = LinearQ(env.n_state_features, st.N_ACTIONS, seed=args.seed)
     env.close()
 
     log_path = os.path.join(outdir, f"train_{args.date}_s{args.seed}.csv")

@@ -1,0 +1,8 @@
+# To preview layout
+sumo-gui -c sumotwin/7065.sumocfg      
+
+# To inspect/edit lanes, connections
+netedit sumowin/7065.net.xml 
+# To load with the real-world view (7065.view.xml)
+netedit -s 7065_slip.net.xml -g 7065_aerial.view.xml
+
