@@ -152,18 +152,41 @@ versus a ten-second phase change with clearance.
 
 ## SLIDE 6 — Pipeline: Data → Twin → Environment → Learner → Policy
 
-```
-GDOT portal TMC export → calibrated SUMO demand → digital twin (SIG#7065)
-        ▼
-Sig7065Env — each decision: read lane occupancy → x(s) → agent picks
-        EXTEND/ADVANCE → step SUMO → collect reward r, duration Δt
-        ▼
-Transitions (s, a, r, s', Δt) accumulated across episodes
-        ▼
-LSTDQ closed-form refit → updated weights w
-        ▼
-Greedy policy → eval (tripinfo → delay / throughput / halts)
-        vs. Webster fixed-time baseline
+**Diagram (Mermaid — verified against the implementation):**
+```mermaid
+flowchart LR
+    subgraph DATA["Real-world calibration"]
+        direction TB
+        A["GDOT portal<br/>TMC counts"] --> B["Calibrated SUMO<br/>demand routes"]
+        B --> C["Digital twin<br/>SIG#7065"]
+    end
+
+    subgraph LOOP["RL training loop (LSTDQ)"]
+        direction TB
+        AGENT["Linear-FA agent<br/>Q(s,a) = wₐ · x(s)"]
+        ENV["SUMO environment<br/>1 s decision interval"]
+        BUF["Experience buffer<br/>s, a, r, s', Δt<br/>(accumulated, LSPI-style)"]
+        SOLVE["LSTDQ closed-form<br/>w ← (A+λI)⁻¹ b"]
+
+        AGENT -- "action: EXTEND / ADVANCE" --> ENV
+        ENV -- "state x(s), reward r = −Σ queue" --> AGENT
+        ENV --> BUF
+        BUF -- "refit on ALL experience / episode" --> SOLVE
+        SOLVE -- "updated weights w" --> AGENT
+    end
+
+    subgraph EVAL["Evaluation — held-out day 0508"]
+        direction TB
+        POL["Trained greedy policy"]
+        FIX["Webster fixed-time<br/>baseline"]
+        MET["Total delay /<br/>throughput / halts"]
+        POL --> MET
+        FIX --> MET
+    end
+
+    C ==> ENV
+    C ==> FIX
+    SOLVE ==> POL
 ```
 
 **Bullets:**
