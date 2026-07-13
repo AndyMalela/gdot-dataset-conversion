@@ -73,7 +73,9 @@ if __name__ == "__main__":
                    help="demand multiplier (e.g. 1.3, 1.5)")
     p.add_argument("--feature-mode", default="phase_gated",
                    help="must match how the weights were trained: "
-                        "flat (exp1), phase_gated (exp2), phase_gated_v3 (exp3)")
+                        "flat (EXP-001), phase_gated (EXP-002), "
+                        "phase_gated_norm (EXP-003 ablation), "
+                        "phase_gated_v3 (EXP-003)")
     args = p.parse_args()
 
     rou = os.path.join(HERE, "..", "sumodemand", f"{args.date}.rou.xml")

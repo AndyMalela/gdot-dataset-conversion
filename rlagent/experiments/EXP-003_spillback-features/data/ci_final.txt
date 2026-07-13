@@ -1,0 +1,49 @@
+================================================================================
+EXP-003c-stat FINAL: peak total delay (s), day 0508, equal n=20
+================================================================================
+
+### pg_raw
+  0.5x  n=20 median=     18 [    16,    20]  vs fixed   43:     -26 [    -27,    -23] BETTER
+  0.8x  n=20 median=     55 [    34,   114]  vs fixed   63:      -8 [    -29,    +51] n.s.
+  1.0x  n=20 median=    373 [   155,   581]  vs fixed  230:    +143 [    -75,   +351] n.s.
+  1.3x  n=19 median=   1173 [   883,  2371]  vs fixed  912:    +261 [    -29,  +1459] n.s.
+  1.8x  n=20 median=   5877 [  4017,  6892]  vs fixed 4878:    +999 [   -861,  +2014] n.s.
+  catastrophic-seed rate @1.3x (>3000s): 4/19 = 21% [9%,43%]
+
+### pg_norm
+  0.5x  n=20 median=     16 [    16,    18]  vs fixed   43:     -27 [    -27,    -25] BETTER
+  0.8x  n=20 median=     50 [    33,   103]  vs fixed   63:     -13 [    -30,    +40] n.s.
+  1.0x  n=20 median=    343 [   184,   532]  vs fixed  230:    +113 [    -46,   +302] n.s.
+  1.3x  n=19 median=   1306 [   827,  2706]  vs fixed  912:    +394 [    -85,  +1794] n.s.
+  1.8x  n=20 median=   4885 [  4123,  8000]  vs fixed 4878:      +7 [   -755,  +3122] n.s.
+  catastrophic-seed rate @1.3x (>3000s): 4/19 = 21% [9%,43%]
+
+### pg_elapsed
+  0.5x  n=20 median=     17 [    16,    20]  vs fixed   43:     -26 [    -27,    -23] BETTER
+  0.8x  n=20 median=     65 [    41,   274]  vs fixed   63:      +2 [    -22,   +211] n.s.
+  1.0x  n=20 median=    459 [   299,   795]  vs fixed  230:    +229 [    +69,   +565] WORSE
+  1.3x  n=20 median=   2171 [  1310,  4374]  vs fixed  912:   +1259 [   +398,  +3462] WORSE
+  1.8x  n=20 median=   6623 [  5621,  8050]  vs fixed 4878:   +1745 [   +743,  +3172] WORSE
+  catastrophic-seed rate @1.3x (>3000s): 7/20 = 35% [18%,57%]
+
+================================================================================
+PAIRED variant-vs-variant (median diff [bootstrap CI]; Wilcoxon p, Holm-corrected)
+================================================================================
+  pg_norm vs pg_raw @ 0.5x     n=20 med_diff=     -1 [     -2,     +0]  p=0.044 p_holm=0.657  
+  pg_norm vs pg_raw @ 0.8x     n=20 med_diff=    -10 [    -43,    +17]  p=0.351 p_holm=1.000  
+  pg_norm vs pg_raw @ 1.0x     n=20 med_diff=    -74 [   -291,   +208]  p=0.627 p_holm=1.000  
+  pg_norm vs pg_raw @ 1.3x     n=18 med_diff=   -182 [   -966,  +1539]  p=0.811 p_holm=1.000  
+  pg_norm vs pg_raw @ 1.8x     n=20 med_diff=   -511 [  -2400,  +2765]  p=0.709 p_holm=1.000  
+  pg_norm vs pg_elapsed @ 0.5x n=20 med_diff=     -1 [     -1,     +0]  p=0.218 p_holm=1.000  
+  pg_norm vs pg_elapsed @ 0.8x n=20 med_diff=     -9 [    -75,     +9]  p=0.232 p_holm=1.000  
+  pg_norm vs pg_elapsed @ 1.0x n=20 med_diff=    -48 [   -220,    +89]  p=0.351 p_holm=1.000  
+  pg_norm vs pg_elapsed @ 1.3x n=19 med_diff=   -302 [  -3370,   +154]  p=0.147 p_holm=1.000  
+  pg_norm vs pg_elapsed @ 1.8x n=20 med_diff=  -1611 [  -2895,   +949]  p=0.433 p_holm=1.000  
+  pg_raw vs pg_elapsed @ 0.5x  n=20 med_diff=     -0 [     -1,     +1]  p=0.681 p_holm=1.000  
+  pg_raw vs pg_elapsed @ 0.8x  n=20 med_diff=     +0 [    -65,    +37]  p=0.654 p_holm=1.000  
+  pg_raw vs pg_elapsed @ 1.0x  n=20 med_diff=    -57 [   -301,    +59]  p=0.232 p_holm=1.000  
+  pg_raw vs pg_elapsed @ 1.3x  n=19 med_diff=   -274 [  -1774,   +489]  p=0.355 p_holm=1.000  
+  pg_raw vs pg_elapsed @ 1.8x  n=20 med_diff=   -607 [  -2869,   +943]  p=0.218 p_holm=1.000  
+
+  '*' = significant after Holm at 0.05. med_diff<0 => first variant lower (better) delay.
+================================================================================

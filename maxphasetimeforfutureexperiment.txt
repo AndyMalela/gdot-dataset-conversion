@@ -1,0 +1,111 @@
+For a high-fidelity digital twin simulation of the [Peachtree Rd NE](https://www.google.com/search?kgmid=/g/11v42w5hxm) and Piedmont Rd NE intersection, you must model an actuated, coordinated, and adaptive signal timing plan. Because ATLDOT uses real-time adaptive systems, hardcoding fixed values will break your simulation's accuracy.
+To configure your simulation environment (such as VISSIM, AIMSUN, Synchro, or a custom engine), implement the standard parameters detailed below. [1] 
+------------------------------
+## 1. Yellow Change Intervals (Fixed)
+Georgia DOT (GDOT) and ATLDOT strictly calculate yellow times based on the approach's 85th-percentile speed limit using the standard ITE (Institute of Transportation Engineers) kinematic formula. The posted speed limit on both Peachtree and Piedmont at this junction is 35 MPH. [2, 3] 
+
+* 
+* Peachtree Rd NE (Thru & Left Turns): 4.0 seconds
+* Piedmont Rd NE (Thru & Left Turns): 4.0 seconds
+* Simulation Rule: Yellow times never dynamically change; keep these locked. [4] 
+* 
+
+## 2. All-Red Clearance Intervals (Fixed)
+This intersection is physically wide, requiring an all-red buffer to clear the internal intersection box before conflicting phases get a green light. [5] 
+
+* 
+* All-Red Phase: 2.0 to 2.5 seconds (Use 2.0s for through phases, 2.5s for left-turn phases to account for clearance path length).
+* 
+
+## 3. Green Time Parameters (Dynamic/Actuated)
+Because the intersection operates on an actuated-coordinated system, the green time is defined by a range rather than a fixed number. Vehicles crossing loop detectors or video cameras "extend" the green light up to a maximum threshold. [6, 7] 
+
+| Parameter | Mainline (Peachtree Rd Thru) | Side Street (Piedmont Rd Thru) | Left-Turn Phases (Protected) |
+|---|---|---|---|
+| Minimum Green ($G_{min}$) | 15.0 seconds | 10.0 seconds | 7.0 seconds |
+| Passage Time (Extension) | 2.0 to 3.0 seconds | 2.0 to 2.5 seconds | 2.0 seconds |
+| Max Green ($Max\_G$ - Off-Peak) | 60.0 seconds | 45.0 seconds | 20.0 seconds |
+| Max Green ($Max\_G$ - Peak) | 110.0 seconds | 75.0 seconds | 35.0 seconds |
+
+## 4. Background Cycle Lengths (Coordination)
+If your digital twin simulates grid-level synchronization with adjacent lights (e.g., Peachtree at Maple Dr or Piedmont at Lenox Rd), you must use specific Cycle Lengths to force the intersection to repeat patterns: [8] 
+
+* 
+* AM Peak Hour (7:00 - 9:30 AM): 140 to 150-second total cycle length.
+* PM Peak Hour (4:00 - 7:00 PM): 150 to 160-second total cycle length (maximum bandwidth allocated to Peachtree Northbound and Piedmont Eastbound/Westbound splits).
+* Off-Peak / Night: 90 to 120-second cycle length, or operating entirely in uncoordinated "free-run" actuated mode. [9] 
+* 
+
+## 5. Pedestrian Phase Timing
+To simulate realistic multi-modal behavior, do not forget pedestrian calls, which override minimum vehicle greens: [10] 
+
+* 
+* Pedestrian Walk (White Hand): 7.0 seconds minimum. [11] 
+* Flashing Don't Walk (Ped Clearance): 18.0 to 22.0 seconds (calculated based on a 3.5 ft/s walking speed across the 65-75 foot street width).
+* Leading Pedestrian Interval (LPI): If simulating modern ATLDOT standards, give pedestrians a 3.0-second head start before the parallel vehicular traffic gets a green bulb.
+* 
+
+## Recommended Simulation Setup
+
+   1. Define the phase numbering using standard NEMA TS-2 dual-ring logic (Phases 2 and 6 for Peachtree Thru; Phases 4 and 8 for Piedmont Thru; Phases 1, 3, 5, 7 for protected left turns).
+   2. Set your detector types to "Presence" at the stop bar (6x6 ft loops). [12, 13] 
+   3. If simulating the severe congestion you noted, program a scooter/pedestrian call every 3 cycles, which forces the controller to meet the minimum pedestrian clearance time, starving the competing vehicular green phases and causing the exact backup you see in real life.
+
+Are you building this digital twin in a specific engine like VISSIM, SUMO, or Unity/Unreal? If you tell me the platform, I can format these parameters into a configuration matrix or logic snippet for your system.
+
+[1] [https://www.abbotsford.ca](https://www.abbotsford.ca/sites/default/files/2023-10/Guidelines%20for%20Using%20Traffic%20Modeling%20Tools%20for%20TIA.pdf)
+[2] [https://ctt2center.wordpress.com](https://ctt2center.wordpress.com/2020/08/13/signal-spotlight-optimizing-yellow-clearance-intervals-a-proven-safety-countermeasure/)
+[3] [https://onlinepubs.trb.org](https://onlinepubs.trb.org/onlinepubs/nchrp/docs/NCHRP03-95_FR.pdf)
+[4] [https://law.justia.com](https://law.justia.com/codes/georgia/title-40/chapter-14/article-3/section-40-14-22/)
+[5] [https://onlinepubs.trb.org](https://onlinepubs.trb.org/Onlinepubs/trr/1986/1069/1069-009.pdf)
+[6] [https://ops.fhwa.dot.gov](https://ops.fhwa.dot.gov/publications/fhwahop08024/chapter6.htm)
+[7] [https://www.ceam.org](https://www.ceam.org/vertical/sites/%7BD96B0887-4D81-47D5-AA86-9D2FB8BC0796%7D/uploads/Traffic_Signals_101_Chad_Jorgenson.pdf)
+[8] [https://srta.ga.gov](https://srta.ga.gov/wp-content/uploads/2025/07/GTIB-FY-25-June-SemiAnnual-ProjectUpdates.pdf)
+[9] [https://www.mdpi.com](https://www.mdpi.com/2079-8954/14/1/61)
+[10] [https://floridaltap.net](https://floridaltap.net/wp-content/uploads/2025.02.26_FYA_Handout.pdf)
+[11] [https://www.linkedin.com](https://www.linkedin.com/posts/theq-ensure-quality-2399432b_the-recommended-pedestrian-signal-timing-activity-7327873372606869505-KtdW)
+[12] [https://www.dot.ga.gov](https://www.dot.ga.gov/PartnerSmart/DesignManuals/SignalDesignManual/Traffic%20Signal%20Design%20Guidelines.pdf)
+[13] [https://www.fhwa.dot.gov](https://www.fhwa.dot.gov/publications/research/operations/its/06108/04.cfm)
+
+No, a flashing yellow arrow (FYA) does not last for 4 seconds. It does not have a set expiration time because it is a dynamic permissive interval, not a change interval. [1, 2] 
+For your digital twin simulation, it is crucial to separate how the controller handles a steady yellow versus a flashing yellow.
+## 1. Flashing Yellow Arrow (FYA) Duration
+
+* How it works: The FYA allows vehicles to turn left after yielding to oncoming traffic and pedestrians.
+* Duration: It runs dynamically for as long as the parallel through-traffic phase has a green light.
+* Simulation Rule: If Phase 2 (Peachtree Thru) has a green light for 60 seconds, the concurrent permissive Left Turn (FYA) will flash for that exact same 60 seconds. It does not time out on its own. [2, 3, 4] 
+
+## 2. The Steady Yellow Arrow (The actual 4s change interval)
+When the controller decides it is time to terminate a left turn, it switches to a steady (solid) yellow arrow. This is the change interval that requires a strict duration. [2, 4, 5] 
+The duration depends entirely on what phase the signal is transitioning from and into:
+
+* Transition A: Protected Green Arrow $\rightarrow$ Flashing Yellow Arrow
+* What happens: The green arrow ends, but the parallel through-traffic still has a green light.
+   * Timing: The steady yellow arrow lights up for 4.0 seconds to warn drivers that their "protected" right-of-way is ending, before dropping into the flashing yellow (permissive) state. [2, 6, 7, 8, 9] 
+* Transition B: Flashing Yellow Arrow $\rightarrow$ Solid Red Arrow
+* What happens: The entire approach is losing its green light to let the cross street (Piedmont) go.
+   * Timing: The flashing yellow arrow changes to a steady yellow arrow for 4.0 seconds, followed by the 2.5-second All-Red clearance buffer before the signal turns solid red. [2, 6, 10] 
+
+## Summary Configuration Matrix for Your Controller Logic
+To code the left-turn signal heads (e.g., Phase 1 or Phase 5) in your digital twin, use these exact parameters: [11] 
+
+| Signal State | Simulation Driver Behavior | Trigger / Duration |
+|---|---|---|
+| Solid Green Arrow | Protected turn (go without yielding). | Calculated by controller (7s to 35s max). |
+| Steady Yellow Arrow | Prepare to stop / clear intersection box. | Lock at 4.0 seconds. |
+| Flashing Yellow Arrow | Permissive turn (must yield to opposing traffic). | Dynamic (Tied directly to the parallel through-green phase). |
+| Solid Red Arrow | Stop. | Remaining duration of the cycle. |
+
+Are you writing this in an XML/Python framework like SUMO, or map-based logic fields like Synchro/VISSIM? I can provide the exact phase-transition logic block if needed!
+
+[1] [https://ops.fhwa.dot.gov](https://ops.fhwa.dot.gov/publications/fhwahop08024/chapter4.htm)
+[2] [https://www.facebook.com](https://www.facebook.com/groups/656627774545130/posts/2524356741105548/)
+[3] [https://dds.georgia.gov](https://dds.georgia.gov/section-7-continued-traffic-signals-and-signs)
+[4] [https://www.youtube.com](https://www.youtube.com/watch?v=uIkanxT72KI)
+[5] [https://up.codes](https://up.codes/s/yellow-change-and-red-clearance-intervals)
+[6] [https://floridaltap.org](https://floridaltap.org/wp-content/uploads/2021/03/TST-101-Day-3_Final.pdf)
+[7] [https://www.grapevinetexas.gov](https://www.grapevinetexas.gov/536/Flashing-Yellow-Arrow-Left-Turn-Display)
+[8] [https://www.linkedin.com](https://www.linkedin.com/pulse/20140811014845-83983163-traffic-signals-part-2-signal-phasing)
+[9] [https://www.reddit.com](https://www.reddit.com/r/Seattle/comments/44jmn6/washington_state_traffic_law_question/)
+[10] [https://floridaltap.net](https://floridaltap.net/wp-content/uploads/2025.02.26_FYA_Handout.pdf)
+[11] [https://apps.itd.idaho.gov](https://apps.itd.idaho.gov/apps/info/brochure_fya%20signal_2011.pdf)

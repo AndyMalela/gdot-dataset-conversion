@@ -19,6 +19,24 @@ the heavy approach backs up, and delay explodes into insertion backlog
 "this approach is near its storage limit / about to spill." EXP-003 adds
 features that make that visible, and fixes feature scaling so LSTDQ can use them.
 
+## 1b. Naming key (avoid the "v3 ≡ EXP-003" confusion)
+
+EXP-003 introduces **two** feature configs — an ablation and the treatment — so
+"EXP-003" is not a single controller. The code `feature_mode` strings are
+load-bearing and unchanged; use the display labels on slides:
+
+| code `feature_mode` | display label | role | seeds on disk |
+|---|---|---|---|
+| `phase_gated` | **PG-raw** | EXP-002 baseline for this experiment | 1 |
+| `phase_gated_norm` | **PG-norm** | EXP-003 **ablation** (normalization only, *no new feature*) | 1 |
+| `phase_gated_v3` | **PG-elapsed** ("v3") | EXP-003 **treatment** (norm + phase-gated elapsed) | 5 (0–4) |
+
+"v3" = **version 3** of the phase-gated layout (v1 = PG-raw counts, v2 = PG-norm,
+v3 = + elapsed); only v3 carries the number in code. PG-norm lives under EXP-003
+because it is EXP-003's ablation *control*, even though it adds no new feature —
+that is deliberate, not a misfiling. **Only PG-elapsed is multi-seeded (§4b);
+PG-raw and PG-norm are still n=1**, which is why only PG-elapsed has a CI (§4d).
+
 ## 2. What changed (state features only; everything else fixed)
 
 Same action space, reward, LSTDQ, γ, ridge, ε, training regime as EXP-002.
@@ -181,6 +199,125 @@ wrong/unstable sign → parking variance.
 4. Enforce max-green in the env instead of *learning* it via elapsed — removes
    the wrongly-signed feature entirely and hard-bounds the parking. Given the
    elapsed weight is the destabilizer, likely the cleanest fix.
+
+## 4d. Confidence intervals vs the fixed-time baseline (bootstrap) — n=5, SUPERSEDED by §4e
+
+> **Superseded:** this section reports the *interim* n=5 read (v3 only, before
+> PG-raw/PG-norm were multi-seeded). It is kept for the experimentation trail.
+> The final, equal-n=20 result — which **overturns several conclusions here** —
+> is in §4e. Read §4e for the numbers to cite.
+
+Prompted by the "point estimates aren't enough — need CIs/p-values" review bar.
+Computed with `data/stats_ci.py` (pure numpy, B=10000 percentile bootstrap).
+**The resampling unit is the independent training run, not per-trip delays** —
+resampling trips would measure only within-run noise (thousands of samples →
+deceptively tight intervals) and ignore the training-seed variance that actually
+dominates here (§4b). A CI on the **paired difference** `v3 − fixed` is used, so
+it doubles as the significance test (interval excludes 0 ⇒ distinguishable).
+
+**Only PG-elapsed (v3) has multi-seed data (n=5).** PG-raw and PG-norm are n=1,
+so they get **no CI** until the multi-seed retrain — a CI'd v3 must **not** be
+ranked against their single-seed point values (that is the underpowered version
+of the exact mistake the CI is meant to prevent).
+
+Peak total delay, day 0508:
+
+| scale | v3 median [95% CI] | v3 − fixed (median) [95% CI] | verdict |
+|---|---|---|---|
+| 1.0× | 489 s [185, 786] | +259 s [−45, +556] | **not distinguishable** from fixed |
+| 1.3× | 1855 s [1403, 8910] | +943 s [+491, +7998] | **worse** than fixed (CI excludes 0) |
+| 1.8× | 5899 s [3042, 7149] | +1021 s [−1836, +2271] | **not distinguishable** from fixed |
+
+Fixed baseline point values: 1.0× = 230, 1.3× = 912, 1.8× = 4878 s.
+**Parking-collapse rate:** 2/5 seeds → 40%, Wilson 95% CI **[12%, 77%]**.
+
+**Reading:** the only statistically firm claim at n=5 is **"v3 is worse than
+fixed at 1.3×."** At 1.0× and 1.8× the difference is not distinguishable — we
+can claim neither better nor worse. The intervals are huge (1.3× spans
+1403–8910 s; the parking rate 12–77%) precisely because n=5 and the delay is
+bimodal (parking). That width is not a flaw in the method — it is direct
+evidence that **n=5 is too few for fine claims**; n≥10 (ideally ~20) is needed
+to narrow them. (B only sharpens the percentile estimate; it does *not* narrow
+a CI — only more seeds do.)
+
+## 4e. FINAL multi-seed CIs — n=20, all three variants (EXP-003c-stat)
+
+All three variants retrained to **n=20 independent seeds** (seeds 0–19; the 8
+existing seeds reused, 53 new runs on `libsumo`, 20-wide parallel). Every seed —
+old and new — is scored through the single canonical peak-delay pipeline
+(`data/peak_delay.py`, verified to reproduce the recorded numbers to <1%).
+Analysis in `data/finalize_ci.py`; full output in `data/ci_final.txt`.
+
+Two test families:
+- **vs fixed-time**: bootstrap 95% CI (B=10000) on the median paired difference
+  `variant − fixed`. Fixed-time is deterministic (zero seed variance), so this
+  has power even against the bimodal variant distributions.
+- **variant vs variant**: these are **seed-paired** (PG-raw sN, PG-norm sN,
+  PG-elapsed sN share the same training RNG seed → matched demand sampling), so
+  a paired **Wilcoxon signed-rank** test, **Holm-corrected** across the 9-test
+  family (the multiple-comparison guard).
+
+**Median paired difference vs fixed-time (s), day 0508, n=20** (negative = RL
+better; "n.s." = 95% CI straddles 0):
+
+| variant | 0.5× | 0.8× | 1.0× | 1.3× | 1.8× | collapse@1.3× |
+|---|---|---|---|---|---|---|
+| **PG-raw** | −26 **BETTER** | −8 n.s. | +143 n.s. | +261 n.s. | +999 n.s. | 21% [9,43] |
+| **PG-norm** | −27 **BETTER** | −13 n.s. | +113 n.s. | +394 n.s. | +7 n.s. | 21% [9,43] |
+| **PG-elapsed** | −26 **BETTER** | +2 n.s. | +229 **WORSE** | +1259 **WORSE** | +1745 **WORSE** | 35% [18,57] |
+
+(v/c: 0.5×≈0.62, 0.8×≈0.82, 1.0×≈0.92, 1.3×≈1.20, 1.8×≈1.66. Fixed-time point
+values: 43 / 63 / 230 / 912 / 4878 s. RL medians e.g. PG-norm: 16/50/343/1306/
+4885 s. vs-fixed CIs are *uncorrected* 95% — see robustness note below.)
+
+**The arc across load:** at **0.5× all three variants significantly beat
+fixed-time** (RL ~16–18 s vs 43 s — the low-load regime is where adaptive timing
+has slack to exploit, matching the paper). **0.8× is the crossover** (all n.s.).
+From **1.0× up**, PG-raw/PG-norm stay indistinguishable from fixed while
+PG-elapsed turns significantly worse.
+
+**Variant-vs-variant (seed-paired Wilcoxon, Holm-corrected): every pair, every
+scale is n.s. (all p_holm = 1.000).** Median differences trend PG-norm ≈ PG-raw
+< PG-elapsed (e.g. norm−elapsed @1.8× = −1611 s), but none survive correction.
+
+**What the n=20 data establishes (and what it overturns):**
+
+1. **The "base method is much worse at saturation" headline was a single-seed
+   artifact.** PG-raw and PG-norm **significantly beat fixed-time at 0.5×** and
+   are **statistically indistinguishable from it at 0.8–1.8×** (all n.s.) — never
+   significantly worse at any scale. The old EXP-002 §3.4 "+247% to +440% worse"
+   came from *one unlucky seed each* (PG-raw 3709, PG-norm 2747 at 1.3×); the
+   medians are ~1173 / ~1306 vs fixed's 912, well within noise. **This is the
+   headline correction.**
+2. **The elapsed-time feature backfired.** PG-elapsed is **significantly worse
+   than fixed** and carries the **highest collapse rate (35% vs 21%)**. This
+   *reverses* the interim §4b claim that "v3 is the best variant on the median"
+   — that was an unfair n=5-vs-n=1 comparison. With equal n, adding elapsed
+   time **hurts** (consistent with the §4c ill-conditioning / wrong-sign
+   diagnosis: the feature the solve can't determine is actively destabilizing).
+3. **The three variants cannot be statistically separated from each other** at
+   n=20 (all pairwise n.s. after Holm). Only comparisons against the
+   zero-variance fixed baseline have the power to conclude anything; the seed
+   variance is too large to rank the variants head-to-head. Honest limit.
+4. **Instability is not unique to the elapsed feature** — even PG-raw/PG-norm
+   have a **21%** catastrophic-seed rate at 1.3× (a ~1/5 chance a training run
+   blows up near saturation). The elapsed feature worsens it to 35%, it doesn't
+   create it. The robustness problem is the base method's, not just v3's.
+
+**Robustness caveat (stated, not hidden):** the vs-fixed CIs above are
+uncorrected 95%. The PG-elapsed "WORSE" verdicts at **1.3× and 1.8× are robust**
+(paired-diff lower bounds +398 and +743, far from 0 — they survive a
+multiple-comparison correction); the **1.0× verdict is marginal** (lower bound
++69) and should not be leaned on. PG-raw/PG-norm being n.s. only strengthens
+under correction.
+
+**Defensible one-line for the slide:** *"At n=20 with proper CIs, the base
+linear-FA controller significantly beats Webster fixed-time at low load (0.5×)
+and is statistically indistinguishable from it through saturation (0.8–1.8×) —
+never significantly worse; the added elapsed-time feature makes it significantly
+worse from 1.0× up and less stable; and no variant can be separated from the
+others — the remaining bottleneck is training-seed variance (a ~21–35% collapse
+rate), not mean performance."*
 
 ## 5. Conclusion & next step
 

@@ -1,0 +1,33 @@
+[phase_gated s8] TRAIN -> ci/pg_raw/s8 (from ep 12)
+feature_mode=phase_gated  n_features=132  params=264
+resumed from checkpoint: 11 episodes done, 386671 transitions, best=-218984
+[ep 12/20] start day=0505 x0.70
+[ep 12/20] |##########################| done  reward=     -327460 best=     -218984 dec= 33232 sw= 9667    32s  ETA=0:21
+[ep 13/20] start day=0505 x1.10
+[ep 13/20] |##########################| done  reward=     -690564 best=     -218984 dec= 39383 sw= 8548    40s  ETA=0:39
+[ep 14/20] start day=0505 x0.97
+[ep 14/20] |##########################| done  reward=     -539776 best=     -218984 dec= 36684 sw= 9040    40s  ETA=0:49
+[ep 15/20] start day=0505 x0.50
+[ep 15/20] |##########################| done  reward=     -208960 best=     -208960 dec= 31063 sw=10062    36s  ETA=0:51
+[ep 16/20] start day=0507 x0.53
+[ep 16/20] |##########################| done  reward=     -236243 best=     -208960 dec= 30014 sw=10252    39s  ETA=0:48
+[ep 17/20] start day=0506 x1.18
+[ep 17/20] |##########################| done  reward=    -1374011 best=     -208960 dec= 45606 sw= 7418    76s  ETA=0:48
+[ep 18/20] start day=0506 x0.66
+[ep 18/20] |##########################| done  reward=     -415732 best=     -208960 dec= 37546 sw= 8882    46s  ETA=0:35
+[ep 19/20] start day=0507 x0.75
+[ep 19/20] |##########################| done  reward=     -395831 best=     -208960 dec= 32819 sw= 9742    48s  ETA=0:19
+[ep 20/20] start day=0507 x0.54
+[ep 20/20] |##########################| done  reward=     -251542 best=     -208960 dec= 30631 sw=10140    47s  ETA=0:00
+
+--- held-out generalization: 0508 (never trained on) ---
+  scale=1.0 (in-range     ): throughput=51530  avg_delay=170.54s (timeLoss=21.41+insert=149.13)  avg_halts=0.803
+  scale=1.5 (EXTRAPOLATION): throughput=47325  avg_delay=1326.91s (timeLoss=174.42+insert=1152.49)  avg_halts=1.286
+  scale=1.8 (EXTRAPOLATION): throughput=54153  avg_delay=1428.74s (timeLoss=159.49+insert=1269.25)  avg_halts=1.276
+
+log: /home/andy/Downloads/GDOT/rlagent/ci/pg_raw/s8/train_random_s8.csv
+For the rigorous RL-vs-fixed-time held-out comparison, run eval_heldout.py (also full-day, drained).
+[phase_gated s8] EVAL x1.0
+[phase_gated s8] EVAL x1.3
+[phase_gated s8] EVAL x1.8
+[phase_gated s8] DONE  x1.0=602 x1.3=1574 x1.8=6550

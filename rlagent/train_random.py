@@ -92,6 +92,9 @@ def main():
     p.add_argument("--feature-mode", default="phase_gated",
                    help="state features: flat | phase_gated | "
                         "phase_gated_norm | phase_gated_v3 (see sumo_env)")
+    p.add_argument("--no-eval", action="store_true",
+                   help="skip the inline held-out eval (for multi-seed batch "
+                        "runs that evaluate separately, e.g. the CI harness)")
     args = p.parse_args()
 
     outdir = os.path.join(HERE, args.out)

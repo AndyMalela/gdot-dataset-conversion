@@ -1,0 +1,22 @@
+# === Heavy, regenerable SUMO / training artifacts — NEVER commit ===
+# LSTDQ resumable checkpoints (~800 MB each; ci/ is ~49 GB of these)
+*.pkl
+**/checkpoint_*.pkl
+# SUMO tripinfo outputs (10-40 MB each)
+**/ti_heldout_*.xml
+**/tripinfo_*.xml
+**/ti_*.xml
+# generated peak-window route files
+**/_*peakwindow.rou.xml
+# regenerable figures (rebuild via rlagent/plot_metrics.py)
+rlagent/results_metrics/*.png
+
+# The compact metric CSVs (results_metrics/*.csv) and the trained weights
+# (weights_random_s*.npy, ~2 KB) and per-seed training logs
+# (train_random_s*.csv) ARE tracked — they are small and are the data behind
+# the figures / CIs.
+
+# === Python scratch ===
+__pycache__/
+*.pyc
+.python-version

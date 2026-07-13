@@ -26,11 +26,6 @@ sumo     -c 7065twin/7065.sumocfg      # headless (loads clean, no demand yet)
 netedit  7065twin/7065.net.xml         # inspect/adjust lanes, connections, TLS
 ```
 
-## Rebuild
-```bash
-bash 7065twin/build.sh                  # digitize.py -> netconvert ; no network needed
-```
-
 ## Files
 | File | What it is |
 |---|---|

@@ -39,7 +39,7 @@ quoted in a `report.md` can always be traced back.
 |----|-------|---------|
 | [EXP-001](EXP-001_ordered-actuated-extend-advance/report.md) | Realistic ordered-actuated action space (binary extend/advance) + linear FA | **Negative** — degenerate policy, gridlocks at all demand levels incl. 0.5×. Root cause: representation under-expressiveness (lane weights shared across phases). |
 | [EXP-002](EXP-002_phase-gated-features/report.md) | Phase-gated lane features (restore per-phase×lane expressiveness) | **Mixed / corrected.** Fixes the gridlock/degeneracy (real representation bug); throughput 100% at all scales. But on **total delay (incl. insertion backlog)**, RL beats fixed-time **only at 0.5× (v/c 0.62)**; from ~v/c 0.7 up it is worse (+98% to +440%, worst near capacity). Matches the paper. Also fixed a metrics bug (timeLoss-only undercounted oversaturated delay). **High-saturation performance is the open problem.** |
-| [EXP-003](EXP-003_spillback-features/report.md) | Spillback-aware features (normalized occupancy + phase-gated elapsed) + norm-only ablation + **multi-seed (003b)** | **Best RL variant on the median** — v3 beats norm & EXP-002 at every scale (1.3×: 1855 vs 2747 vs 3709 s). Normalization = clean monotonic gain. **But ~40% of seeds hit a parking collapse** (high variance); the 1.3× "spike" was a bad-seed artifact. Still short of fixed-time in saturation. Root cause: phase-gating hides other approaches from the advance decision. |
+| [EXP-003](EXP-003_spillback-features/report.md) | Spillback-aware features (normalized occupancy + phase-gated elapsed) + norm-only ablation + multi-seed (003b) + **n=20 CIs over 0.5–1.8× (003c-stat, §4e)** | **Final (n=20, proper CIs):** PG-raw & PG-norm **significantly beat fixed-time at 0.5×** and are **indistinguishable from it at 0.8–1.8×** — never worse (the earlier "much worse at saturation" was a single-seed artifact); the added **elapsed-time feature makes it significantly worse** from 1.0× up (robust at 1.3×/1.8×) and less stable (35% vs 21% collapse); **no variant separable** from another after Holm. Bottleneck = training-seed variance, not mean delay. (Interim single-seed §4b "v3 is best" was overturned.) |
 
 ## Planned / backlog (not yet started)
 
@@ -53,6 +53,15 @@ quoted in a `report.md` can always be traced back.
   one-hot / use one global elapsed feature; (d) SVD/pseudo-inverse solver;
   (e) enforce max-green in the env instead of learning it via elapsed (removes
   the destabilizing feature, hard-bounds parking).
+- **EXP-003c-stat — multi-seed confidence intervals. ✅ DONE (n=20).** All three
+  variants retrained to 20 seeds; equal-n bootstrap CIs vs fixed + seed-paired
+  Holm-corrected pairwise tests (EXP-003 §4e, `data/finalize_ci.py`,
+  `data/ci_final.txt`). **Result overturns the single-seed narrative:** PG-raw
+  and PG-norm are **statistically indistinguishable from fixed-time at every
+  scale** (the old "+247–440% worse" was one unlucky seed each); **PG-elapsed is
+  significantly *worse* than fixed** (1.3×/1.8× robust) with a 35% collapse rate
+  vs 21% for the others; **no variant separable from another** after Holm. The
+  bottleneck is training-seed variance (21–35% collapse), not mean delay.
 - **EXP-004 — reward redesign.** The `−queue` reward is gameable under
   oversaturation (RL sheds delay into insertion backlog; see EXP-002 §3.4).
   Try a throughput- / total-delay-aware reward that penalizes insertion
