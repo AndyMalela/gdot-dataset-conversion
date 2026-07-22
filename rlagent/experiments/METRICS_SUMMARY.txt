@@ -252,8 +252,16 @@ BOTTOM LINE
 - EXP-003: normalization = clean monotonic gain (adopt). Phase-gated elapsed
   (v3) = best RL median at every scale, but ~40% parking-collapse variance from
   an ill-conditioned LSTDQ solve + partial observability.
-- OPEN: no variant beats fixed-time in saturation yet -> EXP-003c (robustness /
-  numerical fix) and EXP-004 (reward penalizing insertion backlog).
+- EXP-004 (DONE, see experiments/EXP-004_reward-baselines-capacity/report.md):
+  added stronger real-world baselines (actuated gap-out x2, cyclic max-
+  pressure); reward fixed to count insertion backlog (was gameable); a
+  per-phase max-green envelope matching tuned-actuated's [15,92,30,70]
+  unlocked policies below 677s at 1.3x. Paper-style validation selection
+  (rho=0.87, n=15) yields a DEPLOYED policy beating every baseline at 4/5
+  scales (507s vs tuned-actuated 677 / Webster 912 at 1.3x). BUT: no arm's
+  AVERAGE beats either baseline at any seed count tested (n=3 up to n=15) --
+  best is Webster PARITY (EXP-004a, p=0.91; rate, p=0.10). The win is
+  entirely in the selection protocol, not the mean -- stated plainly.
 - Fidelity caveat: twin models EB-through as 3 lanes; real approach likely ~2
   (SR-237 widening) -> current 1.0x understates true saturation.
 ================================================================================

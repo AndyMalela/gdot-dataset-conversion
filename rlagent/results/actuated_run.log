@@ -1,0 +1,11 @@
+Fully-actuated (gap-out 3.0s, min 8.0s, max 30.0s) -- day 0508, full day drained
+  x0.5: throughput=26297  avg_delay=23.95s (timeLoss=20.04+insert=3.91)  avg_halts=0.730
+        PEAK(15-18h) total delay = 42 s  (n=6209)
+  x0.8: throughput=41255  avg_delay=173.86s (timeLoss=25.07+insert=148.79)  avg_halts=0.799
+        PEAK(15-18h) total delay = 339 s  (n=9859)
+  x1.0: throughput=51530  avg_delay=442.86s (timeLoss=28.77+insert=414.09)  avg_halts=0.840
+        PEAK(15-18h) total delay = 590 s  (n=12322)
+  x1.3: throughput=67124  avg_delay=1172.90s (timeLoss=32.40+insert=1140.49)  avg_halts=0.861
+        PEAK(15-18h) total delay = 1634 s  (n=16026)
+  x1.8: throughput=91423  avg_delay=2629.67s (timeLoss=36.58+insert=2593.09)  avg_halts=0.844
+        PEAK(15-18h) total delay = 4063 s  (n=22181)

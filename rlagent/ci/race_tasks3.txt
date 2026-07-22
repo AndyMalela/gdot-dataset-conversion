@@ -1,0 +1,7 @@
+pg_glob_rate 0 ci/race/ratemg/s0 system enforce hi1.6 mg15,92,30,70
+pg_glob_rate 1 ci/race/ratemg/s1 system enforce hi1.6 mg15,92,30,70
+pg_glob_rate 2 ci/race/ratemg/s2 system enforce hi1.6 mg15,92,30,70
+pg_glob_rate 3 ci/race/ratemg/s3 system enforce hi1.6 mg15,92,30,70
+pg_glob_rate 4 ci/race/ratemg/s4 system enforce hi1.6 mg15,92,30,70
+pg_glob_spill 2 ci/race/spillmulti/s2 multi enforce hi1.6
+pg_norm_global 0 ci/race/ridge/s0 system enforce hi1.6 r0.01

@@ -1,0 +1,12 @@
+tuned max greens (Webster x1.25): [14.8, 92.3, 30.0, 70.3]
+Fully-actuated (gap-out 3.0s, min 8.0s, max per-phase) -- day 0508, full day drained
+  x0.5: throughput=26297  avg_delay=23.01s (timeLoss=20.00+insert=3.01)  avg_halts=0.728
+        PEAK(15-18h) total delay = 38 s  (n=6209)
+  x0.8: throughput=41255  avg_delay=189.10s (timeLoss=25.11+insert=163.99)  avg_halts=0.791
+        PEAK(15-18h) total delay = 373 s  (n=9859)
+  x1.0: throughput=51530  avg_delay=490.53s (timeLoss=28.84+insert=461.69)  avg_halts=0.809
+        PEAK(15-18h) total delay = 652 s  (n=12322)
+  x1.3: throughput=67124  avg_delay=615.00s (timeLoss=32.55+insert=582.45)  avg_halts=0.768
+        PEAK(15-18h) total delay = 677 s  (n=16026)
+  x1.8:   x1.8: throughput=92785  avg_delay=1092.03s (timeLoss=39.41+insert=1052.62)  avg_halts=0.612
+        PEAK(15-18h) total delay = 1979 s  (n=22181)

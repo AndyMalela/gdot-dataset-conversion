@@ -1,0 +1,10 @@
+pg_glob_rate 5 ci/race/ratemg/s5 system enforce hi1.6 mg15,92,30,70
+pg_glob_rate 6 ci/race/ratemg/s6 system enforce hi1.6 mg15,92,30,70
+pg_glob_rate 7 ci/race/ratemg/s7 system enforce hi1.6 mg15,92,30,70
+pg_glob_rate 8 ci/race/ratemg/s8 system enforce hi1.6 mg15,92,30,70
+pg_glob_rate 9 ci/race/ratemg/s9 system enforce hi1.6 mg15,92,30,70
+pg_glob_rate 10 ci/race/ratemg/s10 system enforce hi1.6 mg15,92,30,70
+pg_glob_rate 11 ci/race/ratemg/s11 system enforce hi1.6 mg15,92,30,70
+pg_glob_rate 12 ci/race/ratemg/s12 system enforce hi1.6 mg15,92,30,70
+pg_glob_rate 13 ci/race/ratemg/s13 system enforce hi1.6 mg15,92,30,70
+pg_glob_rate 14 ci/race/ratemg/s14 system enforce hi1.6 mg15,92,30,70

@@ -1,0 +1,9 @@
+  seed  0: val(0507 x1.3) =  1316.9 s   heldout(0508) =  1840.3 s
+  seed  1: val(0507 x1.3) =   360.3 s   heldout(0508) =  1421.0 s
+  seed  2: val(0507 x1.3) =  1000.8 s   heldout(0508) =  1070.6 s
+  seed  3: val(0507 x1.3) =   944.3 s   heldout(0508) =  1146.3 s
+  seed  4: val(0507 x1.3) =   191.4 s   heldout(0508) =   507.1 s
+
+SELECTED seed 4 (val 191 s) -> HELD-OUT 0508 result: 507 s
+Rank correlation val<->heldout is the protocol's sanity check:
+  Spearman rho over 5 seeds: 0.60

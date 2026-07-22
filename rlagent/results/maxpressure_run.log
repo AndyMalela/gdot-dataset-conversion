@@ -1,0 +1,11 @@
+Cyclic max-pressure (min 8.0s, maxes [15.0, 92.0, 30.0, 70.0]) -- day 0508, full day drained
+  x0.5: throughput=26297  avg_delay=23.39s (timeLoss=20.48+insert=2.91)  avg_halts=0.768
+        PEAK(15-18h) total delay = 40 s (n=6209)
+  x0.8: throughput=41255  avg_delay=306.36s (timeLoss=29.44+insert=276.92)  avg_halts=0.944
+        PEAK(15-18h) total delay = 614 s (n=9859)
+  x1.0: throughput=51530  avg_delay=926.90s (timeLoss=34.75+insert=892.15)  avg_halts=1.047
+        PEAK(15-18h) total delay = 1764 s (n=12322)
+  x1.3: throughput=67124  avg_delay=2780.79s (timeLoss=42.25+insert=2738.55)  avg_halts=1.185
+        PEAK(15-18h) total delay = 5212 s (n=16026)
+  x1.8: throughput=92785  avg_delay=6844.02s (timeLoss=49.03+insert=6794.99)  avg_halts=1.306
+        PEAK(15-18h) total delay = 10168 s (n=22181)

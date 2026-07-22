@@ -1,0 +1,15 @@
+pg_norm_global 0 ci/exp004b/s0 system enforce hi1.6
+pg_norm_global 1 ci/exp004b/s1 system enforce hi1.6
+pg_norm_global 2 ci/exp004b/s2 system enforce hi1.6
+pg_glob_rate 0 ci/race/rate/s0 system enforce hi1.6
+pg_glob_rate 1 ci/race/rate/s1 system enforce hi1.6
+pg_glob_rate 2 ci/race/rate/s2 system enforce hi1.6
+pg_glob_age 0 ci/race/age/s0 system enforce hi1.6
+pg_glob_age 1 ci/race/age/s1 system enforce hi1.6
+pg_glob_age 2 ci/race/age/s2 system enforce hi1.6
+pg_glob_rate_age 0 ci/race/rateage/s0 system enforce hi1.6
+pg_glob_rate_age 1 ci/race/rateage/s1 system enforce hi1.6
+pg_glob_rate_age 2 ci/race/rateage/s2 system enforce hi1.6
+pg_norm_global 0 ci/race/ridge/s0 system enforce hi1.6 r0.01
+pg_norm_global 1 ci/race/ridge/s1 system enforce hi1.6 r0.01
+pg_norm_global 2 ci/race/ridge/s2 system enforce hi1.6 r0.01

@@ -1,0 +1,6 @@
+pg_glob_spill 0 ci/race/spill/s0 system enforce hi1.6
+pg_glob_spill 1 ci/race/spill/s1 system enforce hi1.6
+pg_glob_spill 2 ci/race/spill/s2 system enforce hi1.6
+pg_glob_spill 0 ci/race/spillmulti/s0 multi enforce hi1.6
+pg_glob_spill 1 ci/race/spillmulti/s1 multi enforce hi1.6
+pg_glob_spill 2 ci/race/spillmulti/s2 multi enforce hi1.6

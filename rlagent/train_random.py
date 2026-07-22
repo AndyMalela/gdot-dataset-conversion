@@ -92,6 +92,15 @@ def main():
     p.add_argument("--feature-mode", default="phase_gated",
                    help="state features: flat | phase_gated | "
                         "phase_gated_norm | phase_gated_v3 (see sumo_env)")
+    p.add_argument("--reward-mode", default="queue",
+                   help="queue (paper Eq.13) | system (EXP-004a: + insertion "
+                        "backlog; see sumo_env)")
+    p.add_argument("--enforce-max-green", action="store_true",
+                   help="hardware-style max-out at MAX_GREEN (EXP-004b)")
+    p.add_argument("--max-greens", default=None,
+                   help="comma-separated per-phase max greens, e.g. "
+                        "'15,92,30,70' (demand-proportioned caps; needs "
+                        "--enforce-max-green)")
     p.add_argument("--no-eval", action="store_true",
                    help="skip the inline held-out eval (for multi-seed batch "
                         "runs that evaluate separately, e.g. the CI harness)")
@@ -103,7 +112,11 @@ def main():
 
     env = Sig7065Env(rou_path(TRAIN_DATES[0]), begin=args.begin, end=args.end,
                      seed=args.seed, label="train_rand",
-                     feature_mode=args.feature_mode)
+                     feature_mode=args.feature_mode,
+                     reward_mode=args.reward_mode,
+                     enforce_max_green=args.enforce_max_green,
+                     max_greens=([float(x) for x in args.max_greens.split(",")]
+                                 if args.max_greens else None))
     env.reset()
     agent = LinearQ(env.n_state_features, st.N_ACTIONS, seed=args.seed)
     env.close()

@@ -1,0 +1,73 @@
+[pg_norm_global s8] TRAIN -> ci/exp004b/s8 (from ep 0)
+[pg_norm_global s3] TRAIN -> ci/exp004b/s3 (from ep 0)
+[pg_norm_global s6] TRAIN -> ci/exp004b/s6 (from ep 0)
+[pg_norm_global s9] TRAIN -> ci/exp004b/s9 (from ep 0)
+[pg_norm_global s0] TRAIN -> ci/exp004b/s0 (from ep 0)
+[pg_norm_global s1] TRAIN -> ci/exp004b/s1 (from ep 0)
+[pg_norm_global s7] TRAIN -> ci/exp004b/s7 (from ep 0)
+[pg_norm_global s5] TRAIN -> ci/exp004b/s5 (from ep 0)
+[pg_norm_global s2] TRAIN -> ci/exp004b/s2 (from ep 0)
+[pg_norm_global s4] TRAIN -> ci/exp004b/s4 (from ep 0)
+feature_mode=pg_norm_global  n_features=137  params=274
+--resume given but no checkpoint found; starting fresh
+[ep 1/20] start day=0507 x1.49
+feature_mode=pg_norm_global  n_features=137  params=274
+--resume given but no checkpoint found; starting fresh
+[ep 1/20] start day=0507 x1.59
+feature_mode=pg_norm_global  n_features=137  params=274
+--resume given but no checkpoint found; starting fresh
+[ep 1/20] start day=0506 x0.82
+feature_mode=pg_norm_global  n_features=137  params=274
+--resume given but no checkpoint found; starting fresh
+[ep 1/20] start day=0506 x1.55
+feature_mode=pg_norm_global  n_features=137  params=274
+--resume given but no checkpoint found; starting fresh
+[ep 1/20] start day=0507 x0.76
+feature_mode=pg_norm_global  n_features=137  params=274
+--resume given but no checkpoint found; starting fresh
+[ep 1/20] start day=0507 x0.83
+feature_mode=pg_norm_global  n_features=137  params=274
+--resume given but no checkpoint found; starting fresh
+[ep 1/20] start day=0507 x1.39
+feature_mode=pg_norm_global  n_features=137  params=274
+--resume given but no checkpoint found; starting fresh
+[ep 1/20] start day=0506 x0.88
+feature_mode=pg_norm_global  n_features=137  params=274
+--resume given but no checkpoint found; starting fresh
+[ep 1/20] start day=0507 x0.80
+feature_mode=pg_norm_global  n_features=137  params=274
+--resume given but no checkpoint found; starting fresh
+[ep 1/20] start day=0507 x1.06
+[ep 1/20] |##########################| done  reward=   -17000805 best=   -17000805 dec= 56827 sw= 4091    54s  ETA=17:09
+[ep 2/20] start day=0507 x1.28
+[ep 1/20] |##########################| done  reward=   -20877848 best=   -20877848 dec= 66960 sw= 1967    70s  ETA=22:07
+[ep 2/20] start day=0507 x1.52
+[ep 1/20] |##########################| done  reward=   -33123415 best=   -33123415 dec= 55433 sw= 4591    90s  ETA=28:29
+[ep 2/20] start day=0507 x1.13
+[ep 1/20] |##########################| done  reward=  -334850158 best=  -334850158 dec= 56046 sw= 4519   796s  ETA=4:12:03
+[ep 2/20] start day=0505 x0.72
+[ep 1/20] |##########################| done  reward=  -394506235 best=  -394506235 dec= 56134 sw= 4315   844s  ETA=4:27:07
+[ep 2/20] start day=0506 x1.42
+[ep 1/20] |##########################| done  reward=  -370086198 best=  -370086198 dec= 62720 sw= 2883   888s  ETA=4:41:16
+[ep 2/20] start day=0505 x0.67
+[ep 1/20] |##########################| done  reward=  -427438318 best=  -427438318 dec= 56574 sw= 4256   952s  ETA=5:01:19
+[ep 2/20] start day=0506 x0.65
+[ep 2/20] |##########################| done  reward=  -175626498 best=  -175626498 dec= 51997 sw= 5256   331s  ETA=2:49:13
+[ep 3/20] start day=0506 x1.09
+[ep 1/20] |##########################| done  reward=  -758743643 best=  -758743643 dec= 55839 sw= 4256  1577s  ETA=8:19:22
+[ep 2/20] start day=0505 x1.22
+[ep 2/20] |##########################| done  reward=  -820027060 best=   -33123415 dec= 40263 sw= 7943  1534s  ETA=4:03:45
+[ep 3/20] start day=0505 x1.05
+[ep 1/20] |##########################| done  reward=  -903247114 best=  -903247114 dec= 35330 sw= 8738  1688s  ETA=8:54:40
+[ep 2/20] start day=0506 x0.93
+[ep 2/20] |##########################| done  reward=  -804072550 best=   -17000805 dec= 55091 sw= 4829  1743s  ETA=4:29:49
+[ep 3/20] start day=0507 x1.11
+[ep 2/20] |##########################| done  reward=  -411174269 best=  -411174269 dec= 63121 sw= 2807   859s  ETA=4:31:49
+[ep 3/20] start day=0506 x1.21
+[ep 2/20] |##########################| done  reward=  -459682899 best=  -370086198 dec= 56334 sw= 4263  1179s  ETA=5:10:12
+[ep 3/20] start day=0505 x0.98
+[ep 1/20] |##########################| done  reward= -1368702844 best= -1368702844 dec= 18478 sw=12249  2153s  ETA=11:21:49
+[ep 2/20] start day=0505 x1.18
+[ep 3/20] |##########################| done  reward=  -297196001 best=   -33123415 dec= 37786 sw= 8298   649s  ETA=3:34:52
+[ep 4/20] start day=0506 x1.32
+xargs: python3: terminated by signal 9

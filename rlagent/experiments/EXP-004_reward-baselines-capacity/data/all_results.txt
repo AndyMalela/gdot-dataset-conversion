@@ -1,0 +1,247 @@
+====================================================================================================
+ALL METHODS x ALL SEEDS vs BASELINES -- peak-window (15:00-18:00) total
+delay (s), held-out day 0508, canonical pipeline (peak_delay.py).
+Lower is better. '-' = eval not run for that scale.
+Generated 2026-07-15 by gen_results_table.py. Fidelity: every number
+recomputed from its raw tripinfo (or the canonical-verified ci_delays.csv
+for the EXP-003 arms); nothing transcribed by hand.
+====================================================================================================
+
+--- BASELINES (deterministic, one run each) ---------------------------------------------------------
+method                                        x0.5    x0.8    x1.0    x1.3    x1.8  
+Webster pretimed                                 43     63    230    912   4878
+Actuated (uniform 30s max)                       42    339    590   1634   4063
+Actuated TUNED maxes                             38    373    652    677   1979
+Max-pressure (cyclic)                            40    614   1764   5212  10168
+
+--- BASELINE REMINDER (scroll ref -- see above for full list) ---------------------------------------
+method                                        x0.5    x0.8    x1.0    x1.3    x1.8  
+Webster pretimed                                 43     63    230    912   4878
+Actuated (uniform 30s max)                       42    339    590   1634   4063
+Actuated TUNED maxes                             38    373    652    677   1979
+Max-pressure (cyclic)                            40    614   1764   5212  10168
+
+--- EXP-003 ARMS (n=20 each; from results_metrics/ci_delays.csv) ---------------------------------
+
+pg_raw  (old queue-only reward, no enforcement)
+  seed  x0.5    x0.8    x1.0    x1.3    x1.8  
+     0     26    596   1292   3709  10388
+     1     22     52    220    876   8110
+     2     17     56    388      -  12379
+     3     37    481   1111   2958   8851
+     4     16     25     96    607   2290
+     5     29    244    624   1936   5870
+     6     17     45    267   1313   4766
+     7     16     23     61    883   2110
+     8     18    110    602   1574   6550
+     9     16     36    187    840   5884
+    10     20     84    480   1172   6459
+    11     21    144    674  10933   6124
+    12     20    119    364   1001   3859
+    13     16     29    121    921   2322
+    14     17     55    383   4537   7234
+    15     16     32    122    959   2466
+    16     19    153    560  13786   4447
+    17     16     26     66    549   2109
+    18     16     31    118    785   4174
+    19     18    100    843   2371   9719
+  mean(1.3x)=  2722   median=  1172   n=19   vs Webster 912 / tuned 677
+
+pg_norm  (old queue-only reward, no enforcement)
+  seed  x0.5    x0.8    x1.0    x1.3    x1.8  
+     0     18    435   1119   2748   9355
+     1     20    142    514   1306   4430
+     2     16     31    187   1050   3290
+     3     26    281    734      -  13821
+     4     16     26   4220   4273   4396
+     5     16     48    352    945   3934
+     6     16     35    222   6447  12630
+     7     16     35    209    967  12188
+     8     16     30    112    608   2592
+     9     16     26     86    812   4312
+    10     16     27    106    793   3623
+    11     16     36    181    827   3319
+    12     18    116    746   1923   6645
+    13     18     52    149    586   2331
+    14     16     26     73    586   5239
+    15     17     91    401   4643   5211
+    16     18    238    708   1718   6332
+    17     18     68    335   2706  13362
+    18     20    137    550   9161  12733
+    19     18     85    482   1400   4560
+  mean(1.3x)=  2289   median=  1306   n=19   vs Webster 912 / tuned 677
+
+pg_elapsed  (old queue-only reward, no enforcement)
+  seed  x0.5    x0.8    x1.0    x1.3    x1.8  
+     0     41    437    786   8910   7149
+     1     16    324    489   1403   5899
+     2     17     27    185   4420   5842
+     3     23    316    575   1855   6899
+     4     16    140    430   1673   3042
+     5     16     40    198   1143   4990
+     6     16     55    320   1216   4514
+     7     16     24     66    484   2188
+     8     38    534   1223   7167   8806
+     9     17     51    307   1114   6347
+    10     22    232  16013   8105   5452
+    11     17     33    168   9119   9310
+    12     17     74    424   1838   7392
+    13     17     28    114    432   8304
+    14     16     41    290   1114  13266
+    15     16     25    804   2733  14580
+    16     18    105    810   4329   5789
+    17    157    887   2870   6526   4661
+    18     16     46    728   2755  14486
+    19     28    322    818   2487   7796
+  mean(1.3x)=  3441   median=  2487   n=20   vs Webster 912 / tuned 677
+
+--- BASELINE REMINDER (scroll ref -- see above for full list) ---------------------------------------
+method                                        x0.5    x0.8    x1.0    x1.3    x1.8  
+Webster pretimed                                 43     63    230    912   4878
+Actuated (uniform 30s max)                       42    339    590   1634   4063
+Actuated TUNED maxes                             38    373    652    677   1979
+Max-pressure (cyclic)                            40    614   1764   5212  10168
+
+--- EXP-004 ARMS (system/multi reward era) --------------------------------------------------------
+
+EXP-004a reward-only (PG-norm+system)
+  seed  x0.5    x0.8    x1.0    x1.3    x1.8  
+     0      -      -    265    982  11210
+     1      -      -    118    564   3109
+     2      -      -    171   1004   3338
+     3      -      -     96   1735   5944
+     4      -      -    614   2575   8896
+     5      -      -    327   2087   3782  (EXCLUDED from mean/median -- INCOMPLETE: only 6423/16026 peak trips completed, gridlocked seed, delay understated/non-monotone)
+     6      -      -     70    751  14073
+     7      -      -     93    957  11621
+     8      -      -    169    841  11710
+     9      -      -    168    623   2412
+  mean(1.3x)=  1115   median=   957   n=9   best=   564   [excluded: [(5, 'incomplete/gridlocked')]]
+
+S1-glob  (glob+system+mg30)
+  seed  x0.5    x0.8    x1.0    x1.3    x1.8  
+     0      -      -    510   1619   5594
+     1      -      -   3373   3851   5345
+     2      -      -   2930   5446  11197
+  mean(1.3x)=  3639   median=  3851   n=3   best=  1619
+
+S2-rate  (rate+system+mg30)
+  seed  x0.5    x0.8    x1.0    x1.3    x1.8  
+     0      -      -    772   1455   2847
+     1      -      -     77    975   3796
+     2      -      -    116    890   3927
+     3      -      -  11555  10085   9289  (EXCLUDED from mean/median -- INCOMPLETE: only 13619/16026 peak trips completed, gridlocked seed, delay understated/non-monotone)
+     4      -      -    295   1212   3958
+     5      -      -    239   1228   4418
+     6      -      -    118    675   3333
+     7      -      -     71    862   5740
+     8      -      -    454   1252   3574
+     9      -      -    194   1204   3374
+  mean(1.3x)=  1084   median=  1204   n=9   best=   675   [excluded: [(3, 'incomplete/gridlocked')]]
+
+S3-age   (age+system+mg30)
+  seed  x0.5    x0.8    x1.0    x1.3    x1.8  
+     0      -      -    433   1407   6500
+     1      -      -    240    905   3297
+     2      -      -    250   1046   3806
+     3      -      -    230   1539   3895
+     4      -      -    919   2608   6225
+     5      -      -    181   1422   5323
+     6      -      -    200    779   3604
+     7      -      -   1591   3153   6085
+     8      -      -    235    844   3766
+     9      -      -    988   1893   5280
+  mean(1.3x)=  1560   median=  1422   n=10   best=   779
+
+S4-rate+age
+  seed  x0.5    x0.8    x1.0    x1.3    x1.8  
+     0      -      -    591   1805   5848
+     1      -      -     75    945   3576
+     2      -      -    155    996   3229
+     3      -      -     57    521   2242
+     4      -      -   1151   2544  10998
+     5      -      -    124   1330   5609
+     6      -      -    773   1739   4801
+     7      -      -    124    643   3396
+     8      -      -    368   1540   8071
+     9      -      -    108    854   4112
+  mean(1.3x)=  1292   median=  1330   n=10   best=   521
+
+S5-ridge1e-2
+  seed  x0.5    x0.8    x1.0    x1.3    x1.8  
+     0      -      -    668   1708   3533
+     1      -      -    327   1003   3715
+     2      -      -   5175   9517  13956
+  mean(1.3x)=  4076   median=  1708   n=3   best=  1003
+
+S6-spill
+  seed  x0.5    x0.8    x1.0    x1.3    x1.8  
+     0      -      -     95    885   3351
+     1      -      -    189   1266   4452
+     2      -      -   4869   8636  18683
+  mean(1.3x)=  3596   median=  1266   n=3   best=   885
+
+S7-spill+multi-reward
+  seed  x0.5    x0.8    x1.0    x1.3    x1.8  
+     0      -      -    714    882   4132
+     1      -      -   3140   3278   5441
+     2      -      -    777   1800   6704
+  mean(1.3x)=  1987   median=  1800   n=3   best=   882
+
+S8-rate+per-phase-maxes[15,92,30,70]
+  seed  x0.5    x0.8    x1.0    x1.3    x1.8  
+     0      -      -    518   1840   6247
+     1      -      -    293   1421   6412
+     2      -      -    472   1071   3987
+     3      -      -    415   1146   3631
+     4     20     26    103    507   2942
+     5      -      -    216   1522   5751
+     6      -      -    120   1229  11442
+     7      -      -    125    823   2820
+     8      -      -    807   2407   8826
+     9      -      -    206    690   3479
+    10      -      -    282   1583   8208
+    11      -      -   1142   2778   7310
+    12      -      -   1201   2609   4770
+    13      -      -     98    930   6707
+    14      -      -   1009   2631   5299
+  mean(1.3x)=  1546   median=  1421   n=15   best=   507
+
+--- DEPLOYED POLICY (validation-selected: S8 seed 4; see EXP-004 §5) -----------------------------
+  selected on training-day 0507 val (191 s); Spearman rho(val,heldout)=0.87 (n=15)
+   RL*     20     26    103    507   2942   (* beats every baseline at 0.5-1.3x; 1.8x is extrapolation)
+
+####################################################################################################
+# SUMMARY -- baselines vs every arm's mean(1.3x), one screen, nothing to scroll for
+####################################################################################################
+
+BASELINES (deterministic; peak total delay (s) per scale):
+  method                                  x0.5    x0.8    x1.0    x1.3    x1.8  
+  Webster pretimed                           43     63    230    912   4878
+  Actuated (uniform 30s max)                 42    339    590   1634   4063
+  Actuated TUNED maxes                       38    373    652    677   1979
+  Max-pressure (cyclic)                      40    614   1764   5212  10168
+
+  >>> TARGET at 1.3x: beat Webster 912    and ideally tuned-actuated 677 <<<
+
+ALL ARMS, ranked by mean(1.3x) (lower=better; * flags n<10 -- screening,
+not a powered test; arms with disclosed exclusions noted):
+  arm                                      n    mean  median    best   vs Webster   vs tuned
+  S2-rate  (rate+system+mg30)             9*    1084    1204     675        above     above
+  EXP-004a reward-only (PG-norm+system)   9*    1115     957     564        above     above
+  S4-rate+age                            10     1292    1330     521        above     above
+  S8-rate+per-phase-maxes[15,92,30,70]   15     1546    1421     507        above     above
+  S3-age   (age+system+mg30)             10     1560    1422     779        above     above
+  S7-spill+multi-reward                   3*    1987    1800     882        above     above
+  pg_norm                                19     2289    1306     586        above     above
+  pg_raw                                 19     2722    1172     549        above     above
+  pg_elapsed                             20     3441    2487     432        above     above
+  S6-spill                                3*    3596    1266     885        above     above
+  S1-glob  (glob+system+mg30)             3*    3639    3851    1619        above     above
+  S5-ridge1e-2                            3*    4076    1708    1003        above     above
+
+  DEPLOYED POLICY (selected, not a mean)     20     26    103    507   2942   <- beats every baseline 0.5-1.3x (see EXP-004 report Sec.5)
+
+####################################################################################################
+
+====================================================================================================

@@ -78,6 +78,17 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NET = os.path.join(REPO, "sumotwin", "7065.net.xml")
 
 QUEUE_SPEED = 5.0 / 3.6  # 5 km/h in m/s
+# feature modes built on the always-visible global summary block (EXP-004).
+# extras are parsed by substring: "rate", "age", "spill".
+GLOBAL_MODES = {"pg_norm_global", "pg_glob_rate", "pg_glob_age",
+                "pg_glob_rate_age", "pg_glob_spill"}
+# entry edge per approach (0=NB,1=SB,2=EB,3=WB): the source-end edge whose
+# occupancy signals spillback-to-source (blocked insertions) risk.
+ENTRY_EDGE = {0: "S_in", 1: "N_far", 2: "SW_in", 3: "NE_in"}
+SPILL_LANE_OCC = 0.9    # a lane at >=90% storage counts as spilled (reward)
+SPILL_W = 5.0           # extra penalty per spilled entry lane per second:
+                        # spillback is nonlinearly worse than its queue count
+                        # (it blocks insertions / upstream storage entirely)
 VEH_SPACING = 7.5        # m per stored vehicle (~5 m veh + 2.5 m gap); used to
                          # normalize lane counts to occupancy in [0,1] (a lane's
                          # storage = length / VEH_SPACING). occupancy per lane is
@@ -99,7 +110,27 @@ class Sig7065Env:
     def __init__(self, rou_xml: str, begin: int = 0, end: int = 86400,
                  warmup: int = 300, gui: bool = False, seed: int = 42,
                  label: str = "env", tripinfo: str | None = None,
-                 scale: float = 1.0, feature_mode: str = "phase_gated"):
+                 scale: float = 1.0, feature_mode: str = "phase_gated",
+                 reward_mode: str = "queue",
+                 enforce_max_green: bool = False,
+                 max_greens: "list[float] | None" = None):
+        # enforce_max_green: real NEMA cabinets hard-limit green in hardware;
+        # they don't "learn" it. When True, an EXTEND past MAX_GREEN is
+        # overridden to ADVANCE (max-out). Structurally eliminates the
+        # parking-collapse failure mode (EXP-003b) instead of hoping the
+        # policy learns not to park.
+        # reward_mode:
+        #   "queue"  -> paper Eq. 13: -sum of in-network lane queues only.
+        #               GAMEABLE under oversaturation: once an entry lane
+        #               fills, overflow piles up as SUMO insertion backlog,
+        #               which this reward cannot see -- the agent is rewarded
+        #               for clogging the entrances (EXP-002 3.4 pathology,
+        #               fixed in the metric but not, until now, the reward).
+        #   "system" -> EXP-004a: -(lane queues + insertion backlog). By
+        #               Little's law, integrating vehicles-waiting-anywhere
+        #               over time is proportional to TOTAL delay (timeLoss +
+        #               departDelay) -- the honest evaluation metric. Closes
+        #               the loophole; a starved approach's overflow now counts.
         # feature_mode:
         #   "flat"        -> [phase one-hot (4), lane counts (32)] = 36-dim
         #                    (EXP-001 baseline; lane weights shared across
@@ -117,8 +148,42 @@ class Sig7065Env:
         #                    normalized elapsed-time feature (4) = 136-dim.
         #                    Occupancy adds the spillback-risk signal; elapsed
         #                    time adds commitment/max-green awareness.
+        #                    (EXP-003c verdict: elapsed HURTS -- weakly
+        #                    identified, destabilizes the solve. Kept only for
+        #                    reproducibility.)
+        #   "pg_norm_global" -> EXP-004b: phase_gated_norm PLUS an always-
+        #                    visible (NON-gated) summary block: per-approach
+        #                    total occupancy (4: NB,SB,EB,WB) + normalized
+        #                    insertion backlog (1) = 137-dim. Fixes the
+        #                    partial observability behind the parking collapse:
+        #                    the ADVANCE decision can finally see the
+        #                    approaches the current phase is starving
+        #                    (EXP-003b root cause).
+        #   EXP-004 strategy race (all extend pg_norm_global; every extra
+        #   feature passes the identifiability filter that killed elapsed-time
+        #   -- varies with real traffic, normalized, not collinear):
+        #   "pg_glob_rate" -> +4: per-approach occupancy CHANGE since the
+        #                    previous decision ("is my green winning?"), the
+        #                    derivative of pressure. 141-dim.
+        #   "pg_glob_age"  -> +4: normalized time since each phase last held
+        #                    green (starvation age, capped at 180 s). Unlike
+        #                    elapsed-of-current-phase this differs across
+        #                    phases and with demand -> identifiable. 141-dim.
+        #   "pg_glob_rate_age" -> both extras. 145-dim.
         self.rou_xml = rou_xml
         self.feature_mode = feature_mode
+        self.reward_mode = reward_mode
+        self.enforce_max_green = enforce_max_green
+        # per-phase max-green caps for enforcement. Default: uniform
+        # stages.MAX_GREEN. A real cabinet's maxes are demand-proportioned
+        # per phase (cf. the tuned-actuated baseline's [14.8, 92.3, 30, 70.3])
+        # -- a uniform 30 s cap forbids the critical phase the >50% cycle
+        # share Webster gives it, capacity-capping the agent at saturation.
+        self.max_greens = (list(max_greens) if max_greens
+                           else [st.MAX_GREEN] * st.N_PHASES)
+        self.lane_approach: list[int] = []   # lane idx -> approach 0..3
+        self._prev_appr: list[float] | None = None   # for the rate feature
+        self.last_served = [0.0] * st.N_PHASES       # for the age feature
         self.lane_storage: list[float] = []
         self.begin, self.end, self.warmup = begin, end, warmup
         self.gui, self.seed, self.label = gui, seed, label
@@ -167,8 +232,31 @@ class Sig7065Env:
         self.lane_storage = [
             max(1.0, self._conn.lane.getLength(l) / VEH_SPACING) for l in self.lanes
         ]
+        # lane -> approach index (0=NB, 1=SB, 2=EB, 3=WB) for the global block
+        def _appr(lane_id: str) -> int:
+            e = lane_id.rsplit("_", 1)[0]
+            if e == "S_in":
+                return 0
+            if e in ("N_near", "N_far"):
+                return 1
+            if e == "SW_in":
+                return 2
+            return 3                       # NE_in* -> WB
+        self.lane_approach = [_appr(l) for l in self.lanes]
+        self.approach_storage = [
+            sum(s for s, a in zip(self.lane_storage, self.lane_approach) if a == i)
+            for i in range(4)
+        ]
+        # entry-edge lane indices per approach (for spillover indicator/reward)
+        self.entry_lane_idx = {
+            a: [i for i, l in enumerate(self.lanes)
+                if l.rsplit("_", 1)[0] == e]
+            for a, e in ENTRY_EDGE.items()
+        }
         self.phase = 0
         self.phase_elapsed = st.MIN_GREEN
+        self._prev_appr = None
+        self.last_served = [float(self.begin)] * st.N_PHASES
         self._set_state(st.GREEN_STATE[self.phase])
         # serve the initial phase for one minimum green before first decision
         self._advance(st.MIN_GREEN)
@@ -185,6 +273,9 @@ class Sig7065Env:
     # -- core step ---------------------------------------------------------
 
     def step(self, action: int, compute_reward: bool = True) -> StepResult:
+        if (self.enforce_max_green and action == st.EXTEND
+                and self.phase_elapsed >= self.max_greens[self.phase]):
+            action = st.ADVANCE            # hardware max-out (see __init__)
         advance = self._advance_accumulating if compute_reward else self._advance_noreward
         t0 = self._conn.simulation.getTime()
         if action == st.EXTEND:                        # hold current phase
@@ -200,6 +291,7 @@ class Sig7065Env:
                 reward += advance(st.YELLOW)
                 self._set_state(allred)
                 reward += advance(st.ALL_RED)
+            self.last_served[self.phase] = self._conn.simulation.getTime()
             self.phase = nxt
             self._set_state(st.GREEN_STATE[self.phase])
             reward += advance(st.MIN_GREEN)
@@ -261,6 +353,35 @@ class Sig7065Env:
             el = [0.0] * st.N_PHASES
             el[self.phase] = min(1.0, self.phase_elapsed / st.MAX_GREEN)
             obs.extend(el)
+        elif self.feature_mode in GLOBAL_MODES:
+            # ALWAYS-visible per-approach occupancy (0=NB,1=SB,2=EB,3=WB) --
+            # the ADVANCE decision can see the approaches it is starving --
+            # plus normalized insertion backlog (overflow past the entrances).
+            appr = [0.0] * 4
+            for c, a in zip(counts, self.lane_approach):
+                appr[a] += c
+            occ = [min(1.0, appr[i] / self.approach_storage[i]) for i in range(4)]
+            obs.extend(occ)
+            backlog = len(self._conn.simulation.getPendingVehicles())
+            obs.append(min(1.0, backlog / 100.0))
+            if "rate" in self.feature_mode:
+                prev = self._prev_appr if self._prev_appr is not None else occ
+                # occupancy delta since last decision, scaled to ~[-1,1]
+                obs.extend(max(-1.0, min(1.0, (occ[i] - prev[i]) * 5.0))
+                           for i in range(4))
+            if "age" in self.feature_mode:
+                now = self._conn.simulation.getTime()
+                obs.extend(min(1.0, (now - self.last_served[p]) / 180.0)
+                           for p in range(st.N_PHASES))
+            if "spill" in self.feature_mode:
+                # per-approach spillover indicator: how close the ENTRY edge
+                # is to blocking insertions (soft ramp from 60% -> 100% full).
+                for a in range(4):
+                    idx = self.entry_lane_idx[a]
+                    eocc = (sum(counts[i] for i in idx)
+                            / max(1.0, sum(self.lane_storage[i] for i in idx)))
+                    obs.append(max(0.0, min(1.0, (eocc - 0.6) / 0.4)))
+            self._prev_appr = occ
         return obs
 
     def _queue_reward(self) -> float:
@@ -270,7 +391,23 @@ class Sig7065Env:
             for vid in lane.getLastStepVehicleIDs(l):
                 if veh.getSpeed(vid) < QUEUE_SPEED:
                     q += 1
-        return -float(q)
+        if self.reward_mode in ("system", "multi"):
+            # + vehicles that want to depart but can't be inserted (spillback
+            # to source). Makes the hidden overflow queue count (EXP-004a).
+            q += len(self._conn.simulation.getPendingVehicles())
+        pen = float(q)
+        if self.reward_mode == "multi":
+            # multi-objective (scalarized): delay term + explicit spillover
+            # term. An entry lane at >=90% storage is about to block
+            # insertions -- nonlinearly worse than its linear queue count.
+            spilled = 0
+            for a in range(4):
+                for i in self.entry_lane_idx[a]:
+                    if (lane.getLastStepVehicleNumber(self.lanes[i])
+                            >= SPILL_LANE_OCC * self.lane_storage[i]):
+                        spilled += 1
+            pen += SPILL_W * spilled
+        return -pen
 
     @property
     def n_state_features(self) -> int:
@@ -279,4 +416,12 @@ class Sig7065Env:
         dim = st.N_PHASES + st.N_PHASES * len(self.lanes)   # onehot + gated block
         if self.feature_mode == "phase_gated_v3":
             dim += st.N_PHASES                              # + phase-gated elapsed
+        elif self.feature_mode in GLOBAL_MODES:
+            dim += 4 + 1                   # + approach occupancies + backlog
+            if "rate" in self.feature_mode:
+                dim += 4
+            if "age" in self.feature_mode:
+                dim += st.N_PHASES
+            if "spill" in self.feature_mode:
+                dim += 4
         return dim

@@ -60,11 +60,14 @@ def peak_window_rou() -> str:
     return dst
 
 
-def eval_rl(weights, scale, seed=9999, feature_mode="phase_gated", out="results"):
+def eval_rl(weights, scale, seed=9999, feature_mode="phase_gated", out="results",
+            enforce_max_green=False, max_greens=None):
     ti = os.path.join(HERE, out, f"ti_heldout_rl_x{scale}.xml")
     env = Sig7065Env(rou_path(), begin=BEGIN, end=DRAIN_END, seed=seed,
                      scale=scale, label=f"hrl{scale}", tripinfo=ti,
-                     feature_mode=feature_mode)
+                     feature_mode=feature_mode,
+                     enforce_max_green=enforce_max_green,
+                     max_greens=max_greens)
     obs = env.reset()
     agent = LinearQ(env.n_state_features, st.N_ACTIONS)
     agent.w = weights
