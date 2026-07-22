@@ -1,0 +1,67 @@
+phase_gated_norm ci/exp004a/s0/weights_random_s0.npy ci/exp004a/s0 
+phase_gated_norm ci/exp004a/s1/weights_random_s1.npy ci/exp004a/s1 
+phase_gated_norm ci/exp004a/s2/weights_random_s2.npy ci/exp004a/s2 
+phase_gated_norm ci/exp004a/s3/weights_random_s3.npy ci/exp004a/s3 
+phase_gated_norm ci/exp004a/s4/weights_random_s4.npy ci/exp004a/s4 
+phase_gated_norm ci/exp004a/s5/weights_random_s5.npy ci/exp004a/s5 
+phase_gated_norm ci/exp004a/s6/weights_random_s6.npy ci/exp004a/s6 
+phase_gated_norm ci/exp004a/s7/weights_random_s7.npy ci/exp004a/s7 
+phase_gated_norm ci/exp004a/s8/weights_random_s8.npy ci/exp004a/s8 
+phase_gated_norm ci/exp004a/s9/weights_random_s9.npy ci/exp004a/s9 
+pg_norm_global ci/exp004b/s0/weights_random_s0.npy ci/exp004b/s0 enforce
+pg_norm_global ci/exp004b/s1/weights_random_s1.npy ci/exp004b/s1 enforce
+pg_norm_global ci/exp004b/s2/weights_random_s2.npy ci/exp004b/s2 enforce
+pg_glob_rate ci/race/rate/s0/weights_random_s0.npy ci/race/rate/s0 enforce
+pg_glob_rate ci/race/rate/s1/weights_random_s1.npy ci/race/rate/s1 enforce
+pg_glob_rate ci/race/rate/s2/weights_random_s2.npy ci/race/rate/s2 enforce
+pg_glob_rate ci/race/rate/s3/weights_random_s3.npy ci/race/rate/s3 enforce
+pg_glob_rate ci/race/rate/s4/weights_random_s4.npy ci/race/rate/s4 enforce
+pg_glob_rate ci/race/rate/s5/weights_random_s5.npy ci/race/rate/s5 enforce
+pg_glob_rate ci/race/rate/s6/weights_random_s6.npy ci/race/rate/s6 enforce
+pg_glob_rate ci/race/rate/s7/weights_random_s7.npy ci/race/rate/s7 enforce
+pg_glob_rate ci/race/rate/s8/weights_random_s8.npy ci/race/rate/s8 enforce
+pg_glob_rate ci/race/rate/s9/weights_random_s9.npy ci/race/rate/s9 enforce
+pg_glob_age ci/race/age/s0/weights_random_s0.npy ci/race/age/s0 enforce
+pg_glob_age ci/race/age/s1/weights_random_s1.npy ci/race/age/s1 enforce
+pg_glob_age ci/race/age/s2/weights_random_s2.npy ci/race/age/s2 enforce
+pg_glob_age ci/race/age/s3/weights_random_s3.npy ci/race/age/s3 enforce
+pg_glob_age ci/race/age/s4/weights_random_s4.npy ci/race/age/s4 enforce
+pg_glob_age ci/race/age/s5/weights_random_s5.npy ci/race/age/s5 enforce
+pg_glob_age ci/race/age/s6/weights_random_s6.npy ci/race/age/s6 enforce
+pg_glob_age ci/race/age/s7/weights_random_s7.npy ci/race/age/s7 enforce
+pg_glob_age ci/race/age/s8/weights_random_s8.npy ci/race/age/s8 enforce
+pg_glob_age ci/race/age/s9/weights_random_s9.npy ci/race/age/s9 enforce
+pg_glob_rate_age ci/race/rateage/s0/weights_random_s0.npy ci/race/rateage/s0 enforce
+pg_glob_rate_age ci/race/rateage/s1/weights_random_s1.npy ci/race/rateage/s1 enforce
+pg_glob_rate_age ci/race/rateage/s2/weights_random_s2.npy ci/race/rateage/s2 enforce
+pg_glob_rate_age ci/race/rateage/s3/weights_random_s3.npy ci/race/rateage/s3 enforce
+pg_glob_rate_age ci/race/rateage/s4/weights_random_s4.npy ci/race/rateage/s4 enforce
+pg_glob_rate_age ci/race/rateage/s5/weights_random_s5.npy ci/race/rateage/s5 enforce
+pg_glob_rate_age ci/race/rateage/s6/weights_random_s6.npy ci/race/rateage/s6 enforce
+pg_glob_rate_age ci/race/rateage/s7/weights_random_s7.npy ci/race/rateage/s7 enforce
+pg_glob_rate_age ci/race/rateage/s8/weights_random_s8.npy ci/race/rateage/s8 enforce
+pg_glob_rate_age ci/race/rateage/s9/weights_random_s9.npy ci/race/rateage/s9 enforce
+pg_norm_global ci/race/ridge/s0/weights_random_s0.npy ci/race/ridge/s0 enforce
+pg_norm_global ci/race/ridge/s1/weights_random_s1.npy ci/race/ridge/s1 enforce
+pg_norm_global ci/race/ridge/s2/weights_random_s2.npy ci/race/ridge/s2 enforce
+pg_glob_spill ci/race/spill/s0/weights_random_s0.npy ci/race/spill/s0 enforce
+pg_glob_spill ci/race/spill/s1/weights_random_s1.npy ci/race/spill/s1 enforce
+pg_glob_spill ci/race/spill/s2/weights_random_s2.npy ci/race/spill/s2 enforce
+pg_glob_spill ci/race/spillmulti/s0/weights_random_s0.npy ci/race/spillmulti/s0 enforce
+pg_glob_spill ci/race/spillmulti/s1/weights_random_s1.npy ci/race/spillmulti/s1 enforce
+pg_glob_spill ci/race/spillmulti/s2/weights_random_s2.npy ci/race/spillmulti/s2 enforce
+pg_glob_rate ci/race/ratemg/s0/weights_random_s0.npy ci/race/ratemg/s0 enforce mg15,92,30,70
+pg_glob_rate ci/race/ratemg/s1/weights_random_s1.npy ci/race/ratemg/s1 enforce mg15,92,30,70
+pg_glob_rate ci/race/ratemg/s2/weights_random_s2.npy ci/race/ratemg/s2 enforce mg15,92,30,70
+pg_glob_rate ci/race/ratemg/s3/weights_random_s3.npy ci/race/ratemg/s3 enforce mg15,92,30,70
+pg_glob_rate ci/race/ratemg/s4/weights_random_s4.npy ci/race/ratemg/s4 enforce mg15,92,30,70
+pg_glob_rate ci/race/ratemg/s5/weights_random_s5.npy ci/race/ratemg/s5 enforce mg15,92,30,70
+pg_glob_rate ci/race/ratemg/s6/weights_random_s6.npy ci/race/ratemg/s6 enforce mg15,92,30,70
+pg_glob_rate ci/race/ratemg/s7/weights_random_s7.npy ci/race/ratemg/s7 enforce mg15,92,30,70
+pg_glob_rate ci/race/ratemg/s8/weights_random_s8.npy ci/race/ratemg/s8 enforce mg15,92,30,70
+pg_glob_rate ci/race/ratemg/s9/weights_random_s9.npy ci/race/ratemg/s9 enforce mg15,92,30,70
+pg_glob_rate ci/race/ratemg/s10/weights_random_s10.npy ci/race/ratemg/s10 enforce mg15,92,30,70
+pg_glob_rate ci/race/ratemg/s11/weights_random_s11.npy ci/race/ratemg/s11 enforce mg15,92,30,70
+pg_glob_rate ci/race/ratemg/s12/weights_random_s12.npy ci/race/ratemg/s12 enforce mg15,92,30,70
+pg_glob_rate ci/race/ratemg/s13/weights_random_s13.npy ci/race/ratemg/s13 enforce mg15,92,30,70
+pg_glob_rate ci/race/ratemg/s14/weights_random_s14.npy ci/race/ratemg/s14 enforce mg15,92,30,70

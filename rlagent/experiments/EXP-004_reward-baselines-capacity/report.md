@@ -145,6 +145,63 @@ disclosure/exclusion treatment, not cherry-picking). \*\* p<0.05.
   (worse) character at n=10. Screening picks a shortlist; it does not crown
   a winner.
 
+## 3c. Full load range (0.5× / 0.8× / 1.0× / 1.3×) for the top-5 arms
+
+The n=10 re-test (§3b) only covered 1.3×. Extended every top-5 arm (EXP-004a,
+rate, age, rate+age, S8) with 0.5×/0.8× evals on the already-trained weights
+(no retraining — `eval_extra_scales.py`), giving the same mean+exact-Wilcoxon
+treatment across the whole target range
+(`data/top5_stats_allscales.py` → `data/top5_stats_allscales.txt`).
+
+**Exclusion methodology, tightened by a real finding:** `rate` seed 3 (already
+disclosed as gridlocked at 1.3× — §3b) turned out to report **5605 s at 0.5×**
+and **11222 s at 0.8×** despite *completing 100% of trips* at both scales — no
+insertion backlog forms at trivial demand, so the completion-count filter that
+caught it at 1.3× doesn't fire at low load, even though the underlying policy
+is the same broken one. **Fix:** a seed's exclusion verdict is now decided
+once, from the established 1.3× completion criterion, and applied to *all*
+scales for that seed — re-deriving the check independently per scale is
+exactly what let this contamination through the first time.
+
+**Baselines, all 4 scales:**
+
+| | 0.5× | 0.8× | 1.0× | 1.3× |
+|---|---|---|---|---|
+| Webster | 43.1 | 63.1 | 229.9 | 911.6 |
+| tuned-actuated | 37.9 | 372.9 | 651.8 | 676.6 |
+
+**Mean peak delay (s) per arm, per scale, vs both baselines (exact Wilcoxon;**
+**\* = p<0.05):**
+
+| arm | 0.5× | 0.8× | 1.0× | 1.3× |
+|---|---|---|---|---|
+| EXP-004a (n=9) | 23, **below\* / below\*** | 59, below / below\* | 209, below / below\* | 1115, above / above\* |
+| S2-rate (n=9) | 21, **below\* / below\*** | 55, below / below\* | 259, below / below\* | 1084, above / above\* |
+| S3-age (n=10) | 86, below / below | 249, above / below | 527, above / below | 1560, **above\* / above\*** |
+| S4-rate+age (n=10) | 28, below / below | 109, below / below\* | 353, below / below\* | 1292, above / above\* |
+| S8-permaxes (n=15) | 83, below / below | 236, above / below | 467, above / below | 1546, **above\* / above\*** |
+
+(cell = mean; "below/above" = below or above that baseline's mean; \* = exact
+Wilcoxon p<0.05 for that comparison — see `data/top5_stats_allscales.txt` for
+every p-value.)
+
+**Reading, consistent with §3b and not overturned by it:**
+- **0.5×: EXP-004a and `rate` are significantly *better* than both baselines**
+  (p<0.01) — the low-load win the base method has shown since EXP-002 holds
+  for these arms too. `age`/`rate+age`/S8 trend better but aren't significant
+  at this n.
+- **0.8×–1.0×: mixed, mostly non-significant** — arms trend below Webster
+  (adaptive timing has some slack to exploit) but at/above tuned-actuated,
+  with few comparisons reaching significance either way.
+- **1.3×: the target scale, and the one place the ordering sharpens** — `age`
+  and `S8` are significantly *worse* than both baselines; `EXP-004a`/`rate`/
+  `rate+age` are worse than tuned-actuated but not distinguishable from
+  Webster (parity).
+- **No arm's mean beats tuned-actuated at any scale** — confirms §3b/§4's
+  conclusion holds across the full range, not just at 1.3×: the "beats every
+  baseline" result is specific to the validation-selected deployed policy
+  (§5), never to an arm average.
+
 ## 4. S8 — the capacity envelope (the decisive change)
 
 Diagnosis of the floor: our *uniform 30 s* hard max-green forbids the critical

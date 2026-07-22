@@ -1,0 +1,55 @@
+BASELINES (peak total delay, s):
+                  x0.5     x0.8     x1.0     x1.3   
+  Webster           43.1    63.1   229.9   911.6
+  tuned-actuated    37.9   372.9   651.8   676.6
+
+====================================================================================================
+EXP-004a   [seeds excluded from ALL scales: {5: 'gridlocked at 1.3x (6423/16026 peak trips)'}]
+====================================================================================================
+   scale   n    mean  median    min    max | vs Webster | vs tuned-actuated
+  x0.5     9      23      22     18     31 | p=0.0039* below  | p=0.0039* below  [excl: [(5, 'gridlocked at 1.3x (6423/16026 peak trips)')]]
+  x0.8     9      59      31     28    228 | p=0.1641  below  | p=0.0039* below  [excl: [(5, 'gridlocked at 1.3x (6423/16026 peak trips)')]]
+  x1.0     9     196     168     70    614 | p=0.1641  below  | p=0.0039* below  [excl: [(5, 'gridlocked at 1.3x (6423/16026 peak trips)')]]
+  x1.3     9    1115     957    564   2575 | p=0.8203  above  | p=0.0273* above  [excl: [(5, 'gridlocked at 1.3x (6423/16026 peak trips)')]]
+
+====================================================================================================
+S2-rate   [seeds excluded from ALL scales: {3: 'gridlocked at 1.3x (13619/16026 peak trips)'}]
+====================================================================================================
+   scale   n    mean  median    min    max | vs Webster | vs tuned-actuated
+  x0.5     9      21      20     18     26 | p=0.0039* below  | p=0.0039* below  [excl: [(3, 'gridlocked at 1.3x (13619/16026 peak trips)')]]
+  x0.8     9      55      46     26    176 | p=0.1289  below  | p=0.0039* below  [excl: [(3, 'gridlocked at 1.3x (13619/16026 peak trips)')]]
+  x1.0     9     259     194     71    772 | p=0.9102  below  | p=0.0078* below  [excl: [(3, 'gridlocked at 1.3x (13619/16026 peak trips)')]]
+  x1.3     9    1084    1204    675   1455 | p=0.0742  above  | p=0.0078* above  [excl: [(3, 'gridlocked at 1.3x (13619/16026 peak trips)')]]
+
+====================================================================================================
+S3-age
+====================================================================================================
+   scale   n    mean  median    min    max | vs Webster | vs tuned-actuated
+  x0.5    10      86      23     18    409 | p=0.4316  below  | p=0.4316  below
+  x0.8    10     249      63     32    982 | p=0.4922  above  | p=0.3750  below
+  x1.0    10     527     245    181   1591 | p=0.1055  above  | p=0.2324  below
+  x1.3    10    1560    1414    779   3153 | p=0.0273* above  | p=0.0020* above
+
+====================================================================================================
+S4-rate+age
+====================================================================================================
+   scale   n    mean  median    min    max | vs Webster | vs tuned-actuated
+  x0.5    10      28      20     18     97 | p=0.0840  below  | p=0.0840  below
+  x0.8    10     109      35     24    480 | p=1.0000  below  | p=0.0039* below
+  x1.0    10     353     140     57   1151 | p=0.6953  below  | p=0.0371* below
+  x1.3    10    1292    1163    521   2544 | p=0.1055  above  | p=0.0098* above
+
+====================================================================================================
+S8-permaxes
+====================================================================================================
+   scale   n    mean  median    min    max | vs Webster | vs tuned-actuated
+  x0.5    15      83      30     20    516 | p=0.3591  below  | p=0.6788  below
+  x0.8    15     236      88     26    988 | p=0.1070  above  | p=0.0730  below
+  x1.0    15     467     293     98   1201 | p=0.0833  above  | p=0.1070  below
+  x1.3    15    1546    1421    507   2778 | p=0.0054* above  | p=0.0003* above
+
+====================================================================================================
+* p<0.05 (exact two-sided Wilcoxon signed-rank, full enumeration n<=15,
+  normal approx n>15). Exclusions: a seed's tripinfo with <90% of that
+  scale's known-good peak-trip count signals gridlock/incomplete eval
+  (same disclosure standard as EXP-004a seed 5 / rate seed 3 in the report).
