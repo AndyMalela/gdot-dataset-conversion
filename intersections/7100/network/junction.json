@@ -1,0 +1,139 @@
+{
+ "signal_id": "7100",
+ "name": "SR 9 @ Lindbergh Drive",
+ "lat": 33.82286,
+ "lon": -84.38749,
+ "node": "69536974",
+ "node_type": "traffic_light",
+ "dist_m": 1.3,
+ "tls": [
+  "69536974"
+ ],
+ "approaches": [
+  {
+   "edge": "-1302256482#4",
+   "osm_way": "1302256482",
+   "name": "Peachtree Road Northeast",
+   "label": "NB",
+   "heading_deg": 13,
+   "lanes": 3,
+   "lanes_tag": "6",
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "T",
+    "T",
+    "L"
+   ],
+   "movements": {
+    "T": [
+     "-1315020083#1"
+    ],
+    "L": [
+     "-561687258#1"
+    ]
+   },
+   "length_m": 109,
+   "upstream_m": 145
+  },
+  {
+   "edge": "561687258#0",
+   "osm_way": "561687258",
+   "name": "",
+   "label": "EB",
+   "heading_deg": 110,
+   "lanes": 1,
+   "lanes_tag": null,
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "LTR"
+   ],
+   "movements": {
+    "R": [
+     "1315020084#0"
+    ],
+    "T": [
+     "9274711#0"
+    ],
+    "L": [
+     "-1315020083#1"
+    ]
+   },
+   "length_m": 16,
+   "upstream_m": 16
+  },
+  {
+   "edge": "1315020083#0",
+   "osm_way": "1315020083",
+   "name": "Peachtree Road Northeast",
+   "label": "SB",
+   "heading_deg": 181,
+   "lanes": 4,
+   "lanes_tag": "6",
+   "turn_lanes_tag": "left|||",
+   "lane_moves": [
+    "T",
+    "T",
+    "T",
+    "L"
+   ],
+   "movements": {
+    "T": [
+     "1315020084#0"
+    ],
+    "L": [
+     "9274711#0"
+    ]
+   },
+   "length_m": 55,
+   "upstream_m": 197
+  },
+  {
+   "edge": "-9274711#1",
+   "osm_way": "9274711",
+   "name": "Lindbergh Drive",
+   "label": "WB",
+   "heading_deg": 270,
+   "lanes": 1,
+   "lanes_tag": null,
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "LTR"
+   ],
+   "movements": {
+    "R": [
+     "-1315020083#1"
+    ],
+    "T": [
+     "-561687258#1"
+    ],
+    "L": [
+     "1315020084#0"
+    ]
+   },
+   "length_m": 63,
+   "upstream_m": 265
+  }
+ ],
+ "flags": [
+  "NB approach (Peachtree Road Northeast): two-way way with lanes=6 total and no lanes:forward/backward; per-direction split guessed by netconvert",
+  "WB approach (Lindbergh Drive): OSM way 9274711 has no lanes tag; 1 lane(s) is a netconvert default",
+  "EB approach (561687258#0): OSM way 561687258 has no lanes tag; 1 lane(s) is a netconvert default",
+  "EB approach has only 16 m of road before the network edge or the next signal (little queue space)",
+  "GDOT counts an approach missing from OSM roads; service road(s) 561687258 touching the junction (driveways in OSM) were included as legs",
+  "ATSPM counts NB_TR but the OSM NB approach has no 'R' movement",
+  "ATSPM counts SB_TR but the OSM SB approach has no 'R' movement"
+ ],
+ "smoke_test": {
+  "flows": 10,
+  "returncode": 0,
+  "loaded": 200,
+  "inserted": 200,
+  "running": 0,
+  "waiting": 0,
+  "teleports": 0,
+  "jams": 0,
+  "collisions": 0,
+  "warnings": 0,
+  "errors": []
+ }
+}

@@ -1,0 +1,9 @@
+Signal:        124
+Intersection:  Ted Turner Drive @ MLK Boulevard
+Source:        GDOT ATSPM, Turning Movement Counts (https://traffic.dot.ga.gov/ATSPM/DefaultCharts)
+Bin size:      5 min
+Days cached:   7 (2026-09-26 to 2026-10-02)
+Complete days: 5   partial: 2   no data: 0
+Movements:     EB_L EB_R WB_L WB_T BIKE_EB_T BIKE_WB_T EXIT_WB_T
+Outage rule:   >= 3 consecutive all-zero bins -> status=outage, counts blank
+Updated:       2026-10-05 02:25

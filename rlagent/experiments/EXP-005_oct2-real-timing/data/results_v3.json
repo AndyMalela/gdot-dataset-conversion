@@ -1,0 +1,231 @@
+{
+ "date": "2026-10-02",
+ "impatience": 1.0,
+ "demand_file": "rlagent/experiments/EXP-005_oct2-real-timing/data/demand_oct2_impatience1.rou.xml",
+ "demand_md5": "5793379aecec8b95800dc7c68cc17e74",
+ "demand_veh_per_h": {
+  "Night 00-06": 591,
+  "AM 06-10": 2087,
+  "Midday 10-15": 2662,
+  "PM peak 15-18": 2789,
+  "Evening 18-24": 2264,
+  "Whole day": 1965
+ },
+ "webster": {
+  "cycle_s": 73.4,
+  "rho": 0.564,
+  "greens_s": [
+   5.0,
+   19.6,
+   15.5,
+   19.8
+  ]
+ },
+ "results": {
+  "Real GDOT timing (calibrated NEMA)": {
+   "Night 00-06": {
+    "trips": 3544,
+    "total_delay_s": 29.0,
+    "time_loss_s": 28.8,
+    "depart_delay_s": 0.2
+   },
+   "AM 06-10": {
+    "trips": 8347,
+    "total_delay_s": 45.4,
+    "time_loss_s": 43.5,
+    "depart_delay_s": 1.8
+   },
+   "Midday 10-15": {
+    "trips": 13309,
+    "total_delay_s": 49.7,
+    "time_loss_s": 44.8,
+    "depart_delay_s": 4.8
+   },
+   "PM peak 15-18": {
+    "trips": 8366,
+    "total_delay_s": 53.5,
+    "time_loss_s": 46.3,
+    "depart_delay_s": 7.2
+   },
+   "Evening 18-24": {
+    "trips": 13583,
+    "total_delay_s": 40.7,
+    "time_loss_s": 38.4,
+    "depart_delay_s": 2.3
+   },
+   "Whole day": {
+    "trips": 47149,
+    "total_delay_s": 45.5,
+    "time_loss_s": 41.8,
+    "depart_delay_s": 3.6
+   },
+   "unserved_day": 0,
+   "cycle_s": {
+    "Night 00-06": "120 (plan)",
+    "AM 06-10": "120/160 (plan)",
+    "Midday 10-15": "160 (plan)",
+    "PM peak 15-18": "160/180 (plan)",
+    "Evening 18-24": "120/130/180 (plan)",
+    "Whole day": "120/130/160/180 (plan)"
+   }
+  },
+  "Webster fixed-time": {
+   "Night 00-06": {
+    "trips": 3544,
+    "total_delay_s": 21.5,
+    "time_loss_s": 21.3,
+    "depart_delay_s": 0.2
+   },
+   "AM 06-10": {
+    "trips": 8347,
+    "total_delay_s": 23.4,
+    "time_loss_s": 23.0,
+    "depart_delay_s": 0.4
+   },
+   "Midday 10-15": {
+    "trips": 13309,
+    "total_delay_s": 24.1,
+    "time_loss_s": 23.7,
+    "depart_delay_s": 0.4
+   },
+   "PM peak 15-18": {
+    "trips": 8366,
+    "total_delay_s": 24.6,
+    "time_loss_s": 24.1,
+    "depart_delay_s": 0.5
+   },
+   "Evening 18-24": {
+    "trips": 13583,
+    "total_delay_s": 23.4,
+    "time_loss_s": 23.0,
+    "depart_delay_s": 0.4
+   },
+   "Whole day": {
+    "trips": 47149,
+    "total_delay_s": 23.6,
+    "time_loss_s": 23.3,
+    "depart_delay_s": 0.4
+   },
+   "unserved_day": 0,
+   "cycle_s": {
+    "Night 00-06": 75.0,
+    "AM 06-10": 75.0,
+    "Midday 10-15": 75.0,
+    "PM peak 15-18": 75.0,
+    "Evening 18-24": 75.0,
+    "Whole day": 75.0
+   }
+  },
+  "Tuned-actuated": {
+   "Night 00-06": {
+    "trips": 3544,
+    "total_delay_s": 16.1,
+    "time_loss_s": 15.9,
+    "depart_delay_s": 0.2
+   },
+   "AM 06-10": {
+    "trips": 8347,
+    "total_delay_s": 19.8,
+    "time_loss_s": 19.4,
+    "depart_delay_s": 0.4
+   },
+   "Midday 10-15": {
+    "trips": 13309,
+    "total_delay_s": 20.6,
+    "time_loss_s": 20.2,
+    "depart_delay_s": 0.4
+   },
+   "PM peak 15-18": {
+    "trips": 8366,
+    "total_delay_s": 21.3,
+    "time_loss_s": 20.9,
+    "depart_delay_s": 0.4
+   },
+   "Evening 18-24": {
+    "trips": 13583,
+    "total_delay_s": 19.7,
+    "time_loss_s": 19.3,
+    "depart_delay_s": 0.4
+   },
+   "Whole day": {
+    "trips": 47149,
+    "total_delay_s": 20.0,
+    "time_loss_s": 19.6,
+    "depart_delay_s": 0.4
+   },
+   "unserved_day": 0,
+   "cycle_s": {
+    "Night 00-06": 47.2,
+    "AM 06-10": 52.3,
+    "Midday 10-15": 56.9,
+    "PM peak 15-18": 61.5,
+    "Evening 18-24": 53.2,
+    "Whole day": 53.0
+   }
+  },
+  "RL (EXP-004 deployed, S8 seed 4)": {
+   "Night 00-06": {
+    "trips": 3544,
+    "total_delay_s": 16.1,
+    "time_loss_s": 15.9,
+    "depart_delay_s": 0.2
+   },
+   "AM 06-10": {
+    "trips": 8347,
+    "total_delay_s": 18.1,
+    "time_loss_s": 17.7,
+    "depart_delay_s": 0.4
+   },
+   "Midday 10-15": {
+    "trips": 13309,
+    "total_delay_s": 18.3,
+    "time_loss_s": 17.8,
+    "depart_delay_s": 0.4
+   },
+   "PM peak 15-18": {
+    "trips": 8366,
+    "total_delay_s": 19.2,
+    "time_loss_s": 18.8,
+    "depart_delay_s": 0.4
+   },
+   "Evening 18-24": {
+    "trips": 13583,
+    "total_delay_s": 17.7,
+    "time_loss_s": 17.3,
+    "depart_delay_s": 0.4
+   },
+   "Whole day": {
+    "trips": 47149,
+    "total_delay_s": 18.1,
+    "time_loss_s": 17.7,
+    "depart_delay_s": 0.4
+   },
+   "unserved_day": 0,
+   "cycle_s": {
+    "Night 00-06": 47.8,
+    "AM 06-10": 37.8,
+    "Midday 10-15": 38.2,
+    "PM peak 15-18": 41.8,
+    "Evening 18-24": 37.8,
+    "Whole day": 40.5
+   }
+  }
+ },
+ "tuned_actuated": {
+  "grid": {
+   "1.25": 20.0,
+   "1.5": 20.0,
+   "2.0": 20.2,
+   "2.5": 20.3,
+   "3.0": 20.3
+  },
+  "chosen_multiplier": 1.25,
+  "max_greens_s": [
+   8.0,
+   24.5,
+   19.4,
+   24.7
+  ]
+ },
+ "real_timing_note": "re-run 2026-10-05: Oct 2 schedule; plan E P4/P8 on max recall (recorded 42.9 of 43.4 s, consistent with GDOT's pedestrian activity on those phases)"
+}

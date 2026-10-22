@@ -1,0 +1,4 @@
+APPROXIMATION: 'Actuated' periods (Free or uncoordinated) run as fixed splits equal to the observed median phase times.
+Offsets unknown (coordination with neighbouring signals not modelled).
+00:00-06:15 has no readable plan (carried over from the previous day); ASSUMED the day's last plan (E).
+19:02-19:31: plan K is an unverified read on 2026-09-14; used plan B, read for the same time slot on 2026-05-06.

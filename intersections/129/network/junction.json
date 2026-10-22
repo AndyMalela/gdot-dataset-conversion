@@ -1,0 +1,81 @@
+{
+ "signal_id": "129",
+ "name": "MLK Drive @ Central Avenue",
+ "lat": 33.75082,
+ "lon": -84.38985,
+ "node": "69167148",
+ "node_type": "traffic_light",
+ "dist_m": 2.3,
+ "tls": [
+  "69167148"
+ ],
+ "approaches": [
+  {
+   "edge": "1052597162#0",
+   "osm_way": "1052597162",
+   "name": "Shirley Clarke Franklin Boulevard Southwest",
+   "label": "NB",
+   "heading_deg": 21,
+   "lanes": 5,
+   "lanes_tag": "5",
+   "turn_lanes_tag": "left|none|none|none|none",
+   "lane_moves": [
+    "T",
+    "T",
+    "T",
+    "T",
+    "L"
+   ],
+   "movements": {
+    "T": [
+     "580808689#0"
+    ],
+    "L": [
+     "630644331#0"
+    ]
+   },
+   "length_m": 0,
+   "upstream_m": 126
+  },
+  {
+   "edge": "630697023#0",
+   "osm_way": "630697023",
+   "name": "Martin Luther King Jr Drive Southwest",
+   "label": "WB",
+   "heading_deg": 302,
+   "lanes": 4,
+   "lanes_tag": "4",
+   "turn_lanes_tag": "none|none|through;right|right",
+   "lane_moves": [
+    "R",
+    "TR",
+    "T",
+    "T"
+   ],
+   "movements": {
+    "R": [
+     "580808689#0"
+    ],
+    "T": [
+     "630644331#0"
+    ]
+   },
+   "length_m": 130,
+   "upstream_m": 130
+  }
+ ],
+ "flags": [],
+ "smoke_test": {
+  "flows": 4,
+  "returncode": 0,
+  "loaded": 80,
+  "inserted": 80,
+  "running": 0,
+  "waiting": 0,
+  "teleports": 0,
+  "jams": 0,
+  "collisions": 0,
+  "warnings": 0,
+  "errors": []
+ }
+}

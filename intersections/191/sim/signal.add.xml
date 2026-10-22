@@ -1,0 +1,115 @@
+<additional>
+  <tlLogic id="69372832" type="NEMA" programID="A" offset="0">
+    <param key="detector-length" value="20"/>
+    <param key="detector-length-leftTurnLane" value="20"/>
+    <param key="show-detectors" value="true"/>
+    <param key="total-cycle-length" value="80"/>
+    <param key="ring1" value="0,2,4,3"/>
+    <param key="ring2" value="0,6,0,8"/>
+    <param key="barrierPhases" value="3,8"/>
+    <param key="coordinatePhases" value="2,6"/>
+    <param key="coordinate-mode" value="true"/>
+    <param key="minRecall" value="2,6,8"/>
+    <param key="maxRecall" value="3,4"/>
+    <param key="fixForceOff" value="false"/>
+    <phase duration="99" minDur="10.2" maxDur="27.1" vehext="1.0" yellow="3.9" red="3.0" name="2" state="rrrrrGGGGGGGGrrrr"/>
+    <phase duration="99" minDur="5.1" maxDur="19.5" vehext="2.0" yellow="3.5" red="2.0" name="3" state="rrrrrrrrrrrrrGGGG"/>
+    <phase duration="99" minDur="7.8" maxDur="14.4" vehext="1.0" yellow="4.0" red="2.6" name="4" state="GGGGGrrrrrrrrrrrr"/>
+    <phase duration="99" minDur="5.0" maxDur="28.5" vehext="1.0" yellow="3.5" red="2.0" name="6" state="rrrrrGGGGGGGGrrrr"/>
+    <phase duration="99" minDur="1.0" maxDur="44.0" vehext="0.5" yellow="1.0" red="1.0" name="8" state="rrrrrrrrrrrrrrrrr"/>  <!-- dummy: rests at the barrier -->
+  </tlLogic>
+  <tlLogic id="69372832" type="NEMA" programID="B" offset="0">
+    <param key="detector-length" value="20"/>
+    <param key="detector-length-leftTurnLane" value="20"/>
+    <param key="show-detectors" value="true"/>
+    <param key="total-cycle-length" value="100"/>
+    <param key="ring1" value="0,2,4,3"/>
+    <param key="ring2" value="0,6,0,8"/>
+    <param key="barrierPhases" value="3,8"/>
+    <param key="coordinatePhases" value="2,6"/>
+    <param key="coordinate-mode" value="true"/>
+    <param key="minRecall" value="2,6,8"/>
+    <param key="maxRecall" value="3,4"/>
+    <param key="fixForceOff" value="false"/>
+    <phase duration="99" minDur="10.2" maxDur="31.1" vehext="1.0" yellow="3.9" red="3.0" name="2" state="rrrrrGGGGGGGGrrrr"/>
+    <phase duration="99" minDur="5.1" maxDur="27.5" vehext="2.0" yellow="3.5" red="2.0" name="3" state="rrrrrrrrrrrrrGGGG"/>
+    <phase duration="99" minDur="7.8" maxDur="22.4" vehext="1.0" yellow="4.0" red="2.6" name="4" state="GGGGGrrrrrrrrrrrr"/>
+    <phase duration="99" minDur="5.0" maxDur="32.5" vehext="1.0" yellow="3.5" red="2.0" name="6" state="rrrrrGGGGGGGGrrrr"/>
+    <phase duration="99" minDur="1.0" maxDur="60.0" vehext="0.5" yellow="1.0" red="1.0" name="8" state="rrrrrrrrrrrrrrrrr"/>  <!-- dummy: rests at the barrier -->
+  </tlLogic>
+  <tlLogic id="69372832" type="NEMA" programID="C" offset="0">
+    <param key="detector-length" value="20"/>
+    <param key="detector-length-leftTurnLane" value="20"/>
+    <param key="show-detectors" value="true"/>
+    <param key="total-cycle-length" value="120"/>
+    <param key="ring1" value="0,2,4,3"/>
+    <param key="ring2" value="0,6,0,8"/>
+    <param key="barrierPhases" value="3,8"/>
+    <param key="coordinatePhases" value="2,6"/>
+    <param key="coordinate-mode" value="true"/>
+    <param key="minRecall" value="2,6,8"/>
+    <param key="maxRecall" value="3,4"/>
+    <param key="fixForceOff" value="false"/>
+    <phase duration="99" minDur="10.2" maxDur="31.1" vehext="1.0" yellow="3.9" red="3.0" name="2" state="rrrrrGGGGGGGGrrrr"/>
+    <phase duration="99" minDur="5.1" maxDur="47.5" vehext="2.0" yellow="3.5" red="2.0" name="3" state="rrrrrrrrrrrrrGGGG"/>
+    <phase duration="99" minDur="7.8" maxDur="22.4" vehext="1.0" yellow="4.0" red="2.6" name="4" state="GGGGGrrrrrrrrrrrr"/>
+    <phase duration="99" minDur="5.0" maxDur="32.5" vehext="1.0" yellow="3.5" red="2.0" name="6" state="rrrrrGGGGGGGGrrrr"/>
+    <phase duration="99" minDur="1.0" maxDur="80.0" vehext="0.5" yellow="1.0" red="1.0" name="8" state="rrrrrrrrrrrrrrrrr"/>  <!-- dummy: rests at the barrier -->
+  </tlLogic>
+  <tlLogic id="69372832" type="NEMA" programID="D" offset="0">
+    <param key="detector-length" value="20"/>
+    <param key="detector-length-leftTurnLane" value="20"/>
+    <param key="show-detectors" value="true"/>
+    <param key="total-cycle-length" value="120"/>
+    <param key="ring1" value="0,2,4,3"/>
+    <param key="ring2" value="0,6,0,8"/>
+    <param key="barrierPhases" value="3,8"/>
+    <param key="coordinatePhases" value="2,6"/>
+    <param key="coordinate-mode" value="true"/>
+    <param key="minRecall" value="2,6,8"/>
+    <param key="maxRecall" value="3,4"/>
+    <param key="fixForceOff" value="false"/>
+    <phase duration="99" minDur="10.2" maxDur="45.1" vehext="1.0" yellow="3.9" red="3.0" name="2" state="rrrrrGGGGGGGGrrrr"/>
+    <phase duration="99" minDur="5.1" maxDur="32.5" vehext="2.0" yellow="3.5" red="2.0" name="3" state="rrrrrrrrrrrrrGGGG"/>
+    <phase duration="99" minDur="7.8" maxDur="23.4" vehext="1.0" yellow="4.0" red="2.6" name="4" state="GGGGGrrrrrrrrrrrr"/>
+    <phase duration="99" minDur="5.0" maxDur="46.5" vehext="1.0" yellow="3.5" red="2.0" name="6" state="rrrrrGGGGGGGGrrrr"/>
+    <phase duration="99" minDur="1.0" maxDur="66.0" vehext="0.5" yellow="1.0" red="1.0" name="8" state="rrrrrrrrrrrrrrrrr"/>  <!-- dummy: rests at the barrier -->
+  </tlLogic>
+  <tlLogic id="69372832" type="NEMA" programID="E" offset="0">
+    <param key="detector-length" value="20"/>
+    <param key="detector-length-leftTurnLane" value="20"/>
+    <param key="show-detectors" value="true"/>
+    <param key="total-cycle-length" value="100"/>
+    <param key="ring1" value="0,2,4,3"/>
+    <param key="ring2" value="0,6,0,8"/>
+    <param key="barrierPhases" value="3,8"/>
+    <param key="coordinatePhases" value="2,6"/>
+    <param key="coordinate-mode" value="true"/>
+    <param key="minRecall" value="2,6,8"/>
+    <param key="maxRecall" value="3,4"/>
+    <param key="fixForceOff" value="false"/>
+    <phase duration="99" minDur="10.2" maxDur="33.1" vehext="1.0" yellow="3.9" red="3.0" name="2" state="rrrrrGGGGGGGGrrrr"/>
+    <phase duration="99" minDur="5.1" maxDur="25.5" vehext="2.0" yellow="3.5" red="2.0" name="3" state="rrrrrrrrrrrrrGGGG"/>
+    <phase duration="99" minDur="7.8" maxDur="22.4" vehext="1.0" yellow="4.0" red="2.6" name="4" state="GGGGGrrrrrrrrrrrr"/>
+    <phase duration="99" minDur="5.0" maxDur="34.5" vehext="1.0" yellow="3.5" red="2.0" name="6" state="rrrrrGGGGGGGGrrrr"/>
+    <phase duration="99" minDur="1.0" maxDur="58.0" vehext="0.5" yellow="1.0" red="1.0" name="8" state="rrrrrrrrrrrrrrrrr"/>  <!-- dummy: rests at the barrier -->
+  </tlLogic>
+  <tlLogic id="69150809" type="static" programID="off" offset="0"/>
+  <tlLogic id="69372828" type="static" programID="off" offset="0"/>
+  <tlLogic id="69372834" type="static" programID="off" offset="0"/>
+  <tlLogic id="69392941" type="static" programID="off" offset="0"/>
+  <tlLogic id="69401702" type="static" programID="off" offset="0"/>
+  <tlLogic id="69515896" type="static" programID="off" offset="0"/>
+  <tlLogic id="GS_cluster_1278536804_69616413" type="static" programID="off" offset="0"/>
+  <tlLogic id="GS_cluster_1278536825_760760905" type="static" programID="off" offset="0"/>
+  <WAUT id="tod" refTime="0" startProg="A">
+    <wautSwitch time="18060" to="B"/>
+    <wautSwitch time="25260" to="C"/>
+    <wautSwitch time="32460" to="B"/>
+    <wautSwitch time="50460" to="D"/>
+    <wautSwitch time="68520" to="E"/>
+    <wautSwitch time="75720" to="B"/>
+  </WAUT>
+  <wautJunction wautID="tod" junctionID="69372832"/>
+  <timedEvent type="SaveTLSStates" source="69372832" dest="states.xml"/>
+</additional>

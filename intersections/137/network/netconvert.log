@@ -1,0 +1,6 @@
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|highway.residential' (first occurrence for edge '9273981').
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|highway.secondary' (first occurrence for edge '289670475').
+Warning: Ignoring turn sign information for 1 lanes on edge -289670476#0 with 2 driving lanes
+Warning: Ignoring turn sign information for 1 lanes on edge -289670476#1 with 2 driving lanes
+Warning: Cannot apply turn sign information for edge '1160003917' because there are 2 signed connections with directions 's' but target edge '9269949#0' has only 1 suitable lanes
+Warning: Cannot apply turn sign information for edge '1303415422#0' because there are 2 signed directions but only 1 targets

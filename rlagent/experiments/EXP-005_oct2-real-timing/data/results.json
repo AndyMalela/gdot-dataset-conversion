@@ -1,0 +1,75 @@
+{
+ "date": "2026-10-02",
+ "scale": 1.0,
+ "seed": 9999,
+ "end_s": 108000,
+ "demand_file": "intersections/7065/sim/demand.rou.xml",
+ "demand_md5": "60bddb103b6dea535505acc0d1df4027",
+ "demand_vehicles_day": 47149,
+ "demand_vehicles_peak": 8366,
+ "net": "sumotwin/7065.net.xml",
+ "net_md5": "fd6ff465ea91d30f591a090e204e5811",
+ "webster": {
+  "cycle_s": 73.4,
+  "rho": 0.564,
+  "greens_s": [
+   5.0,
+   19.6,
+   15.5,
+   19.8
+  ],
+  "design_volumes": {
+   "eb_thru": 1006,
+   "eb_left": 154,
+   "wb_thru": 399,
+   "wb_left": 56,
+   "nb_thru": 315,
+   "nb_left": 146,
+   "sb_thru": 676,
+   "sb_left": 265
+  }
+ },
+ "tuned_actuated_max_greens_s": [
+  8.0,
+  24.5,
+  19.4,
+  24.7
+ ],
+ "rl_weights": "rlagent/ci/race/ratemg/s4/weights_random_s4.npy",
+ "rl_weights_md5": "cb472c8e16f71e7a8cef6fa826c6f147",
+ "real_timing": "rlagent/experiments/EXP-005_oct2-real-timing/data/real_timing_7065.add.xml",
+ "results": {
+  "real GDOT timing (calibrated NEMA)": {
+   "peak": {
+    "trips": 8366,
+    "total_delay_s": 133.3,
+    "time_loss_s": 49.1,
+    "depart_delay_s": 84.3
+   },
+   "day": {
+    "trips": 47149,
+    "total_delay_s": 147.9,
+    "time_loss_s": 50.9,
+    "depart_delay_s": 97.0
+   },
+   "wall_s": 22,
+   "unserved_day": 0
+  },
+  "Webster fixed-time": {
+   "peak": {
+    "trips": 8366,
+    "total_delay_s": 24.6,
+    "time_loss_s": 24.2,
+    "depart_delay_s": 0.5
+   },
+   "day": {
+    "trips": 47149,
+    "total_delay_s": 23.7,
+    "time_loss_s": 23.3,
+    "depart_delay_s": 0.4
+   },
+   "wall_s": 0,
+   "unserved_day": 0
+  }
+ }
+}

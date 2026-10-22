@@ -1,0 +1,7 @@
+atspm_column,approach,from_edge,to_edge,sumo_dir,note
+EB_T,EB,-1366532215#1,,,movement missing in OSM net
+WB_L,WB,,,,no matching approach
+WB_R,WB,,,,no matching approach
+NB_T,NB,1141891561#1,1141891561#2,T,
+SB_L,SB,-1141891561#2,,,movement missing in OSM net
+SB_T,SB,-1141891561#2,-1141891561#1,T,

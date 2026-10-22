@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-10-09T16:56:45.833612+09:00 by Eclipse SUMO netconvert 1.28.0
+<netconvertConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <sumo-net-file value="7065_ext.net.xml"/>
+    </input>
+
+    <output>
+        <plain-output-prefix value="/tmp/claude-1000/-home-andy-Downloads-GDOT/91397e57-8921-4d1a-b7e4-b866c3927542/scratchpad/regeo/plain"/>
+        <output.street-names value="true"/>
+    </output>
+
+    <processing>
+        <geometry.min-radius.fix.railways value="false"/>
+        <geometry.avoid-overlap value="false"/>
+        <geometry.max-grade.fix value="false"/>
+        <offset.disable-normalization value="true"/>
+    </processing>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+        <junctions.corner-detail value="6"/>
+    </junctions>
+
+</netconvertConfiguration>
+-->
+
+<connections version="1.20" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/connections_file.xsd">
+    <connection from="E1" to="N_out.37" fromLane="0" toLane="0"/>
+
+    <connection from="NE_in.15" to="E1" fromLane="0" toLane="0"/>
+    <connection from="NE_in.15" to="NE_in.79" fromLane="1" toLane="0"/>
+    <connection from="NE_in.15" to="NE_in.79" fromLane="2" toLane="1"/>
+    <connection from="NE_in.15" to="NE_in.79" fromLane="3" toLane="2"/>
+    <connection from="NE_in.15" to="NE_in.79" fromLane="4" toLane="3"/>
+    <connection from="NE_in.15" to="NE_in.79" fromLane="5" toLane="4"/>
+
+    <connection from="NE_in.79" to="SW_out" fromLane="0" toLane="0"/>
+    <connection from="NE_in.79" to="SW_out" fromLane="1" toLane="1"/>
+    <connection from="NE_in.79" to="SW_out" fromLane="2" toLane="2"/>
+    <connection from="NE_in.79" to="S_out" fromLane="3" toLane="0"/>
+    <connection from="NE_in.79" to="S_out" fromLane="4" toLane="1"/>
+
+    <connection from="N_far" to="N_near" fromLane="0" toLane="0"/>
+    <connection from="N_far" to="N_near" fromLane="0" toLane="1"/>
+    <connection from="N_far" to="N_near" fromLane="1" toLane="2"/>
+    <connection from="N_far" to="N_near" fromLane="2" toLane="3"/>
+
+    <connection from="N_near" to="SW_out" fromLane="0" toLane="0"/>
+    <connection from="N_near" to="S_out" fromLane="1" toLane="0"/>
+    <connection from="N_near" to="S_out" fromLane="2" toLane="1"/>
+    <connection from="N_near" to="NE_out" fromLane="3" toLane="2"/>
+
+    <connection from="N_out" to="N_out.37" fromLane="0" toLane="0"/>
+    <connection from="N_out" to="N_out.37" fromLane="1" toLane="1"/>
+
+    <connection from="N_out.37"/>
+
+    <connection from="SW_in" to="S_out" fromLane="0" toLane="0"/>
+    <connection from="SW_in" to="NE_out" fromLane="0" toLane="0"/>
+    <connection from="SW_in" to="NE_out" fromLane="1" toLane="1"/>
+    <connection from="SW_in" to="NE_out" fromLane="2" toLane="2"/>
+    <connection from="SW_in" to="N_out" fromLane="3" toLane="0"/>
+    <connection from="SW_in" to="N_out" fromLane="4" toLane="1"/>
+
+    <connection from="SW_out"/>
+
+    <connection from="S_in" to="NE_out" fromLane="0" toLane="0"/>
+    <connection from="S_in" to="N_out" fromLane="1" toLane="0"/>
+    <connection from="S_in" to="N_out" fromLane="2" toLane="1"/>
+    <connection from="S_in" to="SW_out" fromLane="3" toLane="2"/>
+
+    <connection from="S_out"/>
+
+</connections>

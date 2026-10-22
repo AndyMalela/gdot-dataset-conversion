@@ -1,0 +1,3 @@
+APPROXIMATION: 'Actuated' periods (Free or uncoordinated) run as fixed splits equal to the observed median phase times.
+Offsets unknown (coordination with neighbouring signals not modelled).
+4 neighbouring signal(s) in the network area switched off (their timing is unknown); only the target signal is controlled.

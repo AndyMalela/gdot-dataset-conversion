@@ -1,0 +1,33 @@
+[
+ {
+  "way": "525767115",
+  "set": {
+   "lanes": "6",
+   "lanes:backward": "4",
+   "lanes:forward": "2",
+   "turn:lanes:backward": "left|through|through|right",
+   "maxspeed": "35 mph"
+  },
+  "why": "OSM has no lanes tag on this Piedmont Rd NE segment (north leg), so netconvert defaulted to 1 lane each way. Southbound approach at the stop line: 1 left, 2 through, 1 right (GDOT detector channels: stop-bar T1 ch37, T2 ch38, R3 ch39, plus the P3 left; capacity_check/ charts, 2026-09-24). Northbound outbound: 2 lanes (twin N_out). The 1-lane outbound also limited Piedmont-from-S to one through lane. Simplification: the left lane runs the whole segment (real left bay is ~15 m), so left-turn storage is overstated. maxspeed 35 mph added 2026-10-16 (untagged -> netconvert used 100 km/h; posted speed 35 mph, regulations.md section 6)."
+ },
+ {
+  "way": "964301947",
+  "set": {
+   "lanes": "4",
+   "lanes:backward": "2",
+   "lanes:forward": "2",
+   "maxspeed": "35 mph"
+  },
+  "why": "Piedmont Rd NE north leg, ~50 m stretch between way 525767115 (fixed above) and way 1377780874 (OSM-tagged 2 lanes southbound, 35 mph). No lanes tag -> netconvert defaulted to 1 lane, creating a 1-lane bottleneck on the busiest approach (independent audit 2026-10-16: 651 teleports on 09-24 r8, PM left delay 848 s). Set to 2 lanes each way, matching the tagged neighbours (forward kept at 2 = same as 525767115's outbound side). maxspeed was missing (100 km/h default)."
+ },
+ {
+  "way": "1377947443",
+  "set": {
+   "lanes": "4",
+   "lanes:backward": "2",
+   "lanes:forward": "2",
+   "maxspeed": "35 mph"
+  },
+  "why": "Piedmont Rd NE north leg, ~50 m stretch between way 525767115 (fixed above) and way 1377780874 (OSM-tagged 2 lanes southbound, 35 mph). No lanes tag -> netconvert defaulted to 1 lane, creating a 1-lane bottleneck on the busiest approach (independent audit 2026-10-16: 651 teleports on 09-24 r8, PM left delay 848 s). Set to 2 lanes each way, matching the tagged neighbours (forward kept at 2 = same as 525767115's outbound side)."
+ }
+]

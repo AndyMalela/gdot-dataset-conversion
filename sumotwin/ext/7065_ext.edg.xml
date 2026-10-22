@@ -1,0 +1,5 @@
+<edges>
+  <edge id="S_in_ext" from="nS_ext" to="nS" numLanes="4" speed="15.60" priority="10"/>
+  <edge id="N_far_ext" from="nN_ext" to="nN" numLanes="3" speed="15.60" priority="10"/>
+  <edge id="NE_in_ext" from="nNE_ext" to="nNE" numLanes="5" speed="15.60" priority="12"/>
+</edges>

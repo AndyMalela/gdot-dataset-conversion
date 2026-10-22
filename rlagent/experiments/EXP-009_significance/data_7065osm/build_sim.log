@@ -1,0 +1,23 @@
+== 7065osm
+   extension through 1.0 s / left 2.0 s: mean |green error| 7.1 s
+   extension through 1.0 s / left 3.0 s: mean |green error| 6.9 s
+   extension through 1.0 s / left 4.0 s: mean |green error| 6.7 s
+   extension through 1.0 s / left 6.0 s: mean |green error| 5.9 s
+   extension through 1.0 s / left 8.0 s: mean |green error| 4.2 s
+   extension through 2.0 s / left 2.0 s: mean |green error| 7.1 s
+   extension through 2.0 s / left 3.0 s: mean |green error| 6.9 s
+   extension through 2.0 s / left 4.0 s: mean |green error| 6.7 s
+   extension through 2.0 s / left 6.0 s: mean |green error| 5.9 s
+   extension through 2.0 s / left 8.0 s: mean |green error| 4.2 s
+   extension through 3.0 s / left 2.0 s: mean |green error| 7.1 s
+   extension through 3.0 s / left 3.0 s: mean |green error| 6.9 s
+   extension through 3.0 s / left 4.0 s: mean |green error| 6.7 s
+   extension through 3.0 s / left 6.0 s: mean |green error| 5.9 s
+   extension through 3.0 s / left 8.0 s: mean |green error| 4.2 s
+   extension through 4.0 s / left 2.0 s: mean |green error| 7.1 s
+   extension through 4.0 s / left 3.0 s: mean |green error| 6.9 s
+   extension through 4.0 s / left 4.0 s: mean |green error| 6.7 s
+   extension through 4.0 s / left 6.0 s: mean |green error| 5.9 s
+   extension through 4.0 s / left 8.0 s: mean |green error| 4.2 s
+   check: inserted 6088/6127, waiting 0, teleports 0, collisions 0, time loss 45 s
+   -> intersections/7065osm/sim/README.md

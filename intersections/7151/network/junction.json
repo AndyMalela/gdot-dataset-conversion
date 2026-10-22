@@ -1,0 +1,138 @@
+{
+ "signal_id": "7151",
+ "name": "17th Street @ Bishop Street",
+ "lat": 33.79166,
+ "lon": -84.40561,
+ "node": "cluster_1278558749_283201123",
+ "node_type": "traffic_light",
+ "dist_m": 1.5,
+ "tls": [
+  "cluster_1278558749_283201123"
+ ],
+ "approaches": [
+  {
+   "edge": "678600538#0",
+   "osm_way": "678600538",
+   "name": "",
+   "label": "NB",
+   "heading_deg": 27,
+   "lanes": 1,
+   "lanes_tag": "2",
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "LTR"
+   ],
+   "movements": {
+    "R": [
+     "1051747988#0"
+    ],
+    "T": [
+     "-9267696#19"
+    ],
+    "L": [
+     "25958945#0"
+    ]
+   },
+   "length_m": 217,
+   "upstream_m": 243
+  },
+  {
+   "edge": "1051747987#0",
+   "osm_way": "1051747987",
+   "name": "17th Street Northwest",
+   "label": "EB",
+   "heading_deg": 103,
+   "lanes": 3,
+   "lanes_tag": "3",
+   "turn_lanes_tag": "left|none|none",
+   "lane_moves": [
+    "T",
+    "T",
+    "L"
+   ],
+   "movements": {
+    "T": [
+     "1051747988#0"
+    ],
+    "L": [
+     "-9267696#19"
+    ]
+   },
+   "length_m": 47,
+   "upstream_m": 189
+  },
+  {
+   "edge": "9267696#3",
+   "osm_way": "9267696",
+   "name": "Bishop Street Northwest",
+   "label": "SB",
+   "heading_deg": 221,
+   "lanes": 1,
+   "lanes_tag": null,
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "LTR"
+   ],
+   "movements": {
+    "R": [
+     "25958945#0"
+    ],
+    "T": [
+     "-678600538#6"
+    ],
+    "L": [
+     "1051747988#0"
+    ]
+   },
+   "length_m": 334,
+   "upstream_m": 334
+  },
+  {
+   "edge": "1114817997#0",
+   "osm_way": "1114817997",
+   "name": "17th Street Northwest",
+   "label": "WB",
+   "heading_deg": 303,
+   "lanes": 4,
+   "lanes_tag": "4",
+   "turn_lanes_tag": "reverse|||",
+   "lane_moves": [
+    "TR",
+    "T",
+    "T",
+    "U"
+   ],
+   "movements": {
+    "R": [
+     "-9267696#19"
+    ],
+    "T": [
+     "25958945#0"
+    ],
+    "U": [
+     "1051747988#0"
+    ]
+   },
+   "length_m": 8,
+   "upstream_m": 338
+  }
+ ],
+ "flags": [
+  "NB approach (678600538#0): two-way way with lanes=2 total and no lanes:forward/backward; per-direction split guessed by netconvert",
+  "SB approach (Bishop Street Northwest) heads 221\u00b0, 41\u00b0 off the compass label; check the label",
+  "SB approach (Bishop Street Northwest): OSM way 9267696 has no lanes tag; 1 lane(s) is a netconvert default"
+ ],
+ "smoke_test": {
+  "flows": 10,
+  "returncode": 0,
+  "loaded": 200,
+  "inserted": 200,
+  "running": 0,
+  "waiting": 0,
+  "teleports": 0,
+  "jams": 0,
+  "collisions": 0,
+  "warnings": 0,
+  "errors": []
+ }
+}

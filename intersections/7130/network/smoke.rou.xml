@@ -1,0 +1,12 @@
+<routes>
+  <vType id="car" vClass="passenger"/>
+  <flow id="f0_NB_T" type="car" begin="0" end="600" vehsPerHour="120" from="1377416116#0" to="1377424634#0" departLane="best" departSpeed="max"/>
+  <flow id="f1_NB_L" type="car" begin="0" end="600" vehsPerHour="120" from="1377416116#0" to="1446233300#0" departLane="best" departSpeed="max"/>
+  <flow id="f2_EB_T" type="car" begin="0" end="600" vehsPerHour="120" from="-1446233301" to="-1355126856#23" departLane="best" departSpeed="max"/>
+  <flow id="f3_EB_L" type="car" begin="0" end="600" vehsPerHour="120" from="-1446233301" to="1377424634#0" departLane="best" departSpeed="max"/>
+  <flow id="f4_SB_T" type="car" begin="0" end="600" vehsPerHour="120" from="-1377424634#1" to="-1377416116#4" departLane="best" departSpeed="max"/>
+  <flow id="f5_SB_L" type="car" begin="0" end="600" vehsPerHour="120" from="-1377424634#1" to="-1355126856#23" departLane="best" departSpeed="max"/>
+  <flow id="f6_WB_R" type="car" begin="0" end="600" vehsPerHour="120" from="1355126856#22" to="1377424634#0" departLane="best" departSpeed="max"/>
+  <flow id="f7_WB_T" type="car" begin="0" end="600" vehsPerHour="120" from="1355126856#22" to="1446233300#0" departLane="best" departSpeed="max"/>
+  <flow id="f8_WB_L" type="car" begin="0" end="600" vehsPerHour="120" from="1355126856#22" to="-1377416116#4" departLane="best" departSpeed="max"/>
+</routes>

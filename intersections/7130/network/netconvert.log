@@ -1,0 +1,5 @@
+Warning: Using default width for edge '9235700' as value '29'4"' could not be parsed.
+Warning: Using default width for edge '9273312' as value '29'4"' could not be parsed.
+Warning: Using default width for edge '330648551' as value '31'4"' could not be parsed.
+Warning: Discarding unknown compound 'railway.abandoned' in type 'highway.cycleway|railway.abandoned' (first occurrence for edge '182302109').
+Warning: Discarding unknown compound 'railway.abandoned' in type 'highway.path|railway.abandoned' (first occurrence for edge '226119763').

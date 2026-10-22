@@ -1,0 +1,136 @@
+{
+ "signal_id": "7153",
+ "name": "SR 3 @ Marietta Street",
+ "lat": 33.77589,
+ "lon": -84.40703,
+ "node": "69116075",
+ "node_type": "traffic_light",
+ "dist_m": 2.2,
+ "tls": [
+  "69116075"
+ ],
+ "approaches": [
+  {
+   "edge": "111877312",
+   "osm_way": "111877312",
+   "name": "Northside Drive Northwest",
+   "label": "NB",
+   "heading_deg": 36,
+   "lanes": 3,
+   "lanes_tag": "6",
+   "turn_lanes_tag": "left||",
+   "lane_moves": [
+    "T",
+    "T",
+    "L"
+   ],
+   "movements": {
+    "T": [
+     "1387067902"
+    ],
+    "L": [
+     "953412628#0"
+    ]
+   },
+   "length_m": 200,
+   "upstream_m": 323
+  },
+  {
+   "edge": "-953412628#5",
+   "osm_way": "953412628",
+   "name": "Marietta Street Northwest",
+   "label": "EB",
+   "heading_deg": 141,
+   "lanes": 2,
+   "lanes_tag": "4",
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "R",
+    "T"
+   ],
+   "movements": {
+    "R": [
+     "-111877313#1"
+    ],
+    "T": [
+     "-1428950040#3"
+    ]
+   },
+   "length_m": 152,
+   "upstream_m": 382
+  },
+  {
+   "edge": "119948082#1",
+   "osm_way": "119948082",
+   "name": "Northside Drive Northwest",
+   "label": "SB",
+   "heading_deg": 177,
+   "lanes": 2,
+   "lanes_tag": "2",
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "TU",
+    "L"
+   ],
+   "movements": {
+    "U": [
+     "953412628#0"
+    ],
+    "T": [
+     "-111877313#1",
+     "-1428950040#3"
+    ],
+    "L": [
+     "1387067902"
+    ]
+   },
+   "length_m": 172,
+   "upstream_m": 172
+  },
+  {
+   "edge": "1428950040#2",
+   "osm_way": "1428950040",
+   "name": "Marietta Street Northwest",
+   "label": "WB",
+   "heading_deg": 334,
+   "lanes": 2,
+   "lanes_tag": "3",
+   "turn_lanes_tag": "left|through;right",
+   "lane_moves": [
+    "TR",
+    "L"
+   ],
+   "movements": {
+    "R": [
+     "1387067902"
+    ],
+    "T": [
+     "953412628#0"
+    ],
+    "L": [
+     "-111877313#1"
+    ]
+   },
+   "length_m": 22,
+   "upstream_m": 355
+  }
+ ],
+ "flags": [
+  "EB approach (Marietta Street Northwest) heads 141\u00b0, 51\u00b0 off the compass label; check the label",
+  "EB approach (Marietta Street Northwest): two-way way with lanes=4 total and no lanes:forward/backward; per-direction split guessed by netconvert",
+  "WB approach (Marietta Street Northwest) heads 334\u00b0, 64\u00b0 off the compass label; check the label"
+ ],
+ "smoke_test": {
+  "flows": 10,
+  "returncode": 0,
+  "loaded": 200,
+  "inserted": 200,
+  "running": 0,
+  "waiting": 0,
+  "teleports": 0,
+  "jams": 0,
+  "collisions": 0,
+  "warnings": 0,
+  "errors": []
+ }
+}

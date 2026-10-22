@@ -1,0 +1,110 @@
+{
+ "signal_id": "7065",
+ "net_file": "../../../../sumotwin/7065_ext.net.xml",
+ "node": "J",
+ "tls": [
+  "J"
+ ],
+ "approaches": [
+  {
+   "edge": "S_in",
+   "label": "NB",
+   "name": "Piedmont Rd NE",
+   "heading_deg": 341,
+   "lanes": 4,
+   "lane_moves": [
+    "R",
+    "T",
+    "T",
+    "L"
+   ],
+   "movements": {
+    "R": [
+     "NE_out"
+    ],
+    "T": [
+     "N_out"
+    ],
+    "L": [
+     "SW_out"
+    ]
+   },
+   "upstream_m": 288
+  },
+  {
+   "edge": "SW_in",
+   "label": "EB",
+   "name": "Peachtree Rd NE",
+   "heading_deg": 60,
+   "lanes": 5,
+   "lane_moves": [
+    "TR",
+    "T",
+    "T",
+    "L",
+    "L"
+   ],
+   "movements": {
+    "R": [
+     "S_out"
+    ],
+    "T": [
+     "NE_out"
+    ],
+    "L": [
+     "N_out"
+    ]
+   },
+   "upstream_m": 89
+  },
+  {
+   "edge": "N_near",
+   "label": "SB",
+   "name": "Piedmont Rd NE",
+   "heading_deg": 161,
+   "lanes": 4,
+   "lane_moves": [
+    "R",
+    "T",
+    "T",
+    "L"
+   ],
+   "movements": {
+    "R": [
+     "SW_out"
+    ],
+    "T": [
+     "S_out"
+    ],
+    "L": [
+     "NE_out"
+    ]
+   },
+   "upstream_m": 228
+  },
+  {
+   "edge": "NE_in.79",
+   "label": "WB",
+   "name": "Peachtree Rd NE",
+   "heading_deg": 241,
+   "lanes": 5,
+   "lane_moves": [
+    "T",
+    "T",
+    "T",
+    "L",
+    "L"
+   ],
+   "movements": {
+    "T": [
+     "SW_out"
+    ],
+    "L": [
+     "S_out"
+    ]
+   },
+   "upstream_m": 191
+  }
+ ],
+ "source": "hand-built network sumotwin/7065_ext.net.xml"
+}

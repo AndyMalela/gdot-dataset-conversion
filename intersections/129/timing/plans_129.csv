@@ -1,0 +1,8 @@
+signal_id,date,start,end,minutes,kind,plan,cycle_s,ring1_s,ring2_s,checks,note,P2,P2_raw,P2_src,P4,P4_raw,P4_src
+129,2026-10-02,00:01,05:01,300,plan,A,80,80,0,ok,,48,48.1,force-off (approx),32,31.9,force-off (approx)
+129,2026-10-02,05:01,07:01,120,plan,B,100,100,0,ok,,55,54.8,force-off (approx),45,44.9,force-off (approx)
+129,2026-10-02,07:01,11:01,240,plan,C,120,120,0,ok,,66,65.7,force-off (approx),54,53.8,force-off (approx)
+129,2026-10-02,11:01,14:01,180,plan,D,100,100,0,ok,,60,59.7,force-off (approx),40,39.7,force-off (approx)
+129,2026-10-02,14:01,19:02,301,plan,E,120,120,0,ok,,64,63.6,force-off (approx),56,55.8,force-off (approx)
+129,2026-10-02,19:02,21:02,120,plan,F,99,99,0,ok,,53,52.7,force-off (approx),46,46.5,force-off (approx)
+129,2026-10-02,21:02,24:00,178,plan,D,100,100,0,ok,,60,59.7,force-off (approx),40,39.8,force-off (approx)

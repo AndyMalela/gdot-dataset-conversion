@@ -1,0 +1,40 @@
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|highway.primary' (first occurrence for edge '9266408').
+Warning: Discarding unknown compound 'bus' in type 'bus|highway.construction' (first occurrence for edge '169926091').
+Warning: Discarding unknown compound 'cycleway.track' in type 'cycleway.track|highway.secondary' (first occurrence for edge '580808690').
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|highway.tertiary' (first occurrence for edge '629278227').
+Warning: Discarding unknown compound 'cycleway.track' in type 'cycleway.track|highway.tertiary' (first occurrence for edge '629305952').
+Warning: Ignoring turn sign information for 4 lanes on edge 1110500853#0 with 5 driving lanes
+Warning: Ignoring turn sign information for 4 lanes on edge 1110500853#1 with 5 driving lanes
+Warning: Ignoring turn sign information for 4 lanes on edge 1110500853#2 with 5 driving lanes
+Warning: Ignoring turn sign information for 4 lanes on edge 1110500853#3 with 5 driving lanes
+Warning: Ignoring turn sign information for 1 lanes on edge -1177485085#0 with 2 driving lanes
+Warning: Removing pt stop '7057284377' on non existing edge '332400845#0'.
+Warning: Removed a road without junctions: -629278229#0.
+Warning: Removed a road without junctions: -755543570#0.
+Warning: Removed a road without junctions: 629278229#0.
+Warning: Removed a road without junctions: 755543570#0.
+Warning: Could not find corresponding edge or compatible lane for free-floating pt stop '7057284377' (). Thus, it will be removed!
+Warning: Not joining junctions 5437217140,6854507223,69425151,69573595 (not compact (maxEdge=564295946#1 length=6.03)).
+Warning: Ignoring changeLeft prohibition for '-755543584_0' to avoid dead-end
+Warning: Cannot apply turn sign information for edge '-9268420#0' because there are 2 signed directions but only 1 targets
+Warning: Lane '630697022#0_2' is not connected from any incoming edge at junction '69171476'.
+Warning: Ignoring changeLeft prohibition for '755543600#0_1' to avoid dead-end
+Warning: Lane '9272764#0_2' is not connected from any incoming edge at junction '69167153'.
+Warning: The traffic light '11305240976' does not control any links; it will not be build.
+Warning: Could not build program '0' for traffic light '11305240976'
+Warning: Minor green from edge '-629278230#3' to edge '1040740790#0' exceeds 19.44m/s. Maybe a left-turn lane is missing.
+Warning: Minor green from edge '1390618856#0' to edge '-1390618855' exceeds 19.44m/s. Maybe a left-turn lane is missing.
+Warning: Minor green from edge '533820012#1' to edge '1031935808#0' exceeds 19.44m/s. Maybe a left-turn lane is missing.
+Warning: The traffic light '5407237302' does not control any links; it will not be build.
+Warning: Could not build program '0' for traffic light '5407237302'
+Warning: Minor green from edge '629278230#0' to edge '385744394#0' exceeds 19.44m/s. Maybe a left-turn lane is missing.
+Warning: Minor green from edge '1390865994#0' to edge '1390865995#0' exceeds 19.44m/s. Maybe a left-turn lane is missing.
+Warning: Speed of straight connection '44698162#0_0->-755543590_0' reduced by 16.78 due to turning radius of 12.29 (length=3.92, angle=34.53).
+Warning: Speed of straight connection '564295946#0_0->44698164_2' reduced by 7.30 due to turning radius of 33.33 (length=25.32, angle=59.60).
+Warning: Speed of straight connection '564295946#0_0->44698164_3' reduced by 7.65 due to turning radius of 31.60 (length=23.97, angle=59.60).
+Warning: Speed of straight connection '564295946#0_0->44698164_4' reduced by 7.94 due to turning radius of 30.25 (length=22.92, angle=59.60).
+Warning: Speed of straight connection '1390618857_0->9268420#0_0' reduced by 12.67 due to turning radius of 41.50 (length=2.37, angle=18.34).
+Warning: 7 total messages of type: Discarding unknown compound '%' in type '%' (first occurrence for edge '%').
+Warning: 6 total messages of type: Ignoring turn sign information for % lanes on edge % with % driving lanes
+Warning: 10 total messages of type: Minor green from edge '%' to edge '%' exceeds %m/s. Maybe a left-turn lane is missing.
+Warning: 6 total messages of type: Speed of % connection '%' reduced by % due to turning radius of % (length=%, angle=%).

@@ -1,0 +1,86 @@
+{
+ "signal_id": "7153",
+ "source": "GDOT ATSPM Purdue Split Failure chart titles (timing/phase_titles.png), 2026-10-02 08:00, transcribed by hand",
+ "note": "Northside NB/SB = net NB/SB. Marietta: GDOT EB = net EB (from NW, travelling SE; left turns prohibited there), WB = net WB. P2 (Northside SB through) has no Split Failure chart: inferred (P5 = SB left; GDOT P2 = SB).",
+ "phases": [
+  {
+   "phase": 1,
+   "approach": "NB",
+   "move": "L",
+   "type": "protected",
+   "desc": "SR 3/Northside Dr NB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 2,
+   "approach": "SB",
+   "move": "T",
+   "type": "protected",
+   "desc": "",
+   "source": "inferred"
+  },
+  {
+   "phase": 3,
+   "approach": "WB",
+   "move": "L",
+   "type": "protected",
+   "desc": "Marietta St WB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 4,
+   "approach": "EB",
+   "move": "T",
+   "type": "protected",
+   "desc": "Marietta St EB",
+   "source": "split_fail"
+  },
+  {
+   "phase": 5,
+   "approach": "SB",
+   "move": "L",
+   "type": "protected",
+   "desc": "SR 3/Northside Dr SB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 6,
+   "approach": "NB",
+   "move": "T",
+   "type": "protected",
+   "desc": "SR 3/Northside Dr NB",
+   "source": "split_fail"
+  },
+  {
+   "phase": 6,
+   "approach": "NB",
+   "move": "L",
+   "type": "permissive",
+   "desc": "SR 3/Northside Dr NB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 8,
+   "approach": "WB",
+   "move": "T",
+   "type": "protected",
+   "desc": "Marietta St WB",
+   "source": "split_fail"
+  },
+  {
+   "phase": 8,
+   "approach": "WB",
+   "move": "L",
+   "type": "permissive",
+   "desc": "Marietta St WB LT",
+   "source": "split_fail"
+  }
+ ],
+ "count_labels": {
+  "NB": "NB",
+  "EB": "EB",
+  "SB": "SB",
+  "WB": "WB"
+ },
+ "count_labels_note": "GDOT's turning-movement report labels approaches with the same road-based directions as its phase descriptions (verified at 7065 from detector actuation counts vs report columns, Oct 2 08:00-08:05: lefts 13/13, 16/16, 9/9; throughs 53/52, 33/33; charts in timing/dircheck/ of 7065). So report column XX_* belongs to the network approach given here."
+}

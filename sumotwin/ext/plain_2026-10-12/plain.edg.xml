@@ -1,0 +1,14 @@
+<edges xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.20" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/edges_file.xsd">
+    <edge id="E1" from="J11" to="J5" priority="-1" numLanes="1" speed="13.89" />
+    <edge id="NE_in.15" from="J12" to="J11" name="Peachtree Rd NE" priority="12" numLanes="6" speed="15.60" spreadType="roadCenter" width="3.20" />
+    <edge id="NE_in.79" from="J11" to="J" name="Peachtree Rd NE" priority="12" numLanes="5" speed="15.60" spreadType="roadCenter" width="3.20" />
+    <edge id="NE_out" from="J" to="nNE" name="Peachtree Rd NE" priority="12" numLanes="3" speed="15.60" spreadType="roadCenter" width="3.20" />
+    <edge id="N_far" from="nN" to="nNleft" name="Piedmont Rd NE" priority="10" numLanes="3" speed="15.60" spreadType="roadCenter" width="3.20" />
+    <edge id="N_near" from="nNleft" to="J" name="Piedmont Rd NE" priority="10" numLanes="4" speed="15.60" spreadType="roadCenter" width="3.20" />
+    <edge id="N_out" from="J" to="J5" name="Piedmont Rd NE" priority="10" numLanes="2" speed="15.60" spreadType="roadCenter" width="3.20" />
+    <edge id="N_out.37" from="J5" to="nN" name="Piedmont Rd NE" priority="10" numLanes="2" speed="15.60" spreadType="roadCenter" width="3.20" />
+    <edge id="SW_in" from="nSW" to="J" name="Peachtree Rd NE" priority="12" numLanes="5" speed="15.60" spreadType="roadCenter" width="3.20" />
+    <edge id="SW_out" from="J" to="nSW" name="Peachtree Rd NE" priority="12" numLanes="3" speed="15.60" spreadType="roadCenter" width="3.20" />
+    <edge id="S_in" from="nS" to="J" name="Piedmont Rd NE" priority="10" numLanes="4" speed="15.60" spreadType="roadCenter" width="3.20" />
+    <edge id="S_out" from="J" to="nS" name="Piedmont Rd NE" priority="10" numLanes="2" speed="15.60" spreadType="roadCenter" width="3.20" />
+<edge name="Piedmont Rd NE" priority="10" numLanes="4" speed="15.60" spreadType="roadCenter" width="3.20" id="S_in_ext" from="nS_ext" to="nS" /><edge name="Piedmont Rd NE" priority="10" numLanes="3" speed="15.60" spreadType="roadCenter" width="3.20" id="N_far_ext" from="nN_ext" to="nN" shape="-29.217,330.760 27.90,160.65" /><edge name="Piedmont Rd NE" priority="10" numLanes="2" speed="15.60" spreadType="roadCenter" width="3.20" id="S_out_ext" from="nS" to="nS_ext" /><edge name="Piedmont Rd NE" priority="10" numLanes="2" speed="15.60" spreadType="roadCenter" width="3.20" id="N_out_ext" from="nN" to="nN_ext" /></edges>

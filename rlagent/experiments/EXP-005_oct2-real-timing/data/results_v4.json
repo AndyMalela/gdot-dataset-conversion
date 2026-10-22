@@ -1,0 +1,497 @@
+{
+ "date": "2026-10-02",
+ "version": "v4",
+ "demand_file": "rlagent/experiments/EXP-005_oct2-real-timing/data/demand_oct2_v4.rou.xml",
+ "demand_md5": "77ca86ccbda4ba3a322d0455f6fefbe6",
+ "demand_vehicles_day": 47149,
+ "demand_veh_per_h": {
+  "Night 00-06": 591,
+  "AM 06-10": 2087,
+  "Midday 10-15": 2662,
+  "PM peak 15-18": 2789,
+  "Evening 18-24": 2264,
+  "Whole day": 1965
+ },
+ "count_labels": {
+  "NB": "EB",
+  "EB": "SB",
+  "SB": "WB",
+  "WB": "NB"
+ },
+ "webster": {
+  "cycle_s": 73.4,
+  "rho": 0.564,
+  "greens_s": [
+   7.8,
+   13.2,
+   9.0,
+   29.4
+  ],
+  "design_volumes": {
+   "eb_thru": 315,
+   "eb_left": 146,
+   "wb_thru": 676,
+   "wb_left": 265,
+   "nb_thru": 399,
+   "nb_left": 56,
+   "sb_thru": 1006,
+   "sb_left": 154
+  }
+ },
+ "results": {
+  "Real GDOT timing (calibrated NEMA)": {
+   "Night 00-06": {
+    "trips": 3544,
+    "total_delay_s": 31.6,
+    "time_loss_s": 31.1,
+    "depart_delay_s": 0.5
+   },
+   "AM 06-10": {
+    "trips": 8347,
+    "total_delay_s": 45.2,
+    "time_loss_s": 42.0,
+    "depart_delay_s": 3.2
+   },
+   "Midday 10-15": {
+    "trips": 13309,
+    "total_delay_s": 49.7,
+    "time_loss_s": 42.3,
+    "depart_delay_s": 7.3
+   },
+   "PM peak 15-18": {
+    "trips": 8366,
+    "total_delay_s": 185.7,
+    "time_loss_s": 46.9,
+    "depart_delay_s": 138.8
+   },
+   "Evening 18-24": {
+    "trips": 13583,
+    "total_delay_s": 143.6,
+    "time_loss_s": 39.7,
+    "depart_delay_s": 103.9
+   },
+   "Whole day": {
+    "trips": 47149,
+    "total_delay_s": 98.7,
+    "time_loss_s": 41.5,
+    "depart_delay_s": 57.2
+   },
+   "unserved_day": 0,
+   "cycle_s": {
+    "Night 00-06": "120 (plan)",
+    "AM 06-10": "120/160 (plan)",
+    "Midday 10-15": "160 (plan)",
+    "PM peak 15-18": "160/180 (plan)",
+    "Evening 18-24": "120/130/180 (plan)",
+    "Whole day": "120/130/160/180 (plan)"
+   },
+   "served_vs_counted": {
+    "Night 00-06": {
+     "EB_L": "282/282",
+     "EB_T": "850/850",
+     "NB_L": "293/293",
+     "NB_T": "632/632",
+     "SB_L": "229/229",
+     "SB_T": "592/592",
+     "WB_L": "138/138",
+     "WB_T": "528/528"
+    },
+    "AM 06-10": {
+     "EB_L": "571/571",
+     "EB_T": "2145/2145",
+     "NB_L": "523/523",
+     "NB_T": "1116/1116",
+     "SB_L": "493/493",
+     "SB_T": "1953/1953",
+     "WB_L": "227/227",
+     "WB_T": "1319/1319"
+    },
+    "Midday 10-15": {
+     "EB_L": "749/749",
+     "EB_T": "4113/4113",
+     "NB_L": "803/803",
+     "NB_T": "1730/1730",
+     "SB_L": "861/861",
+     "SB_T": "2808/2808",
+     "WB_L": "282/282",
+     "WB_T": "1963/1963"
+    },
+    "PM peak 15-18": {
+     "EB_L": "418/418",
+     "EB_T": "2914/2914",
+     "NB_L": "400/400",
+     "NB_T": "822/822",
+     "SB_L": "657/657",
+     "SB_T": "1879/1879",
+     "WB_L": "146/146",
+     "WB_T": "1130/1130"
+    },
+    "Evening 18-24": {
+     "EB_L": "797/797",
+     "EB_T": "4016/4016",
+     "NB_L": "889/889",
+     "NB_T": "1781/1781",
+     "SB_L": "882/882",
+     "SB_T": "2878/2878",
+     "WB_L": "271/271",
+     "WB_T": "2069/2069"
+    },
+    "Whole day": {
+     "EB_L": "2817/2817",
+     "EB_T": "14038/14038",
+     "NB_L": "2908/2908",
+     "NB_T": "6081/6081",
+     "SB_L": "3122/3122",
+     "SB_T": "10110/10110",
+     "WB_L": "1064/1064",
+     "WB_T": "7009/7009"
+    }
+   },
+   "teleports": 0,
+   "collisions": 0
+  },
+  "Webster fixed-time": {
+   "Night 00-06": {
+    "trips": 3544,
+    "total_delay_s": 21.2,
+    "time_loss_s": 20.7,
+    "depart_delay_s": 0.5
+   },
+   "AM 06-10": {
+    "trips": 8347,
+    "total_delay_s": 23.7,
+    "time_loss_s": 23.2,
+    "depart_delay_s": 0.6
+   },
+   "Midday 10-15": {
+    "trips": 13309,
+    "total_delay_s": 23.9,
+    "time_loss_s": 23.2,
+    "depart_delay_s": 0.8
+   },
+   "PM peak 15-18": {
+    "trips": 8366,
+    "total_delay_s": 25.0,
+    "time_loss_s": 23.8,
+    "depart_delay_s": 1.2
+   },
+   "Evening 18-24": {
+    "trips": 13583,
+    "total_delay_s": 23.2,
+    "time_loss_s": 22.6,
+    "depart_delay_s": 0.6
+   },
+   "Whole day": {
+    "trips": 47149,
+    "total_delay_s": 23.7,
+    "time_loss_s": 22.9,
+    "depart_delay_s": 0.7
+   },
+   "unserved_day": 0,
+   "cycle_s": {
+    "Night 00-06": 76.0,
+    "AM 06-10": 76.0,
+    "Midday 10-15": 76.0,
+    "PM peak 15-18": 76.0,
+    "Evening 18-24": 76.0,
+    "Whole day": 76.0
+   },
+   "served_vs_counted": {
+    "Night 00-06": {
+     "EB_L": "282/282",
+     "EB_T": "850/850",
+     "NB_L": "293/293",
+     "NB_T": "632/632",
+     "SB_L": "229/229",
+     "SB_T": "592/592",
+     "WB_L": "138/138",
+     "WB_T": "528/528"
+    },
+    "AM 06-10": {
+     "EB_L": "571/571",
+     "EB_T": "2145/2145",
+     "NB_L": "523/523",
+     "NB_T": "1116/1116",
+     "SB_L": "493/493",
+     "SB_T": "1953/1953",
+     "WB_L": "227/227",
+     "WB_T": "1319/1319"
+    },
+    "Midday 10-15": {
+     "EB_L": "749/749",
+     "EB_T": "4113/4113",
+     "NB_L": "803/803",
+     "NB_T": "1730/1730",
+     "SB_L": "861/861",
+     "SB_T": "2808/2808",
+     "WB_L": "282/282",
+     "WB_T": "1963/1963"
+    },
+    "PM peak 15-18": {
+     "EB_L": "418/418",
+     "EB_T": "2914/2914",
+     "NB_L": "400/400",
+     "NB_T": "822/822",
+     "SB_L": "657/657",
+     "SB_T": "1879/1879",
+     "WB_L": "146/146",
+     "WB_T": "1130/1130"
+    },
+    "Evening 18-24": {
+     "EB_L": "797/797",
+     "EB_T": "4016/4016",
+     "NB_L": "889/889",
+     "NB_T": "1781/1781",
+     "SB_L": "882/882",
+     "SB_T": "2878/2878",
+     "WB_L": "271/271",
+     "WB_T": "2069/2069"
+    },
+    "Whole day": {
+     "EB_L": "2817/2817",
+     "EB_T": "14038/14038",
+     "NB_L": "2908/2908",
+     "NB_T": "6081/6081",
+     "SB_L": "3122/3122",
+     "SB_T": "10110/10110",
+     "WB_L": "1064/1064",
+     "WB_T": "7009/7009"
+    }
+   }
+  },
+  "Tuned-actuated": {
+   "Night 00-06": {
+    "trips": 3544,
+    "total_delay_s": 17.3,
+    "time_loss_s": 16.8,
+    "depart_delay_s": 0.5
+   },
+   "AM 06-10": {
+    "trips": 8347,
+    "total_delay_s": 20.3,
+    "time_loss_s": 19.7,
+    "depart_delay_s": 0.6
+   },
+   "Midday 10-15": {
+    "trips": 13309,
+    "total_delay_s": 21.5,
+    "time_loss_s": 20.8,
+    "depart_delay_s": 0.8
+   },
+   "PM peak 15-18": {
+    "trips": 8366,
+    "total_delay_s": 22.6,
+    "time_loss_s": 21.5,
+    "depart_delay_s": 1.1
+   },
+   "Evening 18-24": {
+    "trips": 13583,
+    "total_delay_s": 20.5,
+    "time_loss_s": 19.9,
+    "depart_delay_s": 0.6
+   },
+   "Whole day": {
+    "trips": 47149,
+    "total_delay_s": 20.9,
+    "time_loss_s": 20.1,
+    "depart_delay_s": 0.7
+   },
+   "unserved_day": 0,
+   "cycle_s": {
+    "Night 00-06": 47.0,
+    "AM 06-10": 53.2,
+    "Midday 10-15": 58.8,
+    "PM peak 15-18": 62.9,
+    "Evening 18-24": 54.9,
+    "Whole day": 54.0
+   },
+   "served_vs_counted": {
+    "Night 00-06": {
+     "EB_L": "282/282",
+     "EB_T": "850/850",
+     "NB_L": "293/293",
+     "NB_T": "632/632",
+     "SB_L": "229/229",
+     "SB_T": "592/592",
+     "WB_L": "138/138",
+     "WB_T": "528/528"
+    },
+    "AM 06-10": {
+     "EB_L": "571/571",
+     "EB_T": "2145/2145",
+     "NB_L": "523/523",
+     "NB_T": "1116/1116",
+     "SB_L": "493/493",
+     "SB_T": "1953/1953",
+     "WB_L": "227/227",
+     "WB_T": "1319/1319"
+    },
+    "Midday 10-15": {
+     "EB_L": "749/749",
+     "EB_T": "4113/4113",
+     "NB_L": "803/803",
+     "NB_T": "1730/1730",
+     "SB_L": "861/861",
+     "SB_T": "2808/2808",
+     "WB_L": "282/282",
+     "WB_T": "1963/1963"
+    },
+    "PM peak 15-18": {
+     "EB_L": "418/418",
+     "EB_T": "2914/2914",
+     "NB_L": "400/400",
+     "NB_T": "822/822",
+     "SB_L": "657/657",
+     "SB_T": "1879/1879",
+     "WB_L": "146/146",
+     "WB_T": "1130/1130"
+    },
+    "Evening 18-24": {
+     "EB_L": "797/797",
+     "EB_T": "4016/4016",
+     "NB_L": "889/889",
+     "NB_T": "1781/1781",
+     "SB_L": "882/882",
+     "SB_T": "2878/2878",
+     "WB_L": "271/271",
+     "WB_T": "2069/2069"
+    },
+    "Whole day": {
+     "EB_L": "2817/2817",
+     "EB_T": "14038/14038",
+     "NB_L": "2908/2908",
+     "NB_T": "6081/6081",
+     "SB_L": "3122/3122",
+     "SB_T": "10110/10110",
+     "WB_L": "1064/1064",
+     "WB_T": "7009/7009"
+    }
+   }
+  },
+  "RL (EXP-004 policy, trained on direction-swapped May demand)": {
+   "Night 00-06": {
+    "trips": 3544,
+    "total_delay_s": 19.1,
+    "time_loss_s": 18.6,
+    "depart_delay_s": 0.5
+   },
+   "AM 06-10": {
+    "trips": 8347,
+    "total_delay_s": 20.2,
+    "time_loss_s": 19.7,
+    "depart_delay_s": 0.5
+   },
+   "Midday 10-15": {
+    "trips": 13309,
+    "total_delay_s": 20.6,
+    "time_loss_s": 20.1,
+    "depart_delay_s": 0.5
+   },
+   "PM peak 15-18": {
+    "trips": 8366,
+    "total_delay_s": 488.0,
+    "time_loss_s": 84.1,
+    "depart_delay_s": 403.9
+   },
+   "Evening 18-24": {
+    "trips": 13583,
+    "total_delay_s": 315.5,
+    "time_loss_s": 32.4,
+    "depart_delay_s": 283.1
+   },
+   "Whole day": {
+    "trips": 47149,
+    "total_delay_s": 188.3,
+    "time_loss_s": 34.8,
+    "depart_delay_s": 153.5
+   },
+   "unserved_day": 0,
+   "cycle_s": {
+    "Night 00-06": 49.8,
+    "AM 06-10": 36.4,
+    "Midday 10-15": 37.9,
+    "PM peak 15-18": 57.1,
+    "Evening 18-24": 49.0,
+    "Whole day": 44.7
+   },
+   "served_vs_counted": {
+    "Night 00-06": {
+     "EB_L": "282/282",
+     "EB_T": "850/850",
+     "NB_L": "293/293",
+     "NB_T": "632/632",
+     "SB_L": "229/229",
+     "SB_T": "592/592",
+     "WB_L": "138/138",
+     "WB_T": "528/528"
+    },
+    "AM 06-10": {
+     "EB_L": "571/571",
+     "EB_T": "2145/2145",
+     "NB_L": "523/523",
+     "NB_T": "1116/1116",
+     "SB_L": "493/493",
+     "SB_T": "1953/1953",
+     "WB_L": "227/227",
+     "WB_T": "1319/1319"
+    },
+    "Midday 10-15": {
+     "EB_L": "749/749",
+     "EB_T": "4113/4113",
+     "NB_L": "803/803",
+     "NB_T": "1730/1730",
+     "SB_L": "861/861",
+     "SB_T": "2808/2808",
+     "WB_L": "282/282",
+     "WB_T": "1963/1963"
+    },
+    "PM peak 15-18": {
+     "EB_L": "418/418",
+     "EB_T": "2914/2914",
+     "NB_L": "400/400",
+     "NB_T": "822/822",
+     "SB_L": "657/657",
+     "SB_T": "1879/1879",
+     "WB_L": "146/146",
+     "WB_T": "1130/1130"
+    },
+    "Evening 18-24": {
+     "EB_L": "797/797",
+     "EB_T": "4016/4016",
+     "NB_L": "889/889",
+     "NB_T": "1781/1781",
+     "SB_L": "882/882",
+     "SB_T": "2878/2878",
+     "WB_L": "271/271",
+     "WB_T": "2069/2069"
+    },
+    "Whole day": {
+     "EB_L": "2817/2817",
+     "EB_T": "14038/14038",
+     "NB_L": "2908/2908",
+     "NB_T": "6081/6081",
+     "SB_L": "3122/3122",
+     "SB_T": "10110/10110",
+     "WB_L": "1064/1064",
+     "WB_T": "7009/7009"
+    }
+   }
+  }
+ },
+ "tuned_actuated": {
+  "grid": {
+   "1.25": 20.9,
+   "1.5": 21.0,
+   "2.0": 21.1,
+   "2.5": 21.1,
+   "3.0": 21.1
+  },
+  "chosen_multiplier": 1.25,
+  "max_greens_s": [
+   9.7,
+   16.5,
+   11.3,
+   36.8
+  ]
+ }
+}

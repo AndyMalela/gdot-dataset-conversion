@@ -1,0 +1,13 @@
+features 373, params 1492, ped_min True
+ep 1: reward -9.172e+06  decisions 29498  91 s
+ep 2: reward -2.532e+06  decisions 13413  98 s
+ep 3: reward -1.325e+06  decisions 14501  115 s
+ep 4: reward -1.575e+06  decisions 14565  137 s
+ep 5: reward -1.311e+06  decisions 15628  162 s
+ep 6: reward -1.260e+06  decisions 16520  190 s
+ep 7: reward -1.320e+06  decisions 17601  218 s
+ep 8: reward -1.498e+06  decisions 19117  248 s
+ep 9: reward -1.336e+06  decisions 17515  272 s
+ep 10: reward -1.435e+06  decisions 17496  297 s
+RL dual ring 2026-09-30            Night 29.1  AM 36.5  Midday 37.2  PM 38.8  Evening 38.8  Whole 37.1  unserved 0 | cycle {'Night 00-06': 119.6, 'AM 06-10': 118.8, 'Midday 10-15': 121.3, 'PM peak 15-18': 124.0, 'Evening 18-24': 126.5, 'Whole day': 122.0}
+RL dual ring 2026-10-02            Night 30.6  AM 36.9  Midday 36.9  PM 39.3  Evening 36.0  Whole 36.6  unserved 0 | cycle {'Night 00-06': 118.1, 'AM 06-10': 120.4, 'Midday 10-15': 120.1, 'PM peak 15-18': 125.0, 'Evening 18-24': 119.8, 'Whole day': 120.2}

@@ -1,0 +1,9 @@
+tuned-actuated x1.25: max greens [8.0, 24.5, 19.4, 24.7] -> whole-day delay 20.0 s
+tuned-actuated x1.5: max greens [8.0, 29.4, 23.3, 29.7] -> whole-day delay 20.0 s
+tuned-actuated x2.0: max greens [10.0, 39.2, 31.0, 39.6] -> whole-day delay 20.2 s
+tuned-actuated x2.5: max greens [12.5, 49.1, 38.8, 49.4] -> whole-day delay 20.3 s
+tuned-actuated x3.0: max greens [15.0, 58.9, 46.5, 59.3] -> whole-day delay 20.3 s
+Real GDOT timing (calibrated NEMA)   Night 156.7  AM 45.5  Midday 49.9  PM 53.2  Evening 216.2  Whole 105.7  unserved 0
+Webster fixed-time                   Night 21.5  AM 23.4  Midday 24.1  PM 24.6  Evening 23.4  Whole 23.6  unserved 0
+Tuned-actuated                       Night 16.1  AM 19.8  Midday 20.6  PM 21.3  Evening 19.7  Whole 20.0  unserved 0
+RL (EXP-004 deployed, S8 seed 4)     Night 16.1  AM 18.1  Midday 18.3  PM 19.2  Evening 17.7  Whole 18.1  unserved 0

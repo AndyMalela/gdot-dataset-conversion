@@ -1,0 +1,5 @@
+atspm_column,approach,from_edge,to_edge,sumo_dir,note
+EB_L,EB,-39441446#1,1390568378,L,
+EB_R,EB,-39441446#1,-1391666518,R,
+WB_L,WB,1387050476#0,-1391666518,L,
+WB_T,WB,1387050476#0,39441446#0,T,

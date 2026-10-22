@@ -1,0 +1,44 @@
+{
+ "impatience=0.0,jmTimegapMinor=1.0": {
+  "nb_left_depart_delay_day_s": 1326.7,
+  "nb_left_depart_delay_peak_s": 1674.6,
+  "nb_left_served_peak_pct": 95,
+  "peak_total_delay_s": 133.3,
+  "unserved_day": 0
+ },
+ "impatience=0.5,jmTimegapMinor=1.0": {
+  "nb_left_depart_delay_day_s": 897.6,
+  "nb_left_depart_delay_peak_s": 739.6,
+  "nb_left_served_peak_pct": 100,
+  "peak_total_delay_s": 88.4,
+  "unserved_day": 0
+ },
+ "impatience=1.0,jmTimegapMinor=1.0": {
+  "nb_left_depart_delay_day_s": 688.8,
+  "nb_left_depart_delay_peak_s": 58.1,
+  "nb_left_served_peak_pct": 102,
+  "peak_total_delay_s": 53.2,
+  "unserved_day": 0
+ },
+ "impatience=0.0,jmTimegapMinor=0.5": {
+  "nb_left_depart_delay_day_s": 1340.9,
+  "nb_left_depart_delay_peak_s": 1674.6,
+  "nb_left_served_peak_pct": 95,
+  "peak_total_delay_s": 133.3,
+  "unserved_day": 0
+ },
+ "impatience=0.5,jmTimegapMinor=0.5": {
+  "nb_left_depart_delay_day_s": 919.4,
+  "nb_left_depart_delay_peak_s": 780.8,
+  "nb_left_served_peak_pct": 99,
+  "peak_total_delay_s": 90.5,
+  "unserved_day": 0
+ },
+ "impatience=1.0,jmTimegapMinor=0.5": {
+  "nb_left_depart_delay_day_s": 688.8,
+  "nb_left_depart_delay_peak_s": 58.1,
+  "nb_left_served_peak_pct": 102,
+  "peak_total_delay_s": 53.2,
+  "unserved_day": 0
+ }
+}

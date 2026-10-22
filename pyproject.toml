@@ -1,0 +1,25 @@
+[project]
+name = "gdot-atsc"
+version = "0.1.0"
+description = "Adaptive traffic signal control research on GDOT signal 7065 (SUMO twin, linear-FA LSTDQ RL, baselines)"
+requires-python = "==3.12.*"
+# numpy / pillow pinned to the versions the earlier experiments ran on, so results reproduce exactly.
+# SUMO is pinned too (eclipse-sumo + libsumo/sumolib/traci/sumo-data 1.27.1): scripts prefer this over any
+# system install (see rlagent/sumo_env.py), so OS upgrades can't change results. Verified 2026-10-12:
+# identical per-vehicle output to the archived system-1.27.1 runs. Always run via `uv run`.
+dependencies = [
+    "numpy==1.26.4",
+    "pillow==10.2.0",
+    "scipy>=1.13",
+    "matplotlib>=3.9",
+    "pandas>=2.2",
+    "eclipse-sumo==1.27.1",
+    "libsumo==1.27.1",
+    "sumolib==1.27.1",
+    "traci==1.27.1",
+    "sumo-data==1.27.1",
+    "pyproj>=3.8.0",
+]
+
+[tool.uv]
+package = false

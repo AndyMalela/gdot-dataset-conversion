@@ -1,0 +1,109 @@
+{
+ "signal_id": "124",
+ "name": "Ted Turner Drive @ MLK Boulevard",
+ "lat": 33.7535209,
+ "lon": -84.39479,
+ "node": "11305241063",
+ "node_type": "traffic_light",
+ "dist_m": 2.8,
+ "tls": [
+  "11305241063"
+ ],
+ "approaches": [
+  {
+   "edge": "1390568373#0",
+   "osm_way": "1390568373",
+   "name": "Ted Turner Drive Southwest",
+   "label": "NB",
+   "heading_deg": 32,
+   "lanes": 2,
+   "lanes_tag": "4",
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "T",
+    "LT"
+   ],
+   "movements": {
+    "T": [
+     "1390568378"
+    ],
+    "L": [
+     "39441446#0"
+    ]
+   },
+   "length_m": 135,
+   "upstream_m": 135
+  },
+  {
+   "edge": "-39441446#1",
+   "osm_way": "39441446",
+   "name": "Martin Luther King Jr Drive Southwest",
+   "label": "EB",
+   "heading_deg": 121,
+   "lanes": 1,
+   "lanes_tag": null,
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "LR"
+   ],
+   "movements": {
+    "R": [
+     "-1391666518"
+    ],
+    "L": [
+     "1390568378"
+    ]
+   },
+   "length_m": 132,
+   "upstream_m": 341
+  },
+  {
+   "edge": "1387050476#0",
+   "osm_way": "1387050476",
+   "name": "Martin Luther King Jr Drive Southwest",
+   "label": "WB",
+   "heading_deg": 301,
+   "lanes": 5,
+   "lanes_tag": "5",
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "R",
+    "T",
+    "-",
+    "L",
+    "L"
+   ],
+   "movements": {
+    "R": [
+     "1390568378"
+    ],
+    "T": [
+     "39441446#0"
+    ],
+    "L": [
+     "-1391666518"
+    ]
+   },
+   "length_m": 125,
+   "upstream_m": 125
+  }
+ ],
+ "flags": [
+  "EB approach (Martin Luther King Jr Drive Southwest): OSM way 39441446 has no lanes tag; 1 lane(s) is a netconvert default",
+  "NB approach (Ted Turner Drive Southwest): two-way way with lanes=4 total and no lanes:forward/backward; per-direction split guessed by netconvert",
+  "OSM approach(es) NB have no ATSPM vehicle counts (no detector, or the compass labels differ from GDOT's)"
+ ],
+ "smoke_test": {
+  "flows": 7,
+  "returncode": 0,
+  "loaded": 140,
+  "inserted": 140,
+  "running": 13,
+  "waiting": 0,
+  "teleports": 0,
+  "jams": 0,
+  "collisions": 0,
+  "warnings": 0,
+  "errors": []
+ }
+}

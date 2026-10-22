@@ -1,0 +1,13 @@
+<nodes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.20" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/nodes_file.xsd">
+    <location netOffset="-88.75,-83.64" convBoundary="-30.16,2.10,155.51,161.16" origBoundary="88.75,83.64,237.03,244.80" projParameter="!" />
+
+    <node id="J" x="61.25" y="66.36" type="traffic_light" tl="J" tlType="actuated" />
+    <node id="J11" x="90.21" y="82.36" type="priority" />
+    <node id="J12" x="197.044" y="142.746" type="dead_end" />
+    <node id="J5" x="49.20" y="102.25" type="priority" />
+    <node id="nN" x="29.42" y="161.16" type="priority" />
+    <node id="nNE" x="155.51" y="120.28" type="dead_end" />
+    <node id="nNleft" x="48.52" y="104.28" type="priority" shape="49.79,100.49 37.66,96.41 38.15,105.02 47.25,108.07" />
+    <node id="nS" x="83.59" y="2.10" type="priority" />
+    <node id="nSW" x="-30.16" y="13.98" type="dead_end" />
+<node id="nS_ext" x="123.26" y="-112.00" type="priority" /><node id="nN_ext" x="-27.697" y="331.270" type="priority" /></nodes>

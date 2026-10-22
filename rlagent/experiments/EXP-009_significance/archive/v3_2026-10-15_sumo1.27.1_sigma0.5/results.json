@@ -1,0 +1,84 @@
+{
+ "best_seed": 3,
+ "validation": {
+  "0": 37.08,
+  "1": 36.11,
+  "2": 36.57,
+  "3": 35.94,
+  "4": 36.68
+ },
+ "significance": {
+  "rl_s3|webster|Night 00-06": [
+   -6.4719999999999995,
+   0.005859375
+  ],
+  "rl_s3|real_nema|Night 00-06": [
+   -2.801,
+   0.005859375
+  ],
+  "webster|real_nema|Night 00-06": [
+   3.671,
+   0.005859375
+  ],
+  "rl_s3|webster|AM 06-10": [
+   -15.309,
+   0.005859375
+  ],
+  "rl_s3|real_nema|AM 06-10": [
+   -11.041,
+   0.005859375
+  ],
+  "webster|real_nema|AM 06-10": [
+   4.268,
+   0.4921875
+  ],
+  "rl_s3|webster|Midday 10-15": [
+   -9.679,
+   0.005859375
+  ],
+  "rl_s3|real_nema|Midday 10-15": [
+   -16.724,
+   0.005859375
+  ],
+  "webster|real_nema|Midday 10-15": [
+   -7.045,
+   0.048828125
+  ],
+  "rl_s3|webster|PM peak 15-18": [
+   -5.383,
+   0.005859375
+  ],
+  "rl_s3|real_nema|PM peak 15-18": [
+   -196.381,
+   0.005859375
+  ],
+  "webster|real_nema|PM peak 15-18": [
+   -190.998,
+   0.005859375
+  ],
+  "rl_s3|webster|Evening 18-24": [
+   -6.933,
+   0.005859375
+  ],
+  "rl_s3|real_nema|Evening 18-24": [
+   -234.815,
+   0.005859375
+  ],
+  "webster|real_nema|Evening 18-24": [
+   -227.882,
+   0.005859375
+  ],
+  "rl_s3|webster|Whole day": [
+   -9.119,
+   0.005859375
+  ],
+  "rl_s3|real_nema|Whole day": [
+   -108.738,
+   0.005859375
+  ],
+  "webster|real_nema|Whole day": [
+   -99.619,
+   0.005859375
+  ]
+ }
+}

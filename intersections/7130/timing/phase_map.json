@@ -1,0 +1,110 @@
+{
+ "signal_id": "7130",
+ "source": "GDOT ATSPM Purdue Split Failure chart titles (timing/phase_titles.png), 2026-10-02 08:00, transcribed by hand",
+ "note": "Piedmont NB/SB and Monroe EB/WB = net labels (Monroe diagonal: GDOT EB = net EB from NW). P9 (25 s, plan D only) has no Split Failure chart: its movement is unknown, so it is left out (ring 2 shows red for those 25 s).",
+ "phases": [
+  {
+   "phase": 1,
+   "approach": "NB",
+   "move": "L",
+   "type": "protected",
+   "desc": "SR 237 Piedmont Ave NB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 2,
+   "approach": "SB",
+   "move": "T",
+   "type": "protected",
+   "desc": "SR 237 Piedmont Ave SB",
+   "source": "split_fail"
+  },
+  {
+   "phase": 2,
+   "approach": "NB",
+   "move": "L",
+   "type": "permissive",
+   "desc": "SR 237 Piedmont Ave NB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 3,
+   "approach": "EB",
+   "move": "L",
+   "type": "protected",
+   "desc": "Monroe Dr EB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 4,
+   "approach": "WB",
+   "move": "T",
+   "type": "protected",
+   "desc": "Monroe Dr WB",
+   "source": "split_fail"
+  },
+  {
+   "phase": 4,
+   "approach": "EB",
+   "move": "L",
+   "type": "permissive",
+   "desc": "Monroe Dr EB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 5,
+   "approach": "SB",
+   "move": "L",
+   "type": "protected",
+   "desc": "SR 237 Piedmont Ave SB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 6,
+   "approach": "NB",
+   "move": "T",
+   "type": "protected",
+   "desc": "SR 237 Piedmont Ave NB",
+   "source": "split_fail"
+  },
+  {
+   "phase": 6,
+   "approach": "SB",
+   "move": "L",
+   "type": "permissive",
+   "desc": "SR 237 Piedmont Ave SB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 7,
+   "approach": "WB",
+   "move": "L",
+   "type": "protected",
+   "desc": "Monroe Dr WB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 8,
+   "approach": "EB",
+   "move": "T",
+   "type": "protected",
+   "desc": "Monroe Dr EB",
+   "source": "split_fail"
+  },
+  {
+   "phase": 8,
+   "approach": "WB",
+   "move": "L",
+   "type": "permissive",
+   "desc": "Monroe Dr WB LT",
+   "source": "split_fail"
+  }
+ ],
+ "count_labels": {
+  "NB": "NB",
+  "EB": "EB",
+  "SB": "SB",
+  "WB": "WB"
+ },
+ "count_labels_note": "GDOT's turning-movement report labels approaches with the same road-based directions as its phase descriptions (verified at 7065 from detector actuation counts vs report columns, Oct 2 08:00-08:05: lefts 13/13, 16/16, 9/9; throughs 53/52, 33/33; charts in timing/dircheck/ of 7065). So report column XX_* belongs to the network approach given here."
+}

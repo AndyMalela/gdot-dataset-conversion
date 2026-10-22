@@ -1,0 +1,112 @@
+{
+ "signal_id": "7431",
+ "name": "SR 237 @ Morningside Mill S/C",
+ "lat": 33.8068,
+ "lon": -84.36659,
+ "node": "12655833045",
+ "node_type": "traffic_light",
+ "dist_m": 18.8,
+ "tls": [
+  "12655833045"
+ ],
+ "approaches": [
+  {
+   "edge": "1141891561#1",
+   "osm_way": "1141891561",
+   "name": "Piedmont Avenue Northeast",
+   "label": "NB",
+   "heading_deg": 26,
+   "lanes": 2,
+   "lanes_tag": "5",
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "T",
+    "LT"
+   ],
+   "movements": {
+    "T": [
+     "1141891561#2"
+    ],
+    "L": [
+     "1366532215#0"
+    ]
+   },
+   "length_m": 21,
+   "upstream_m": 97
+  },
+  {
+   "edge": "-1366532215#1",
+   "osm_way": "1366532215",
+   "name": "",
+   "label": "EB",
+   "heading_deg": 113,
+   "lanes": 1,
+   "lanes_tag": null,
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "LR"
+   ],
+   "movements": {
+    "R": [
+     "-1141891561#1"
+    ],
+    "L": [
+     "1141891561#2"
+    ]
+   },
+   "length_m": 0,
+   "upstream_m": 0
+  },
+  {
+   "edge": "-1141891561#2",
+   "osm_way": "1141891561",
+   "name": "Piedmont Avenue Northeast",
+   "label": "SB",
+   "heading_deg": 204,
+   "lanes": 3,
+   "lanes_tag": "5",
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "TR",
+    "T",
+    "T"
+   ],
+   "movements": {
+    "R": [
+     "1366532215#0"
+    ],
+    "T": [
+     "-1141891561#1"
+    ]
+   },
+   "length_m": 0,
+   "upstream_m": 25
+  }
+ ],
+ "flags": [
+  "OSM has no traffic_signals tag at this intersection; junction 12655833045 was made signalised by the script",
+  "side leg(s) are driveways in OSM (service road(s) 561214163, 755124213, 1280110084, 1366532215, 1366532217, 1366532218, 1366532222); included as legs",
+  "1 other signalised junction(s) within 80 m (5411902638): may be one intersection split in OSM (e.g. divided road)",
+  "SB approach has only 25 m of road before the network edge or the next signal (little queue space)",
+  "EB approach (-1366532215#1): OSM way 1366532215 has no lanes tag; 1 lane(s) is a netconvert default",
+  "EB approach has only 0 m of road before the network edge or the next signal (little queue space)",
+  "NB approach has only 97 m of road before the network edge or the next signal (little queue space)",
+  "ATSPM counts EB_T but the OSM EB approach has no 'T' movement",
+  "ATSPM counts WB_L but OSM has no WB approach",
+  "ATSPM counts WB_R but OSM has no WB approach",
+  "ATSPM counts SB_L but the OSM SB approach has no 'L' movement"
+ ],
+ "smoke_test": {
+  "flows": 6,
+  "returncode": 0,
+  "loaded": 120,
+  "inserted": 120,
+  "running": 0,
+  "waiting": 0,
+  "teleports": 0,
+  "jams": 0,
+  "collisions": 0,
+  "warnings": 0,
+  "errors": []
+ }
+}

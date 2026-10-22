@@ -20,3 +20,11 @@ rlagent/results_metrics/*.png
 __pycache__/
 *.pyc
 .python-version
+
+# === uv environment ===
+.venv/
+# EXP-009 regenerable inputs/outputs (matrix.py prepare / run)
+rlagent/experiments/EXP-009_significance/data/demand/
+rlagent/experiments/EXP-009_significance/data/runs/**/tripinfo.xml
+rlagent/experiments/EXP-009_significance/data/train/**/weights_s*_ep*.npy
+rlagent/experiments/EXP-009_significance/archive/**/demand/

@@ -1,0 +1,115 @@
+{
+ "signal": "7130",
+ "window": "2026-10-02 08:00 (5 min)",
+ "tmc_found": true,
+ "phases": [
+  {
+   "phase": 1,
+   "desc": "SR 237 Piedmont Ave NB LT",
+   "approach": "NB",
+   "move": "L",
+   "gdot_word": "NB",
+   "detector_count": 5,
+   "report_by_word": 4,
+   "report_by_approach_label": 4,
+   "report_all_dirs": {
+    "NB": 4,
+    "SB": 16,
+    "EB": 9,
+    "WB": 6
+   }
+  },
+  {
+   "phase": 2,
+   "desc": "SR 237 Piedmont Ave SB",
+   "approach": "SB",
+   "move": "T",
+   "gdot_word": "SB",
+   "detector_count": null,
+   "report_by_word": 0,
+   "report_by_approach_label": 0,
+   "report_all_dirs": {}
+  },
+  {
+   "phase": 3,
+   "desc": "Monroe Dr EB LT",
+   "approach": "EB",
+   "move": "L",
+   "gdot_word": "EB",
+   "detector_count": null,
+   "report_by_word": 9,
+   "report_by_approach_label": 9,
+   "report_all_dirs": {
+    "NB": 4,
+    "SB": 16,
+    "EB": 9,
+    "WB": 6
+   }
+  },
+  {
+   "phase": 4,
+   "desc": "Monroe Dr WB",
+   "approach": "WB",
+   "move": "T",
+   "gdot_word": "WB",
+   "detector_count": null,
+   "report_by_word": 0,
+   "report_by_approach_label": 0,
+   "report_all_dirs": {}
+  },
+  {
+   "phase": 5,
+   "desc": "SR 237 Piedmont Ave SB LT",
+   "approach": "SB",
+   "move": "L",
+   "gdot_word": "SB",
+   "detector_count": null,
+   "report_by_word": 16,
+   "report_by_approach_label": 16,
+   "report_all_dirs": {
+    "NB": 4,
+    "SB": 16,
+    "EB": 9,
+    "WB": 6
+   }
+  },
+  {
+   "phase": 6,
+   "desc": "SR 237 Piedmont Ave NB",
+   "approach": "NB",
+   "move": "T",
+   "gdot_word": "NB",
+   "detector_count": null,
+   "report_by_word": 0,
+   "report_by_approach_label": 0,
+   "report_all_dirs": {}
+  },
+  {
+   "phase": 7,
+   "desc": "Monroe Dr WB LT",
+   "approach": "WB",
+   "move": "L",
+   "gdot_word": "WB",
+   "detector_count": null,
+   "report_by_word": 6,
+   "report_by_approach_label": 6,
+   "report_all_dirs": {
+    "NB": 4,
+    "SB": 16,
+    "EB": 9,
+    "WB": 6
+   }
+  },
+  {
+   "phase": 8,
+   "desc": "Monroe Dr EB",
+   "approach": "EB",
+   "move": "T",
+   "gdot_word": "EB",
+   "detector_count": null,
+   "report_by_word": 0,
+   "report_by_approach_label": 0,
+   "report_all_dirs": {}
+  }
+ ]
+}

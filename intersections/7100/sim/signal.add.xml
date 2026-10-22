@@ -1,0 +1,92 @@
+<additional>
+  <tlLogic id="69536974" type="NEMA" programID="A" offset="0">
+    <param key="detector-length" value="20"/>
+    <param key="detector-length-leftTurnLane" value="20"/>
+    <param key="show-detectors" value="true"/>
+    <param key="total-cycle-length" value="120"/>
+    <param key="ring1" value="0,2,3,4"/>
+    <param key="ring2" value="5,6,0,8"/>
+    <param key="barrierPhases" value="4,8"/>
+    <param key="coordinatePhases" value="2,6"/>
+    <param key="coordinate-mode" value="true"/>
+    <param key="minRecall" value="2,6,8"/>
+    <param key="maxRecall" value=""/>
+    <param key="fixForceOff" value="false"/>
+    <phase duration="99" minDur="12.0" maxDur="67.9" vehext="2.0" yellow="4.0" red="2.1" name="2" state="GGGrrrrrrrrrr"/>
+    <phase duration="99" minDur="7.1" maxDur="9.2" vehext="4.0" yellow="2.9" red="2.9" name="3" state="rrrrrrrrrrGGG"/>
+    <phase duration="99" minDur="6.0" maxDur="24.8" vehext="2.0" yellow="2.8" red="3.4" name="4" state="rrrrGGGrrrrrr"/>
+    <phase duration="99" minDur="4.2" maxDur="9.6" vehext="4.0" yellow="2.9" red="2.5" name="5" state="rrrGrrrrrrrrr"/>
+    <phase duration="99" minDur="12.0" maxDur="52.9" vehext="2.0" yellow="4.0" red="2.1" name="6" state="rrrgrrrGGrrrr"/>
+    <phase duration="99" minDur="1.0" maxDur="44.0" vehext="0.5" yellow="1.0" red="1.0" name="8" state="rrrrrrrrrrrrr"/>  <!-- dummy: rests at the barrier -->
+  </tlLogic>
+  <tlLogic id="69536974" type="NEMA" programID="B" offset="0">
+    <param key="detector-length" value="20"/>
+    <param key="detector-length-leftTurnLane" value="20"/>
+    <param key="show-detectors" value="true"/>
+    <param key="total-cycle-length" value="140"/>
+    <param key="ring1" value="0,2,3,4"/>
+    <param key="ring2" value="5,6,0,8"/>
+    <param key="barrierPhases" value="4,8"/>
+    <param key="coordinatePhases" value="2,6"/>
+    <param key="coordinate-mode" value="true"/>
+    <param key="minRecall" value="2,6,8"/>
+    <param key="maxRecall" value=""/>
+    <param key="fixForceOff" value="false"/>
+    <phase duration="99" minDur="12.0" maxDur="83.9" vehext="2.0" yellow="4.0" red="2.1" name="2" state="GGGrrrrrrrrrr"/>
+    <phase duration="99" minDur="7.1" maxDur="9.2" vehext="4.0" yellow="2.9" red="2.9" name="3" state="rrrrrrrrrrGGG"/>
+    <phase duration="99" minDur="6.0" maxDur="28.8" vehext="2.0" yellow="2.8" red="3.4" name="4" state="rrrrGGGrrrrrr"/>
+    <phase duration="99" minDur="4.2" maxDur="19.6" vehext="4.0" yellow="2.9" red="2.5" name="5" state="rrrGrrrrrrrrr"/>
+    <phase duration="99" minDur="12.0" maxDur="58.9" vehext="2.0" yellow="4.0" red="2.1" name="6" state="rrrgrrrGGrrrr"/>
+    <phase duration="99" minDur="1.0" maxDur="48.0" vehext="0.5" yellow="1.0" red="1.0" name="8" state="rrrrrrrrrrrrr"/>  <!-- dummy: rests at the barrier -->
+  </tlLogic>
+  <tlLogic id="69536974" type="NEMA" programID="C" offset="0">
+    <param key="detector-length" value="20"/>
+    <param key="detector-length-leftTurnLane" value="20"/>
+    <param key="show-detectors" value="true"/>
+    <param key="total-cycle-length" value="160"/>
+    <param key="ring1" value="0,2,3,4"/>
+    <param key="ring2" value="5,6,0,8"/>
+    <param key="barrierPhases" value="4,8"/>
+    <param key="coordinatePhases" value="2,6"/>
+    <param key="coordinate-mode" value="true"/>
+    <param key="minRecall" value="2,6,8"/>
+    <param key="maxRecall" value=""/>
+    <param key="fixForceOff" value="false"/>
+    <phase duration="99" minDur="12.0" maxDur="107.9" vehext="2.0" yellow="4.0" red="2.1" name="2" state="GGGrrrrrrrrrr"/>
+    <phase duration="99" minDur="7.1" maxDur="9.2" vehext="4.0" yellow="2.9" red="2.9" name="3" state="rrrrrrrrrrGGG"/>
+    <phase duration="99" minDur="6.0" maxDur="24.8" vehext="2.0" yellow="2.8" red="3.4" name="4" state="rrrrGGGrrrrrr"/>
+    <phase duration="99" minDur="4.2" maxDur="19.6" vehext="4.0" yellow="2.9" red="2.5" name="5" state="rrrGrrrrrrrrr"/>
+    <phase duration="99" minDur="12.0" maxDur="82.9" vehext="2.0" yellow="4.0" red="2.1" name="6" state="rrrgrrrGGrrrr"/>
+    <phase duration="99" minDur="1.0" maxDur="44.0" vehext="0.5" yellow="1.0" red="1.0" name="8" state="rrrrrrrrrrrrr"/>  <!-- dummy: rests at the barrier -->
+  </tlLogic>
+  <tlLogic id="69536974" type="NEMA" programID="D" offset="0">
+    <param key="detector-length" value="20"/>
+    <param key="detector-length-leftTurnLane" value="20"/>
+    <param key="show-detectors" value="true"/>
+    <param key="total-cycle-length" value="130"/>
+    <param key="ring1" value="0,2,3,4"/>
+    <param key="ring2" value="5,6,0,8"/>
+    <param key="barrierPhases" value="4,8"/>
+    <param key="coordinatePhases" value="2,6"/>
+    <param key="coordinate-mode" value="true"/>
+    <param key="minRecall" value="2,6,8"/>
+    <param key="maxRecall" value=""/>
+    <param key="fixForceOff" value="false"/>
+    <phase duration="99" minDur="12.0" maxDur="77.9" vehext="2.0" yellow="4.0" red="2.1" name="2" state="GGGrrrrrrrrrr"/>
+    <phase duration="99" minDur="7.1" maxDur="9.2" vehext="4.0" yellow="2.9" red="2.9" name="3" state="rrrrrrrrrrGGG"/>
+    <phase duration="99" minDur="6.0" maxDur="24.8" vehext="2.0" yellow="2.8" red="3.4" name="4" state="rrrrGGGrrrrrr"/>
+    <phase duration="99" minDur="4.2" maxDur="14.6" vehext="4.0" yellow="2.9" red="2.5" name="5" state="rrrGrrrrrrrrr"/>
+    <phase duration="99" minDur="12.0" maxDur="57.9" vehext="2.0" yellow="4.0" red="2.1" name="6" state="rrrgrrrGGrrrr"/>
+    <phase duration="99" minDur="1.0" maxDur="44.0" vehext="0.5" yellow="1.0" red="1.0" name="8" state="rrrrrrrrrrrrr"/>  <!-- dummy: rests at the barrier -->
+  </tlLogic>
+  <tlLogic id="69389437" type="static" programID="off" offset="0"/>
+  <tlLogic id="69429827" type="static" programID="off" offset="0"/>
+  <WAUT id="tod" refTime="0" startProg="A">
+    <wautSwitch time="22500" to="B"/>
+    <wautSwitch time="53160" to="C"/>
+    <wautSwitch time="70320" to="D"/>
+    <wautSwitch time="78300" to="A"/>
+  </WAUT>
+  <wautJunction wautID="tod" junctionID="69536974"/>
+  <timedEvent type="SaveTLSStates" source="69536974" dest="states.xml"/>
+</additional>

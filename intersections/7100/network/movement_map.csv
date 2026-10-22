@@ -1,0 +1,12 @@
+atspm_column,approach,from_edge,to_edge,sumo_dir,note
+EB_TL,EB,561687258#0,9274711#0,T,shared-lane detector
+EB_TL,EB,561687258#0,-1315020083#1,L,shared-lane detector
+WB_L,WB,-9274711#1,1315020084#0,L,
+WB_TL,WB,-9274711#1,-561687258#1,T,shared-lane detector
+WB_TL,WB,-9274711#1,1315020084#0,L,shared-lane detector
+WB_R,WB,-9274711#1,-1315020083#1,R,
+NB_T,NB,-1302256482#4,-1315020083#1,T,
+NB_TR,NB,-1302256482#4,-1315020083#1,T,shared-lane detector
+SB_L,SB,1315020083#0,9274711#0,L,
+SB_T,SB,1315020083#0,1315020084#0,T,
+SB_TR,SB,1315020083#0,1315020084#0,T,shared-lane detector

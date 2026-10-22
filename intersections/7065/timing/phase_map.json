@@ -1,0 +1,94 @@
+{
+ "signal_id": "7065",
+ "source": "GDOT ATSPM Purdue Split Failure chart titles (timing/phase_titles.png), 2026-10-02 08:00, transcribed by hand",
+ "note": "Peachtree: GDOT 'NB' = net EB (from SW), 'SB' = net WB (from NE). Piedmont: GDOT 'EB' = net SB (from N), 'WB' = net NB (from S); consistent with GDOT numbering (P2 = WB/SB main street, then P4/P6/P8 clockwise in travel direction).",
+ "phases": [
+  {
+   "phase": 1,
+   "approach": "EB",
+   "move": "L",
+   "type": "protected",
+   "desc": "SR 141 Peachtree Road NB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 2,
+   "approach": "WB",
+   "move": "T",
+   "type": "protected",
+   "desc": "SR 141 Peachtree Road SB",
+   "source": "split_fail"
+  },
+  {
+   "phase": 3,
+   "approach": "SB",
+   "move": "L",
+   "type": "protected",
+   "desc": "SR 237 Piedmont Road EB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 4,
+   "approach": "NB",
+   "move": "T",
+   "type": "protected",
+   "desc": "SR 237 Piedmont Road WB",
+   "source": "split_fail"
+  },
+  {
+   "phase": 4,
+   "approach": "SB",
+   "move": "L",
+   "type": "permissive",
+   "desc": "SR 237 Piedmont Road EB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 5,
+   "approach": "WB",
+   "move": "L",
+   "type": "protected",
+   "desc": "SR 141 Peachtree Road SB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 6,
+   "approach": "EB",
+   "move": "T",
+   "type": "protected",
+   "desc": "SR 141 Peachtree Road NB",
+   "source": "split_fail"
+  },
+  {
+   "phase": 7,
+   "approach": "NB",
+   "move": "L",
+   "type": "protected",
+   "desc": "SR 237 Piedmont Road WB LT",
+   "source": "split_fail"
+  },
+  {
+   "phase": 8,
+   "approach": "SB",
+   "move": "T",
+   "type": "protected",
+   "desc": "SR 237 Piedmont Road EB",
+   "source": "split_fail"
+  },
+  {
+   "phase": 8,
+   "approach": "NB",
+   "move": "L",
+   "type": "permissive",
+   "desc": "SR 237 Piedmont Road WB LT",
+   "source": "split_fail"
+  }
+ ],
+ "count_labels": {
+  "NB": "EB",
+  "EB": "SB",
+  "SB": "WB",
+  "WB": "NB"
+ },
+ "count_labels_note": "GDOT's turning-movement report labels approaches with the same road-based directions as its phase descriptions (verified at 7065 from detector actuation counts vs report columns, Oct 2 08:00-08:05: lefts 13/13, 16/16, 9/9; throughs 53/52, 33/33; charts in timing/dircheck/ of 7065). So report column XX_* belongs to the network approach given here."
+}

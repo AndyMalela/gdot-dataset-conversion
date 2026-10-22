@@ -1,0 +1,29 @@
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|highway.residential' (first occurrence for edge '1046337512').
+Warning: Removed a road without junctions: -9277292#1.
+Warning: Removed a road without junctions: 9277292#1.
+Warning: Reducing junction cluster 12655833045,12655833046,12655833053,12655833056 (parallel incoming -1366532215#2,1366532222).
+Warning: Not joining junctions 12655833045,12655833046,12655833053,12655833056 (after reduction).
+Warning: Reducing junction cluster 11883160554,12533064683,5411902638 (parallel outgoing 1280110084,564972239#0).
+Warning: Not joining junctions 11883160554,12533064683,5411902638 (after reduction).
+Warning: Reducing junction cluster 12478730160,3798477115,69239982,69589734 (parallel incoming 376413684#1,569577331#1).
+Warning: Not joining junctions 12655833050,12655833051,12655833054,69421750 (parallel incoming 1366532215#6,9261123#6).
+Warning: Ambiguity in turnarounds computation at junction '69239982'.
+Warning: Ambiguity in turnarounds computation at junction 'cluster_12478730156_5442365913_5442365917'.
+Warning: Found angle of 99.52 degrees at edge '-1196024200#1', segment 0.
+Warning: Found sharp turn with radius 8.83 at the start of edge '-755124213#1'.
+Warning: Found angle of 99.52 degrees at edge '1196024200#1', segment 2.
+Warning: Found sharp turn with radius 8.83 at the end of edge '755124213#0'.
+Warning: Cannot apply turn sign information for edge '-564981054#2' because there are 2 signed connections with directions 's' but target edge '9247165#0' has only 1 suitable lanes
+Warning: Cannot apply turn sign information for edge '1141891562#0' because there are 2 signed connections with directions 's' but target edge '755124213#0' has only 1 suitable lanes
+Warning: Cannot apply turn sign information for edge '1377699669#0' because there are 2 signed connections with directions 's' but target edge '564981077#0' has only 1 suitable lanes
+Warning: Cannot apply turn sign information for edge '376413683' because there are 3 signed directions but only 2 targets
+Warning: Cannot apply turn sign information for edge '564972239#0' because there are 2 signed directions but only 1 targets
+Warning: Minor green from edge '-630036151#1' to edge '-1141891558#1' exceeds 19.44m/s. Maybe a left-turn lane is missing.
+Warning: Minor green from edge '376413684#0' to edge '-564309926#1' exceeds 19.44m/s. Maybe a left-turn lane is missing.
+Warning: Minor green from edge '-9247165#1' to edge '564981054#0' exceeds 19.44m/s. Maybe a left-turn lane is missing.
+Warning: Minor green from edge '376413684#0' to edge '-564309926#1' exceeds 19.44m/s. Maybe a left-turn lane is missing.
+Warning: Minor green from edge '-9247165#1' to edge '564981054#0' exceeds 19.44m/s. Maybe a left-turn lane is missing.
+Warning: Speed of straight connection '9267907#0_0->569577330_0' reduced by 12.51 due to turning radius of 28.37 (length=8.81, angle=33.31).
+Warning: Speed of turning connection '569577330_0->376413683_1' reduced by 23.58 due to turning radius of 3.20 (length=6.91, angle=179.88).
+Warning: Speed of turning connection '569577330_0->376413683_2' reduced by 24.40 due to turning radius of 2.08 (length=3.69, angle=179.88).
+Warning: 16 total messages of type: Minor green from edge '%' to edge '%' exceeds %m/s. Maybe a left-turn lane is missing.

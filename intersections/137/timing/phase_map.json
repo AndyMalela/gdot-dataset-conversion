@@ -1,0 +1,110 @@
+{
+ "signal_id": "137",
+ "source": "GDOT ATSPM Purdue Split Failure chart titles (timing/phase_titles.png), 2026-10-02 08:00, transcribed by hand",
+ "note": "W Paces Ferry: GDOT WB/EB = net WB/EB. P3 'Slaton Dr NB' read as the NB protected left (odd phase, pairs with P8 = Slaton NB through). Through phases P2/P6 have no Split Failure chart (no detection): P2 = EB through, P6 = WB through, inferred from P1 (WB left) / P5 (EB left) pairing.",
+ "phases": [
+  {
+   "phase": 1,
+   "approach": "WB",
+   "move": "L",
+   "type": "protected",
+   "desc": "WBL W Paces Ferry",
+   "source": "split_fail"
+  },
+  {
+   "phase": 2,
+   "approach": "EB",
+   "move": "T",
+   "type": "protected",
+   "desc": "",
+   "source": "inferred"
+  },
+  {
+   "phase": 2,
+   "approach": "WB",
+   "move": "L",
+   "type": "permissive",
+   "desc": "WBL W Paces Ferry",
+   "source": "split_fail"
+  },
+  {
+   "phase": 2,
+   "approach": "EB",
+   "move": "L",
+   "type": "permissive",
+   "desc": "W Paces Ferry EBL",
+   "source": "split_fail"
+  },
+  {
+   "phase": 3,
+   "approach": "NB",
+   "move": "L",
+   "type": "protected",
+   "desc": "Slaton Dr NB",
+   "source": "split_fail"
+  },
+  {
+   "phase": 4,
+   "approach": "SB",
+   "move": "T",
+   "type": "protected",
+   "desc": "E Andrews Dr SB",
+   "source": "split_fail"
+  },
+  {
+   "phase": 4,
+   "approach": "SB",
+   "move": "L",
+   "type": "permissive",
+   "desc": "E Andrews SBL",
+   "source": "split_fail"
+  },
+  {
+   "phase": 5,
+   "approach": "EB",
+   "move": "L",
+   "type": "protected",
+   "desc": "W Paces Ferry EBL",
+   "source": "split_fail"
+  },
+  {
+   "phase": 6,
+   "approach": "WB",
+   "move": "T",
+   "type": "protected",
+   "desc": "",
+   "source": "inferred"
+  },
+  {
+   "phase": 7,
+   "approach": "SB",
+   "move": "L",
+   "type": "protected",
+   "desc": "E Andrews SBL",
+   "source": "split_fail"
+  },
+  {
+   "phase": 8,
+   "approach": "NB",
+   "move": "T",
+   "type": "protected",
+   "desc": "Slaton Drive NB",
+   "source": "split_fail"
+  },
+  {
+   "phase": 8,
+   "approach": "NB",
+   "move": "L",
+   "type": "permissive",
+   "desc": "Slaton Dr NB",
+   "source": "split_fail"
+  }
+ ],
+ "count_labels": {
+  "NB": "NB",
+  "EB": "EB",
+  "SB": "SB",
+  "WB": "WB"
+ },
+ "count_labels_note": "GDOT's turning-movement report labels approaches with the same road-based directions as its phase descriptions (verified at 7065 from detector actuation counts vs report columns, Oct 2 08:00-08:05: lefts 13/13, 16/16, 9/9; throughs 53/52, 33/33; charts in timing/dircheck/ of 7065). So report column XX_* belongs to the network approach given here."
+}

@@ -1,0 +1,9 @@
+tuned-actuated x1.25: whole-day 20.9 s
+tuned-actuated x1.5: whole-day 21.0 s
+tuned-actuated x2.0: whole-day 21.1 s
+tuned-actuated x2.5: whole-day 21.1 s
+tuned-actuated x3.0: whole-day 21.1 s
+Real GDOT timing (calibrated NEMA)       Night 31.6  AM 45.2  Midday 49.7  PM 185.7  Evening 143.6  Whole 98.7  unserved 0
+Webster fixed-time                       Night 21.2  AM 23.7  Midday 23.9  PM 25.0  Evening 23.2  Whole 23.7  unserved 0
+Tuned-actuated                           Night 17.3  AM 20.3  Midday 21.5  PM 22.6  Evening 20.5  Whole 20.9  unserved 0
+RL (EXP-004 policy, trained on direction Night 19.1  AM 20.2  Midday 20.6  PM 488.0  Evening 315.5  Whole 188.3  unserved 0

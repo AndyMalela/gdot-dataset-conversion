@@ -1,0 +1,10 @@
+Signal:        191
+Intersection:  W. Peachtree St  @  17th St
+Source:        GDOT ATSPM, Timing and Actuation charts (https://traffic.dot.ga.gov/ATSPM/DefaultCharts)
+Windows:       3 parsed across 1 day(s): 2026-10-02
+Charts found:  Phase_2 Phase_3 Phase_4 Overlap_2 Overlap_3 Overlap_4
+Resolution:    ~0.86 s per pixel
+Notes:         durations are quantised to the pixel size; truncated=1 means the
+               interval touches the window edge (excluded from medians).
+               cycle_s_est = median green-start spacing across phases.
+Updated:       2026-10-05 03:29

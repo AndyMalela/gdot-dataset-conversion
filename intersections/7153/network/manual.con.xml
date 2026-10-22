@@ -1,0 +1,12 @@
+<!-- Manual fix, applied by osm_build.py after every netconvert run.
+     Marietta St southbound (GDOT "EB", arriving from the NW): left turns prohibited
+     ("No Left Turn" sign, photo from user 2026-10-05; GDOT has no EB left detector).
+     netconvert gave the inner lane a left onto the Northside Dr NE branch. Make that
+     lane through instead (onto Marietta St SE-bound).
+     The right lane is RIGHT TURN ONLY (lane sign in the same photo), so it loses its
+     through movement; GDOT's EB_TR column there therefore holds right turns only. -->
+<connections>
+  <delete from="-953412628#5" to="1387067902" fromLane="1" toLane="1"/>
+  <connection from="-953412628#5" to="-1428950040#3" fromLane="1" toLane="0"/>
+  <delete from="-953412628#5" to="-1428950040#3" fromLane="0" toLane="0"/>
+</connections>

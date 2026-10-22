@@ -1,0 +1,21 @@
+features 293, params 1172, ped_min True
+ep 1: reward -8.190e+06  decisions 33099  49 s
+ep 2: reward -2.525e+06  decisions 12963  35 s
+ep 3: reward -1.563e+06  decisions 14531  44 s
+ep 4: reward -1.108e+06  decisions 14860  38 s
+ep 5: reward -1.234e+06  decisions 19266  37 s
+ep 6: reward -1.196e+06  decisions 17134  39 s
+ep 7: reward -1.079e+06  decisions 18099  38 s
+ep 8: reward -1.057e+06  decisions 18635  39 s
+ep 9: reward -1.242e+06  decisions 16185  41 s
+ep 10: reward -1.219e+06  decisions 15575  43 s
+ep 11: reward -1.181e+06  decisions 15455  52 s
+ep 12: reward -1.175e+06  decisions 15952  54 s
+ep 13: reward -1.048e+06  decisions 15342  48 s
+ep 14: reward -1.036e+06  decisions 16267  49 s
+ep 15: reward -1.233e+06  decisions 14950  52 s
+ep 16: reward -1.180e+06  decisions 15293  50 s
+ep 17: reward -1.055e+06  decisions 15776  47 s
+ep 18: reward -1.213e+06  decisions 14633  53 s
+ep 19: reward -1.173e+06  decisions 15044  52 s
+ep 20: reward -1.160e+06  decisions 14709  48 s

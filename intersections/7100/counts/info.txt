@@ -1,0 +1,9 @@
+Signal:        7100
+Intersection:  SR 9 @ Lindbergh Drive
+Source:        GDOT ATSPM, Turning Movement Counts (https://traffic.dot.ga.gov/ATSPM/DefaultCharts)
+Bin size:      5 min
+Days cached:   7 (2026-09-26 to 2026-10-02)
+Complete days: 4   partial: 3   no data: 0
+Movements:     EB_TL WB_L WB_TL WB_R NB_T NB_TR SB_L SB_T SB_TR
+Outage rule:   >= 3 consecutive all-zero bins -> status=outage, counts blank
+Updated:       2026-10-05 02:46

@@ -1,0 +1,10 @@
+Signal:        7153
+Intersection:  SR 3  @  Marietta Street
+Source:        GDOT ATSPM, Timing and Actuation charts (https://traffic.dot.ga.gov/ATSPM/DefaultCharts)
+Windows:       3 parsed across 1 day(s): 2026-10-02
+Charts found:  Phase_1 Phase_2 Phase_3 Phase_4 Phase_5 Phase_6 Phase_8 Overlap_2 Overlap_4 Overlap_6 Overlap_8
+Resolution:    ~0.86 s per pixel
+Notes:         durations are quantised to the pixel size; truncated=1 means the
+               interval touches the window edge (excluded from medians).
+               cycle_s_est = median green-start spacing across phases.
+Updated:       2026-10-05 03:31

@@ -1,0 +1,9 @@
+Signal:        7153
+Intersection:  SR 3 @ Marietta Street
+Source:        GDOT ATSPM, Turning Movement Counts (https://traffic.dot.ga.gov/ATSPM/DefaultCharts)
+Bin size:      5 min
+Days cached:   7 (2026-09-26 to 2026-10-02)
+Complete days: 3   partial: 4   no data: 0
+Movements:     EB_T EB_TR WB_L WB_TR NB_L NB_T SB_L SB_T
+Outage rule:   >= 3 consecutive all-zero bins -> status=outage, counts blank
+Updated:       2026-10-05 02:46

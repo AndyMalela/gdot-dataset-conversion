@@ -1,0 +1,16 @@
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|highway.secondary' (first occurrence for edge '25958945').
+Warning: Removed a road without junctions: -9246405#2,-9246405#1,-9246405#0.
+Warning: Found sharp turn with radius 3.80 at the end of edge '564911738#0'.
+Warning: Shape for junction '283194350' has distance 20.24 to its given position.
+Warning: Shape for junction '69229666' has distance 26.08 to its given position.
+Warning: Lane '-1564562858#1_1' is not connected from any incoming edge at junction '14244528307'.
+Warning: Cannot apply turn sign information for edge '1114817997#0' because there are 3 signed connections with directions 's' but target edge '-9267696#19' has only 1 suitable lanes
+Warning: Cannot apply turn sign information for edge '1114817999' because there are 3 signed directions but only 2 targets
+Warning: Cannot apply turn sign information for edge '25958945#0' because there are 2 signed directions but only 1 targets
+Warning: Cannot apply turn sign information for edge '533140867' because there are 2 signed directions but only 1 targets
+Warning: Speed of straight connection '564911738#0_0->361218260#2-AddedOnRampEdge_0' reduced by 17.88 due to turning radius of 9.22 (length=2.50, angle=32.03).
+Warning: Found sharp turn with radius 3.80 at the end of edge '564911738#0'.
+Warning: Shape for junction '283194350' has distance 20.24 to its given position.
+Warning: Shape for junction '69229666' has distance 26.08 to its given position.
+Warning: Lane '-1564562858#1_1' is not connected from any incoming edge at junction '14244528307'.
+Warning: Speed of straight connection '564911738#0_0->361218260#2-AddedOnRampEdge_0' reduced by 19.45 due to turning radius of 5.60 (length=1.43, angle=32.05).

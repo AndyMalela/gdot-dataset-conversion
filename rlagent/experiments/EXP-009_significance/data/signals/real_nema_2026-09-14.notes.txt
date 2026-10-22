@@ -1,0 +1,22 @@
+Offsets unknown (coordination with neighbouring signals not modelled).
+00:00-06:15 has no readable plan (carried over from the previous day); ASSUMED the day's last plan (E).
+19:02-19:31: plan K is an unverified read on 2026-09-14; used plan B, read for the same time slot on 2026-05-06.
+Plan I: rings don't add up to one cycle (unverified read or an unmodelled phase); slack given to P6 +10 s so SUMO's controller accepts it.
+Plan J: rings don't add up to one cycle (unverified read or an unmodelled phase); slack given to P2 +19 s so SUMO's controller accepts it.
+Plan K: rings don't add up to one cycle (unverified read or an unmodelled phase); slack given to P2 +5 s so SUMO's controller accepts it.
+Plan L: rings don't add up to one cycle (unverified read or an unmodelled phase); slack given to P8 +10 s so SUMO's controller accepts it.
+Plan M: rings don't add up to one cycle (unverified read or an unmodelled phase); slack given to P6 +8 s so SUMO's controller accepts it.
+Plan N: rings don't add up to one cycle (unverified read or an unmodelled phase); slack given to P6 +9 s so SUMO's controller accepts it.
+Plan O: rings don't add up to one cycle (unverified read or an unmodelled phase); slack given to P2 +6 s so SUMO's controller accepts it.
+Plan P: rings don't add up to one cycle (unverified read or an unmodelled phase); slack given to P2 +46 s, P8 +3 s so SUMO's controller accepts it.
+Plan Q: rings don't add up to one cycle (unverified read or an unmodelled phase); slack given to P6 +19 s so SUMO's controller accepts it.
+Plan R: rings don't add up to one cycle (unverified read or an unmodelled phase); slack given to P2 +40 s, P8 +3 s so SUMO's controller accepts it.
+Plan S: rings don't add up to one cycle (unverified read or an unmodelled phase); slack given to P2 +5 s so SUMO's controller accepts it.
+Plan T: rings don't add up to one cycle (unverified read or an unmodelled phase); slack given to P2 +31 s so SUMO's controller accepts it.
+Plan U: rings don't add up to one cycle (unverified read or an unmodelled phase); slack given to P2 +48 s so SUMO's controller accepts it.
+Min recall on phases serving a left only permissively when the plan omits that left's protected phase (SUMO generates no detector for permissive-only lanes): plan I: P4, P8; plan M: P4, P8; plan T: P4, P8.
+Max recall on phases that are the only service of a permissive-only left and ran at >= 90% of their max in GDOT's recorded greens (Timing & Actuation, same plan): plan E: P4 (recorded 42.9 of 43.4 s); plan E: P8 (recorded 42.9 of 43.4 s).
+Max recall (full split every cycle, < 5% gap-outs on the Split Monitor): plan A: P4, P7, P8; plan B: P3, P4, P7, P8; plan C: P3, P4, P7, P8; plan D: P4; plan F: P4, P5, P8; plan G: P4, P8; plan H: P1, P7; plan J: P4, P8; plan K: P4, P7, P8; plan L: P3, P4, P7; plan N: P1, P3, P4, P7, P8; plan O: P4, P7; plan P: P3, P4, P7, P8; plan Q: P3, P4, P7, P8; plan R: P4, P7, P8; plan S: P4, P7, P8; plan U: P4, P8.
+SUMO LIMITATION: GDOT runs P1 after the coordinated phase (lagging); SUMO's NEMA controller (TS2, coordinated, as configured here) does not serve a phase that lags a coordinated phase, so it runs leading here (same splits). Type 170 serves it but mis-applies these force-offs; other controller types untested. A fixed-time run with GDOT's exact order is in rlagent/experiments/EXP-007_corrected-phase-model.
+'Actuated' periods (Free or uncoordinated) run actuated, uncoordinated, with max greens from Split Monitor max-outs where seen, otherwise the 95th percentile of observed phase times (a lower bound on the real max).
+Controller: SUMO NEMA actuated dual ring. Coordinated plans use the real splits as force-offs within the real cycle, phases 2/6 coordinated; other phases gap out / skip on 20 m stop-bar detectors. Vehicle extension 1.0 s through phases, 8.0 s left-turn phases (not published by GDOT; fitted to the recorded greens).

@@ -1,0 +1,241 @@
+{
+ "Night 00-06": {
+  "trips": 2076,
+  "total_delay_s": 34.3,
+  "time_loss_s": 33.8,
+  "depart_delay_s": 0.5
+ },
+ "AM 06-10": {
+  "trips": 9515,
+  "total_delay_s": 38.4,
+  "time_loss_s": 37.9,
+  "depart_delay_s": 0.5
+ },
+ "Midday 10-15": {
+  "trips": 13265,
+  "total_delay_s": 39.1,
+  "time_loss_s": 38.5,
+  "depart_delay_s": 0.5
+ },
+ "PM peak 15-18": {
+  "trips": 8178,
+  "total_delay_s": 40.2,
+  "time_loss_s": 39.2,
+  "depart_delay_s": 0.9
+ },
+ "Evening 18-24": {
+  "trips": 12035,
+  "total_delay_s": 37.8,
+  "time_loss_s": 37.3,
+  "depart_delay_s": 0.5
+ },
+ "Whole day": {
+  "trips": 45069,
+  "total_delay_s": 38.6,
+  "time_loss_s": 38.0,
+  "depart_delay_s": 0.6
+ },
+ "unserved_day": 0,
+ "teleports": 0,
+ "collisions": 0,
+ "by_movement": {
+  "Night 00-06|EB_T": {
+   "n": 498,
+   "total_delay_s": 22.77
+  },
+  "Whole day|EB_T": {
+   "n": 13708,
+   "total_delay_s": 30.38
+  },
+  "Night 00-06|WB_L": {
+   "n": 86,
+   "total_delay_s": 19.22
+  },
+  "Whole day|WB_L": {
+   "n": 981,
+   "total_delay_s": 29.65
+  },
+  "Night 00-06|WB_T": {
+   "n": 281,
+   "total_delay_s": 33.69
+  },
+  "Whole day|WB_T": {
+   "n": 6976,
+   "total_delay_s": 36.98
+  },
+  "Night 00-06|EB_L": {
+   "n": 163,
+   "total_delay_s": 21.5
+  },
+  "Whole day|EB_L": {
+   "n": 2778,
+   "total_delay_s": 25.02
+  },
+  "Night 00-06|SB_L": {
+   "n": 221,
+   "total_delay_s": 57.13
+  },
+  "Whole day|SB_L": {
+   "n": 3119,
+   "total_delay_s": 58.5
+  },
+  "Night 00-06|SB_T": {
+   "n": 305,
+   "total_delay_s": 32.94
+  },
+  "Whole day|SB_T": {
+   "n": 9085,
+   "total_delay_s": 36.53
+  },
+  "Night 00-06|NB_T": {
+   "n": 388,
+   "total_delay_s": 37.67
+  },
+  "Whole day|NB_T": {
+   "n": 5726,
+   "total_delay_s": 38.69
+  },
+  "Night 00-06|NB_L": {
+   "n": 134,
+   "total_delay_s": 59.9
+  },
+  "Whole day|NB_L": {
+   "n": 2696,
+   "total_delay_s": 84.98
+  },
+  "AM 06-10|SB_T": {
+   "n": 1999,
+   "total_delay_s": 36.86
+  },
+  "AM 06-10|NB_T": {
+   "n": 1285,
+   "total_delay_s": 38.46
+  },
+  "AM 06-10|WB_L": {
+   "n": 216,
+   "total_delay_s": 29.47
+  },
+  "AM 06-10|EB_T": {
+   "n": 2309,
+   "total_delay_s": 29.14
+  },
+  "AM 06-10|WB_T": {
+   "n": 1999,
+   "total_delay_s": 38.49
+  },
+  "AM 06-10|SB_L": {
+   "n": 536,
+   "total_delay_s": 60.03
+  },
+  "AM 06-10|NB_L": {
+   "n": 600,
+   "total_delay_s": 73.03
+  },
+  "AM 06-10|EB_L": {
+   "n": 571,
+   "total_delay_s": 26.72
+  },
+  "Midday 10-15|SB_L": {
+   "n": 821,
+   "total_delay_s": 57.15
+  },
+  "Midday 10-15|SB_T": {
+   "n": 2719,
+   "total_delay_s": 37.48
+  },
+  "Midday 10-15|NB_T": {
+   "n": 1768,
+   "total_delay_s": 38.27
+  },
+  "Midday 10-15|NB_L": {
+   "n": 778,
+   "total_delay_s": 88.58
+  },
+  "Midday 10-15|EB_L": {
+   "n": 856,
+   "total_delay_s": 27.25
+  },
+  "Midday 10-15|EB_T": {
+   "n": 4110,
+   "total_delay_s": 31.59
+  },
+  "Midday 10-15|WB_T": {
+   "n": 1929,
+   "total_delay_s": 36.31
+  },
+  "Midday 10-15|WB_L": {
+   "n": 284,
+   "total_delay_s": 33.03
+  },
+  "PM peak 15-18|SB_T": {
+   "n": 1623,
+   "total_delay_s": 35.74
+  },
+  "PM peak 15-18|NB_T": {
+   "n": 812,
+   "total_delay_s": 39.96
+  },
+  "PM peak 15-18|EB_L": {
+   "n": 425,
+   "total_delay_s": 23.59
+  },
+  "PM peak 15-18|EB_T": {
+   "n": 3083,
+   "total_delay_s": 31.51
+  },
+  "PM peak 15-18|WB_T": {
+   "n": 1052,
+   "total_delay_s": 36.39
+  },
+  "PM peak 15-18|WB_L": {
+   "n": 148,
+   "total_delay_s": 35.16
+  },
+  "PM peak 15-18|SB_L": {
+   "n": 650,
+   "total_delay_s": 62.79
+  },
+  "PM peak 15-18|NB_L": {
+   "n": 385,
+   "total_delay_s": 120.69
+  },
+  "Evening 18-24|WB_T": {
+   "n": 1715,
+   "total_delay_s": 36.86
+  },
+  "Evening 18-24|EB_T": {
+   "n": 3708,
+   "total_delay_s": 29.9
+  },
+  "Evening 18-24|WB_L": {
+   "n": 247,
+   "total_delay_s": 26.24
+  },
+  "Evening 18-24|SB_L": {
+   "n": 891,
+   "total_delay_s": 56.03
+  },
+  "Evening 18-24|SB_T": {
+   "n": 2439,
+   "total_delay_s": 36.18
+  },
+  "Evening 18-24|NB_T": {
+   "n": 1473,
+   "total_delay_s": 38.99
+  },
+  "Evening 18-24|NB_L": {
+   "n": 799,
+   "total_delay_s": 77.46
+  },
+  "Evening 18-24|EB_L": {
+   "n": 763,
+   "total_delay_s": 22.79
+  }
+ },
+ "controller": "webster",
+ "day": "2026-09-29",
+ "rep": 6,
+ "sumo_seed": 10005,
+ "demand_seed": 12351,
+ "wall_s": 13.1
+}

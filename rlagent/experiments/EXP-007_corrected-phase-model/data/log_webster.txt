@@ -1,0 +1,2 @@
+Webster {'designed_on': '2026-09-29', 'lost_time_s': 28.0, 'cycle_s': 119.0, 'rho': 0.605, 'greens_s': [11.3, 18.0, 14.0, 47.7], 'design_volumes': {'eb_thru': 336, 'eb_left': 173, 'wb_thru': 648, 'wb_left': 270, 'nb_thru': 372, 'nb_left': 56, 'sb_thru': 1142, 'sb_left': 167}}
+Webster                            Night 35.0  AM 38.8  Midday 39.9  PM 41.6  Evening 38.9  Whole 39.3  unserved 0

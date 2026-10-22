@@ -1,0 +1,2 @@
+signal_id,date,start,end,minutes,kind,plan,cycle_s,ring1_s,ring2_s,checks,note,P1,P1_raw,P1_src,P2,P2_raw,P2_src,P6,P6_raw,P6_src,P7,P7_raw,P7_src,P8,P8_raw,P8_src
+7151,2026-10-02,00:01,24:00,1439,free,Actuated,0,0,0,ok,,,14.5,observed,,30.1,observed,,41.6,observed,,15.1,observed,,15.6,observed

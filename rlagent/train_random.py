@@ -69,7 +69,12 @@ def outage_skip(date: str):
     return lambda t: lo <= t < hi
 
 
+DEMAND_DIR = None   # --demand-dir: use <dir>/<date>.rou.xml instead of sumodemand/ (EXP-006)
+
+
 def rou_path(date: str) -> str:
+    if DEMAND_DIR:
+        return os.path.join(DEMAND_DIR, f"{date}.rou.xml")
     return os.path.join(HERE, "..", "sumodemand", f"{date}.rou.xml")
 
 
@@ -104,7 +109,16 @@ def main():
     p.add_argument("--no-eval", action="store_true",
                    help="skip the inline held-out eval (for multi-seed batch "
                         "runs that evaluate separately, e.g. the CI harness)")
+    p.add_argument("--demand-dir", default=None,
+                   help="train on <dir>/<date>.rou.xml (e.g. corrected-direction demand, EXP-006)")
+    p.add_argument("--train-dates", default=None,
+                   help="comma-separated training dates (file stems in --demand-dir)")
     args = p.parse_args()
+    global DEMAND_DIR, TRAIN_DATES
+    if args.demand_dir:
+        DEMAND_DIR = os.path.abspath(args.demand_dir)
+    if args.train_dates:
+        TRAIN_DATES = args.train_dates.split(",")
 
     outdir = os.path.join(HERE, args.out)
     os.makedirs(outdir, exist_ok=True)
@@ -191,6 +205,8 @@ def main():
 
     np.save(weights_path, agent.w)
     save_checkpoint(ckpt_path, ep, agent.w, experience, rng, prog.best)
+    if args.no_eval:
+        return
 
     # Held-out generalization: 0508 was never seen during training, at
     # in-range (1.0) and beyond-range (1.5, 1.8 -- extrapolation) scales.

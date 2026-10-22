@@ -1,0 +1,8 @@
+signal_id,date,start,end,minutes,kind,plan,cycle_s,ring1_s,ring2_s,checks,note,P2,P2_raw,P2_src,P3,P3_raw,P3_src,P4,P4_raw,P4_src,P5,P5_raw,P5_src,P6,P6_raw,P6_src
+7100,2026-10-02,00:01,06:15,374,plan,A,120,120,74,ok,,74,73.8,programmed,15,15.1,programmed,31,31.2,programmed,15,15.1,programmed,59,59.2,programmed
+7100,2026-10-02,06:15,08:16,121,plan,B,140,140,90,ok,,90,89.9,programmed,15,15.1,programmed,35,34.8,programmed,25,24.9,programmed,65,64.9,programmed
+7100,2026-10-02,08:16,10:15,119,plan,B,140,140,90,ok,,90,89.9,programmed,15,15.1,programmed,35,35.0,force-off (approx),25,24.9,programmed,65,64.9,programmed
+7100,2026-10-02,10:15,14:46,271,plan,B,140,140,90,ok,,90,89.9,programmed,15,15.1,programmed,35,34.8,programmed,25,24.9,programmed,65,64.9,programmed
+7100,2026-10-02,14:46,19:32,286,plan,C,160,160,114,ok,,114,113.8,programmed,15,15.1,programmed,31,31.1,programmed,25,24.9,programmed,89,88.8,programmed
+7100,2026-10-02,19:32,21:45,133,plan,D,130,130,84,ok,,84,84.2,programmed,15,15.1,programmed,31,31.1,programmed,20,20.3,programmed,64,63.9,programmed
+7100,2026-10-02,21:45,24:00,135,plan,A,120,120,74,ok,,74,73.8,programmed,15,15.1,programmed,31,31.2,programmed,15,15.1,programmed,59,59.2,programmed

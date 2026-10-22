@@ -1,0 +1,6 @@
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|highway.residential' (first occurrence for edge '9254661').
+Warning: Removed a road without junctions: 9276483#1,1074449843.
+Warning: Reducing junction cluster 12839215816,5422113446,5422113447,7473566501 (parallel incoming -562432486,1315272055#5).
+Warning: Not joining junctions 12839215816,5422113446,5422113447,7473566501 (after reduction).
+Warning: Reducing junction cluster 12841018759,12841018765,12841018766,5422113441,7473566502,7493699403,7493699404 (parallel incoming -799108402#2,-9259110#4).
+Warning: Cannot apply turn sign information for edge '-1315260729#2' because there are 2 signed connections with directions 's' but target edge '9262355#0' has only 1 suitable lanes

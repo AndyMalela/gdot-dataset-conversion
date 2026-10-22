@@ -1,0 +1,134 @@
+{
+ "signal_id": "7130",
+ "name": "SR 237 @ Monroe Drive",
+ "lat": 33.79711,
+ "lon": -84.36897,
+ "node": "69589641",
+ "node_type": "traffic_light",
+ "dist_m": 2.5,
+ "tls": [
+  "69589641"
+ ],
+ "approaches": [
+  {
+   "edge": "1377416116#0",
+   "osm_way": "1377416116",
+   "name": "Piedmont Avenue Northeast",
+   "label": "NB",
+   "heading_deg": 37,
+   "lanes": 3,
+   "lanes_tag": "5",
+   "turn_lanes_tag": "left||",
+   "lane_moves": [
+    "T",
+    "T",
+    "L"
+   ],
+   "movements": {
+    "T": [
+     "1377424634#0"
+    ],
+    "L": [
+     "1446233300#0"
+    ]
+   },
+   "length_m": 66,
+   "upstream_m": 353
+  },
+  {
+   "edge": "-1446233301",
+   "osm_way": "1446233301",
+   "name": "Monroe Drive Northeast",
+   "label": "EB",
+   "heading_deg": 144,
+   "lanes": 3,
+   "lanes_tag": "5",
+   "turn_lanes_tag": "left|none|none",
+   "lane_moves": [
+    "T",
+    "T",
+    "L"
+   ],
+   "movements": {
+    "T": [
+     "-1355126856#23"
+    ],
+    "L": [
+     "1377424634#0"
+    ]
+   },
+   "length_m": 35,
+   "upstream_m": 339
+  },
+  {
+   "edge": "-1377424634#1",
+   "osm_way": "1377424634",
+   "name": "Piedmont Avenue Northeast",
+   "label": "SB",
+   "heading_deg": 210,
+   "lanes": 3,
+   "lanes_tag": "5",
+   "turn_lanes_tag": "left|none|none",
+   "lane_moves": [
+    "T",
+    "T",
+    "L"
+   ],
+   "movements": {
+    "T": [
+     "-1377416116#4"
+    ],
+    "L": [
+     "-1355126856#23"
+    ]
+   },
+   "length_m": 47,
+   "upstream_m": 216
+  },
+  {
+   "edge": "1355126856#22",
+   "osm_way": "1355126856",
+   "name": "Monroe Drive Northeast",
+   "label": "WB",
+   "heading_deg": 322,
+   "lanes": 2,
+   "lanes_tag": "4",
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "TR",
+    "LT"
+   ],
+   "movements": {
+    "R": [
+     "1377424634#0"
+    ],
+    "T": [
+     "1446233300#0"
+    ],
+    "L": [
+     "-1377416116#4"
+    ]
+   },
+   "length_m": 45,
+   "upstream_m": 315
+  }
+ ],
+ "flags": [
+  "EB approach (Monroe Drive Northeast) heads 144\u00b0, 54\u00b0 off the compass label; check the label",
+  "WB approach (Monroe Drive Northeast) heads 322\u00b0, 52\u00b0 off the compass label; check the label",
+  "WB approach (Monroe Drive Northeast): two-way way with lanes=4 total and no lanes:forward/backward; per-direction split guessed by netconvert"
+ ],
+ "smoke_test": {
+  "flows": 9,
+  "returncode": 0,
+  "loaded": 180,
+  "inserted": 180,
+  "running": 0,
+  "waiting": 0,
+  "teleports": 0,
+  "jams": 0,
+  "collisions": 0,
+  "warnings": 0,
+  "errors": []
+ }
+}

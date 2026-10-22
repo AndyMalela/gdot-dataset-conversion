@@ -55,8 +55,31 @@ def phase_lanes(conn):
             for _, moves in st.PHASES]
 
 
+def phase_links(conn_unused=None):
+    """TLS link indices served (G or g) per phase."""
+    return [sorted({i for m in moves for i in st.LINKS[m]}) for _, moves in st.PHASES]
+
+
+def detector_hit_dist(conn, links) -> bool:
+    """any vehicle body in the 26-30 m zone upstream of the stop line, for a link of this phase?
+
+    Distance is measured to the stop line along the vehicle's path (getNextTLS), so the zone
+    is found even when the approach is split into short edges -- in the twin N_near is 14.6 m
+    and NE_in.79 is 6.2 m, so the old last-edge-only check (detector_hit) never saw SB or WB
+    traffic (bug found in EXP-005; affects EXP-004's actuated numbers)."""
+    links = set(links)
+    for e in st.APPROACH_EDGES:
+        for vid in conn.edge.getLastStepVehicleIDs(e):
+            nt = conn.vehicle.getNextTLS(vid)
+            if nt and nt[0][0] == st.TLS_ID and nt[0][1] in links and \
+                    DET_NEAR - VEH_LEN <= nt[0][2] <= DET_FAR:
+                return True
+    return False
+
+
 def detector_hit(conn, lanes) -> bool:
-    """any vehicle body overlapping the 26-30 m upstream detector zone?"""
+    """LEGACY (pre-EXP-005): zone measured on the last edge only -- misses short edges.
+    any vehicle body overlapping the 26-30 m upstream detector zone?"""
     for ln in lanes:
         L = conn.lane.getLength(ln)
         for vid in conn.lane.getLastStepVehicleIDs(ln):
@@ -67,7 +90,7 @@ def detector_hit(conn, lanes) -> bool:
 
 
 def run_actuated(rou, scale, tripinfo, seed=9999, begin=0, end=DRAIN_END,
-                 max_greens=None):
+                 max_greens=None, legacy_detector=False):
     """max_greens: per-phase max green (s). None -> uniform stages.MAX_GREEN.
     A real cabinet's TOD max settings are proportioned to demand; the tuned
     variant derives them from the Webster splits (x1.25 headroom) so the
@@ -79,11 +102,14 @@ def run_actuated(rou, scale, tripinfo, seed=9999, begin=0, end=DRAIN_END,
                      label=f"act{scale}", tripinfo=tripinfo)
     env.reset()
     lanes_by_phase = phase_lanes(env._conn)
+    links_by_phase = phase_links()
     last_hit = env._conn.simulation.getTime()   # actuation clock
     done = False
     while not done:
         now = env._conn.simulation.getTime()
-        if detector_hit(env._conn, lanes_by_phase[env.phase]):
+        hit = (detector_hit(env._conn, lanes_by_phase[env.phase]) if legacy_detector
+               else detector_hit_dist(env._conn, links_by_phase[env.phase]))
+        if hit:
             last_hit = now
         gap = now - last_hit
         if env.phase_elapsed >= max_greens[env.phase]:

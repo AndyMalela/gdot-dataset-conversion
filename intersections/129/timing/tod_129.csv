@@ -1,0 +1,4 @@
+signal_id,date,weekday,window_start,window_min,cycle_s_est,ped_walks,P2_n,P2_green_med,P2_green_max,P2_yellow,P2_red_clear,P4_n,P4_green_med,P4_green_max,P4_yellow,P4_red_clear
+129,2026-10-02,Fri,08:00,15,119.7,0,8,60.1,61.0,3.0,2.6,8,48.1,49.0,2.6,2.6
+129,2026-10-02,Fri,12:00,5,99.9,0,4,54.1,54.3,2.9,2.7,3,34.1,34.1,2.8,2.9
+129,2026-10-02,Fri,17:00,15,119.7,0,8,58.3,58.5,3.1,2.7,7,49.8,50.7,2.5,3.5

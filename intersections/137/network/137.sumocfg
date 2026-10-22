@@ -1,0 +1,9 @@
+<configuration>
+  <input>
+    <net-file value="137.net.xml"/>
+    <route-files value="smoke.rou.xml"/>
+  </input>
+  <time><begin value="0"/><end value="1200"/></time>
+  <processing><time-to-teleport value="120"/></processing>
+  <report><no-step-log value="true"/></report>
+</configuration>

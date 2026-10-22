@@ -1,0 +1,38 @@
+Warning: Value of key 'maxspeed:type' is not numeric ('urban') in edge '9277545'.
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|cycleway.opposite_lane|highway.residential' (first occurrence for edge '9255680').
+Warning: Discarding unknown compound 'cycleway.opposite_lane' in type 'cycleway.lane|cycleway.opposite_lane|highway.residential' (first occurrence for edge '9255680').
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|highway.residential' (first occurrence for edge '42739249').
+Warning: Discarding unknown compound 'cycleway.track' in type 'cycleway.track|cycleway.track|highway.tertiary' (first occurrence for edge '169927468').
+Warning: Discarding unknown compound 'cycleway.track' in type 'cycleway.track|cycleway.track|highway.tertiary' (first occurrence for edge '169927468').
+Warning: Ignoring turn sign information for 1 lanes on edge -1302204757#0 with 2 driving lanes
+Warning: Ignoring turn sign information for 1 lanes on edge -1302204757#1 with 2 driving lanes
+Warning: Ignoring turn sign information for 1 lanes on edge -1302204757#2 with 2 driving lanes
+Warning: Ignoring turn sign information for 1 lanes on edge -1302204757#3 with 2 driving lanes
+Warning: Ignoring turn sign information for 1 lanes on edge -1302204757#4 with 2 driving lanes
+Warning: Removing pt stop '2423191309' on non existing edge '314113139'.
+Warning: Removing pt stop '3165241509' on non existing edge '314000521#12'.
+Warning: Removed a road without junctions: -1118916323#2,-1118916323#1,-1118916323#0.
+Warning: Removed a road without junctions: -179237446,-179237440#8,-179237440#7,-179237440#6,-179237440#5,-179237440#4,-179237440#3,-179237440#2.
+Warning: Removed a road without junctions: -502985652#0.
+Warning: Removed a road without junctions: 1118916323#0,1118916323#1,1118916323#2.
+Warning: Removed a road without junctions: 179237440#2,179237440#3,179237440#4,179237440#5,179237440#6,179237440#7,179237440#8,179237446.
+Warning: Could not find corresponding edge or compatible lane for free-floating pt stop '2423191309' (Recreation Center). Thus, it will be removed!
+Warning: Could not find corresponding edge or compatible lane for free-floating pt stop '2428237929' (Recreation Center). Thus, it will be removed!
+Warning: Could not find corresponding edge or compatible lane for free-floating pt stop '2430228377' (). Thus, it will be removed!
+Warning: Could not find corresponding edge or compatible lane for free-floating pt stop '3158726358' (). Thus, it will be removed!
+Warning: Could not find corresponding edge or compatible lane for free-floating pt stop '3165241509' (McMillan Street & 8th Street). Thus, it will be removed!
+Warning: Could not find corresponding edge or compatible lane for pt stop '69175004' (Fitten Hall). Thus, it will be removed!
+Warning: Reducing junction cluster 5506355645,6000962696,69233334 (parallel incoming -9246693#0,119948082#0).
+Warning: Not joining junctions 5506355645,6000962696,69233334 (after reduction).
+Warning: Lane '1302204758#0_0' is not connected from any incoming edge at junction '69576878'.
+Warning: Cannot apply turn sign information for edge '1314629406#0' because there are 2 signed directions but only 1 targets
+Warning: Cannot apply turn sign information for edge '1314680912' because there are 2 signed directions but only 1 targets
+Warning: Speed of straight connection '1314680911_0->304518363#0_0' reduced by 6.93 due to turning radius of 26.20 (length=2.15, angle=19.84).
+Warning: Speed of straight connection '1314680911_1->304518363#0_1' reduced by 7.48 due to turning radius of 23.84 (length=1.95, angle=19.84).
+Warning: 6 total messages of type: Could not find corresponding edge or compatible lane for free-floating pt stop '%' (%). Thus, it will be removed!
+Warning: 8 total messages of type: Discarding unknown compound '%' in type '%' (first occurrence for edge '%').
+Warning: 10 total messages of type: Ignoring turn sign information for % lanes on edge % with % driving lanes
+Warning: 7 total messages of type: Removed a road without junctions: %.
+Warning: Lane '1302204758#0_0' is not connected from any incoming edge at junction '69576878'.
+Warning: Speed of straight connection '1314680911_0->304518363#0_0' reduced by 6.93 due to turning radius of 26.20 (length=2.15, angle=19.84).
+Warning: Speed of straight connection '1314680911_1->304518363#0_1' reduced by 7.48 due to turning radius of 23.84 (length=1.95, angle=19.84).

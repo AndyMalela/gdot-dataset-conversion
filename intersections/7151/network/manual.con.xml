@@ -1,0 +1,8 @@
+<!-- Manual fix, applied by osm_build.py after every netconvert run.
+     WB 17th St leftmost lane is U-turn only (pavement arrow, confirmed on Street View
+     2026-10-05; OSM turn:lanes=reverse|||). netconvert turned it into a left into the
+     south leg, which is not allowed. Replace it with a U-turn back east on 17th St. -->
+<connections>
+  <delete from="1114817997#0" to="-678600538#6" fromLane="3" toLane="0"/>
+  <connection from="1114817997#0" to="1051747988#0" fromLane="3" toLane="2"/>
+</connections>

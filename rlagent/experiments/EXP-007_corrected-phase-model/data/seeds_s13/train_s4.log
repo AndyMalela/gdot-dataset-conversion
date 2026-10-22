@@ -1,0 +1,8 @@
+feature_mode=pg_glob_rate  n_features=189  params=378
+[ep 1/20] start day=2026-09-29 x1.25
+[ep 1/20] |##########################| done  reward=  -523577311 best=  -523577311 dec= 49337 sw= 3220   929s  ETA=4:54:19
+[ep 2/20] start day=2026-09-29 x0.88
+[ep 2/20] |##########################| done  reward=  -573225706 best=  -523577311 dec= 35007 sw= 4931  1201s  ETA=5:19:40
+[ep 3/20] start day=2026-09-29 x0.64
+[ep 3/20] |##########################| done  reward=  -296104696 best=  -296104696 dec= 35459 sw= 4967   734s  ETA=4:30:44
+[ep 4/20] start day=2026-09-29 x1.17

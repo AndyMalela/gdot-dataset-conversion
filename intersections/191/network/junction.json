@@ -1,0 +1,108 @@
+{
+ "signal_id": "191",
+ "name": "W. Peachtree St @ 17th St",
+ "lat": 33.79184,
+ "lon": -84.38773,
+ "node": "69372832",
+ "node_type": "traffic_light",
+ "dist_m": 5.0,
+ "tls": [
+  "69372832"
+ ],
+ "approaches": [
+  {
+   "edge": "73229529#5",
+   "osm_way": "73229529",
+   "name": "West Peachtree Street Northwest",
+   "label": "NB",
+   "heading_deg": 359,
+   "lanes": 5,
+   "lanes_tag": "5",
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "TR",
+    "T",
+    "T",
+    "T",
+    "LT"
+   ],
+   "movements": {
+    "R": [
+     "9270296#0"
+    ],
+    "T": [
+     "629278093#0"
+    ],
+    "L": [
+     "26786742#0"
+    ]
+   },
+   "length_m": 56,
+   "upstream_m": 171
+  },
+  {
+   "edge": "112508109#0",
+   "osm_way": "112508109",
+   "name": "17th Street Northwest",
+   "label": "EB",
+   "heading_deg": 69,
+   "lanes": 3,
+   "lanes_tag": "3",
+   "turn_lanes_tag": "left|left|left;through",
+   "lane_moves": [
+    "LT",
+    "L",
+    "L"
+   ],
+   "movements": {
+    "T": [
+     "9270296#0"
+    ],
+    "L": [
+     "629278093#0"
+    ]
+   },
+   "length_m": 113,
+   "upstream_m": 113
+  },
+  {
+   "edge": "-9270296#3",
+   "osm_way": "9270296",
+   "name": "17th Street Northeast",
+   "label": "WB",
+   "heading_deg": 240,
+   "lanes": 1,
+   "lanes_tag": "2",
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "TR"
+   ],
+   "movements": {
+    "R": [
+     "629278093#0"
+    ],
+    "T": [
+     "26786742#0"
+    ]
+   },
+   "length_m": 123,
+   "upstream_m": 123
+  }
+ ],
+ "flags": [
+  "WB approach (17th Street Northeast): two-way way with lanes=2 total and no lanes:forward/backward; per-direction split guessed by netconvert"
+ ],
+ "smoke_test": {
+  "flows": 7,
+  "returncode": 0,
+  "loaded": 140,
+  "inserted": 140,
+  "running": 0,
+  "waiting": 0,
+  "teleports": 0,
+  "jams": 0,
+  "collisions": 0,
+  "warnings": 0,
+  "errors": []
+ }
+}

@@ -1,0 +1,168 @@
+{
+ "tls_links": [
+  [
+   0,
+   "NE_in.79_0",
+   "SW_out_0",
+   "s"
+  ],
+  [
+   1,
+   "NE_in.79_1",
+   "SW_out_1",
+   "s"
+  ],
+  [
+   2,
+   "NE_in.79_2",
+   "SW_out_2",
+   "s"
+  ],
+  [
+   3,
+   "NE_in.79_3",
+   "S_out_0",
+   "l"
+  ],
+  [
+   4,
+   "NE_in.79_4",
+   "S_out_1",
+   "l"
+  ],
+  [
+   5,
+   "S_in_0",
+   "NE_out_0",
+   "r"
+  ],
+  [
+   6,
+   "S_in_1",
+   "N_out_0",
+   "s"
+  ],
+  [
+   7,
+   "S_in_2",
+   "N_out_1",
+   "s"
+  ],
+  [
+   8,
+   "S_in_3",
+   "SW_out_2",
+   "l"
+  ],
+  [
+   9,
+   "SW_in_0",
+   "S_out_0",
+   "r"
+  ],
+  [
+   10,
+   "SW_in_0",
+   "NE_out_0",
+   "s"
+  ],
+  [
+   11,
+   "SW_in_1",
+   "NE_out_1",
+   "s"
+  ],
+  [
+   12,
+   "SW_in_2",
+   "NE_out_2",
+   "s"
+  ],
+  [
+   13,
+   "SW_in_3",
+   "N_out_0",
+   "l"
+  ],
+  [
+   14,
+   "SW_in_4",
+   "N_out_1",
+   "l"
+  ],
+  [
+   15,
+   "N_near_0",
+   "SW_out_0",
+   "r"
+  ],
+  [
+   16,
+   "N_near_1",
+   "S_out_0",
+   "s"
+  ],
+  [
+   17,
+   "N_near_2",
+   "S_out_1",
+   "s"
+  ],
+  [
+   18,
+   "N_near_3",
+   "NE_out_2",
+   "l"
+  ]
+ ],
+ "edges_lanes": {
+  "E1": 1,
+  "NE_in.15": 6,
+  "NE_in.79": 5,
+  "NE_out": 3,
+  "N_far": 3,
+  "N_far_ext": 3,
+  "N_near": 4,
+  "N_out": 2,
+  "N_out.37": 2,
+  "N_out_ext": 2,
+  "SW_in": 5,
+  "SW_out": 3,
+  "S_in": 4,
+  "S_in_ext": 4,
+  "S_out": 2,
+  "S_out_ext": 2
+ },
+ "slip_connections": [
+  [
+   "E1",
+   "N_out.37"
+  ],
+  [
+   "NE_in.15",
+   "E1"
+  ],
+  [
+   "NE_in.15",
+   "NE_in.79"
+  ]
+ ],
+ "edge_length_m": {
+  "E1": 11.7,
+  "NE_in.15": 130.0,
+  "NE_in.79": 6.2,
+  "NE_out": 94.9,
+  "N_far": 56.0,
+  "N_far_ext": 179.4,
+  "N_near": 14.6,
+  "N_out": 8.5,
+  "N_out.37": 62.3,
+  "N_out_ext": 179.4,
+  "SW_in": 89.2,
+  "SW_out": 89.2,
+  "S_in": 49.2,
+  "S_in_ext": 120.8,
+  "S_out": 49.2,
+  "S_out_ext": 120.8
+ }
+}

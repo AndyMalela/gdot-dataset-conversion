@@ -1,0 +1,631 @@
+{
+ "signal_id": "7130",
+ "name": "SR 237  @  Monroe Drive",
+ "source": "GDOT ATSPM Split Monitor (programmed splits) + Timing & Actuation (clearances)",
+ "structure": {
+  "ring1": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "ring2": [
+   5,
+   6,
+   7,
+   8
+  ],
+  "barriers": [
+   [
+    1,
+    2,
+    5,
+    6
+   ],
+   [
+    3,
+    4,
+    7,
+    8
+   ]
+  ],
+  "phases_with_charts": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "note": "phases above 8 are listed but not part of the ring check"
+ },
+ "plans": {
+  "A": {
+   "cycle_s": 140,
+   "splits_s": {
+    "1": 17,
+    "2": 63,
+    "3": 15,
+    "4": 45,
+    "5": 30,
+    "6": 50,
+    "7": 30,
+    "8": 30,
+    "9": 0
+   },
+   "termination": {
+    "1": {
+     "gap": 0.0,
+     "max": 0.0,
+     "force": 1.0,
+     "fixed": 0.0
+    },
+    "2": {
+     "gap": 0.0,
+     "max": 0.0,
+     "force": 1.0,
+     "fixed": 0.0
+    },
+    "3": {
+     "gap": 0.07,
+     "max": 0.0,
+     "force": 0.93,
+     "fixed": 0.0
+    },
+    "4": {
+     "gap": 0.17,
+     "max": 0.0,
+     "force": 0.83,
+     "fixed": 0.0
+    },
+    "5": {
+     "gap": 0.21,
+     "max": 0.0,
+     "force": 0.81,
+     "fixed": 0.0
+    },
+    "6": {
+     "gap": 0.0,
+     "max": 0.0,
+     "force": 1.0,
+     "fixed": 0.0
+    },
+    "7": {
+     "gap": 0.2,
+     "max": 0.0,
+     "force": 0.83,
+     "fixed": 0.0
+    },
+    "8": {
+     "gap": 0.11,
+     "max": 0.0,
+     "force": 0.89,
+     "fixed": 0.0
+    }
+   },
+   "checks": [
+    "ok"
+   ],
+   "seen": [
+    "2026-09-29 07:01-08:15"
+   ]
+  },
+  "B": {
+   "cycle_s": 140,
+   "splits_s": {
+    "1": 15,
+    "2": 60,
+    "3": 15,
+    "4": 50,
+    "5": 33,
+    "6": 42,
+    "7": 33,
+    "8": 32,
+    "9": 0
+   },
+   "termination": {
+    "1": {
+     "gap": 0.22,
+     "max": 0.0,
+     "force": 0.78,
+     "fixed": 0.0
+    },
+    "2": {
+     "gap": 0.0,
+     "max": 0.0,
+     "force": 1.0,
+     "fixed": 0.0
+    },
+    "3": {
+     "gap": 0.12,
+     "max": 0.0,
+     "force": 0.88,
+     "fixed": 0.0
+    },
+    "4": {
+     "gap": 0.5,
+     "max": 0.0,
+     "force": 0.52,
+     "fixed": 0.0
+    },
+    "5": {
+     "gap": 0.35,
+     "max": 0.0,
+     "force": 0.65,
+     "fixed": 0.0
+    },
+    "6": {
+     "gap": 0.0,
+     "max": 0.0,
+     "force": 1.0,
+     "fixed": 0.0
+    },
+    "7": {
+     "gap": 0.41,
+     "max": 0.0,
+     "force": 0.59,
+     "fixed": 0.0
+    },
+    "8": {
+     "gap": 0.1,
+     "max": 0.0,
+     "force": 0.9,
+     "fixed": 0.0
+    }
+   },
+   "checks": [
+    "ok"
+   ],
+   "seen": [
+    "2026-09-29 08:15-10:15",
+    "2026-10-02 08:15-10:14"
+   ]
+  },
+  "C": {
+   "cycle_s": 140,
+   "splits_s": {
+    "1": 20,
+    "2": 60,
+    "3": 20,
+    "4": 40,
+    "5": 35,
+    "6": 45,
+    "7": 25,
+    "8": 35,
+    "9": 0
+   },
+   "termination": {
+    "1": {
+     "gap": 0.7,
+     "max": 0.0,
+     "force": 0.31,
+     "fixed": 0.0
+    },
+    "2": {
+     "gap": 0.0,
+     "max": 0.0,
+     "force": 1.0,
+     "fixed": 0.0
+    },
+    "3": {
+     "gap": 0.27,
+     "max": 0.0,
+     "force": 0.73,
+     "fixed": 0.0
+    },
+    "4": {
+     "gap": 0.33,
+     "max": 0.0,
+     "force": 0.68,
+     "fixed": 0.0
+    },
+    "5": {
+     "gap": 0.38,
+     "max": 0.0,
+     "force": 0.63,
+     "fixed": 0.0
+    },
+    "6": {
+     "gap": 0.0,
+     "max": 0.0,
+     "force": 1.0,
+     "fixed": 0.0
+    },
+    "7": {
+     "gap": 0.21,
+     "max": 0.0,
+     "force": 0.79,
+     "fixed": 0.0
+    },
+    "8": {
+     "gap": 0.07,
+     "max": 0.0,
+     "force": 0.94,
+     "fixed": 0.0
+    }
+   },
+   "checks": [
+    "ok"
+   ],
+   "seen": [
+    "2026-09-29 10:15-14:46",
+    "2026-10-02 10:14-14:46"
+   ]
+  },
+  "D": {
+   "cycle_s": 160,
+   "splits_s": {
+    "1": 20,
+    "2": 85,
+    "3": 21,
+    "4": 34,
+    "5": 30,
+    "6": 50,
+    "7": 26,
+    "8": 29,
+    "9": 25
+   },
+   "termination": {
+    "1": {
+     "gap": 0.43,
+     "max": 0.0,
+     "force": 0.57,
+     "fixed": 0.0
+    },
+    "2": {
+     "gap": 0.0,
+     "max": 0.0,
+     "force": 1.0,
+     "fixed": 0.0
+    },
+    "3": {
+     "gap": 0.37,
+     "max": 0.0,
+     "force": 0.63,
+     "fixed": 0.0
+    },
+    "4": {
+     "gap": 0.18,
+     "max": 0.0,
+     "force": 0.82,
+     "fixed": 0.0
+    },
+    "5": {
+     "gap": 0.1,
+     "max": 0.0,
+     "force": 0.9,
+     "fixed": 0.0
+    },
+    "6": {
+     "gap": 0.0,
+     "max": 0.0,
+     "force": 1.0,
+     "fixed": 0.0
+    },
+    "7": {
+     "gap": 0.18,
+     "max": 0.0,
+     "force": 0.82,
+     "fixed": 0.0
+    },
+    "8": {
+     "gap": 0.01,
+     "max": 0.0,
+     "force": 0.99,
+     "fixed": 0.0
+    },
+    "9": {
+     "gap": 0.0,
+     "max": 0.0,
+     "force": 1.0,
+     "fixed": 0.0
+    }
+   },
+   "checks": [
+    "closes with P9 in ring 2 beside 5+6 (inferred from the splits)"
+   ],
+   "seen": [
+    "2026-09-29 14:46-19:32",
+    "2026-10-02 14:46-19:32"
+   ]
+  },
+  "E": {
+   "cycle_s": 140,
+   "splits_s": {
+    "1": 17,
+    "2": 63,
+    "3": 15,
+    "4": 45,
+    "6": 55,
+    "7": 30,
+    "8": 30,
+    "9": 0
+   },
+   "termination": {
+    "1": {
+     "gap": 0.67,
+     "max": 0.0,
+     "force": 0.33,
+     "fixed": 0.0
+    },
+    "2": {
+     "gap": 0.0,
+     "max": 0.0,
+     "force": 1.0,
+     "fixed": 0.0
+    },
+    "3": {
+     "gap": 0.25,
+     "max": 0.0,
+     "force": 0.78,
+     "fixed": 0.0
+    },
+    "4": {
+     "gap": 0.53,
+     "max": 0.0,
+     "force": 0.5,
+     "fixed": 0.0
+    },
+    "5": {
+     "gap": 0.65,
+     "max": 0.0,
+     "force": 0.35,
+     "fixed": 0.0
+    },
+    "6": {
+     "gap": 0.0,
+     "max": 0.0,
+     "force": 1.0,
+     "fixed": 0.0
+    },
+    "7": {
+     "gap": 0.38,
+     "max": 0.0,
+     "force": 0.65,
+     "fixed": 0.0
+    },
+    "8": {
+     "gap": 0.11,
+     "max": 0.0,
+     "force": 0.89,
+     "fixed": 0.0
+    }
+   },
+   "checks": [
+    "barrier mismatch (1+2=80 vs 5+6=55)",
+    "unverified: read partly from force-off dots"
+   ],
+   "seen": [
+    "2026-10-02 07:01-08:15"
+   ]
+  },
+  "Actuated": {
+   "cycle_s": "",
+   "splits_s": {},
+   "observed_s": {
+    "1": 14,
+    "2": 35,
+    "3": 15,
+    "4": 12,
+    "5": 14,
+    "6": 35,
+    "7": 12,
+    "8": 16
+   },
+   "max_obs": {
+    "1": {
+     "s": 21,
+     "source": "max-out dots"
+    },
+    "2": {
+     "s": 36,
+     "source": "max-out dots"
+    },
+    "3": {
+     "s": 20,
+     "source": "max-out dots"
+    },
+    "4": {
+     "s": 36,
+     "source": "max-out dots"
+    },
+    "5": {
+     "s": 26,
+     "source": "max-out dots"
+    },
+    "6": {
+     "s": 36,
+     "source": "max-out dots"
+    },
+    "7": {
+     "s": 21,
+     "source": "max-out dots"
+    },
+    "8": {
+     "s": 36,
+     "source": "max-out dots"
+    }
+   },
+   "termination": {
+    "1": {
+     "gap": 0.92,
+     "max": 0.08,
+     "force": 0.0,
+     "fixed": 0.0
+    },
+    "2": {
+     "gap": 0.98,
+     "max": 0.03,
+     "force": 0.0,
+     "fixed": 0.0
+    },
+    "3": {
+     "gap": 0.84,
+     "max": 0.19,
+     "force": 0.0,
+     "fixed": 0.0
+    },
+    "4": {
+     "gap": 0.94,
+     "max": 0.07,
+     "force": 0.0,
+     "fixed": 0.0
+    },
+    "5": {
+     "gap": 0.87,
+     "max": 0.13,
+     "force": 0.0,
+     "fixed": 0.0
+    },
+    "6": {
+     "gap": 0.98,
+     "max": 0.03,
+     "force": 0.0,
+     "fixed": 0.0
+    },
+    "7": {
+     "gap": 0.98,
+     "max": 0.03,
+     "force": 0.0,
+     "fixed": 0.0
+    },
+    "8": {
+     "gap": 0.94,
+     "max": 0.07,
+     "force": 0.0,
+     "fixed": 0.0
+    }
+   },
+   "checks": [
+    "no programmed-split line readable: Free or an uncoordinated actuated plan (the chart's band label says which); values are observed median phase times"
+   ],
+   "seen": [
+    "2026-09-29 00:01-07:01",
+    "2026-09-29 19:32-24:00",
+    "2026-10-02 00:01-07:01"
+   ]
+  }
+ },
+ "schedule": {
+  "2026-09-29": [
+   {
+    "start": "00:01",
+    "end": "07:01",
+    "minutes": 420,
+    "kind": "free",
+    "plan": "Actuated"
+   },
+   {
+    "start": "07:01",
+    "end": "08:15",
+    "minutes": 74,
+    "kind": "plan",
+    "plan": "A"
+   },
+   {
+    "start": "08:15",
+    "end": "10:15",
+    "minutes": 120,
+    "kind": "plan",
+    "plan": "B"
+   },
+   {
+    "start": "10:15",
+    "end": "14:46",
+    "minutes": 271,
+    "kind": "plan",
+    "plan": "C"
+   },
+   {
+    "start": "14:46",
+    "end": "19:32",
+    "minutes": 286,
+    "kind": "plan",
+    "plan": "D"
+   },
+   {
+    "start": "19:32",
+    "end": "24:00",
+    "minutes": 268,
+    "kind": "free",
+    "plan": "Actuated"
+   }
+  ],
+  "2026-10-02": [
+   {
+    "start": "00:01",
+    "end": "07:01",
+    "minutes": 420,
+    "kind": "free",
+    "plan": "Actuated"
+   },
+   {
+    "start": "07:01",
+    "end": "08:15",
+    "minutes": 74,
+    "kind": "plan",
+    "plan": "E"
+   },
+   {
+    "start": "08:15",
+    "end": "10:14",
+    "minutes": 119,
+    "kind": "plan",
+    "plan": "B"
+   },
+   {
+    "start": "10:14",
+    "end": "14:46",
+    "minutes": 272,
+    "kind": "plan",
+    "plan": "C"
+   },
+   {
+    "start": "14:46",
+    "end": "19:32",
+    "minutes": 286,
+    "kind": "plan",
+    "plan": "D"
+   },
+   {
+    "start": "19:32",
+    "end": "24:00",
+    "minutes": 268,
+    "kind": "no data",
+    "plan": ""
+   }
+  ]
+ },
+ "clearance": {
+  "window": "2026-10-02 17:05 (5 min)",
+  "yellow": {
+   "1": 3.1,
+   "2": 3.6,
+   "3": 3.1,
+   "4": 3.4,
+   "5": 3.4,
+   "6": 3.9,
+   "7": 3.1,
+   "8": 3.4
+  },
+  "red_clear": {
+   "1": 2.9,
+   "2": 2.4,
+   "3": 2.4,
+   "4": 2.1,
+   "5": 3.0,
+   "6": 2.4,
+   "7": 2.6,
+   "8": 2.1
+  },
+  "lead": {
+   "1/2": 1,
+   "5/6": 5,
+   "3/4": 3,
+   "7/8": 7
+  }
+ }
+}

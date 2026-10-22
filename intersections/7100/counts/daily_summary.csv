@@ -1,0 +1,8 @@
+date,weekday,status,total_volume_valid_bins,valid_bins,outage_bins,outage_pct
+2026-09-26,Sat,ok,35292,288,0,0.0
+2026-09-27,Sun,partial,23279,244,44,15.3
+2026-09-28,Mon,ok,34759,288,0,0.0
+2026-09-29,Tue,ok,38632,288,0,0.0
+2026-09-30,Wed,partial,36052,241,47,16.3
+2026-10-01,Thu,partial,37801,247,41,14.2
+2026-10-02,Fri,ok,40494,288,0,0.0

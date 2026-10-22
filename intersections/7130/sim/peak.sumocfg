@@ -1,0 +1,10 @@
+<configuration>
+  <input>
+    <net-file value="../network/7130.net.xml"/>
+    <route-files value="demand.rou.xml"/>
+    <additional-files value="signal.add.xml"/>
+  </input>
+  <time><begin value="25200"/><end value="34200"/></time>
+  <processing><time-to-teleport value="300"/><ignore-route-errors value="true"/></processing>
+  <report><no-step-log value="true"/></report>
+</configuration>

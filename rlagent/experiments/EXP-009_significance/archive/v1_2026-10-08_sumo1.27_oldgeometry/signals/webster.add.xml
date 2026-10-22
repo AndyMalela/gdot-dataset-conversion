@@ -1,0 +1,23 @@
+<additional>
+  <tlLogic id="J" type="static" programID="webster_dr" offset="0">  <!-- cycle 125.1 s -->
+    <phase duration="11" state="GGGGGsrrrsrrrrrsrrr"/>
+    <phase duration="4" state="GGGyysrrrsrrrrrsrrr"/>
+    <phase duration="3" state="GGGrrsrrrsrrrrrsrrr"/>
+    <phase duration="18" state="GGGrrsrrrGGGGrrsrrr"/>
+    <phase duration="3" state="yyyrrsrrrGGGGrrsrrr"/>
+    <phase duration="3" state="rrrrrsrrrGGGGrrsrrr"/>
+    <phase duration="7" state="rrrrrsrrrGGGGGGsrrr"/>
+    <phase duration="1" state="rrrrrsrrrGGGGyysrrr"/>
+    <phase duration="4" state="rrrrrsrrryyyyyysrrr"/>
+    <phase duration="3" state="rrrrrsrrrsrrrrrsrrr"/>
+    <phase duration="5" state="rrrrrsrrGsrrrrrsrrG"/>
+    <phase duration="3" state="rrrrrsrrysrrrrrsrrG"/>
+    <phase duration="3" state="rrrrrsrrrsrrrrrsrrG"/>
+    <phase duration="7" state="rrrrrsrrgsrrrrrGGGG"/>
+    <phase duration="4" state="rrrrrsrrgsrrrrrGGGy"/>
+    <phase duration="3" state="rrrrrsrrgsrrrrrGGGr"/>
+    <phase duration="36" state="rrrrrGGGgsrrrrrGGGg"/>
+    <phase duration="4" state="rrrrryyyysrrrrryyyy"/>
+    <phase duration="3" state="rrrrrsrrrsrrrrrsrrr"/>
+  </tlLogic>
+</additional>

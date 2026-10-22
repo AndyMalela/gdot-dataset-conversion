@@ -1,0 +1,135 @@
+{
+ "signal": "137",
+ "window": "2026-10-02 08:00 (5 min)",
+ "tmc_found": true,
+ "phases": [
+  {
+   "phase": 1,
+   "desc": "WBL W Paces Ferry",
+   "approach": "WB",
+   "move": "L",
+   "gdot_word": "WB",
+   "detector_count": null,
+   "report_by_word": 0,
+   "report_by_approach_label": 0,
+   "report_all_dirs": {
+    "NB": 2,
+    "SB": 6,
+    "EB": 6,
+    "WB": 0
+   }
+  },
+  {
+   "phase": 2,
+   "desc": "",
+   "approach": "EB",
+   "move": "T",
+   "gdot_word": null,
+   "detector_count": null,
+   "report_by_word": null,
+   "report_by_approach_label": 0,
+   "report_all_dirs": {
+    "NB": 5,
+    "SB": 9,
+    "EB": 0,
+    "WB": 22
+   }
+  },
+  {
+   "phase": 3,
+   "desc": "Slaton Dr NB",
+   "approach": "NB",
+   "move": "L",
+   "gdot_word": "NB",
+   "detector_count": null,
+   "report_by_word": 2,
+   "report_by_approach_label": 2,
+   "report_all_dirs": {
+    "NB": 2,
+    "SB": 6,
+    "EB": 6,
+    "WB": 0
+   }
+  },
+  {
+   "phase": 4,
+   "desc": "E Andrews Dr SB",
+   "approach": "SB",
+   "move": "T",
+   "gdot_word": "SB",
+   "detector_count": null,
+   "report_by_word": 9,
+   "report_by_approach_label": 9,
+   "report_all_dirs": {
+    "NB": 5,
+    "SB": 9,
+    "EB": 0,
+    "WB": 22
+   }
+  },
+  {
+   "phase": 5,
+   "desc": "W Paces Ferry EBL",
+   "approach": "EB",
+   "move": "L",
+   "gdot_word": "EB",
+   "detector_count": 2,
+   "report_by_word": 6,
+   "report_by_approach_label": 6,
+   "report_all_dirs": {
+    "NB": 2,
+    "SB": 6,
+    "EB": 6,
+    "WB": 0
+   }
+  },
+  {
+   "phase": 6,
+   "desc": "",
+   "approach": "WB",
+   "move": "T",
+   "gdot_word": null,
+   "detector_count": 2,
+   "report_by_word": null,
+   "report_by_approach_label": 22,
+   "report_all_dirs": {
+    "NB": 5,
+    "SB": 9,
+    "EB": 0,
+    "WB": 22
+   }
+  },
+  {
+   "phase": 7,
+   "desc": "E Andrews SBL",
+   "approach": "SB",
+   "move": "L",
+   "gdot_word": "SB",
+   "detector_count": 0,
+   "report_by_word": 6,
+   "report_by_approach_label": 6,
+   "report_all_dirs": {
+    "NB": 2,
+    "SB": 6,
+    "EB": 6,
+    "WB": 0
+   }
+  },
+  {
+   "phase": 8,
+   "desc": "Slaton Drive NB",
+   "approach": "NB",
+   "move": "T",
+   "gdot_word": "NB",
+   "detector_count": null,
+   "report_by_word": 5,
+   "report_by_approach_label": 5,
+   "report_all_dirs": {
+    "NB": 5,
+    "SB": 9,
+    "EB": 0,
+    "WB": 22
+   }
+  }
+ ]
+}

@@ -5,21 +5,18 @@ EW_LEFT -> EW_THRU -> NS_LEFT -> NS_THRU (stages.PHASES, in that order),
 with delay-optimised cycle time C = (1.5 L + 5) / (1 - rho)  [Webster 1958].
 
 This is the correct comparator for the redesigned action space: it runs on
-the *same* env, so it inherits the same realistic phases (FYA permissive
-lefts, protected right overlaps) and the same selective interstage
+the *same* env, so it inherits the same phases (protected-only Peachtree
+lefts, FYA Piedmont lefts, protected right overlaps) and the same interstage
 clearance the RL agent sees -- the two controllers differ only in *when*
-they advance, which is exactly the thing under study. A fixed-time plan and
-an actuated one share the phase hardware; only the timing policy differs.
+they advance, which is exactly the thing under study.
 
 Assumptions (documented, same spirit as the paper's Appendix A):
   saturation flow 1800 veh/h/lane; per-cycle lost time L is computed from
-  the phases that ACTUALLY clear (2 s start-up per phase + the real
-  yellow+all-red on each barrier crossing - 2 s of yellow utilised) rather
-  than assuming all four transitions clear -- with selective clearance only
-  the two THRU->LEFT barrier crossings insert an interstage, the two
-  lead-left->through transitions insert none (see stages.transition). Cycle
-  capped to [40, 180] s (urban practice) since Webster diverges as rho -> 1
-  -- and this intersection's PM peak really does approach that.
+  the transitions that clear (2 s start-up per phase + yellow+all-red - 2 s
+  of yellow utilised on each clearing transition; since EXP-007 all four
+  transitions clear, see stages.transition). Cycle capped to [40, 180] s
+  (urban practice) since Webster diverges as rho -> 1. No pedestrian
+  minimums (deliberately: pedestrians are not modelled for any controller).
 
 Volumes come from the same portal data.txt that built the demand (peak
 rolling hour within the evaluated window), so baseline and demand are

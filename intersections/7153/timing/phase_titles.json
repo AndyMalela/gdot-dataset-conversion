@@ -1,0 +1,34 @@
+[
+ {
+  "file": "01.jpg",
+  "permissive": false
+ },
+ {
+  "file": "02.jpg",
+  "permissive": false
+ },
+ {
+  "file": "03.jpg",
+  "permissive": false
+ },
+ {
+  "file": "04.jpg",
+  "permissive": false
+ },
+ {
+  "file": "05.jpg",
+  "permissive": true
+ },
+ {
+  "file": "06.jpg",
+  "permissive": false
+ },
+ {
+  "file": "07.jpg",
+  "permissive": true
+ },
+ {
+  "file": "08.jpg",
+  "permissive": false
+ }
+]

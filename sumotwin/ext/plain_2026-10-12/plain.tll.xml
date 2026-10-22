@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-10-09T16:56:45.833791+09:00 by Eclipse SUMO netconvert 1.28.0
+<netconvertConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <sumo-net-file value="7065_ext.net.xml"/>
+    </input>
+
+    <output>
+        <plain-output-prefix value="/tmp/claude-1000/-home-andy-Downloads-GDOT/91397e57-8921-4d1a-b7e4-b866c3927542/scratchpad/regeo/plain"/>
+        <output.street-names value="true"/>
+    </output>
+
+    <processing>
+        <geometry.min-radius.fix.railways value="false"/>
+        <geometry.avoid-overlap value="false"/>
+        <geometry.max-grade.fix value="false"/>
+        <offset.disable-normalization value="true"/>
+    </processing>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+        <junctions.corner-detail value="6"/>
+    </junctions>
+
+</netconvertConfiguration>
+-->
+
+<tlLogics version="1.20" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tllogic_file.xsd">
+    <tlLogic id="J" type="actuated" programID="0" offset="0">
+        <phase duration="33" state="GGGggrrrrGGGGggrrrr" minDur="6" maxDur="50"/>
+        <phase duration="3"  state="yyyggrrrryyyyggrrrr"/>
+        <phase duration="6"  state="rrrGGrrrrrrrrGGrrrr" minDur="6" maxDur="50"/>
+        <phase duration="3"  state="rrryyrrrrrrrryyrrrr"/>
+        <phase duration="33" state="rrrrrGGGgrrrrrrGGGg" minDur="6" maxDur="50"/>
+        <phase duration="3"  state="rrrrryyygrrrrrryyyg"/>
+        <phase duration="6"  state="rrrrrrrrGrrrrrrrrrG" minDur="6" maxDur="50"/>
+        <phase duration="3"  state="rrrrrrrryrrrrrrrrry"/>
+    </tlLogic>
+
+    <connection from="NE_in.79" to="SW_out" fromLane="0" toLane="0" tl="J" linkIndex="0"/>
+    <connection from="NE_in.79" to="SW_out" fromLane="1" toLane="1" tl="J" linkIndex="1"/>
+    <connection from="NE_in.79" to="SW_out" fromLane="2" toLane="2" tl="J" linkIndex="2"/>
+    <connection from="NE_in.79" to="S_out" fromLane="3" toLane="0" tl="J" linkIndex="3"/>
+    <connection from="NE_in.79" to="S_out" fromLane="4" toLane="1" tl="J" linkIndex="4"/>
+    <connection from="N_near" to="SW_out" fromLane="0" toLane="0" tl="J" linkIndex="15"/>
+    <connection from="N_near" to="S_out" fromLane="1" toLane="0" tl="J" linkIndex="16"/>
+    <connection from="N_near" to="S_out" fromLane="2" toLane="1" tl="J" linkIndex="17"/>
+    <connection from="N_near" to="NE_out" fromLane="3" toLane="2" tl="J" linkIndex="18"/>
+    <connection from="SW_in" to="S_out" fromLane="0" toLane="0" tl="J" linkIndex="9"/>
+    <connection from="SW_in" to="NE_out" fromLane="0" toLane="0" tl="J" linkIndex="10"/>
+    <connection from="SW_in" to="NE_out" fromLane="1" toLane="1" tl="J" linkIndex="11"/>
+    <connection from="SW_in" to="NE_out" fromLane="2" toLane="2" tl="J" linkIndex="12"/>
+    <connection from="SW_in" to="N_out" fromLane="3" toLane="0" tl="J" linkIndex="13"/>
+    <connection from="SW_in" to="N_out" fromLane="4" toLane="1" tl="J" linkIndex="14"/>
+    <connection from="S_in" to="NE_out" fromLane="0" toLane="0" tl="J" linkIndex="5"/>
+    <connection from="S_in" to="N_out" fromLane="1" toLane="0" tl="J" linkIndex="6"/>
+    <connection from="S_in" to="N_out" fromLane="2" toLane="1" tl="J" linkIndex="7"/>
+    <connection from="S_in" to="SW_out" fromLane="3" toLane="2" tl="J" linkIndex="8"/>
+</tlLogics>

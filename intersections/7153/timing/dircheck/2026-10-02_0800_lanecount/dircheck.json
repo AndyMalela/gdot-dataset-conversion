@@ -1,0 +1,116 @@
+{
+ "signal": "7153",
+ "window": "2026-10-02 08:00 (5 min)",
+ "tmc_found": true,
+ "phases": [
+  {
+   "phase": 1,
+   "desc": "SR 3/Northside Dr NB LT",
+   "approach": "NB",
+   "move": "L",
+   "gdot_word": "NB",
+   "detector_count": 1,
+   "report_by_word": 12,
+   "report_by_approach_label": 12,
+   "report_all_dirs": {
+    "NB": 12,
+    "SB": 6,
+    "WB": 1
+   }
+  },
+  {
+   "phase": 2,
+   "desc": "",
+   "approach": "SB",
+   "move": "T",
+   "gdot_word": null,
+   "detector_count": null,
+   "report_by_word": null,
+   "report_by_approach_label": 29,
+   "report_all_dirs": {
+    "NB": 4,
+    "SB": 29,
+    "EB": 21,
+    "WB": 31
+   }
+  },
+  {
+   "phase": 3,
+   "desc": "Marietta St WB LT",
+   "approach": "WB",
+   "move": "L",
+   "gdot_word": "WB",
+   "detector_count": null,
+   "report_by_word": 1,
+   "report_by_approach_label": 1,
+   "report_all_dirs": {
+    "NB": 12,
+    "SB": 6,
+    "WB": 1
+   }
+  },
+  {
+   "phase": 4,
+   "desc": "Marietta St EB",
+   "approach": "EB",
+   "move": "T",
+   "gdot_word": "EB",
+   "detector_count": null,
+   "report_by_word": 21,
+   "report_by_approach_label": 21,
+   "report_all_dirs": {
+    "NB": 4,
+    "SB": 29,
+    "EB": 21,
+    "WB": 31
+   }
+  },
+  {
+   "phase": 5,
+   "desc": "SR 3/Northside Dr SB LT",
+   "approach": "SB",
+   "move": "L",
+   "gdot_word": "SB",
+   "detector_count": null,
+   "report_by_word": 6,
+   "report_by_approach_label": 6,
+   "report_all_dirs": {
+    "NB": 12,
+    "SB": 6,
+    "WB": 1
+   }
+  },
+  {
+   "phase": 6,
+   "desc": "SR 3/Northside Dr NB",
+   "approach": "NB",
+   "move": "T",
+   "gdot_word": "NB",
+   "detector_count": null,
+   "report_by_word": 4,
+   "report_by_approach_label": 4,
+   "report_all_dirs": {
+    "NB": 4,
+    "SB": 29,
+    "EB": 21,
+    "WB": 31
+   }
+  },
+  {
+   "phase": 8,
+   "desc": "Marietta St WB",
+   "approach": "WB",
+   "move": "T",
+   "gdot_word": "WB",
+   "detector_count": null,
+   "report_by_word": 31,
+   "report_by_approach_label": 31,
+   "report_all_dirs": {
+    "NB": 4,
+    "SB": 29,
+    "EB": 21,
+    "WB": 31
+   }
+  }
+ ]
+}

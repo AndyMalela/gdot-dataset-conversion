@@ -26,22 +26,18 @@ versus the first replication cut:
    lanes** -- each phase's per-movement signal states now match the real
    heads photographed at the intersection (regulations.md #4, #8):
 
-   - **EB/NB/SB lefts are protected-permissive (FYA).** They show a
-     protected green arrow ('G') in their own street's LEFT phase, and drop
-     to a permissive 'g' (flashing yellow arrow -- yield to the opposing
-     through) during that street's THRU phase. This is the big behavioural
-     change from the protected-*only* first cut, and it matters: these three
-     lefts carry 185-272 vph of real demand, so letting them clear
-     permissively during the through phase changes queueing/throughput. The
-     net's left connections are state="o" (yield-capable), so SUMO enforces
-     the permissive yielding automatically from the 'g'.
-   - **WB-left is permissive-only** (70-92 vph, never meets the 125 vph /
-     50k cross-product warrant -- GDOT does not install protected lefts
-     symmetrically, regulations.md #3/#4). It is 'g' in *every* phase where
-     it runs and never gets a protected 'G' arrow: in EW_THRU it yields to
-     the EB through; in EW_LEFT the opposing EB-through is red so the same
-     'g' simply flows unopposed. Same char, correct FYA behaviour either
-     way.
+   - **Corrected 2026-10-05 (EXP-007).** The left treatment below was first
+     derived from count labels that turned out to be rotated (GDOT's report
+     labels approaches by road, not compass; see intersections/7065/timing/
+     phase_map.json). Re-derived from GDOT's own phase configuration
+     (Split Failure titles: permissive phases exist only for the Piedmont
+     lefts) and the field photos (Peachtree: two left-arrow heads, no FYA
+     sign):
+   - **Peachtree lefts (twin EB = SW leg, WB = NE leg; dual lanes) are
+     protected-only** -- 'G' in EW_LEFT (NEMA 1+5), red otherwise.
+   - **Piedmont lefts (twin NB = S leg, SB = N leg) are protected-permissive
+     (FYA)** -- 'G' in NS_LEFT (NEMA 3+7), permissive 'g' in NS_THRU (4+8).
+     The net's left connections are state="o", so SUMO enforces the yield.
    - **NB/SB rights are protected doghouse overlaps** ('G') during NS_THRU
      -- the red-ball+green-arrow "Right Doghouse" heads confirmed on
      Piedmont (regulations.md #8), backed by their exclusive right lanes
@@ -69,18 +65,14 @@ versus the first replication cut:
   see regulations.md #6), a = 3.05 m/s^2 (10 ft/s^2 ITE deceleration),
   W = 40.3 m = longest signalized crossing, L_veh = 6.1 m (20 ft).
 
-- Clearance is applied *selectively* per transition (see `transition`): only
-  movements that actually lose right-of-way (green->red) clear via
-  yellow -> all-red; movements that continue across the phase boundary are
-  held (a through does not stop, and a left merely downgrading protected->
-  permissive keeps flowing). So the two barrier crossings (THRU->LEFT) get a
-  full yellow+all-red, while the lead-left->through transitions -- where the
-  lefts only downgrade to permissive and the throughs start -- need no
-  all-red at all, matching how a real controller flows a lead-left into its
-  through. Simplification: a protected->permissive left downgrade is not
-  given its own steady-yellow-arrow display frame (SUMO enforces the yield
-  by G/g priority regardless); every safety-critical clearance (a movement
-  fully stopping, a conflicting movement starting) is modeled.
+- Clearance per transition (see `transition`): every movement that loses
+  green, or drops from protected 'G' to permissive 'g', clears via
+  yellow -> all-red before the next phase starts; movements continuing
+  across the boundary are held. So all four transitions pay a full
+  clearance, as GDOT's controller does every cycle (Timing & Actuation:
+  P1/P5/P3/P7 each run yellow + red clearance before their through phase).
+  (Before EXP-007 the left->through transitions had no clearance, which
+  gave this model capacity the real controller doesn't have.)
 
 - Decision interval delta = 1 s and minimum green upsilon = 3 s follow the
   paper's low-signal-constraint setting (its best-performing variant); no
@@ -114,9 +106,8 @@ LINKS = {
 # and wraps. phase -> {movement: signal char}; anything unlisted is 'r'.
 # 'G' = protected green (priority), 'g' = permissive green (yields to foes).
 PHASES = [
-    ("EW_LEFT", {"EBl": "G", "WBl": "g"}),                      # NEMA 1(+5 perm)
-    ("EW_THRU", {"EBt": "G", "WBt": "G",
-                 "EBl": "g", "WBl": "g", "EBr": "g"}),          # NEMA 2+6 (+FYA)
+    ("EW_LEFT", {"EBl": "G", "WBl": "G"}),                      # NEMA 1+5 (protected-only)
+    ("EW_THRU", {"EBt": "G", "WBt": "G", "EBr": "g"}),          # NEMA 2+6
     ("NS_LEFT", {"NBl": "G", "SBl": "G"}),                      # NEMA 3+7
     ("NS_THRU", {"NBt": "G", "SBt": "G",
                  "NBl": "g", "SBl": "g",
@@ -162,12 +153,16 @@ def transition(cur_idx: int, nxt_idx: int):
     green->red show 'y' then 'r'.
     """
     cur, nxt = GREEN_STATE[cur_idx], GREEN_STATE[nxt_idx]
-    clearing = {i for i in range(N_LINKS) if cur[i] in "Gg" and nxt[i] == "r"}
+    # a movement clears if it loses green, or drops from protected 'G' to
+    # permissive 'g' (FYA: yellow arrow + red clearance before the opposing
+    # through starts, as GDOT's controller runs P3->P4 / P7->P8)
+    clearing = {i for i in range(N_LINKS)
+                if (cur[i] in "Gg" and nxt[i] == "r") or (cur[i] == "G" and nxt[i] == "g")}
     if not clearing:
         return None
 
     def held(i: int) -> bool:
-        return cur[i] in "Gg" and nxt[i] in "Gg"
+        return i not in clearing and cur[i] in "Gg" and nxt[i] in "Gg"
 
     yellow = "".join(
         "y" if i in clearing else (cur[i] if held(i) else "r")
@@ -181,8 +176,10 @@ def transition(cur_idx: int, nxt_idx: int):
 # over which the queue reward is summed. Ordered, stop-bar edges first.
 # (E1, the uncontrolled slip lane, is excluded: it bypasses the signal.)
 APPROACH_EDGES = [
-    "S_in",                              # NB, 4 lanes
-    "N_near", "N_far",                   # SB, 4 + 3 lanes
-    "SW_in",                             # EB, 5 lanes
-    "NE_in.79", "NE_in.15", "NE_in",     # WB, 5 + 6 + 5 lanes
+    "S_in", "S_in_ext",                              # NB (Piedmont from S), 4 + 4 lanes
+    "N_near", "N_far", "N_far_ext",                  # SB (Piedmont from N), 4 + 3 + 3 lanes
+    "SW_in",                                         # EB (Peachtree from SW), 5 lanes
+    "NE_in.79", "NE_in.15",                          # WB (Peachtree from NE), 5 + 6 lanes (136 m; 2026-10-09 edit)
 ]
+# *_ext = upstream segments of sumotwin/7065_ext.net.xml (real approach lengths,
+# EXP-005 v6); the env runs on that net, so queues there are observed/penalised.

@@ -58,7 +58,15 @@ import os
 import sys
 from dataclasses import dataclass
 
-sys.path.append(os.path.join(os.environ.get("SUMO_HOME", "/usr/share/sumo"), "tools"))
+# SUMO: prefer the version pinned in the project's uv environment (eclipse-sumo, pyproject.toml) over the
+# system install, so OS upgrades can't change results; fall back to $SUMO_HOME/tools.
+try:
+    import sumo as _sumo_pkg
+    SUMO_HOME = _sumo_pkg.SUMO_HOME
+    os.environ["SUMO_HOME"] = SUMO_HOME
+except ImportError:
+    SUMO_HOME = os.environ.get("SUMO_HOME", "/usr/share/sumo")
+    sys.path.insert(0, os.path.join(SUMO_HOME, "tools"))
 import traci  # noqa: E402  (GUI backend, and headless fallback)
 
 # libsumo is a drop-in, in-process replacement for traci (no socket IPC) --
@@ -75,7 +83,7 @@ except Exception:
 import stages as st  # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-NET = os.path.join(REPO, "sumotwin", "7065.net.xml")
+NET = os.path.join(REPO, "sumotwin", "7065_ext.net.xml")   # extended twin (real approach lengths) since EXP-007
 
 QUEUE_SPEED = 5.0 / 3.6  # 5 km/h in m/s
 # feature modes built on the always-visible global summary block (EXP-004).
@@ -84,7 +92,7 @@ GLOBAL_MODES = {"pg_norm_global", "pg_glob_rate", "pg_glob_age",
                 "pg_glob_rate_age", "pg_glob_spill"}
 # entry edge per approach (0=NB,1=SB,2=EB,3=WB): the source-end edge whose
 # occupancy signals spillback-to-source (blocked insertions) risk.
-ENTRY_EDGE = {0: "S_in", 1: "N_far", 2: "SW_in", 3: "NE_in"}
+ENTRY_EDGE = {0: "S_in_ext", 1: "N_far_ext", 2: "SW_in", 3: "NE_in.15"}   # NE entry edge since the 2026-10-09 geometry edit
 SPILL_LANE_OCC = 0.9    # a lane at >=90% storage counts as spilled (reward)
 SPILL_W = 5.0           # extra penalty per spilled entry lane per second:
                         # spillback is nonlinearly worse than its queue count
@@ -235,9 +243,9 @@ class Sig7065Env:
         # lane -> approach index (0=NB, 1=SB, 2=EB, 3=WB) for the global block
         def _appr(lane_id: str) -> int:
             e = lane_id.rsplit("_", 1)[0]
-            if e == "S_in":
+            if e in ("S_in", "S_in_ext"):
                 return 0
-            if e in ("N_near", "N_far"):
+            if e in ("N_near", "N_far", "N_far_ext"):
                 return 1
             if e == "SW_in":
                 return 2

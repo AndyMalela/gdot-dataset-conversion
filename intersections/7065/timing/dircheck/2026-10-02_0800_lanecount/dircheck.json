@@ -1,0 +1,135 @@
+{
+ "signal": "7065",
+ "window": "2026-10-02 08:00 (5 min)",
+ "tmc_found": true,
+ "phases": [
+  {
+   "phase": 1,
+   "desc": "SR 141 Peachtree Road NB LT",
+   "approach": "EB",
+   "move": "L",
+   "gdot_word": "NB",
+   "detector_count": 16,
+   "report_by_word": 13,
+   "report_by_approach_label": 13,
+   "report_all_dirs": {
+    "NB": 13,
+    "SB": 8,
+    "EB": 16,
+    "WB": 9
+   }
+  },
+  {
+   "phase": 2,
+   "desc": "SR 141 Peachtree Road SB",
+   "approach": "WB",
+   "move": "T",
+   "gdot_word": "SB",
+   "detector_count": null,
+   "report_by_word": 49,
+   "report_by_approach_label": 49,
+   "report_all_dirs": {
+    "NB": 18,
+    "SB": 49,
+    "EB": 52,
+    "WB": 33
+   }
+  },
+  {
+   "phase": 3,
+   "desc": "SR 237 Piedmont Road EB LT",
+   "approach": "SB",
+   "move": "L",
+   "gdot_word": "EB",
+   "detector_count": null,
+   "report_by_word": 16,
+   "report_by_approach_label": 16,
+   "report_all_dirs": {
+    "NB": 13,
+    "SB": 8,
+    "EB": 16,
+    "WB": 9
+   }
+  },
+  {
+   "phase": 4,
+   "desc": "SR 237 Piedmont Road WB",
+   "approach": "NB",
+   "move": "T",
+   "gdot_word": "WB",
+   "detector_count": null,
+   "report_by_word": 33,
+   "report_by_approach_label": 33,
+   "report_all_dirs": {
+    "NB": 18,
+    "SB": 49,
+    "EB": 52,
+    "WB": 33
+   }
+  },
+  {
+   "phase": 5,
+   "desc": "SR 141 Peachtree Road SB LT",
+   "approach": "WB",
+   "move": "L",
+   "gdot_word": "SB",
+   "detector_count": 241,
+   "report_by_word": 8,
+   "report_by_approach_label": 8,
+   "report_all_dirs": {
+    "NB": 13,
+    "SB": 8,
+    "EB": 16,
+    "WB": 9
+   }
+  },
+  {
+   "phase": 6,
+   "desc": "SR 141 Peachtree Road NB",
+   "approach": "EB",
+   "move": "T",
+   "gdot_word": "NB",
+   "detector_count": null,
+   "report_by_word": 18,
+   "report_by_approach_label": 18,
+   "report_all_dirs": {
+    "NB": 18,
+    "SB": 49,
+    "EB": 52,
+    "WB": 33
+   }
+  },
+  {
+   "phase": 7,
+   "desc": "SR 237 Piedmont Road WB LT",
+   "approach": "NB",
+   "move": "L",
+   "gdot_word": "WB",
+   "detector_count": null,
+   "report_by_word": 9,
+   "report_by_approach_label": 9,
+   "report_all_dirs": {
+    "NB": 13,
+    "SB": 8,
+    "EB": 16,
+    "WB": 9
+   }
+  },
+  {
+   "phase": 8,
+   "desc": "SR 237 Piedmont Road EB",
+   "approach": "SB",
+   "move": "T",
+   "gdot_word": "EB",
+   "detector_count": null,
+   "report_by_word": 52,
+   "report_by_approach_label": 52,
+   "report_all_dirs": {
+    "NB": 18,
+    "SB": 49,
+    "EB": 52,
+    "WB": 33
+   }
+  }
+ ]
+}

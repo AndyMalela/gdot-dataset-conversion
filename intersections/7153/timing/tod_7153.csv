@@ -1,0 +1,4 @@
+signal_id,date,weekday,window_start,window_min,cycle_s_est,ped_walks,P1_n,P1_green_med,P1_green_max,P1_yellow,P1_red_clear,P2_n,P2_green_med,P2_green_max,P2_yellow,P2_red_clear,P3_n,P3_green_med,P3_green_max,P3_yellow,P3_red_clear,P4_n,P4_green_med,P4_green_max,P4_yellow,P4_red_clear,P5_n,P5_green_med,P5_green_max,P5_yellow,P5_red_clear,P6_n,P6_green_med,P6_green_max,P6_yellow,P6_red_clear,P8_n,P8_green_med,P8_green_max,P8_yellow,P8_red_clear
+7153,2026-10-02,Fri,08:00,15,139.3,0,7,13.1,14.0,3.2,3.5,7,65.2,78.0,3.6,2.6,3,8.8,8.9,3.0,3.5,6,28.9,39.6,3.2,3.5,7,12.3,18.2,2.3,4.3,7,65.5,81.4,3.6,2.6,6,41.7,43.9,3.2,3.5
+7153,2026-10-02,Fri,12:15,5,127.6,0,3,8.3,8.3,2.8,3.8,3,54.1,54.3,3.7,2.3,1,8.3,8.3,2.9,3.2,3,37.6,42.3,3.4,3.5,3,15.6,16.0,3.1,4.1,2,46.2,46.4,3.7,2.3,3,44.9,56.9,3.4,3.5
+7153,2026-10-02,Fri,17:00,15,159.8,0,5,20.7,20.8,2.3,3.5,6,61.8,70.4,4.0,2.6,6,8.7,8.9,2.2,3.5,6,43.0,43.0,3.1,4.4,4,17.0,18.2,2.2,4.4,6,66.0,88.3,4.0,2.6,6,57.5,57.6,3.1,4.4

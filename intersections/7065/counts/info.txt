@@ -1,0 +1,9 @@
+Signal:        7065
+Intersection:  SR 141 @ SR 237
+Source:        GDOT ATSPM, Turning Movement Counts (https://traffic.dot.ga.gov/ATSPM/DefaultCharts)
+Bin size:      5 min
+Days cached:   93 (2026-05-06 to 2026-10-03)
+Complete days: 54   partial: 38   no data: 1
+Movements:     EB_L EB_T WB_L WB_T NB_L NB_T SB_L SB_T
+Outage rule:   >= 3 consecutive all-zero bins -> status=outage, counts blank
+Updated:       2026-10-08 15:40

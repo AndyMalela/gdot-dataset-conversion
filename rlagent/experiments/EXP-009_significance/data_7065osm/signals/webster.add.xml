@@ -1,0 +1,24 @@
+<additional>
+  <tlLogic id="cluster_69536528_69537103" type="static" programID="webster_dr" offset="0">  <!-- cycle 124.0 s -->
+    <phase duration="11" state="GGGGGsrrrrrrrrrrsrrr"/>
+    <phase duration="4" state="GGGyysrrrrrrrrrrsrrr"/>
+    <phase duration="3" state="GGGrrsrrrrrrrrrrsrrr"/>
+    <phase duration="18" state="GGGrrsrrrrrGGGrrsrrr"/>
+    <phase duration="3" state="yyyrrsrrrrrGGGrrsrrr"/>
+    <phase duration="3" state="rrrrrsrrrrrGGGrrsrrr"/>
+    <phase duration="7" state="rrrrrsrrrrrGGGGGsrrr"/>
+    <phase duration="1" state="rrrrrsrrrrrGGGyysrrr"/>
+    <phase duration="3" state="rrrrrsrrrrryyyyysrrr"/>
+    <phase duration="1" state="rrrrrsrrrrrrrryysrrr"/>
+    <phase duration="2" state="rrrrrsrrrrrrrrrrsrrr"/>
+    <phase duration="5" state="rrrrrsrrGGGrrrrrsrrG"/>
+    <phase duration="3" state="rrrrrsrryyyrrrrrsrrG"/>
+    <phase duration="3" state="rrrrrsrrrrrrrrrrsrrG"/>
+    <phase duration="7" state="rrrrrsrrgggrrrrrGGGG"/>
+    <phase duration="4" state="rrrrrsrrgggrrrrrGGGy"/>
+    <phase duration="2" state="rrrrrsrrgggrrrrrGGGr"/>
+    <phase duration="37" state="rrrrrGGGgggrrrrrGGGg"/>
+    <phase duration="4" state="rrrrryyyyyyrrrrryyyy"/>
+    <phase duration="3" state="rrrrrsrrrrrrrrrrsrrr"/>
+  </tlLogic>
+</additional>

@@ -1,0 +1,13 @@
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|highway.trunk' (first occurrence for edge '96433201').
+Warning: Ignoring turn sign information for 3 lanes on edge 1474278655 with 4 driving lanes
+Warning: Found sharp turn with radius 8.64 at the end of edge '96433108'.
+Warning: Shape for junction '1117466104' has distance 24.44 to its given position.
+Warning: Cannot apply turn sign information for edge '1153256541#1' because there are 3 signed connections with directions 's' but target edge '-214426918#9' has only 1 suitable lanes
+Warning: Cannot apply turn sign information for edge '1314762092#0' because there are 2 signed connections with directions 's' but target edge '-9253444#22' has only 1 suitable lanes
+Warning: Cannot apply turn sign information for edge '1377780874#0' because there are 2 signed connections with directions 's' but target edge '448349579#0' has only 1 suitable lanes
+Warning: Cannot apply turn sign information for edge '1474278657#0' because there are 2 signed directions but only 1 targets
+Warning: Cannot apply turn sign information for edge '1474278659' because there are 2 signed directions but only 1 targets
+Warning: Cannot apply turn sign information for edge '525767114#0' because there are 3 signed connections with directions 's' but target edge '-1362962935#1' has only 1 suitable lanes
+Warning: Cannot apply turn sign information for edge '715642217#0' because there are 2 signed directions and 3 targets (after target pruning)
+Warning: Unreachable edge '1153256541#1' within tlLogic 'joinedS_9499723901_9499723902_cluster_2239696516_2239696517'
+Warning: Intersecting left turns at junction 'cluster_13525129412_69536521' from lane '9273487#1_0' and lane '-1362962934#1_0' (increase junction radius to avoid this).

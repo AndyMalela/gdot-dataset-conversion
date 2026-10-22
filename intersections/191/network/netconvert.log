@@ -1,0 +1,14 @@
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|highway.residential' (first occurrence for edge '9277083').
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|highway.secondary' (first occurrence for edge '26786742').
+Warning: Discarding unknown compound 'bus' in type 'bus|highway.service' (first occurrence for edge '73229541').
+Warning: Removing pt stop '3259302271' on non existing edge '1035802254'.
+Warning: Could not find corresponding edge or compatible lane for free-floating pt stop '3259302271' (). Thus, it will be removed!
+Warning: Shape for junction '69398971' has distance 37.08 to its given position.
+Warning: Cannot apply turn sign information for edge '435231684' because there are 2 signed directions but only 1 targets
+Warning: The traffic light '13174172244' does not control any links; it will not be build.
+Warning: Could not build program '0' for traffic light '13174172244'
+Warning: The traffic light '4776044368' does not control any links; it will not be build.
+Warning: Could not build program '0' for traffic light '4776044368'
+Warning: The traffic light '4776044369' does not control any links; it will not be build.
+Warning: Could not build program '0' for traffic light '4776044369'
+Warning: Speed of straight connection '1416506803_0->1416493361_7' reduced by 9.67 due to turning radius of 34.30 (length=1.57, angle=17.69).

@@ -1,0 +1,28 @@
+<additional>
+  <tlLogic id="cluster_1278558749_283201123" type="NEMA" programID="Actuated" offset="0">
+    <param key="detector-length" value="20"/>
+    <param key="detector-length-leftTurnLane" value="20"/>
+    <param key="show-detectors" value="true"/>
+    <param key="total-cycle-length" value="145"/>
+    <param key="ring1" value="1,2,0,4"/>
+    <param key="ring2" value="0,6,7,8"/>
+    <param key="barrierPhases" value="4,8"/>
+    <param key="coordinatePhases" value="2,6"/>
+    <param key="coordinate-mode" value="false"/>
+    <param key="minRecall" value="2,4,6"/>
+    <param key="maxRecall" value=""/>
+    <param key="fixForceOff" value="false"/>
+    <phase duration="99" minDur="6.0" maxDur="24.9" vehext="8.0" yellow="3.2" red="2.9" name="1" state="rrrrrrrrrrrrrG"/>
+    <phase duration="99" minDur="10.2" maxDur="45.1" vehext="4.0" yellow="4.0" red="2.9" name="2" state="rrrGGGGgrrrrrr"/>
+    <phase duration="99" minDur="1.0" maxDur="29.0" vehext="0.5" yellow="1.0" red="1.0" name="4" state="rrrrrrrrrrrrrr"/>  <!-- dummy: rests at the barrier -->
+    <phase duration="99" minDur="10.2" maxDur="45.1" vehext="4.0" yellow="4.0" red="2.9" name="6" state="rrrrrrrrrrrGGg"/>
+    <phase duration="99" minDur="7.9" maxDur="39.5" vehext="8.0" yellow="3.5" red="3.0" name="7" state="rrrrrrrrGGGrrr"/>
+    <phase duration="99" minDur="7.8" maxDur="40.1" vehext="4.0" yellow="4.0" red="2.9" name="8" state="GGGrrrrrrrrrrr"/>
+  </tlLogic>
+  <tlLogic id="cluster_1278558763_283192497" type="static" programID="off" offset="0"/>
+  <tlLogic id="joinedS_1278558734_cluster_1278558750_1278582058_1278582080_69500711" type="static" programID="off" offset="0"/>
+  <WAUT id="tod" refTime="0" startProg="Actuated">
+  </WAUT>
+  <wautJunction wautID="tod" junctionID="cluster_1278558749_283201123"/>
+  <timedEvent type="SaveTLSStates" source="cluster_1278558749_283201123" dest="states.xml"/>
+</additional>

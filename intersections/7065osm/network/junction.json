@@ -1,0 +1,145 @@
+{
+ "signal_id": "7065osm",
+ "name": "SR 141 @ SR 237",
+ "lat": 33.8437,
+ "lon": -84.3714,
+ "node": "cluster_69536528_69537103",
+ "node_type": "traffic_light",
+ "dist_m": 2.7,
+ "tls": [
+  "cluster_69536528_69537103"
+ ],
+ "approaches": [
+  {
+   "edge": "715642217#0",
+   "osm_way": "715642217",
+   "name": "Piedmont Road Northeast",
+   "label": "NB",
+   "heading_deg": 337,
+   "lanes": 4,
+   "lanes_tag": "4",
+   "turn_lanes_tag": "left|through|through|through",
+   "lane_moves": [
+    "TR",
+    "T",
+    "L",
+    "LU"
+   ],
+   "movements": {
+    "R": [
+     "1049518251#0"
+    ],
+    "T": [
+     "525767115#0"
+    ],
+    "L": [
+     "1474278653#0"
+    ],
+    "U": [
+     "715642215#0"
+    ]
+   },
+   "length_m": 86,
+   "upstream_m": 291
+  },
+  {
+   "edge": "96433201#0",
+   "osm_way": "96433201",
+   "name": "Peachtree Road Northeast",
+   "label": "EB",
+   "heading_deg": 53,
+   "lanes": 5,
+   "lanes_tag": "5",
+   "turn_lanes_tag": "left|left|||",
+   "lane_moves": [
+    "T",
+    "T",
+    "T",
+    "L",
+    "L"
+   ],
+   "movements": {
+    "T": [
+     "1049518251#0"
+    ],
+    "L": [
+     "525767115#0"
+    ]
+   },
+   "length_m": 33,
+   "upstream_m": 92
+  },
+  {
+   "edge": "-525767115#1",
+   "osm_way": "525767115",
+   "name": "Piedmont Road Northeast",
+   "label": "SB",
+   "heading_deg": 156,
+   "lanes": 4,
+   "lanes_tag": "6",
+   "turn_lanes_tag": "left|through|through|right",
+   "lane_moves": [
+    "R",
+    "T",
+    "T",
+    "L"
+   ],
+   "movements": {
+    "R": [
+     "1474278653#0"
+    ],
+    "T": [
+     "715642215#0"
+    ],
+    "L": [
+     "1049518251#0"
+    ]
+   },
+   "length_m": 19,
+   "upstream_m": 219
+  },
+  {
+   "edge": "1153256544#1",
+   "osm_way": "1153256544",
+   "name": "Peachtree Road Northeast",
+   "label": "WB",
+   "heading_deg": 235,
+   "lanes": 5,
+   "lanes_tag": "5",
+   "turn_lanes_tag": "left|left|||",
+   "lane_moves": [
+    "T",
+    "T",
+    "T",
+    "L",
+    "L"
+   ],
+   "movements": {
+    "T": [
+     "1474278653#0"
+    ],
+    "L": [
+     "715642215#0"
+    ]
+   },
+   "length_m": 92,
+   "upstream_m": 190
+  }
+ ],
+ "flags": [
+  "EB approach has only 92 m of road before the network edge or the next signal (little queue space)"
+ ],
+ "smoke_test": {
+  "flows": 10,
+  "returncode": 0,
+  "loaded": 200,
+  "inserted": 200,
+  "running": 0,
+  "waiting": 0,
+  "teleports": 0,
+  "jams": 0,
+  "collisions": 0,
+  "warnings": 0,
+  "errors": []
+ }
+}

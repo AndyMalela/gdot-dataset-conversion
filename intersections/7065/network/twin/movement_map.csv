@@ -1,0 +1,9 @@
+atspm_column,approach,from_edge,to_edge,sumo_dir,note
+EB_L,EB,SW_in,N_out,L,
+EB_T,EB,SW_in,NE_out,T,
+WB_L,WB,NE_in.79,S_out,L,
+WB_T,WB,NE_in.79,SW_out,T,
+NB_L,NB,S_in,SW_out,L,
+NB_T,NB,S_in,N_out,T,
+SB_L,SB,N_near,NE_out,L,
+SB_T,SB,N_near,S_out,T,

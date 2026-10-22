@@ -1,0 +1,5 @@
+<nodes>
+  <node id="nS_ext" x="163.06" y="-226.48" type="priority"/>
+  <node id="nN_ext" x="-29.48" y="336.53" type="priority"/>
+  <node id="nNE_ext" x="251.47" y="181.82" type="priority"/>
+</nodes>

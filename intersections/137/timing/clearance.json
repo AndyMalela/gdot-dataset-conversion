@@ -1,0 +1,28 @@
+{
+ "window": "2026-10-02 17:00 (5 min)",
+ "yellow": {
+  "2": 3.9,
+  "3": 2.8,
+  "4": 2.8,
+  "5": 2.9,
+  "6": 3.9,
+  "7": 3.1,
+  "8": 2.8
+ },
+ "red_clear": {
+  "2": 2.4,
+  "3": 2.9,
+  "4": 2.1,
+  "5": 2.9,
+  "6": 2.4,
+  "7": 2.9,
+  "8": 2.1
+ },
+ "lead": {
+  "5/6": 5,
+  "3/4": 3,
+  "7/8": 7,
+  "1/2": 1
+ },
+ "lead_note": "Corrected 2026-10-05 with the fixed lead/lag rule (leading phase's clearance ends when its partner starts), voted over all cached Timing & Actuation windows: {'1/2': 1}."
+}
