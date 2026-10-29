@@ -1,0 +1,41 @@
+{
+ "source": "DETECTORS.md (T&A 2026-10-02 08:00 lane-by-lane charts; PCD headers 2026-10-02 16:00)",
+ "tls": "cluster_69536528_69537103",
+ "stopbar_zone_m": {"value": 12.0, "assumption": "not published; 40 ft long-loop presence zone"},
+ "approaches": {
+  "N":  {"edge": "-525767115#1"},
+  "S":  {"edge": "715642217#0"},
+  "SW": {"edge": "96433201#0"},
+  "NE": {"edge": "1153256544#1"}
+ },
+ "detectors": [
+  {"phase": 1, "leg": "SW", "kind": "stopbar", "lane": 3, "ch": 1},
+  {"phase": 1, "leg": "SW", "kind": "stopbar", "lane": 4, "ch": 2},
+  {"phase": 2, "leg": "NE", "kind": "stopbar", "lane": 0, "ch": 21},
+  {"phase": 2, "leg": "NE", "kind": "stopbar", "lane": 1, "ch": 22},
+  {"phase": 2, "leg": "NE", "kind": "stopbar", "lane": 2, "ch": 23},
+  {"phase": 2, "leg": "NE", "kind": "setback", "lane": 0, "ch": 24, "dist_m": 79.2},
+  {"phase": 2, "leg": "NE", "kind": "setback", "lane": 1, "ch": 25, "dist_m": 79.2},
+  {"phase": 2, "leg": "NE", "kind": "setback", "lane": 2, "ch": 26, "dist_m": 79.2},
+  {"phase": 3, "leg": "N",  "kind": "stopbar", "lane": 3, "ch": 33},
+  {"phase": 4, "leg": "S",  "kind": "stopbar", "lane": 1, "ch": 52},
+  {"phase": 4, "leg": "S",  "kind": "stopbar", "lane": 2, "ch": 53},
+  {"phase": 4, "leg": "S",  "kind": "stopbar", "lane": 0, "ch": 54, "note": "right-turn lane, presence only"},
+  {"phase": 4, "leg": "S",  "kind": "setback", "lane": 1, "ch": 55, "dist_m": 79.2, "assumption": "distance not published; Peachtree value used until measured"},
+  {"phase": 4, "leg": "S",  "kind": "setback", "lane": 2, "ch": 56, "dist_m": 79.2, "assumption": "distance not published; Peachtree value used until measured"},
+  {"phase": 5, "leg": "NE", "kind": "stopbar", "lane": 3, "ch": 17},
+  {"phase": 5, "leg": "NE", "kind": "stopbar", "lane": 4, "ch": 18},
+  {"phase": 6, "leg": "SW", "kind": "stopbar", "lane": 0, "ch": 5},
+  {"phase": 6, "leg": "SW", "kind": "stopbar", "lane": 1, "ch": 6},
+  {"phase": 6, "leg": "SW", "kind": "stopbar", "lane": 2, "ch": 7},
+  {"phase": 6, "leg": "SW", "kind": "setback", "lane": 0, "ch": 8,  "dist_m": 79.2},
+  {"phase": 6, "leg": "SW", "kind": "setback", "lane": 1, "ch": 9,  "dist_m": 79.2},
+  {"phase": 6, "leg": "SW", "kind": "setback", "lane": 2, "ch": 10, "dist_m": 79.2},
+  {"phase": 7, "leg": "S",  "kind": "stopbar", "lane": 3, "ch": 48},
+  {"phase": 8, "leg": "N",  "kind": "stopbar", "lane": 1, "ch": 37},
+  {"phase": 8, "leg": "N",  "kind": "stopbar", "lane": 2, "ch": 38},
+  {"phase": 8, "leg": "N",  "kind": "stopbar", "lane": 0, "ch": 39, "note": "right-turn lane, presence only"},
+  {"phase": 8, "leg": "N",  "kind": "setback", "lane": 1, "ch": 40, "dist_m": 79.2, "assumption": "distance not published; Peachtree value used until measured"},
+  {"phase": 8, "leg": "N",  "kind": "setback", "lane": 2, "ch": 41, "dist_m": 79.2, "assumption": "distance not published; Peachtree value used until measured"}
+ ]
+}

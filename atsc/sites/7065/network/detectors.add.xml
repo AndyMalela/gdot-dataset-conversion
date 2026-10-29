@@ -1,0 +1,30 @@
+<additional>
+  <laneAreaDetector id="ch1" lane="96433201#0_3" endPos="33.33" length="12.00" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch2" lane="96433201#0_4" endPos="33.33" length="12.00" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch21" lane="1153256544#1_0" endPos="91.66" length="12.00" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch22" lane="1153256544#1_1" endPos="91.66" length="12.00" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch23" lane="1153256544#1_2" endPos="91.66" length="12.00" period="86400" file="NUL"/>
+  <inductionLoop id="ch24" lane="1153256544#1_0" pos="12.46" period="86400" file="NUL"/>
+  <inductionLoop id="ch25" lane="1153256544#1_1" pos="12.46" period="86400" file="NUL"/>
+  <inductionLoop id="ch26" lane="1153256544#1_2" pos="12.46" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch33" lane="-525767115#1_3" endPos="19.29" length="12.00" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch52" lane="715642217#0_1" endPos="86.21" length="12.00" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch53" lane="715642217#0_2" endPos="86.21" length="12.00" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch54" lane="715642217#0_0" endPos="86.21" length="12.00" period="86400" file="NUL"/>
+  <inductionLoop id="ch55" lane="715642217#0_1" pos="7.01" period="86400" file="NUL"/>
+  <inductionLoop id="ch56" lane="715642217#0_2" pos="7.01" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch17" lane="1153256544#1_3" endPos="91.66" length="12.00" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch18" lane="1153256544#1_4" endPos="91.66" length="12.00" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch5" lane="96433201#0_0" endPos="33.33" length="12.00" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch6" lane="96433201#0_1" endPos="33.33" length="12.00" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch7" lane="96433201#0_2" endPos="33.33" length="12.00" period="86400" file="NUL"/>
+  <inductionLoop id="ch8" lane="1118649821#0_0" pos="13.28" period="86400" file="NUL"/>
+  <inductionLoop id="ch9" lane="1118649821#0_1" pos="13.28" period="86400" file="NUL"/>
+  <inductionLoop id="ch10" lane="1118649821#0_2" pos="13.28" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch48" lane="715642217#0_3" endPos="86.21" length="12.00" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch37" lane="-525767115#1_1" endPos="19.29" length="12.00" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch38" lane="-525767115#1_2" endPos="19.29" length="12.00" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch39" lane="-525767115#1_0" endPos="19.29" length="12.00" period="86400" file="NUL"/>
+  <inductionLoop id="ch40" lane="-525767115#3_0" pos="44.73" period="86400" file="NUL"/>
+  <inductionLoop id="ch41" lane="-525767115#3_1" pos="44.73" period="86400" file="NUL"/>
+</additional>
