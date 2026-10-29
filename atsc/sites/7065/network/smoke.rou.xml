@@ -1,0 +1,14 @@
+<routes>
+  <vType id="car" sigma="0.5"/>
+  <flow id="N_T"  type="car" from="-525767115#1" to="715642215#0"  begin="0" end="600" vehsPerHour="300" departLane="best"/>
+  <flow id="N_L"  type="car" from="-525767115#1" to="1049518251#0" begin="0" end="600" vehsPerHour="300" departLane="best"/>
+  <flow id="S_T"  type="car" from="715642217#0"  to="525767115#0"  begin="0" end="600" vehsPerHour="300" departLane="best"/>
+  <flow id="S_L"  type="car" from="715642217#0"  to="1474278653#0" begin="0" end="600" vehsPerHour="300" departLane="best"/>
+  <flow id="SW_T" type="car" from="96433201#0"   to="1049518251#0" begin="0" end="600" vehsPerHour="300" departLane="best"/>
+  <flow id="SW_L" type="car" from="96433201#0"   to="525767115#0"  begin="0" end="600" vehsPerHour="300" departLane="best"/>
+  <flow id="NE_T" type="car" from="1153256544#1" to="1474278653#0" begin="0" end="600" vehsPerHour="300" departLane="best"/>
+  <flow id="NE_L" type="car" from="1153256544#1" to="715642215#0"  begin="0" end="600" vehsPerHour="300" departLane="best"/>
+  <flow id="SW_R" type="car" from="96433201#0"   to="715642215#0"  begin="0" end="600" vehsPerHour="60"  departLane="best"/>
+  <flow id="N_R"  type="car" from="-525767115#1" to="1474278653#0" begin="0" end="600" vehsPerHour="60"  departLane="best"/>
+  <flow id="S_R"  type="car" from="715642217#0"  to="1049518251#0" begin="0" end="600" vehsPerHour="60"  departLane="best"/>
+</routes>

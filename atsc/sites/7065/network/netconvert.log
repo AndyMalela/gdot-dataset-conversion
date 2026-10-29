@@ -1,0 +1,3 @@
+Warning: Found sharp turn with radius 8.64 at the end of edge '96433108'.
+Warning: Shape for junction '1117466104' has distance 24.44 to its given position.
+Warning: Intersecting left turns at junction 'cluster_13525129412_69536521' from lane '9273487#1_0' and lane '-1362962934#1_0' (increase junction radius to avoid this).

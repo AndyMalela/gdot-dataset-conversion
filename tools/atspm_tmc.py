@@ -239,6 +239,8 @@ def write_index():
                          "other_columns": "", "note": "raw downloads only (screening cache); "
                          "run atspm_tmc.py on it to build CSVs"})
             continue
+        if not (folder / "daily_summary.csv").exists():      # copied counts (e.g. 7065osm), not a download folder
+            continue
         txt = info.read_text()
         get = lambda k: (re.search(rf"{k}:\s+(.*)", txt) or [None, ""])[1].strip()
         days = list(csv.DictReader(open(folder / "daily_summary.csv")))
