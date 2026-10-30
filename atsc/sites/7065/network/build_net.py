@@ -30,6 +30,8 @@ TO_N, TO_S, TO_NE, TO_SW = "525767115#0", "715642215#0", "1049518251#0", "147427
 
 MPH35 = "15.65"
 N_BAY_M = 40.0                                    # N leg left bay + right lane length (student check)
+SW_MID = "1118649821#0"                           # SW leg edge from 7066 towards the bay (46-92.5 m from the stop line)
+SW_BAY1_M = 62.0                                  # SW first left lane: taper 71 -> 53 m, modelled from mid-taper
 
 
 def run(*cmd):
@@ -45,6 +47,8 @@ def main():
     n_in_len = net.getEdge(N_IN).getLength()
     n_up_len = net.getEdge(N_UP).getLength()
     split_pos = n_up_len - (N_BAY_M - n_in_len)   # position on N_UP where the 4-lane section starts
+    sw_dist = sum(net.getEdge(e).getLength() for e in (SW_IN, "1474278659"))   # stop line -> SW_MID's end
+    sw_pos = net.getEdge(SW_MID).getLength() - (SW_BAY1_M - sw_dist)
 
     with tempfile.TemporaryDirectory() as tmp:
         p = Path(tmp) / "p"
@@ -56,6 +60,11 @@ def main():
         e = edges[N_UP]
         ET.SubElement(e, "split", pos="0", lanes="1 2")
         ET.SubElement(e, "split", pos=f"{split_pos:.2f}", lanes="0 1 2 3")
+        # 5. SW leg: first left lane from 62 m (student check 2026-10-30: taper 71 -> 53 m; OSM had 46 m)
+        e = edges[SW_MID]
+        e.set("numLanes", "4")
+        ET.SubElement(e, "split", pos="0", lanes="0 1 2")
+        sw_split = ET.SubElement(e, "split", pos=f"{sw_pos:.2f}", lanes="0 1 2 3")
         # 3. S leg speed: posted 35 mph
         for eid in S_LEG:
             edges[eid].set("speed", MPH35)
@@ -63,6 +72,8 @@ def main():
         root = con.getroot()
         # the split renames N_UP's pieces, so connections into/out of it are re-guessed by netconvert
         for c in [c for c in root.findall("connection") if N_UP in (c.get("from"), c.get("to"))]:
+            root.remove(c)
+        for c in [c for c in root.findall("connection") if c.get("from") == SW_MID]:      # now leaves the split's 2nd piece
             root.remove(c)
         # 1b. S leg lane use: lane 0 right only, lanes 1-2 through, lane 3 left, no U-turn
         for c in [c for c in root.findall("connection") if c.get("from") == S_IN]:
@@ -87,13 +98,32 @@ def main():
         for c in [c for c in troot.findall("connection") if c.get("tl") == TLS]:
             troot.remove(c)
 
-        for tree, suffix in [(edg, "edg"), (con, "con"), (tll, "tll")]:
-            tree.write(f"{p}.{suffix}.xml")
-        log = run("netconvert", "--node-files", f"{p}.nod.xml", "--edge-files", f"{p}.edg.xml",
-                  "--connection-files", f"{p}.con.xml", "--tllogic-files", f"{p}.tll.xml",
-                  "--type-files", f"{p}.typ.xml", "-o", str(OUT))
+        # netconvert trims edges at junctions, so the split lands off target: measure and correct (fix 5)
+        for _ in range(5):
+            for tree, suffix in [(edg, "edg"), (con, "con"), (tll, "tll")]:
+                tree.write(f"{p}.{suffix}.xml")
+            log = run("netconvert", "--node-files", f"{p}.nod.xml", "--edge-files", f"{p}.edg.xml",
+                      "--connection-files", f"{p}.con.xml", "--tllogic-files", f"{p}.tll.xml",
+                      "--type-files", f"{p}.typ.xml", "-o", str(OUT))
+            got = sw_bay_start(sumolib.net.readNet(str(OUT)))
+            if abs(got - SW_BAY1_M) < 0.5:
+                break
+            sw_pos += got - SW_BAY1_M
+            sw_split.set("pos", f"{sw_pos:.2f}")
+        else:
+            sys.exit(f"SW bay start {got:.1f} m, target {SW_BAY1_M} m")
     (OUT.parent / "netconvert.log").write_text(log)
-    print(f"wrote {OUT.relative_to(ROOT)}  ({log.count('Warning')} netconvert warnings, see netconvert.log)")
+    print(f"wrote {OUT.relative_to(ROOT)}  ({log.count('Warning')} netconvert warnings, see netconvert.log); "
+          f"SW first left lane from {got:.1f} m")
+
+
+def sw_bay_start(net):
+    """distance from the SW stop line to where the approach widens from 3 to 4 lanes."""
+    e, d = net.getEdge(SW_IN), 0.0
+    while e.getLaneNumber() >= 4:
+        d += e.getLength()
+        e = max(e.getFromNode().getIncoming(), key=lambda x: x.getLaneNumber())
+    return d
 
 
 if __name__ == "__main__":

@@ -65,7 +65,7 @@ Read from 7065osm's edge splits (lane count per edge, traced upstream from the s
 | Item | 7065osm | Hand-built twin | Status |
 |---|---|---|---|
 | NE dual-left bay | 5 lanes for 0–92 m, then 3 → ≈ 92 m | | OSM-derived, plausible, not measured |
-| SW dual-left bay | 5 lanes 0–33 m, 4 lanes 33–46 m, 3 after → staggered ≈ 33 m / 46 m | | OSM-derived, plausible (7066 is only 92 m back), not measured |
+| SW dual-left bay | 5 lanes 0–33 m, 4 lanes 33–46 m, 3 after → staggered ≈ 33 m / 46 m | | **Measured (student, 2026-10-30):** at 60 m, 3 lanes (2 T + 1 T/R) with the first left lane already diverging; 1st left lane taper 71 → 53 m (full width from 53 m), 2nd left lane taper 43 → 28 m. Modelled from mid-taper: 4 lanes from **62 m** (fix 5), 5 lanes from 33 m (mid-taper 35.5 m; 2 m difference kept). |
 | S leg bay (left or right) | 4 lanes for 0–86 m, then 3 → one ≈ 86 m bay | | OSM-derived, plausible, not measured |
 | **N leg left bay + right lane** | 4 lanes for 0–128 m, then 2 → both ≈ 128 m | left pocket 40 m | **Wrong in 7065osm.** Student check (2026-10-23): left and right lanes both split off fully **40 m** before the stop line (matches the hand-built twin). 7065osm's 128 m came from a hand tag fix setting 4 lanes on the whole segment. **Fix: 4 lanes for the last 40 m only, 2 lanes upstream.** |
 | NE free-right slip | absent | present | Exists in reality (student check), but right turns carry no counted demand, so it is omitted. |
@@ -80,6 +80,7 @@ Built by `network/build_net.py` from 7065osm (reproducible; no hand edits in net
 | 1b | SW leg rightmost through lane also takes the right turn | lanes `rs s s l l` ✓ |
 | 2 | N leg: 4 lanes for the last 40 m only, 2 through lanes upstream | 4 lanes 0–40 m, 2 lanes 40 m+ ✓ |
 | 3 | S leg speed 35 mph | 35 mph on all three S-leg edges ✓ |
+| 5 | SW leg (2026-10-30): first left lane from 62 m (mid-taper of the measured 71 → 53 m) instead of OSM's 46 m; `build_net.py` measures the built network and corrects the split position until it lands within 0.5 m | 4 lanes from 61.7 m ✓ |
 | 4 | NE leg (2026-10-30): OSM widens 4 → 6 lanes on a 1.9 m micro-edge just before the bay, one upstream lane fanning out to stop-bar through lanes 0 and 1; SUMO sent every vehicle to the first, starving through lane 1. Rewired so each upstream lane feeds one through lane (`build_net.py` fix 4). | lane use balanced, see `DEMAND.md` ✓ |
 
 Smoke test (`network/smoke.rou.xml`, every counted movement + 3 rights, 10 min, netconvert's guessed program): 430 inserted, 430 completed, 0 teleports, 0 warnings.

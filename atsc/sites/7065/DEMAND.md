@@ -12,10 +12,12 @@ GDOT labels approaches by road direction, not compass (`phase_map.json` `count_l
 
 | GDOT column | Leg (compass) | Phases | Lanes | Counted by |
 |---|---|---|---|---|
-| NB_L / NB_T | SW, Peachtree | P1 / P6 | 2 / 3 | stop-bar / setback loops |
-| SB_L / SB_T | NE, Peachtree | P5 / P2 | 2 / 3 | stop-bar / setback loops |
-| EB_L / EB_T | N, Piedmont | P3 (+ P4 permissive) / P8 | 1 / 2 | stop-bar / setback loops |
-| WB_L / WB_T | S, Piedmont | P7 (+ P8 permissive) / P4 | 1 / 2 | stop-bar / setback loops |
+| NB_L / NB_T | SW, Peachtree | P1 / P6 | 2 / 3 | stop-bar / upstream zones |
+| SB_L / SB_T | NE, Peachtree | P5 / P2 | 2 / 3 | stop-bar / upstream zones |
+| EB_L / EB_T | N, Piedmont | P3 (+ P4 permissive) / P8 | 1 / 2 | stop-bar / upstream zones |
+| WB_L / WB_T | S, Piedmont | P7 (+ P8 permissive) / P4 | 1 / 2 | stop-bar / upstream zones |
+
+Detection is radar (Wavetronix Matrix / Advance) and video, not loops (`DETECTORS.md`); "setback" below means an upstream count zone.
 
 Right turns are not counted by GDOT (no count detector on the right lanes) and carry **no demand**.
 
@@ -32,20 +34,20 @@ Rules as `tools/dataset_7065.py`: complete = no outage bin; usable = ≤ 30 min 
 
 ## 3. Physically impossible bins
 
-Bound per movement and 5-min bin: lanes × 2,400 veh/h/lane (1.5 s headway, a physical ceiling well above HCM's 1,900 base) × the most green + yellow the movement's phases can get in any 300 s window under the plan(s) in effect, computed by running the NEMA engine with every other phase at its minimum (`demand.max_service`). Setback-counted movements add the queue that fits between the loop and the stop line (counted, not yet discharged; 7 m per car).
+Bound per movement and 5-min bin: lanes × 2,400 veh/h/lane (1.5 s headway, a physical ceiling well above HCM's 1,900 base) × the most green + yellow the movement's phases can get in any 300 s window under the plan(s) in effect, computed by running the NEMA engine with every other phase at its minimum (`demand.max_service`). Setback-counted movements add the queue that fits between the upstream zone and the stop line (counted, not yet discharged; 7 m per car).
 
 | Movement | Bins above the bound (usable days) | Share of its vehicles | Bins above the same bound at 1,900 |
 |---|---|---|---|
 | EB_T (Piedmont N through, P8) | **5 bins on 5 days** | 0.12 % | 19 |
 | every other movement | 0 | 0 | 0–1 |
 
-All flagged bins are EB_T (`demand_audit/flagged_bins.csv`). The five on usable days are all the **18:10** bin (Jul 16, Jul 21, Aug 12, Sep 21, Sep 24); two more are on bad days (Aug 4 17:25, Aug 18 16:40). EB_T has a 18:05–18:20 burst on a few days only (max 184–212 vehicles per bin against a median of ~90), consistent with the setback double-pulse hypothesis in `intersections/7065/timing/capacity_check/README.md`. **Kept as recorded** (fidelity policy); they are 0.12 % of EB_T and are reported, not removed.
+All flagged bins are EB_T (`demand_audit/flagged_bins.csv`). The five on usable days are all the **18:10** bin (Jul 16, Jul 21, Aug 12, Sep 21, Sep 24); two more are on bad days (Aug 4 17:25, Aug 18 16:40). EB_T has a 18:05–18:20 burst on a few days only (max 184–212 vehicles per bin against a median of ~90), consistent with over-counting in stop-and-go queues (the sub-second hit spacing noted in `intersections/7065/timing/capacity_check/README.md`; with radar/video detection, a long vehicle read twice or a split track, rather than the loop double pulses assumed there). **Kept as recorded** (fidelity policy); they are 0.12 % of EB_T and are reported, not removed.
 
 ### Finding: Piedmont-N through is saturated in the field, and its count is a discharge count
 
-Over 51 weekdays, the EB_T median per 5-min bin during plan C (180 s cycle) repeats with a 15-min period (e.g. 17:00–17:10: 80 / 92 / 100; 17:15–17:25: 82 / 93 / 98). 15 min is the least common multiple of the 180 s cycle and the 300 s bin, so the count follows the number of P8 greens in each bin. A loop counting free arrivals would not show the signal's rhythm. **The queue therefore stands over the N setback loops for much of the PM, and those loops count vehicles discharging.**
+Over 51 weekdays, the EB_T median per 5-min bin during plan C (180 s cycle) repeats with a 15-min period (e.g. 17:00–17:10: 80 / 92 / 100; 17:15–17:25: 82 / 93 / 98). 15 min is the least common multiple of the 180 s cycle and the 300 s bin, so the count follows the number of P8 greens in each bin. A detector counting free arrivals would not show the signal's rhythm. **The queue therefore stands over the N upstream count zones for much of the PM, and those zones count vehicles discharging.**
 
-The implied discharge rate is ~1,080 veh/h over P8's ~48 s of green per 180 s cycle, about **2,000 veh/h per lane of green**. That is high, above HCM's 1,900 base. One reason it could be inflated: see the open item on loop position (§5).
+The implied discharge rate is ~1,080 veh/h over P8's ~48 s of green per 180 s cycle, about **2,000 veh/h per lane of green**. That is high, above HCM's 1,900 base. One reason it could be inflated: see the open item on zone position (§5).
 
 Median EB_T flow during plan C runs at **1,169 veh/h per lane of the *maximum possible* P8 green + yellow** (p99 1,746). The other through movements are at 100–390. P8 is the one critical movement in the PM.
 
@@ -62,14 +64,16 @@ Median EB_T flow during plan C runs at **1,169 veh/h per lane of the *maximum po
 
 GDOT's export has movement totals only (no per-lane volumes), so the target is HCM's lane-utilization factors. The busiest lane carries ≈ 37 % of a 3-lane movement and ≈ 52 % of a 2-lane one.
 
-The first check (`departLane="best"`) put SW through at 81 / 19 / 0 % across its three lanes at the setback loops and NE through at 75 / 1 / 24 %, which wastes about a third of their capacity. There were two causes:
+The first check (`departLane="best"`) put SW through at 81 / 19 / 0 % across its three lanes at the upstream detectors and NE through at 75 / 1 / 24 %, which wastes about a third of their capacity. There were two causes:
 
 1. Where one upstream lane fans out into two stop-bar lanes, SUMO sends every vehicle to the first of them, and SUMO's lane-changing barely rebalances queues. Raising lcSpeedGain to 5–10 or setting lcKeepRight to 0 changed nothing.
 2. OSM wiring artifacts:
    - **NE:** a 4→6-lane widening on a 1.9 m micro-edge. Rewired, `GEOMETRY.md` fix 4.
    - **SW:** a 2-lane stretch 119 m long upstream of a 2→3 fan-out. The entry was moved to the 3-lane edge after it.
 
-Results after the fixes, Jul 16 14:30–19:30, real GDOT plans, gap-out 2 s. Each cell is the share per lane at the setback loops / at the stop bar.
+The SW left bay was later corrected to the measured tapers (`GEOMETRY.md` fix 5); rerunning the check gave the same lane shares and counts within ±1 %.
+
+Results after the fixes, Jul 16 14:30–19:30, real GDOT plans, gap-out 2 s. Each cell is the share per lane at the upstream detectors / at the stop bar.
 
 | departLane | SW through (3) | NE through (3) | N through (2) | S through (2) |
 |---|---|---|---|---|
@@ -92,10 +96,10 @@ Results after the fixes, Jul 16 14:30–19:30, real GDOT plans, gap-out 2 s. Eac
 
 ## 5. Open items
 
-- **Setback loop position vs. turn bays (student, Street View).**
-  - The assumed 79 m (Peachtree's published 260 ft) lies *upstream* of the N-leg bays (40 m, student check) and of the SW left bay (33 / 46 m in OSM, unmeasured). The S-leg bay (≈ 90 m real, 86 m sim) and the NE bay (92 m) contain it.
-  - In the simulation, the N and SW setback loops therefore also see left-turners (EB_L, NB_L above), which affects gap-out.
-  - In the field, if GDOT's N loops are upstream of the 40 m bay, the EB_T count includes left- and right-turners, which would inflate the P8 count (§3) and the capacity puzzle.
-  - To check: are the Piedmont-N through-lane saw-cuts inside the 40 m bay or upstream of it? How long is the SW (Peachtree NEB) dual-left bay?
+- **Upstream-zone position vs. turn bays.**
+  - The assumed 79 m (Peachtree's published 260 ft) lies *upstream* of the N-leg bays (40 m, student check) and of the SW left-lane tapers (71 m and 43 m, student check 2026-10-30). The S-leg bay (≈ 90 m real, 86 m sim) and the NE bay (92 m) contain it.
+  - In the simulation, the N and SW upstream zones therefore also see left-turners (EB_L, NB_L above), which affects gap-out.
+  - In the field, the same would hold if GDOT's zones sit at 79 m: the EB_T (and NB_T) counts would include turners, inflating the P8 count (§3) and the capacity puzzle.
+  - Detection is radar/video (no loops), so the distance cannot be read from the pavement. Only source: GDOT's ATSPM detector configuration ("distance from stop bar"). Until then, 79 m stays a disclosed assumption.
 - **SW dual-left lane use 66 / 34 %** (fan-out at the bay entry). Left demand there is low (≈ 150 veh/h PM); revisit if P1 turns out critical.
 - **Storage-exceedance recording** (`GEOMETRY.md`) is not implemented yet; it goes with the evaluation metrics.
