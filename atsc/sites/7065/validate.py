@@ -120,7 +120,8 @@ def compare(sim, field, plans=WEEKDAY_PLANS):
         if f is None or s["plan"] not in plans or int(s["phase"]) not in SCORED:
             continue
         key = (int(s["phase"]), s["plan"])
-        if s["avg_split_s"] not in (None, "") and f["avg_split_s"]:
+        # a phase the field never served in the band (skip 100 %) has no average split: the chart prints 0.0
+        if s["avg_split_s"] not in (None, "") and f["avg_split_s"] and float(f["skip_pct"]) < 99.5:
             d[key]["split"].append(float(s["avg_split_s"]) - float(f["avg_split_s"]))
         d[key]["gap"].append(float(s["gap_pct"]) - float(f["gap_pct"]))
         d[key]["skip"].append(float(s["skip_pct"]) - float(f["skip_pct"]))

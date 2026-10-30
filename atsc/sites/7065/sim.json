@@ -1,6 +1,37 @@
 {
  "source": "Phase 1.5 calibration, 2026-10-30 (CALIBRATION.md): least generous setting that serves the counted P8 flow on train weekdays without flagged bins",
- "vtype": {"sigma": 0.2, "tau": 0.9},
+ "vtype": {
+  "sigma": 0.2,
+  "tau": 0.9
+ },
  "step": 0.5,
- "passage_s": 2.0
+ "passage_s": 2.0,
+ "controller": {
+  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)",
+  "max_recall": {
+   "A": [
+    4,
+    7,
+    8
+   ],
+   "B": [
+    4,
+    7,
+    8
+   ],
+   "C": [
+    4,
+    7,
+    8
+   ]
+  },
+  "passage_s": {
+   "1": 8.0,
+   "3": 8.0,
+   "4": 8.0,
+   "5": 8.0,
+   "7": 6.0,
+   "8": 4.0
+  }
+ }
 }

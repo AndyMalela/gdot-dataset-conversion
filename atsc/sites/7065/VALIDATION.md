@@ -40,6 +40,66 @@ The train-day fit above gave errors of 36–52 gap-out points at every passage v
 
 Both are stored in `sim.json` (`controller`) and used unchanged for validation. The 1-s-grid fit is kept in the history as the first attempt.
 
-## Results
+## Results — attempt 1 (2026-10-30)
 
-(not run yet)
+Controller settings fitted on train days (`sim.json` → `controller`): max recall P4, P7, P8 in plans A–C; passage P1 8, P3 8, P4 8, P5 8, P7 6, P8 4 s (`validation/passage_fit.csv`). The left-turn fits sit at the edge of the grid (8 s) and still miss by 26–42 gap-out points on train days.
+
+Scoring fix applied after the run (`validate.py compare`): bands where the field never served the phase (skip 100 %, e.g. P3/P7 in night plan E) have no average split (the chart prints 0.0); the first scoring compared them as 0 s. Raw first scoring: `validation/score_attempt1_raw.md` (V1 19/30, worst 16.1 s: the same verdicts).
+
+| Phase | Plan | days | avg split sim − field (s) | % gap-outs sim − field | % skips sim − field |
+|---|---|---|---|---|---|
+| P1 | A | 24 | +0.7 | +23 | +0 |
+| P1 | B | 38 | +0.7 | +24 | +0 |
+| P1 | C | 21 | +0.6 | +40 | +0 |
+| P1 | D | 18 | +0.5 | +34 | +0 |
+| P1 | E | 39 | +0.2 | -1 | +3 |
+| P3 | A | 19 | -0.2 | +28 | +8 |
+| P3 | B | 38 | -3.4 | +54 | +11 |
+| P3 | C | 22 | -5.0 | +60 | +14 |
+| P3 | D | 22 | -0.5 | -18 | +6 |
+| P3 | E | 51 | — | +0 | +0 |
+| P4 | A | 24 | -0.1 | +0 | +0 |
+| P4 | B | 37 | +3.8 | +0 | +0 |
+| P4 | C | 23 | +6.7 | +0 | +0 |
+| P4 | D | 23 | +0.2 | +18 | +0 |
+| P4 | E | 50 | +2.5 | -13 | +0 |
+| P5 | A | 24 | -4.8 | +22 | +1 |
+| P5 | B | 33 | -7.7 | +29 | -2 |
+| P5 | C | 18 | -10.1 | +39 | -1 |
+| P5 | D | 22 | -3.3 | +21 | +0 |
+| P5 | E | 49 | +1.1 | -4 | +0 |
+| P7 | A | 18 | -1.3 | +0 | +25 |
+| P7 | B | 38 | -1.0 | -9 | +23 |
+| P7 | C | 23 | -0.9 | -4 | +23 |
+| P7 | D | 19 | -1.1 | +12 | +19 |
+| P7 | E | 51 | — | +0 | +0 |
+| P8 | A | 24 | +3.1 | +0 | +0 |
+| P8 | B | 37 | +2.4 | +0 | +0 |
+| P8 | C | 22 | +2.9 | +0 | +0 |
+| P8 | D | 23 | +2.8 | -4 | +0 |
+| P8 | E | 51 | +2.5 | -9 | +0 |
+
+- **V1 average split:** 19/28 pairs within 3 s, worst 10.1 s → **FAIL**
+- **V2 % gap-outs:** 17/30 pairs within 15 points, worst 60 → **FAIL**
+- **V3 % skips:** 26/30 pairs within 15 points → **PASS** (reported)
+- **V4 P8 discharge:** sim median 1952 vs field 1934 veh/h per lane of nominal green (+1.0 %) → **PASS**
+- **V5 health:** 0 teleports; overflow days outside flagged days: 2026-09-14, 2026-09-23, 2026-09-28 → **FAIL**
+
+**Verdict: not accepted yet.** V3 and V4 pass, V1, V2 and V5 fail.
+
+### Diagnosis
+
+- **What holds:** the critical movement's capacity, out of sample (V4, +1.0 %); the coordinated structure (P2/P6, cycle, force-offs); the Piedmont phases' behaviour (P4, P7, P8: termination within 0–18 points, split within ≈ 3 s, except P4 in B/C, which inherits time the simulated P3 leaves unused).
+- **What fails: the left-turn phases.** In the simulation P3 and P5 end 3–10 s earlier than in the field, and gap out 20–60 points more often (V1, V2). The counted demand explains P3 but not P5:
+  - P3 (Piedmont-N left, 1 lane): the field serves ≈ 6 vehicles per green at 2.2–2.8 s each, close to saturation, so it is forced off. The simulation serves more of them permissively during P4 (flashing yellow arrow), so fewer queue for P3. Suspect: simulated permissive gap acceptance too generous.
+  - P5 (Peachtree-NE dual left): the field gives 20–30 s of green, with 54–72 % gap-outs, to 3–5 counted vehicles per lane per cycle. Under gap-out logic on the counted demand that is not reachable with any passage time. Candidates, none observable in the published data: unpublished detector extend/delay timers, unequal use of the two left lanes, or left-turn undercounting by the stop-bar radar (one zone both counts and holds the call, and a dense discharge can read as fewer vehicles).
+  - P1's split matches (it lags P2 and rests to its force-off anyway); its termination label does not (field forced off 23–77 %, simulation mostly gaps out first).
+- **V5:** three validation days outside the flagged set overflow on the Piedmont-N through (Sep 14, 23, 28). Sep 23 has an 18:05–18:10 burst just under the physical bound (`intersections/7065/timing/capacity_check/README.md`); the other two are to be examined.
+- **Consequence for Phase 2 until fixed:** with left phases ending early, the coordinated phases inherit time in the simulation that they do not get in the field, so the simulated GDOT controller is somewhat optimistic. Any controller comparison run before attempt 2 is preliminary and says so.
+
+### Next (attempt 2, justified independently of these numbers)
+
+1. Permissive left-turn gap acceptance (SUMO junction model parameters for FYA turns), checked against P3's field termination on train days.
+2. P5: test the dual-left lane-use and undercount hypotheses with the Timing & Actuation charts (per-lane presence vs. counts, Oct 2 08:00 window).
+3. V5 days: inspect the Sep 14 and Sep 28 PM counts.
+
