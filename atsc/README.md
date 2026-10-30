@@ -17,7 +17,7 @@ atsc/
   sites/7065/      site spec (geometry, detectors, demand audit, validation)
     network/       build_net.py -> 7065v2.net.xml, detectors.add.xml
     signal.json    phases, rings, plans, schedule (make_signal.py)
-  sim/             nema.py (engine), signal.py (SUMO glue + policies), detectors.py
+  sim/             nema.py (engine), signal.py (SUMO glue + policies), detectors.py, demand.py, run.py
   tests/           engine rule tests + cross-check against the old static program
 ```
 
@@ -27,7 +27,7 @@ atsc/
 |---|---|
 | 1.1 Geometry spec | **done**: `sites/7065/GEOMETRY.md`; network `sites/7065/network/7065v2.net.xml` built by `build_net.py`, smoke test passes |
 | 1.2 Field detector layout | **built**: `sites/7065/DETECTORS.md`, `atsc/sim/detectors.py`; Piedmont setback distance assumed (260 ft) until measured |
-| 1.3 NEMA engine | **built + tested**: `atsc/sim/nema.py` (rules only), `atsc/sim/signal.py` (SUMO detectors in, signal out; `ActuatedPolicy`, `FixedPolicy`), `sites/7065/signal.json` (`make_signal.py`). 15 tests pass (`uv run python -m pytest atsc/tests`), incl. all 8 GDOT plans identical to the old static program per signal link. Known: 1 s steps end each interval up to 1 s late (~0.5 s per phase change); judge in 1.6. |
-| 1.4 Demand audit | — |
+| 1.3 NEMA engine | **built + tested**: `atsc/sim/nema.py` (rules only), `atsc/sim/signal.py` (SUMO detectors in, signal out; `ActuatedPolicy`, `FixedPolicy`), `sites/7065/signal.json` (`make_signal.py`). 16 tests pass (`uv run python -m pytest atsc/tests`), incl. all 8 GDOT plans identical to the old static program per signal link. Known: 1 s steps end each interval up to 1 s late (~0.5 s per phase change); judge in 1.6. Fixed 2026-10-30: a green starting late with a ped minimum that fills its split (P4, plans B/C/D) pushed its force-off into the next cycle, doubling the cycle (regression test added). |
+| 1.4 Demand audit | **done**: `sites/7065/DEMAND.md`. 51 usable weekdays + 12 Saturdays; 5 physically impossible bins (all EB_T 18:10, kept, flagged); `atsc/sim/demand.py` (counts → routes, locked test days refused), `atsc/sim/run.py`; lane use fixed (`departLane="random"`, NE micro-edge rewired, SW entry moved). Open: setback loop position vs. N/SW turn bays (student check); N leg over capacity → 1.5 |
 | 1.5 Capacity calibration | — |
 | 1.6 Field validation | — |

@@ -1,0 +1,31 @@
+{
+ "date": "2026-07-16",
+ "seed": 1,
+ "vtype": {
+  "vClass": "passenger"
+ },
+ "depart_lane": "random",
+ "vehicles": 45875,
+ "per_movement": {
+  "NB_L": 2728,
+  "NB_T": 5702,
+  "SB_L": 3088,
+  "SB_T": 9343,
+  "EB_L": 2516,
+  "EB_T": 14550,
+  "WB_L": 938,
+  "WB_T": 7010
+ },
+ "outage_windows_s": [],
+ "lead_s": {
+  "NB_L": 9.2,
+  "NB_T": 4.1,
+  "SB_L": 20.5,
+  "SB_T": 15.4,
+  "EB_L": 16.5,
+  "EB_T": 11.4,
+  "WB_L": 18.6,
+  "WB_T": 13.5
+ },
+ "rights": "not counted by GDOT: no right-turn demand"
+}

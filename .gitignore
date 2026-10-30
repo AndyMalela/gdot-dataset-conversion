@@ -28,3 +28,7 @@ rlagent/experiments/EXP-009_significance/data/demand/
 rlagent/experiments/EXP-009_significance/data/runs/**/tripinfo.xml
 rlagent/experiments/EXP-009_significance/data/train/**/weights_s*_ep*.npy
 rlagent/experiments/EXP-009_significance/archive/**/demand/
+
+# atsc: generated demand (regenerate with atsc/sim/demand.write_routes)
+atsc/**/*.rou.xml
+!atsc/sites/*/network/smoke.rou.xml

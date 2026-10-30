@@ -17,6 +17,7 @@ from dataclasses import dataclass, field
 
 # mode of a ring
 GREEN, REST, CLEAR, WAIT = "G", "B", "C", "W"     # REST = last phase of the group, resting in green
+LATE_TOL = 5.0      # s: a green starting up to this long after its own force-off point still belongs to that cycle
 
 
 @dataclass
@@ -130,7 +131,9 @@ class NemaEngine:
             s.force_off = math.inf
             return
         fo = self._fo_offset(ring, s.phase, group_end)
-        s.force_off = self._next_abs(fo, s.start + self.ph[s.phase].min_service())
+        # this cycle's force-off point, even when the green started a little late (step rounding) and its
+        # minimum runs past it: the green then ends when the minimum is done (tick), the cycle is not skipped
+        s.force_off = self._next_abs(fo, s.start - LATE_TOL)
 
     def _start_green(self, ring, p):
         s = _Ring(phase=p, start=self.now)

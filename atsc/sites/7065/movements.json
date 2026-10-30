@@ -1,0 +1,24 @@
+{
+ "source": "count column -> leg: intersections/7065/timing/phase_map.json count_labels (GDOT road-based labels, verified from detector counts 2026-10-02); leg -> edges: intersections/7065osm/network/movement_map.csv; phases: phase_map.json; lanes: GEOMETRY.md; counting detector: DETECTORS.md",
+ "movements": {
+  "NB_L": {"leg": "SW", "move": "L", "from": "96433201#0",   "to": "525767115#0",  "phases": [1],    "lanes": 2, "counted_at": "stopbar"},
+  "NB_T": {"leg": "SW", "move": "T", "from": "96433201#0",   "to": "1049518251#0", "phases": [6],    "lanes": 3, "counted_at": "setback"},
+  "SB_L": {"leg": "NE", "move": "L", "from": "1153256544#1", "to": "715642215#0",  "phases": [5],    "lanes": 2, "counted_at": "stopbar"},
+  "SB_T": {"leg": "NE", "move": "T", "from": "1153256544#1", "to": "1474278653#0", "phases": [2],    "lanes": 3, "counted_at": "setback"},
+  "EB_L": {"leg": "N",  "move": "L", "from": "-525767115#1", "to": "1049518251#0", "phases": [3, 4], "lanes": 1, "counted_at": "stopbar"},
+  "EB_T": {"leg": "N",  "move": "T", "from": "-525767115#1", "to": "715642215#0",  "phases": [8],    "lanes": 2, "counted_at": "setback"},
+  "WB_L": {"leg": "S",  "move": "L", "from": "715642217#0",  "to": "1474278653#0", "phases": [7, 8], "lanes": 1, "counted_at": "stopbar"},
+  "WB_T": {"leg": "S",  "move": "T", "from": "715642217#0",  "to": "525767115#0",  "phases": [4],    "lanes": 2, "counted_at": "setback"}
+ },
+ "entry_edges": {
+  "N":  "-1377780875#1",
+  "S":  "1014001449#5",
+  "SW": "1314762092#0",
+  "NE": "1153256541#1"
+ },
+ "notes": {
+  "phases": "first = protected phase; Piedmont lefts (EB_L, WB_L) also run permissive in the opposing through phase (flashing yellow arrow)",
+  "rights": "right turns are not counted by GDOT at 7065 (no count detector on the right lanes) and carry no demand",
+  "entry_edges": "where vehicles enter: N 258, S 291, NE 320 m upstream of the stop line (network edge, beyond the neighbouring signals 7071/7058, which run unsignalised); SW 144 m, the 3-lane edge just upstream of 7066 (92 m): further up, OSM narrows Peachtree to 2 lanes for 119 m and the 2->3 lane fan-out left the leftmost through lane unused (demand check 2026-10-30)"
+ }
+}

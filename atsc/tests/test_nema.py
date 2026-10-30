@@ -105,3 +105,18 @@ def test_zero_split_phase_is_never_served_even_fixed_time():
     full = [g for g in eng.greens if g.start >= 120 and g.end <= 240]
     got = {g.phase: round(g.green + Y[g.phase] + R[g.phase], 1) for g in full}
     assert got == {1: 20.0, 2: 50.0, 4: 50.0, 5: 20.0, 6: 50.0, 8: 50.0}, got
+
+
+def test_late_start_with_ped_min_filling_split_keeps_cycle():
+    # 7065 plan B: P4's split (43) is exactly its ped minimum + clearance; with 0.5/1 s steps P4 starts
+    # late after a full P3, and the cycle must still be 160 s (regression: it used to double to 320 s)
+    plan_b = Plan("B", 160, {1: 33, 2: 60, 3: 24, 4: 43, 5: 37, 6: 56, 7: 15, 8: 52})
+    for step in (0.5, 1.0):
+        ph = phases()
+        ph[4].ped_min = 43 - Y[4] - R[4]
+        eng = NemaEngine(RINGS, ph, plan_b)
+        run(eng, 6 * 160, dt=step)
+        starts = eng.cycle_starts
+        assert all(abs((b - a) - 160) <= step + 1e-6 for a, b in zip(starts[1:], starts[2:])), starts
+        p4 = [g for g in eng.greens if g.phase == 4 and g.start > 160]
+        assert all(g.green >= ph[4].ped_min - 1e-6 for g in p4)

@@ -24,6 +24,7 @@ N_IN, N_UP = "-525767115#1", "-525767115#3"      # N leg: stop-line edge (19 m) 
 S_IN = "715642217#0"                              # S leg approach
 S_LEG = ["715642217#0", "1014001449#9", "1014001449#5"]
 SW_IN = "96433201#0"
+NE_MICRO = ("1153256545#1", "1153256544#0")       # NE leg: 4-lane -> 6-lane micro-edge (1.9 m) before the bay
 # outbound edges
 TO_N, TO_S, TO_NE, TO_SW = "525767115#0", "715642215#0", "1049518251#0", "1474278653#0"
 
@@ -70,6 +71,14 @@ def main():
             ET.SubElement(root, "connection", {"from": S_IN, "to": to, "fromLane": str(fl), "toLane": str(tl)})
         # 2. SW leg: rightmost through lane also takes the right turn (onto Piedmont southbound)
         ET.SubElement(root, "connection", {"from": SW_IN, "to": TO_S, "fromLane": "0", "toLane": "0"})
+        # 4. NE leg: OSM widens 4 -> 6 lanes on a 1.9 m edge just before the bay, with lane 0 fanning out to
+        # stop-bar through lanes 0 and 1; SUMO sends every vehicle to the first, so through lane 1 starved
+        # (demand check 2026-10-30). Each upstream lane now feeds one through lane; lane 3 feeds the left bay.
+        for c in [c for c in root.findall("connection") if (c.get("from"), c.get("to")) == NE_MICRO]:
+            root.remove(c)
+        for fl, tl in [(0, 0), (0, 1), (1, 2), (2, 3), (3, 4), (3, 5)]:
+            ET.SubElement(root, "connection", {"from": NE_MICRO[0], "to": NE_MICRO[1],
+                                               "fromLane": str(fl), "toLane": str(tl)})
 
         # let netconvert re-guess the target's program (link indices change with the connections)
         troot = tll.getroot()

@@ -24,6 +24,7 @@ Notes:
 ## Open
 
 - **Piedmont setback distance (P4, P8).** Not published. To be estimated from Street View (loop saw-cuts) by the student. If not visible, assume 260 ft as on Peachtree and **disclose it as an assumption**.
+  **Raised in priority (2026-10-30, `DEMAND.md` §5):** 79 m lies upstream of the N-leg bays (40 m), so in the simulation the P8 loops also count left- and right-turners. If GDOT's real N loops are placed like that, the EB_T count includes turners too, which would inflate the P8 count. The same question applies to P6 (SW left bay 33/46 m in OSM, unmeasured).
 - **Stop-bar presence zone length.** Not published. Assumed 12 m (40 ft, a common long-loop presence zone), disclosed as an assumption; it only affects how long a call stays on, i.e. the actuated controller's gap-out behaviour, which Phase 1.6 checks against recorded green times.
 
 ## How the simulation uses it

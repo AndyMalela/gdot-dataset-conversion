@@ -1,0 +1,11 @@
+{
+ "source": "agreed 2026-10-23 (v2 plan); chronological, so every test day comes after every day used for fitting",
+ "sets": {
+  "train":      {"from": "2026-07-10", "to": "2026-08-31", "use": "capacity calibration, RL training, actuated / Webster tuning"},
+  "validation": {"from": "2026-09-01", "to": "2026-10-03", "use": "simulation-vs-field validation, model selection, all diagnosis"},
+  "test":       {"from": "2026-10-04", "to": "2026-10-22", "use": "LOCKED: final evaluation only", "locked": true}
+ },
+ "day_types": "weekdays are the main sets; Saturdays are reported separately; Sundays and holidays are not used",
+ "holidays": ["2026-09-07"],
+ "not_in_any_set": "2026-05-06..08 (two months before the rest) and 2026-07-06..09 (Jul 6/7 suspect detectors, Jul 8/9 partial)"
+}
