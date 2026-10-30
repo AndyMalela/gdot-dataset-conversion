@@ -68,18 +68,35 @@ class FixedPolicy:
 
 
 class ActuatedPolicy:
-    """gap-out: end the green once no detector of the phase has been actuated for `passage` s.
-    Detectors: the phase's stop-bar presence zones (actuated while occupied) and setback loops."""
-    def __init__(self, passage=2.0):
+    """gap-out: end the green once no detector of the phase has been actuated for its passage time.
+    Detectors: the phase's stop-bar presence zones (actuated while occupied) and count zones.
+    passage: seconds, one value or {phase: seconds}; max_recall: {plan name: phases that never gap out in
+    that plan (they run to their force-off)}, e.g. as inferred from GDOT's Split Monitor (CONTROLLER.md)."""
+    def __init__(self, passage=2.0, max_recall=None):
         self.passage = passage
+        self.max_recall = {k: set(v) for k, v in (max_recall or {}).items()}
+
+    def _passage(self, p):
+        return self.passage.get(p, 2.0) if isinstance(self.passage, dict) else self.passage
 
     def end_requests(self, sig):
         out = set()
+        recall = self.max_recall.get(sig._cur_plan_name, set())
         for ring in (1, 2):
             p, mode, el, _ = sig.engine.ring_state(ring)
-            if mode == "G" and sig.now - sig.last_actuation.get(p, -1e9) >= self.passage - 1e-9:
+            if p in recall:
+                continue
+            if mode == "G" and sig.now - sig.last_actuation.get(p, -1e9) >= self._passage(p) - 1e-9:
                 out.add(ring)
         return out
+
+
+def actuated_from_site(site_dir):
+    """the site's fitted GDOT controller settings (sim.json 'controller'), or plain 2 s gap-out."""
+    cal = json.loads((Path(site_dir) / "sim.json").read_text())
+    c = cal.get("controller", {})
+    return ActuatedPolicy({int(k): v for k, v in c.get("passage_s", {}).items()} or cal.get("passage_s", 2.0),
+                          c.get("max_recall"))
 
 
 # ---------------------------------------------------------------------------- the controller
@@ -120,12 +137,8 @@ class SumoSignal:
 
     # ---- time-of-day plans
     def _schedule(self, date):
-        s = self.sig["schedule_by_date"].get(str(date)) or self.sig["canonical_schedule"][day_type(date)]
-        out = []
-        for hhmm, name in s:
-            h, m = map(int, hhmm.split(":"))
-            out.append((h * 3600 + m * 60, name))
-        return sorted(out)
+        from .demand import schedule
+        return schedule(self.sig, date)
 
     def _plan_at(self, now):
         name = None

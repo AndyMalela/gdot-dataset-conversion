@@ -36,10 +36,9 @@ def train_days():
 def episode(args):
     from atsc.rl.agent import LSTDQPolicy
     from atsc.sim.episode import run_window
-    from atsc.sim.signal import ActuatedPolicy
+    from atsc.sim.signal import actuated_from_site
     date, (b0, b1), w, eps, seed = args
-    cal = json.loads((HERE / "sim.json").read_text())
-    pol = LSTDQPolicy(HERE, w=w, eps=eps, behaviour=ActuatedPolicy(cal["passage_s"]), seed=seed, record=True)
+    pol = LSTDQPolicy(HERE, w=w, eps=eps, behaviour=actuated_from_site(HERE), seed=seed, record=True)
     r = run_window(HERE, str(date), b0, b1, pol, mode="free", seed=seed)
     return pol.samples(), {"date": str(date), "window": f"{b0}-{b1}", "eps": eps, "delay_all_s": round(r["delay_all_s"], 2),
                            "teleports": r["teleports"]}

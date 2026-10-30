@@ -100,14 +100,22 @@ def day_quality(bins):
 
 # ---------------------------------------------------------------------------- physical bound
 def schedule(sig, date):
-    """[(start s, plan name)] for the day: dated read if verified, else the canonical day type."""
-    s = sig["schedule_by_date"].get(str(date))
-    if not s:
-        kind = "saturday" if date.weekday() == 5 else ("weekday" if date.weekday() < 5 else None)
-        s = sig["canonical_schedule"].get(kind) if kind else None
-    if not s:
-        return None
-    return sorted((int(t[:2]) * 3600 + int(t[3:]) * 60, n) for t, n in s)
+    """[(start s, plan name)] for the day. The dated read (signal.json schedule_by_date) is used where it exists,
+    but the chart reader sometimes misses a day's first or last bands (e.g. a schedule starting at 06:15, or
+    ending at 19:31 with no 21:45 night plan); outside the read range the canonical schedule of the day type
+    fills in, so the night plan carries over midnight (an assumption, not a reading)."""
+    kind = "saturday" if date.weekday() == 5 else ("weekday" if date.weekday() < 5 else None)
+    canon = sorted((hm_s(t), n) for t, n in (sig["canonical_schedule"].get(kind) or [])) if kind else []
+    dated = sig["schedule_by_date"].get(str(date))
+    if not dated:
+        return canon or None
+    dated = sorted((hm_s(t), n) for t, n in dated)
+    first, last = dated[0][0], dated[-1][0]
+    return ([c for c in canon if c[0] < first] + dated + [c for c in canon if c[0] > last + 600]) or None
+
+
+def hm_s(t):
+    return int(t[:2]) * 3600 + int(t[3:]) * 60
 
 
 def max_service(sig, plan_name, serving, window=BIN, dt_=0.5):

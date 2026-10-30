@@ -21,7 +21,8 @@ from atsc.sim.demand import day_quality, day_set, load_counts, schedule  # noqa:
 OUT = HERE / "validation"
 SCORED = (1, 3, 4, 5, 7, 8)
 WEEKDAY_PLANS = ("A", "B", "C", "D", "E")
-PASSAGES = (1.0, 1.5, 2.0, 2.5, 3.0, 4.0)
+PASSAGES = (2.0, 3.0, 4.0, 6.0, 8.0)
+RECALL_FORCE_PCT, RECALL_SKIP_PCT = 90.0, 1.0      # max-recall rule (CONTROLLER.md)
 G8_C = 55 - 3.6 - 3.0
 
 
@@ -43,13 +44,25 @@ def plan_of(sig, date, hhmm):
     return [n for t0, n in sch if t0 <= t + 300][-1]           # band edges are read to ~1 min
 
 
+def safe_job(args):
+    """a failed day is reported and skipped instead of stopping the whole pool."""
+    try:
+        return job(args)
+    except Exception as e:                      # noqa: BLE001
+        import traceback
+        print(f"FAILED {args[:2]}: {e}\n{traceback.format_exc()}", file=sys.stderr, flush=True)
+        return None
+
+
 def job(args):
     from atsc.sim.episode import run_window
     from atsc.sim.metrics import split_stats
-    from atsc.sim.signal import ActuatedPolicy
-    date, passage, bands = args
+    from atsc.sim.signal import ActuatedPolicy, actuated_from_site
+    date, spec, bands = args
     sig = json.loads((HERE / "signal.json").read_text())
-    r = run_window(HERE, str(date), 0.0, 24.0, ActuatedPolicy(passage), warmup_s=0)
+    pol = actuated_from_site(HERE) if spec is None else ActuatedPolicy(spec["passage"], spec["max_recall"])
+    passage = "site" if spec is None else spec["passage"]
+    r = run_window(HERE, str(date), 0.0, 24.0, pol, warmup_s=0)
     ph = {int(k): (v["yellow"], v["red"]) for k, v in sig["phases"].items()}
     stats = split_stats(r["greens"], r["cycle_starts"], ph, bands)
     rows = [{"date": str(date), "passage": passage, "band_start": b0, "band_end": b1, "plan": plan_of(sig, date, b0),
@@ -67,9 +80,8 @@ def job(args):
 
 def pm_delay_job(date):
     from atsc.sim.episode import run_window
-    from atsc.sim.signal import ActuatedPolicy
-    cal = json.loads((HERE / "sim.json").read_text())
-    r = run_window(HERE, str(date), 15.5, 19.0, ActuatedPolicy(cal["passage_s"]))
+    from atsc.sim.signal import actuated_from_site
+    r = run_window(HERE, str(date), 15.5, 19.0, actuated_from_site(HERE))
     return {"date": str(date), "pm_delay_EB_T_s": round(r["delay"]["EB_T"]["mean_s"], 1),
             "pm_delay_all_s": round(r["delay_all_s"], 1), "teleports": r["teleports"]}
 
@@ -89,13 +101,13 @@ def write(name, rows):
         w.writerows(rows)
 
 
-def run(set_name, passages):
+def run(set_name, specs):
     bands = bands_by_date(field_rows())
     ds = [d for d in days(set_name) if str(d) in bands]
-    jobs = [(d, p, bands[str(d)]) for d in ds for p in passages]
-    print(f"{set_name}: {len(ds)} days x {len(passages)} passage values = {len(jobs)} full-day runs")
+    jobs = [(d, sp, bands[str(d)]) for d in ds for sp in specs]
+    print(f"{set_name}: {len(ds)} days x {len(specs)} controller settings = {len(jobs)} full-day runs")
     with Pool(22) as pool:
-        res = pool.map(job, jobs, chunksize=1)
+        res = [x for x in pool.map(safe_job, jobs, chunksize=1) if x is not None]
     return [r for rs, _, _ in res for r in rs], [q for _, qs, _ in res for q in qs], [h for _, _, h in res]
 
 
@@ -119,22 +131,9 @@ def compare(sim, field, plans=WEEKDAY_PLANS):
 def main():
     cmd = sys.argv[1]
     if cmd == "fit-passage":
-        sim, _, health = run("train", PASSAGES)
-        write("passage_runs.csv", sim)
-        field = field_rows()
-        rows = []
-        for p in PASSAGES:
-            c = compare([s for s in sim if float(s["passage"]) == p], field)
-            c = {k: v for k, v in c.items() if v["n"] >= 5}
-            gaps = [abs(v["gap_diff"]) for v in c.values()]
-            splits = [abs(v["split_diff"]) for v in c.values() if v["split_diff"] is not None]
-            rows.append({"passage_s": p, "pairs": len(c), "mean_abs_gap_diff_pts": round(st.mean(gaps), 1),
-                         "mean_abs_split_diff_s": round(st.mean(splits), 2)})
-            print(rows[-1])
-        write("passage_fit.csv", rows)
+        fit_controller()
     elif cmd == "run":
-        cal = json.loads((HERE / "sim.json").read_text())
-        sim, quarters, health = run("validation", [cal["passage_s"]])
+        sim, quarters, health = run("validation", [None])
         with Pool(22) as pool:
             pm = pool.map(pm_delay_job, days("validation"), chunksize=1)
         write("sim_splitstats.csv", sim)
@@ -142,6 +141,53 @@ def main():
         write("health.csv", [{**h, **next((x for x in pm if x["date"] == h["date"]), {})} for h in health])
     elif cmd == "score":
         score()
+
+
+def infer_recall(field, train):
+    """max recall in a plan: median force-off share on train days >= 90 % and median skip share <= 1 %."""
+    sig = json.loads((HERE / "signal.json").read_text())
+    agg = defaultdict(lambda: defaultdict(list))
+    for r in field:
+        if r["date"] in train:
+            pl = plan_of(sig, __import__("datetime").date.fromisoformat(r["date"]), r["band_start"])
+            agg[(pl, int(r["phase"]))]["force"].append(float(r["force_pct"]))
+            agg[(pl, int(r["phase"]))]["skip"].append(float(r["skip_pct"]))
+    rec = defaultdict(list)
+    for (pl, p), v in sorted(agg.items()):
+        if p in SCORED and st.median(v["force"]) >= RECALL_FORCE_PCT and st.median(v["skip"]) <= RECALL_SKIP_PCT:
+            rec[pl].append(p)
+    return dict(rec)
+
+
+def fit_controller():
+    """train days only: max recall by rule, then the passage time per phase from PASSAGES."""
+    field = field_rows()
+    train = {str(d) for d in days("train")}
+    recall = infer_recall(field, train)
+    print("max recall (train-day rule):", recall)
+    sim, _, _ = run("train", [{"passage": p, "max_recall": recall} for p in PASSAGES])
+    write("passage_runs.csv", sim)
+    tf = [r for r in field if r["date"] in train]
+    err = {}
+    for p in PASSAGES:
+        c = compare([s for s in sim if float(s["passage"]) == p], tf)
+        for (ph, pl), v in c.items():
+            if v["n"] >= 5 and ph not in recall.get(pl, []):
+                err.setdefault(ph, {}).setdefault(p, []).append((abs(v["gap_diff"]), abs(v["split_diff"] or 0)))
+    rows, best = [], {}
+    for ph in sorted(err):
+        for p, e in sorted(err[ph].items()):
+            rows.append({"phase": ph, "passage_s": p, "plans": len(e), "mean_abs_gap_diff_pts": round(st.mean(x for x, _ in e), 1),
+                         "mean_abs_split_diff_s": round(st.mean(y for _, y in e), 2)})
+        best[ph] = min(err[ph], key=lambda p: (st.mean(x for x, _ in err[ph][p]), st.mean(y for _, y in err[ph][p])))
+    write("passage_fit.csv", rows)
+    for r in rows:
+        print(r)
+    cal = json.loads((HERE / "sim.json").read_text())
+    cal["controller"] = {"source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)",
+                         "max_recall": recall, "passage_s": {str(k): v for k, v in best.items()}}
+    (HERE / "sim.json").write_text(json.dumps(cal, indent=1) + "\n")
+    print("wrote sim.json controller:", cal["controller"])
 
 
 def score():

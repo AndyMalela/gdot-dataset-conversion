@@ -31,6 +31,15 @@ The simulation is accepted as the base for Phase 2 if V1, V2, V4 and V5 pass. V3
 
 GDOT's passage (gap) time is not published. It is chosen on **train** weekdays from {1.0, 1.5, 2.0, 2.5, 3.0, 4.0} s as the value with the smallest mean \|sim − field\| % gap-outs over the scored phase-plan pairs, and is then fixed for validation.
 
+### Amendment, 2026-10-30, before any validation run
+
+The train-day fit above gave errors of 36–52 gap-out points at every passage value, decreasing towards the grid edge. On train days the field shows behaviour no single passage time can produce: P4, P7, P8 are forced off in 90–100 % of cycles in plans A–C and never skipped, P7 with only ~40 veh/h, while the same P4/P8 gap out 90–94 % of the time at night (plan E). That is **max recall** in the daytime plans, a controller setting GDOT does not publish. The controller fit is therefore extended, still on **train days only**:
+
+1. **Max recall** in a plan for a scored phase whose train-day median force-off share is ≥ 90 % and median skip share ≤ 1 % (result: P4, P7, P8 in plans A, B, C).
+2. **Passage time per phase** (the others), from {2, 3, 4, 6, 8} s, minimising the phase's mean \|sim − field\| % gap-outs over its actuated plans (tie: split).
+
+Both are stored in `sim.json` (`controller`) and used unchanged for validation. The 1-s-grid fit is kept in the history as the first attempt.
+
 ## Results
 
 (not run yet)

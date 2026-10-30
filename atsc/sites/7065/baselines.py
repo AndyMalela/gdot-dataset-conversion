@@ -89,16 +89,25 @@ def webster_schedule():
             for p in w["plans"]]
 
 
+def safe_job(args):
+    """a failed day is reported and skipped instead of stopping the whole pool."""
+    try:
+        return job(args)
+    except Exception as e:                      # noqa: BLE001
+        import traceback
+        print(f"FAILED {args[:2]}: {e}\n{traceback.format_exc()}", file=sys.stderr, flush=True)
+        return None
+
+
 def job(args):
     from atsc.sim.episode import run_window
-    from atsc.sim.signal import ActuatedPolicy, FixedPolicy
+    from atsc.sim.signal import FixedPolicy, actuated_from_site
     date, ctrl = args
-    cal = json.loads((HERE / "sim.json").read_text())
     kw = {"warmup_s": 0}
     if ctrl == "gdot":
-        r = run_window(HERE, str(date), 0.0, 24.0, ActuatedPolicy(cal["passage_s"]), mode="plan", **kw)
-    elif ctrl == "actuated":
-        r = run_window(HERE, str(date), 0.0, 24.0, ActuatedPolicy(cal["passage_s"]), mode="free", **kw)
+        r = run_window(HERE, str(date), 0.0, 24.0, actuated_from_site(HERE), mode="plan", **kw)
+    elif ctrl == "actuated":        # same fitted passage times; no plan, so no recall
+        r = run_window(HERE, str(date), 0.0, 24.0, actuated_from_site(HERE), mode="free", **kw)
     else:
         r = run_window(HERE, str(date), 0.0, 24.0, FixedPolicy(), mode="schedule", schedule=webster_schedule(),
                        skip_uncalled=False, **kw)
@@ -122,7 +131,7 @@ def run():
     jobs = [(d, c) for d in days("validation") for c in CONTROLLERS]
     print(f"{len(jobs)} full-day runs")
     with Pool(22) as pool:
-        res = pool.map(job, jobs, chunksize=1)
+        res = [x for x in pool.map(safe_job, jobs, chunksize=1) if x is not None]
     write("runs.csv", [r for r, _ in res])
     write("hourly.csv", [h for _, hs in res for h in hs])
 
