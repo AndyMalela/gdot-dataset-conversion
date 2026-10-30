@@ -17,7 +17,9 @@ atsc/
   sites/7065/      site spec (geometry, detectors, demand audit, validation)
     network/       build_net.py -> 7065v2.net.xml, detectors.add.xml
     signal.json    phases, rings, plans, schedule (make_signal.py)
-  sim/             nema.py (engine), signal.py (SUMO glue + policies), detectors.py, demand.py, run.py
+  sim/             nema.py (engine), signal.py (SUMO glue + policies), detectors.py, demand.py, run.py,
+                   episode.py (run + measure a window), metrics.py (Split Monitor statistics), webster.py
+  rl/              lstdq.py (linear Q + LSTDQ), agent.py (detector-state controller)
   tests/           engine rule tests + cross-check against the old static program
 ```
 
@@ -29,5 +31,5 @@ atsc/
 | 1.2 Field detector layout | **built**: `sites/7065/DETECTORS.md`, `atsc/sim/detectors.py`; Piedmont setback distance assumed (260 ft) until measured |
 | 1.3 NEMA engine | **built + tested**: `atsc/sim/nema.py` (rules only), `atsc/sim/signal.py` (SUMO detectors in, signal out; `ActuatedPolicy`, `FixedPolicy`), `sites/7065/signal.json` (`make_signal.py`). 16 tests pass (`uv run python -m pytest atsc/tests`), incl. all 8 GDOT plans identical to the old static program per signal link. Known: 1 s steps end each interval up to 1 s late (~0.5 s per phase change); judge in 1.6. Fixed 2026-10-30: a green starting late with a ped minimum that fills its split (P4, plans B/C/D) pushed its force-off into the next cycle, doubling the cycle (regression test added). |
 | 1.4 Demand audit | **done**: `sites/7065/DEMAND.md`. 51 usable weekdays + 12 Saturdays; 5 physically impossible bins (all EB_T 18:10, kept, flagged); `atsc/sim/demand.py` (counts → routes, locked test days refused), `atsc/sim/run.py`; lane use fixed (`departLane="random"`, NE micro-edge rewired, SW entry moved). Open: setback loop position vs. N/SW turn bays (student check); N leg over capacity → 1.5 |
-| 1.5 Capacity calibration | — |
-| 1.6 Field validation | — |
+| 1.5 Capacity calibration | **done**: `sites/7065/CALIBRATION.md`. sigma 0.2, tau 0.9 s, 0.5 s steps (`sim.json`): simulated P8 discharge matches the field at every quantile within 1 %; overflow only on the flagged-count days |
+| 1.6 Field validation | criteria fixed first (`sites/7065/VALIDATION.md`, commit f58c8fb3); field targets = GDOT's own Split Monitor statistics read by `tools/atspm_splitstats.py`; passage time fitted on train days; run pending |

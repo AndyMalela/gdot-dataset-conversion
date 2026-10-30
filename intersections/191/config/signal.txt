@@ -1,0 +1,12 @@
+Signal:        191
+Name:          W. Peachtree St @ 17th St
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  W. Peachtree St
+Secondary Name:17th St
+Latitude:      33.79184
+Longitude:     -84.38773
+Versions:      8/7/2026 - Palo Alto Update | 8/31/2023 - SigOps Central Detector Update (2) | 8/30/2023 - SigOps Central Detector Update | 1/19/2023 - SigOps Central Review | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-10-30 15:42
+Detectors:     17   Approaches: 3

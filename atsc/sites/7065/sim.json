@@ -1,0 +1,6 @@
+{
+ "source": "Phase 1.5 calibration, 2026-10-30 (CALIBRATION.md): least generous setting that serves the counted P8 flow on train weekdays without flagged bins",
+ "vtype": {"sigma": 0.2, "tau": 0.9},
+ "step": 0.5,
+ "passage_s": 2.0
+}

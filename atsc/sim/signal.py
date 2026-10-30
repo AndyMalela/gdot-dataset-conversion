@@ -85,8 +85,9 @@ class ActuatedPolicy:
 # ---------------------------------------------------------------------------- the controller
 class SumoSignal:
     def __init__(self, conn, site_dir, net_file, policy, mode="plan", day=None, plan=None,
-                 skip_uncalled=True, free_max=None):
+                 skip_uncalled=True, free_max=None, schedule=None):
         """mode 'plan': GDOT's time-of-day plans for `day` (YYYY-MM-DD); mode 'fixed': one given Plan;
+        mode 'schedule': own time-of-day plans, `schedule` = [(start s, Plan)] (e.g. Webster);
         mode 'free': no cycle, max greens `free_max` (default: signal.json max_green_free)."""
         self.conn, self.policy = conn, policy
         self.sig, det, self.lp, self.n_links = load_site(site_dir, net_file)
@@ -104,6 +105,9 @@ class SumoSignal:
             self.engine.plan_provider = self._plan_at
         elif mode == "fixed":
             self.engine.plan = plan
+        elif mode == "schedule":
+            self._own = sorted(schedule, key=lambda x: x[0])
+            self.engine.plan_provider = self._own_plan_at
         self._cur_plan_name = None
         # detectors per phase
         self.stopbar, self.setback = {}, {}
@@ -136,6 +140,15 @@ class SumoSignal:
         p = self.sig["plans"][name]
         # the new plan's cycle starts now (real controllers transition over a few cycles; not modelled)
         return Plan(name, p["cycle"], {int(k): v for k, v in p["splits"].items()}, tuple(p["coordinated"]), offset=now)
+
+    def _own_plan_at(self, now):
+        cur = [p for t0, p in self._own if t0 <= now][-1:] or [self._own[0][1]]
+        p = cur[0]
+        if p.name == self._cur_plan_name:
+            return self.engine.plan
+        self._cur_plan_name = p.name
+        self.plan_log.append((now, p.name))
+        return Plan(p.name, p.cycle, dict(p.splits), tuple(p.coordinated), offset=now)
 
     # ---- per step
     def read_detectors(self):

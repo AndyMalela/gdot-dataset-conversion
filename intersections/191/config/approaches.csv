@@ -1,0 +1,4 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Northbound,W. Peachtree St NB,2,,,,,,,
+Eastbound,17th St EB,3,,,,,,,
+Westbound,17th St WB,4,,,,,,,

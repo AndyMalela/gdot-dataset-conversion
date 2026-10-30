@@ -19,6 +19,7 @@ dependencies = [
     "traci==1.27.1",
     "sumo-data==1.27.1",
     "pyproj>=3.8.0",
+    "rapidocr-onnxruntime>=1.4.4",
 ]
 
 [tool.uv]
