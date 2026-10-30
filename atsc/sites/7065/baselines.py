@@ -127,13 +127,15 @@ def write(name, rows):
         w.writerows(rows)
 
 
-def run():
-    jobs = [(d, c) for d in days("validation") for c in CONTROLLERS]
+def run(only=None):
+    ctrls = [c for c in CONTROLLERS if not only or c in only]
+    jobs = [(d, c) for d in days("validation") for c in ctrls]
     print(f"{len(jobs)} full-day runs")
     with Pool(22) as pool:
         res = [x for x in pool.map(safe_job, jobs, chunksize=1) if x is not None]
-    write("runs.csv", [r for r, _ in res])
-    write("hourly.csv", [h for _, hs in res for h in hs])
+    for name, new in [("runs.csv", [r for r, _ in res]), ("hourly.csv", [h for _, hs in res for h in hs])]:
+        keep = [r for r in csv.DictReader(open(OUT / name)) if r["controller"] not in ctrls] if (OUT / name).exists() else []
+        write(name, keep + new)
 
 
 def report():
@@ -168,4 +170,8 @@ def report():
 
 
 if __name__ == "__main__":
-    {"design": design, "run": run, "report": report}[sys.argv[1]]()
+    cmd = sys.argv[1]
+    if cmd == "run":
+        run(sys.argv[2:] or None)          # e.g. `run webster` reruns one controller, keeps the others
+    else:
+        {"design": design, "report": report}[cmd]()
