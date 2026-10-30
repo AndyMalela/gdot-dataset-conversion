@@ -1,0 +1,9 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Northbound,SR 141 Peachtree Road NB LT,1,,,,,,,
+Southbound,SR 141 Peachtree Road SB,2,,,,,,,35
+Eastbound,SR 237 Piedmont Road EB LT,3,4,,,,,,
+Westbound,SR 237 Piedmont Road WB,4,,,,,,,35
+Southbound,SR 141 Peachtree Road SB LT,5,,,,,,,
+Northbound,SR 141 Peachtree Road NB,6,,,,,,,35
+Westbound,SR 237 Piedmont Road WB LT,7,8,,,,,,
+Eastbound,SR 237 Piedmont Road EB,8,,,,,,,35

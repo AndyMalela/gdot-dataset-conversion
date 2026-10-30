@@ -1,0 +1,12 @@
+Signal:        7065
+Name:          SR 141 @ SR 237
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 141
+Secondary Name:SR 237
+Latitude:      33.8437
+Longitude:     -84.3714
+Versions:      3/27/2024 - VLAN IP Update | 4/30/2019 - Mark 1 | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-10-30 15:38
+Detectors:     32   Approaches: 8

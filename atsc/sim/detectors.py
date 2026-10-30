@@ -31,7 +31,7 @@ def build(site_dir, net_file, out_file):
     net = sumolib.net.readNet(str(net_file), withInternal=False)
     zone = spec["stopbar_zone_m"]["value"]
     rows, lines = [], ["<additional>"]
-    for d in spec["detectors"]:
+    for d in [d for d in spec["detectors"] if d.get("modelled", True)]:     # advance radar: not modelled yet
         edge = net.getEdge(spec["approaches"][d["leg"]]["edge"])
         lane = edge.getLane(d["lane"])
         did = f"ch{d['ch']}"

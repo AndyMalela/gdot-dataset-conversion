@@ -17,7 +17,7 @@ GDOT labels approaches by road direction, not compass (`phase_map.json` `count_l
 | EB_L / EB_T | N, Piedmont | P3 (+ P4 permissive) / P8 | 1 / 2 | stop-bar / upstream zones |
 | WB_L / WB_T | S, Piedmont | P7 (+ P8 permissive) / P4 | 1 / 2 | stop-bar / upstream zones |
 
-Detection is radar (Wavetronix Matrix / Advance) and video, not loops (`DETECTORS.md`); "setback" below means an upstream count zone.
+Detection is radar (Wavetronix Matrix per lane, plus one Wavetronix Advance per through approach), not loops (`DETECTORS.md`, from GDOT's configuration table). "Setback" below means a Matrix lane-by-lane count zone.
 
 Right turns are not counted by GDOT (no count detector on the right lanes) and carry **no demand**.
 
@@ -43,13 +43,13 @@ Bound per movement and 5-min bin: lanes × 2,400 veh/h/lane (1.5 s headway, a ph
 
 All flagged bins are EB_T (`demand_audit/flagged_bins.csv`). The five on usable days are all the **18:10** bin (Jul 16, Jul 21, Aug 12, Sep 21, Sep 24); two more are on bad days (Aug 4 17:25, Aug 18 16:40). EB_T has a 18:05–18:20 burst on a few days only (max 184–212 vehicles per bin against a median of ~90), consistent with over-counting in stop-and-go queues (the sub-second hit spacing noted in `intersections/7065/timing/capacity_check/README.md`; with radar/video detection, a long vehicle read twice or a split track, rather than the loop double pulses assumed there). **Kept as recorded** (fidelity policy); they are 0.12 % of EB_T and are reported, not removed.
 
-### Finding: Piedmont-N through is saturated in the field, and its count is a discharge count
+### Finding: Piedmont-N through runs at or near capacity
 
-Over 51 weekdays, the EB_T median per 5-min bin during plan C (180 s cycle) repeats with a 15-min period (e.g. 17:00–17:10: 80 / 92 / 100; 17:15–17:25: 82 / 93 / 98). 15 min is the least common multiple of the 180 s cycle and the 300 s bin, so the count follows the number of P8 greens in each bin. A detector counting free arrivals would not show the signal's rhythm. **The queue therefore stands over the N upstream count zones for much of the PM, and those zones count vehicles discharging.**
+During plan C, EB_T averages ~1,080 veh/h over P8's ~48 s of green per 180 s cycle, about **2,000 veh/h per lane of green**. That is at or above typical saturation flow (HCM base 1,900), so the green is used about fully on most PM days: P8 is the critical, near-saturated movement.
 
-The implied discharge rate is ~1,080 veh/h over P8's ~48 s of green per 180 s cycle, about **2,000 veh/h per lane of green**. That is high, above HCM's 1,900 base. One reason it could be inflated: see the open item on zone position (§5).
+Median EB_T flow during plan C runs at **1,169 veh/h per lane of the *maximum possible* P8 green + yellow** (p99 1,746). The other through movements are at 100–390.
 
-Median EB_T flow during plan C runs at **1,169 veh/h per lane of the *maximum possible* P8 green + yellow** (p99 1,746). The other through movements are at 100–390. P8 is the one critical movement in the PM.
+*Retracted 2026-10-30:* an earlier version also read the 15-min periodicity of the EB_T medians (80 / 92 / 100, period = lcm of the 180 s cycle and the 300 s bin) as proof that the queue stands over an upstream counter. The configuration table shows the count zones are Matrix zones near the stop bar (`DETECTORS.md`), where counts follow the greens whether or not the approach is saturated, so the periodicity is not evidence either way.
 
 ## 4. Demand generation (`atsc/sim/demand.write_routes`)
 
@@ -96,10 +96,10 @@ Results after the fixes, Jul 16 14:30–19:30, real GDOT plans, gap-out 2 s. Eac
 
 ## 5. Open items
 
-- **Upstream-zone position vs. turn bays.**
-  - The assumed 79 m (Peachtree's published 260 ft) lies *upstream* of the N-leg bays (40 m, student check) and of the SW left-lane tapers (71 m and 43 m, student check 2026-10-30). The S-leg bay (≈ 90 m real, 86 m sim) and the NE bay (92 m) contain it.
-  - In the simulation, the N and SW upstream zones therefore also see left-turners (EB_L, NB_L above), which affects gap-out.
-  - In the field, the same would hold if GDOT's zones sit at 79 m: the EB_T (and NB_T) counts would include turners, inflating the P8 count (§3) and the capacity puzzle.
-  - Detection is radar/video (no loops), so the distance cannot be read from the pavement. Only source: GDOT's ATSPM detector configuration ("distance from stop bar"). Until then, 79 m stays a disclosed assumption.
+- **Count-zone position vs. turn bays.**
+  - GDOT's configuration gives no distance for the Matrix count zones; one T&A chart suggests ≥ ~50 m (`DETECTORS.md`). The simulation uses 79 m on all legs (assumption), which lies *upstream* of the N-leg bays (40 m) and the SW left-lane tapers (71 m, 43 m), and inside the S (≈ 90 m) and NE (92 m) bays.
+  - In the simulation the N and SW count detectors therefore also see left-turners (EB_L, NB_L above), which affects gap-out.
+  - In the field, if the N zones sit upstream of the 40 m bay, the EB_T count includes turners and the P8 count is inflated.
+  - Next: estimate the zone distance from red-phase counts over many T&A cycles.
 - **SW dual-left lane use 66 / 34 %** (fan-out at the bay entry). Left demand there is low (≈ 150 veh/h PM); revisit if P1 turns out critical.
 - **Storage-exceedance recording** (`GEOMETRY.md`) is not implemented yet; it goes with the evaluation metrics.

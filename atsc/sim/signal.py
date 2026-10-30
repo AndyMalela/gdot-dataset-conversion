@@ -107,7 +107,7 @@ class SumoSignal:
         self._cur_plan_name = None
         # detectors per phase
         self.stopbar, self.setback = {}, {}
-        for d in det["detectors"]:
+        for d in [d for d in det["detectors"] if d.get("modelled", True)]:
             (self.stopbar if d["kind"] == "stopbar" else self.setback).setdefault(d["phase"], []).append(f"ch{d['ch']}")
         self.last_actuation = {}
         self.now = 0.0

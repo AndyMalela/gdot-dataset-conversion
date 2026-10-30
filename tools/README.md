@@ -6,6 +6,7 @@ All scripts. Data goes to `intersections/<id>/` (one folder per signal, layout i
 |---|---|
 | `intersections/<id>/counts/` | `atspm_tmc.py` — turning-movement counts |
 | `intersections/<id>/timing/` | `atspm_plans.py` (timing plans), `atspm_timing.py` (Timing & Actuation windows) |
+| `intersections/<id>/config/` | `atspm_config.py` — detector configuration (hardware, type, lane, distance from stop bar) and approaches, from the public SignalDetail page |
 | `intersections/<id>/network/` | `osm_build.py` — SUMO network from OpenStreetMap |
 | `intersections/<id>/sim/` | `build_sim.py` — SUMO simulation (counts + timing) |
 | `intersections/README.md` | `check_complete.py` — status table of every signal checked |
@@ -16,6 +17,7 @@ Checking a new signal:
 python3 tools/atspm_tmc.py <id> --start 2026-09-26 --end 2026-10-02   # counts
 python3 tools/check_complete.py                                       # complete / incomplete
 python3 tools/atspm_plans.py <id> --date 2026-10-02                   # timing plans
+python3 tools/atspm_config.py <id>                                     # detector configuration
 python3 tools/osm_build.py <id>                                       # SUMO network
 ```
 Decisions (accepted / on hold / skipped) go in `intersections/signal_overrides.csv`.

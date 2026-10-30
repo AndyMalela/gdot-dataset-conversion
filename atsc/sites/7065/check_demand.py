@@ -32,6 +32,7 @@ def main():
     sig = SumoSignal(conn, HERE, run.net_file(HERE), ActuatedPolicy(2.0), mode="plan", day=date)
     det = json.loads((HERE / "detectors.json").read_text())
     mv = json.loads((HERE / "movements.json").read_text())["movements"]
+    det["detectors"] = [d for d in det["detectors"] if d.get("modelled", True)]
 
     seen = defaultdict(set)                 # detector -> vehicle ids (counted from b0)
     by_mv = defaultdict(set)                # (detector, movement column) -> ids
