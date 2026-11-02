@@ -101,6 +101,7 @@ Stop-line lane use in the twin already matches the field detectors on every leg 
 | S (P4/P7) | 4 lanes along the whole 170 m leg | left + right lane 90 m, 2 through lanes upstream | student, 2026-11-02 ("turning lanes ~90 m on the southern section") |
 | SW (P6/P1) | 5 lanes along the whole 89 m leg | 2nd left lane from 35.5 m, 1st from 62 m (mid-taper), 3 lanes (T, T, T+R) upstream | student check 2026-10-30: tapers 43 → 28 m and 71 → 53 m |
 | NE (P2/P5) | dual left 136 m, 3 through, free-right slip lane (signal-free) | unchanged | not measured; slip carries no demand (rights uncounted) |
+| lane alignment (N, SW) | netconvert centres every lane-count change, so N's 2 upstream lanes sat over left + inner through, and SW's through lanes shifted 1.6 m at each new left lane | upstream lanes continue the through lanes in a straight line (N: middle two of L, T, T, R; SW: lefts open on the median side), aligned within 0.02 m by sideways-shifted edge shapes | student, 2026-11-02 |
 | outbound Piedmont | stopped at the first exit edge | connected through to the leg ends | no effect on demand; removes netconvert warnings |
 
 Full-width sections as built: SW 5 lanes 0–31 m, 4 lanes 39–58 m, 3 lanes 66–89 m (measured: 2nd left full width from 28 m, 1st from 53 m).

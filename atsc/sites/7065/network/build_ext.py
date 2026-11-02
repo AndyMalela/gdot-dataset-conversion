@@ -40,6 +40,10 @@ APPROACHES = {"NB": "S_in", "EB": "SW_in", "SB": "N_near", "WB": "NE_in.79"}    
 N_BAY_M = 40.0
 S_BAY_M = 90.0
 SW_BAY1_M, SW_BAY2_M = 62.0, 35.5
+# lanes upstream of a bay continue the through lanes in a straight line (student, 2026-11-02: N's 2 lanes are the
+# middle two of left|T|T|right; the SW lefts open on the median side). netconvert would centre each lane-count change,
+# so these edges get a sideways-shifted shape: upstream edge -> (stop-line edge, its lane that upstream lane 0 continues)
+ALIGN = {"N_far": ("N_near", 1), "N_far_ext": ("N_near", 1), "SW_mid": ("SW_in", 0), "SW_up": ("SW_in", 0)}
 
 
 def run(*cmd):
@@ -54,6 +58,21 @@ def point_on(a, b, d):
     ax, ay, bx, by = float(a.get("x")), float(a.get("y")), float(b.get("x")), float(b.get("y"))
     k = d / math.dist((ax, ay), (bx, by))
     return f"{ax + (bx - ax) * k:.2f}", f"{ay + (by - ay) * k:.2f}"
+
+
+def lateral(net, up, down, lane):
+    """sideways offset (m, + = right of travel) of `up`'s lane 0 end from the line of `down`'s lane `lane`."""
+    a, b = net.getEdge(down).getLane(lane).getShape()[0], net.getEdge(down).getLane(lane).getShape()[-1]
+    q = net.getEdge(up).getLane(0).getShape()[-1]
+    return ((q[0] - a[0]) * (b[1] - a[1]) - (q[1] - a[1]) * (b[0] - a[0])) / math.dist(a, b)
+
+
+def shifted(pts, off):
+    """polyline moved `off` m to the right of its overall direction."""
+    (x0, y0), (x1, y1) = pts[0], pts[-1]
+    L = math.dist(pts[0], pts[-1])
+    nx, ny = (y1 - y0) / L * off, -(x1 - x0) / L * off
+    return " ".join(f"{x + nx:.2f},{y + ny:.2f}" for x, y in pts)
 
 
 def measured(net):
@@ -113,27 +132,40 @@ def main():
             for fl, tl in pairs:
                 ET.SubElement(root, "connection", {"from": fr, "to": to, "fromLane": str(fl), "toLane": str(tl)})
 
-        for _ in range(6):
+        nodes = {n.get("id"): n for n in nod0.getroot().iter("node")}
+        edges = {e.get("id"): e for e in er.iter("edge")}       # incl. the new SW edges
+        base = {e: [tuple(map(float, q.split(","))) for q in edges[e].get("shape").split()] if edges[e].get("shape") else None
+                for e in ALIGN}
+        shift = {e: 0.0 for e in ALIGN}
+        for _ in range(8):
             for nid, ref, key in [("nNleft", nN, "N"), ("nS", nS, "S"), ("nSW_b1", nSW, "SW1"), ("nSW_b2", nSW, "SW2")]:
-                n = next(x for x in nod0.getroot().iter("node") if x.get("id") == nid)
                 x, y = point_on(J, ref, d[key])
-                n.set("x", x)
-                n.set("y", y)
+                nodes[nid].set("x", x)
+                nodes[nid].set("y", y)
+            for e in ALIGN:
+                pts = base[e] or [(float(nodes[edges[e].get(k)].get("x")), float(nodes[edges[e].get(k)].get("y")))
+                                  for k in ("from", "to")]
+                edges[e].set("shape", shifted(pts, shift[e]))
             for tree, suffix in [(nod0, "nod"), (edg, "edg"), (con, "con")]:
                 tree.write(f"{p}.{suffix}.xml")
             log = run("netconvert", "--node-files", f"{p}.nod.xml", "--edge-files", f"{p}.edg.xml",
                       "--connection-files", f"{p}.con.xml", "--tllogic-files", f"{p}.tll.xml", "-o", str(OUT))
-            got = measured(sumolib.net.readNet(str(OUT)))
-            if all(abs(got[k] - target[k]) < 0.5 for k in target):
+            built = sumolib.net.readNet(str(OUT))
+            got = measured(built)
+            side = {e: lateral(built, e, *ALIGN[e]) for e in ALIGN}
+            if all(abs(got[k] - target[k]) < 0.5 for k in target) and all(abs(v) < 0.1 for v in side.values()):
                 break
             for k in target:
                 d[k] += target[k] - got[k]
+            for e in ALIGN:
+                shift[e] -= side[e]
         else:
-            sys.exit(f"turn lanes begin at {got}, target {target}")
+            sys.exit(f"turn lanes begin at {got}, target {target}; through-lane misalignment {side}")
     (HERE / "netconvert_ext.log").write_text(log)
     write_junction(sumolib.net.readNet(str(OUT), withPrograms=True))
     print(f"wrote {OUT.relative_to(ROOT)}  ({log.count('Warning')} netconvert warnings, see netconvert_ext.log); "
-          "turn lanes begin at " + ", ".join(f"{k} {v:.1f} m" for k, v in got.items()))
+          "turn lanes begin at " + ", ".join(f"{k} {v:.1f} m" for k, v in got.items())
+          + "; through lanes aligned within " + f"{max(abs(v) for v in side.values()):.2f} m")
 
 
 def write_junction(net):

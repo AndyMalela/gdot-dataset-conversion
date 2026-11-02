@@ -18,13 +18,13 @@
   <laneAreaDetector id="ch5" lane="SW_in_0" endPos="31.17" length="12.00" period="86400" file="NUL"/>
   <laneAreaDetector id="ch6" lane="SW_in_1" endPos="31.17" length="12.00" period="86400" file="NUL"/>
   <laneAreaDetector id="ch7" lane="SW_in_2" endPos="31.17" length="12.00" period="86400" file="NUL"/>
-  <inductionLoop id="ch8" lane="SW_up_0" pos="10.28" period="86400" file="NUL"/>
-  <inductionLoop id="ch9" lane="SW_up_1" pos="10.28" period="86400" file="NUL"/>
-  <inductionLoop id="ch10" lane="SW_up_2" pos="10.29" period="86400" file="NUL"/>
+  <inductionLoop id="ch8" lane="SW_up_0" pos="9.98" period="86400" file="NUL"/>
+  <inductionLoop id="ch9" lane="SW_up_1" pos="9.98" period="86400" file="NUL"/>
+  <inductionLoop id="ch10" lane="SW_up_2" pos="9.98" period="86400" file="NUL"/>
   <laneAreaDetector id="ch48" lane="S_in_3" endPos="85.94" length="12.00" period="86400" file="NUL"/>
   <laneAreaDetector id="ch37" lane="N_near_1" endPos="35.48" length="12.00" period="86400" file="NUL"/>
   <laneAreaDetector id="ch38" lane="N_near_2" endPos="35.48" length="12.00" period="86400" file="NUL"/>
   <laneAreaDetector id="ch39" lane="N_near_0" endPos="35.48" length="12.00" period="86400" file="NUL"/>
-  <inductionLoop id="ch40" lane="N_far_ext_0" pos="179.36" period="86400" file="NUL"/>
-  <inductionLoop id="ch41" lane="N_far_ext_1" pos="179.36" period="86400" file="NUL"/>
+  <inductionLoop id="ch40" lane="N_far_ext_0" pos="178.83" period="86400" file="NUL"/>
+  <inductionLoop id="ch41" lane="N_far_ext_1" pos="178.84" period="86400" file="NUL"/>
 </additional>
