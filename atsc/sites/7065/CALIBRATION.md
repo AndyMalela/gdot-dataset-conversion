@@ -49,3 +49,5 @@ After the network switch (`GEOMETRY.md`), the same grid, days and criterion on `
 | field | | | | | | 1,830 / 1,986 / 2,150 / 2,276 |
 
 **Same choice: sigma 0.2, tau 0.9 s, 0.5 s steps** (least generous with no overflow day; `sim.json` unchanged). Discharge 1,966 veh/h per lane of actual green; simulated quantiles within 1.1 % of the field's. 0 teleports in every 0.5 s run; 5 emergency-braking events in all 330 runs (3 in the N bay's lane-change junction area).
+
+Rerun after the lane-alignment fix (2026-11-02, `GEOMETRY.md`): same choice (sigma 0.2, tau 0.9 s, 0.5 s); P8 served per lane of nominal green 1,822 / 2,001 / 2,150 / 2,276 (p25 / median / p75 / p90), 0 overflow days, 0 teleports. `calibration/grid.csv` is this rerun.

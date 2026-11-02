@@ -155,3 +155,9 @@ Scoring fix applied after the run (`validate.py compare`): bands where the field
 - **P8 (the critical movement) holds on both networks** (V4 +1.0 % / +0.8 %), as do P4, P7, P8 termination and split, except P4 in B/C inheriting P3's unused time.
 - **V5:** the same three PM overflow days as attempt 1, plus Sep 3 just over the 100 s line; 0 teleports on unflagged days.
 - **Consequence for Phase 2 unchanged:** comparisons run on this base are preliminary; the simulated GDOT controller is somewhat optimistic for the coordinated phases (they inherit the left phases' unused time).
+
+### Attempt 2, rerun after the lane-alignment fix (2026-11-02)
+
+The student spotted that the twin's upstream lanes were offset sideways (N's 2 lanes over left + inner through, SW's through lanes shifting at each new left lane); fixed in `build_ext.py` (`GEOMETRY.md`), geometry only. Calibration and controller fit rerun on train days: same results. `validation/score.md` is now this rerun (the table above is in git, commit e7455c5d).
+
+Change from the table above: ≤ 4 gap-out points, ≤ 4 skip points, ≤ 0.4 s split on every pair. **V1 19/28, worst 9.7 s FAIL; V2 17/30, worst 59 FAIL; V3 25/30 PASS; V4 +0.8 % PASS; V5 4 teleports (Sep 21, flagged), overflow Sep 3, 14, 23, 28 FAIL.** Verdict unchanged.
