@@ -103,3 +103,55 @@ Scoring fix applied after the run (`validate.py compare`): bands where the field
 2. P5: test the dual-left lane-use and undercount hypotheses with the Timing & Actuation charts (per-lane presence vs. counts, Oct 2 08:00 window).
 3. V5 days: inspect the Sep 14 and Sep 28 PM counts.
 
+
+## Results — attempt 2 (2026-11-02): network switched to the aerial twin
+
+**Change, justified independently of the attempt-1 numbers:** the student found 7065v2's (OSM) geometry wrong; the site now runs on the hand-built aerial twin with the measured turn-lane lengths (`GEOMETRY.md`, network switch). Calibration (1.5) rerun on train days: same driver setting. Controller fit rerun on train days (`validation/passage_fit.csv`): same max recall (P4, P7, P8 in A–C) and same passage per phase (P1 8, P3 8, P4 8, P5 8, P7 6, P8 4 s). Attempt-1 outputs: `validation/attempt1_v2osm/`. Nothing else changed (criteria, days, scoring).
+
+| Phase | Plan | days | avg split sim − field (s) | % gap-outs sim − field | % skips sim − field |
+|---|---|---|---|---|---|
+| P1 | A | 24 | +0.7 | +24 | +0 |
+| P1 | B | 38 | +0.8 | +27 | +0 |
+| P1 | C | 21 | +0.6 | +36 | +0 |
+| P1 | D | 18 | +0.6 | +35 | +0 |
+| P1 | E | 39 | +0.3 | -0 | +3 |
+| P3 | A | 19 | -0.6 | +35 | +10 |
+| P3 | B | 38 | -3.6 | +58 | +15 |
+| P3 | C | 22 | -5.7 | +58 | +16 |
+| P3 | D | 22 | -0.5 | -18 | +10 |
+| P3 | E | 51 | — | +0 | +0 |
+| P4 | A | 24 | +0.7 | +0 | +0 |
+| P4 | B | 37 | +4.9 | +0 | +0 |
+| P4 | C | 23 | +7.7 | +0 | +0 |
+| P4 | D | 23 | +0.6 | +21 | +0 |
+| P4 | E | 50 | +2.7 | -13 | +0 |
+| P5 | A | 24 | -4.7 | +21 | +1 |
+| P5 | B | 33 | -7.4 | +31 | -2 |
+| P5 | C | 18 | -10.1 | +39 | -1 |
+| P5 | D | 22 | -3.2 | +15 | +0 |
+| P5 | E | 49 | +1.1 | -4 | -0 |
+| P7 | A | 18 | -1.3 | +0 | +24 |
+| P7 | B | 38 | -1.0 | -9 | +20 |
+| P7 | C | 23 | -0.9 | -4 | +23 |
+| P7 | D | 19 | -1.1 | +14 | +19 |
+| P7 | E | 51 | — | +0 | +0 |
+| P8 | A | 24 | +3.0 | +0 | +0 |
+| P8 | B | 37 | +2.1 | +0 | +0 |
+| P8 | C | 22 | +2.8 | +0 | +0 |
+| P8 | D | 23 | +2.4 | -5 | +0 |
+| P8 | E | 51 | +2.7 | -13 | +0 |
+
+- **V1 average split:** 19/28 pairs within 3 s, worst 10.1 s → **FAIL**
+- **V2 % gap-outs:** 18/30 pairs within 15 points, worst 58 → **FAIL**
+- **V3 % skips:** 24/30 pairs within 15 points → **PASS** (reported)
+- **V4 P8 discharge:** sim median 1949 vs field 1934 veh/h per lane of nominal green (+0.8 %) → **PASS**
+- **V5 health:** 4 teleports (all on Sep 21, a flagged-count day: vehicles held yielding in the junction at 15:57); overflow days outside flagged days: Sep 3 (P8-through PM delay 111 s; attempt 1: 96 s), Sep 14, 23, 28 → **FAIL**
+
+**Verdict: not accepted yet**, same as attempt 1.
+
+### What attempt 2 shows
+
+- **The left-turn mismatch is not geometry.** Every phase-plan pair moved by ≤ 7 gap-out points and ≤ 1 s of split between two networks with different bay lengths, storage and lane-change layout. P3 and P5 still end early and gap out 20–60 points too often; P1 still gaps out where the field is forced off. The cause lies in the controller model or the detection (attempt-1 candidates: permissive gap acceptance for P3; detector timers, dual-left lane use or stop-bar undercounting for P5), which attempt 3 addresses.
+- **P8 (the critical movement) holds on both networks** (V4 +1.0 % / +0.8 %), as do P4, P7, P8 termination and split, except P4 in B/C inheriting P3's unused time.
+- **V5:** the same three PM overflow days as attempt 1, plus Sep 3 just over the 100 s line; 0 teleports on unflagged days.
+- **Consequence for Phase 2 unchanged:** comparisons run on this base are preliminary; the simulated GDOT controller is somewhat optimistic for the coordinated phases (they inherit the left phases' unused time).
