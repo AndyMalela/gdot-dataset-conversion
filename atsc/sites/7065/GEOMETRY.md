@@ -1,5 +1,7 @@
 # SIG 7065 geometry audit (Phase 1.1)
 
+> **2026-11-02: the simulation now runs on the hand-built aerial twin, not the OSM-based 7065v2.** See [Network switch](#network-switch-2026-11-02-aerial-twin) at the end. The OSM audit below is kept as the record of how lane use and bay lengths were established.
+
 Started 2026-10-23. Base network: `intersections/7065osm/network/7065osm.net.xml` (built by `tools/osm_build.py`, with 3 tag fixes in `osm_tag_fixes.json`). Each lane value below carries its source. Where sources disagree, the controller's own detector configuration wins, because it describes the intersection the counts and timing come from.
 
 ## Naming
@@ -86,3 +88,25 @@ Built by `network/build_net.py` from 7065osm (reproducible; no hand edits in net
 Smoke test (`network/smoke.rou.xml`, every counted movement + 3 rights, 10 min, netconvert's guessed program): 430 inserted, 430 completed, 0 teleports, 0 warnings.
 
 **Not done, on purpose: extending entry points.** The plan said to move entry points upstream so queues never reach the network edge. That would invent road beyond real signals 7066/7071/7058. (One exception the other way, 2026-10-30: the SW entry moved *downstream*, to the 3-lane edge 144 m from the stop line, because OSM's 2-lane stretch further up left the leftmost through lane unused; still beyond 7066 at 92 m. `DEMAND.md`.) Instead: vehicles that cannot enter are counted through `departDelay` (already part of total delay), and v2 records **storage-exceedance events** (queue longer than the lane length to the next upstream signal: SW 92 m, NE 190 m, N 219 m, S 291 m to the network edge). In reality those queues would block the neighbouring signal, which this isolated model cannot represent; they are reported, not hidden.
+
+## Network switch (2026-11-02): aerial twin
+
+The student found the OSM-based 7065v2's geometry wrong and asked to run the plan on the earlier hand-built twin instead (`sumotwin/7065_ext.net.xml`, digitized from the georeferenced aerial, legs extended 2026-10-12; north leg nudged by the student in netedit 2026-11-02). Built by `network/build_ext.py` → `network/7065ext.net.xml` + `network/junction.json` (the junction file names the network; `atsc.sim.run.net_file` and the signal-link table read it). 7065v2 and `build_net.py` stay in the repo for reference.
+
+Stop-line lane use in the twin already matches the field detectors on every leg (table above, "Hand-built twin" column). Patched in `build_ext.py`: where the turn lanes begin, from the student's measurements. Distance = stop line to the node where the lane count changes; netconvert draws the change as a short junction area around it (~8 m), standing in for the taper.
+
+| Leg | Twin as digitized | Now | Source |
+|---|---|---|---|
+| N (P8/P3) | left lane 14.6 m; right lane + 3 lanes along the whole leg | left + right lane 40 m, 2 through lanes upstream | student check 2026-10-23 |
+| S (P4/P7) | 4 lanes along the whole 170 m leg | left + right lane 90 m, 2 through lanes upstream | student, 2026-11-02 ("turning lanes ~90 m on the southern section") |
+| SW (P6/P1) | 5 lanes along the whole 89 m leg | 2nd left lane from 35.5 m, 1st from 62 m (mid-taper), 3 lanes (T, T, T+R) upstream | student check 2026-10-30: tapers 43 → 28 m and 71 → 53 m |
+| NE (P2/P5) | dual left 136 m, 3 through, free-right slip lane (signal-free) | unchanged | not measured; slip carries no demand (rights uncounted) |
+| outbound Piedmont | stopped at the first exit edge | connected through to the leg ends | no effect on demand; removes netconvert warnings |
+
+Full-width sections as built: SW 5 lanes 0–31 m, 4 lanes 39–58 m, 3 lanes 66–89 m (measured: 2nd left full width from 28 m, 1st from 53 m).
+
+**Approach lengths (vehicle entry):** N 258 m, S 170 m, SW 89 m, NE 142 m. Against the real neighbouring signals: SW ends just short of 7066 (92 m), N runs ~40 m past 7071 (219 m), NE and S stop short of 7058 (190 m) and OSM's network edge (291 m). As before, vehicles that cannot enter wait and their wait counts as delay; queues reaching the leg end are the storage-exceedance cases.
+
+**Deviations, disclosed:** NE bay length unmeasured; SW and S storage shorter than the real road to the next signal (S: 170 m vs ~291 m to the OSM edge); tapers modelled as ~8 m junction areas; speeds 34.9 mph (twin) vs 35 posted.
+
+Checks: 0 netconvert warnings; 16 engine/link-mapping tests pass on the new network (signal `J`, 19 links); demand check Jul 16 PM with the calibrated driver: 0 teleports, every movement's detector count within 2 % of GDOT's except NB_L (SW dual left, +14 %, likely vehicles counted twice when they change between the two left lanes inside the stop-bar zones (not yet checked); 7065v2 showed the same, 845), and EB_T fully served (5,568 vs 5,553 counted; 7065v2 served 5,045).

@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2026-10-12T13:51:02.256664+09:00 by Eclipse SUMO netconvert 1.28.0
-<netconvertConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+<!-- generated on 2026-11-02T13:01:06.574392+09:00 by Eclipse SUMO netedit 1.27.1
+<neteditConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/neteditConfiguration.xsd">
 
     <input>
-        <node-files value="/tmp/claude-1000/-home-andy-Downloads-GDOT/91397e57-8921-4d1a-b7e4-b866c3927542/scratchpad/regeo2/plain.nod.xml"/>
-        <edge-files value="/tmp/claude-1000/-home-andy-Downloads-GDOT/91397e57-8921-4d1a-b7e4-b866c3927542/scratchpad/regeo2/plain.edg.xml"/>
-        <connection-files value="/tmp/claude-1000/-home-andy-Downloads-GDOT/91397e57-8921-4d1a-b7e4-b866c3927542/scratchpad/regeo2/plain.con.xml"/>
-        <tllogic-files value="/tmp/claude-1000/-home-andy-Downloads-GDOT/91397e57-8921-4d1a-b7e4-b866c3927542/scratchpad/regeo2/plain.tll.xml"/>
+        <sumo-net-file value="sumotwin/7065_ext.net.xml"/>
     </input>
 
     <output>
-        <output-file value="/tmp/claude-1000/-home-andy-Downloads-GDOT/91397e57-8921-4d1a-b7e4-b866c3927542/scratchpad/regeo2/new_ext.net.xml"/>
+        <output-file value="sumotwin/7065_ext.net.xml"/>
         <output.street-names value="true"/>
     </output>
 
@@ -27,7 +24,7 @@
         <junctions.corner-detail value="6"/>
     </junctions>
 
-</netconvertConfiguration>
+</neteditConfiguration>
 -->
 
 <net version="1.20" junctionCornerDetail="6" limitTurnSpeed="5.50" avoidOverlap="0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
@@ -45,7 +42,7 @@
     </edge>
     <edge id=":J_19" function="internal">
         <lane id=":J_19_0" index="0" speed="13.43" length="18.52" width="3.20" shape="58.93,64.18 57.81,55.81 59.88,45.95"/>
-        <lane id=":J_19_1" index="1" speed="12.59" length="25.36" width="3.20" shape="67.20,70.38 65.84,69.34 62.06,63.11 61.08,55.66 62.90,47.00"/>
+        <lane id=":J_19_1" index="0" speed="12.59" length="25.36" width="3.20" shape="67.20,70.38 65.84,69.34 62.06,63.11 61.08,55.66 62.90,47.00"/>
     </edge>
     <edge id=":J_5" function="internal">
         <lane id=":J_5_0" index="0" speed="9.21" length="16.43" width="3.20" shape="74.99,51.20 73.62,56.46 73.51,60.71 74.67,63.96 77.09,66.20"/>
@@ -74,7 +71,7 @@
     </edge>
     <edge id=":J_21" function="internal">
         <lane id=":J_21_0" index="0" speed="13.57" length="18.46" width="3.20" shape="59.77,70.02 60.93,78.39 58.98,88.21"/>
-        <lane id=":J_21_1" index="1" speed="12.73" length="24.06" width="3.20" shape="52.60,64.56 52.91,64.80 56.66,71.08 57.67,78.55 55.94,87.19"/>
+        <lane id=":J_21_1" index="0" speed="12.73" length="24.06" width="3.20" shape="52.60,64.56 52.91,64.80 56.66,71.08 57.67,78.55 55.94,87.19"/>
     </edge>
     <edge id=":J_15" function="internal">
         <lane id=":J_15_0" index="0" speed="9.27" length="16.49" width="3.20" shape="43.81,83.12 45.14,77.82 45.22,73.54 44.06,70.28 41.65,68.04"/>
@@ -107,9 +104,9 @@
         <lane id=":J5_1_1" index="1" speed="15.60" length="7.84" width="3.20" shape="53.25,95.22 50.75,102.65"/>
     </edge>
     <edge id=":nN_0" function="internal">
-        <lane id=":nN_0_0" index="0" speed="15.60" length="0.10" width="3.20" shape="21.83,158.61 21.84,158.61"/>
-        <lane id=":nN_0_1" index="1" speed="15.60" length="0.10" width="3.20" shape="24.87,159.63 24.87,159.63"/>
-        <lane id=":nN_0_2" index="2" speed="15.60" length="0.10" width="3.20" shape="27.90,160.65 27.90,160.65"/>
+        <lane id=":nN_0_0" index="0" speed="15.60" length="0.16" width="3.20" shape="21.99,158.65 21.84,158.61"/>
+        <lane id=":nN_0_1" index="1" speed="15.60" length="0.16" width="3.20" shape="25.03,159.67 24.87,159.63"/>
+        <lane id=":nN_0_2" index="2" speed="15.60" length="0.16" width="3.20" shape="28.06,160.69 27.90,160.65"/>
     </edge>
     <edge id=":nNleft_0" function="internal">
         <lane id=":nNleft_0_0" index="0" speed="15.60" length="8.20" width="3.20" shape="39.66,105.53 39.97,103.03 39.42,101.22 38.87,99.41 39.18,96.92"/>
@@ -152,10 +149,10 @@
         <lane id="N_far_1" index="1" speed="15.60" length="56.00" width="3.20" shape="24.87,159.63 42.70,106.54"/>
         <lane id="N_far_2" index="2" speed="15.60" length="56.00" width="3.20" shape="27.90,160.65 45.73,107.56"/>
     </edge>
-    <edge id="N_far_ext" from="nN_ext" to="nN" name="Piedmont Rd NE" priority="10" spreadType="roadCenter" shape="-29.22,330.76 27.90,160.65">
-        <lane id="N_far_ext_0" index="0" speed="15.60" length="179.44" width="3.20" shape="-35.29,328.72 21.83,158.61"/>
-        <lane id="N_far_ext_1" index="1" speed="15.60" length="179.44" width="3.20" shape="-32.25,329.74 24.87,159.63"/>
-        <lane id="N_far_ext_2" index="2" speed="15.60" length="179.44" width="3.20" shape="-29.22,330.76 27.90,160.65"/>
+    <edge id="N_far_ext" from="nN_ext" to="nN" name="Piedmont Rd NE" priority="10" spreadType="roadCenter" shape="-27.36,330.76 26.60,170.06 29.76,160.65">
+        <lane id="N_far_ext_0" index="0" speed="15.60" length="179.46" width="3.20" shape="-35.13,328.77 19.02,167.51 21.99,158.65"/>
+        <lane id="N_far_ext_1" index="1" speed="15.60" length="179.46" width="3.20" shape="-32.10,329.79 22.05,168.53 25.03,159.67"/>
+        <lane id="N_far_ext_2" index="2" speed="15.60" length="179.46" width="3.20" shape="-29.07,330.81 25.08,169.55 28.06,160.69"/>
     </edge>
     <edge id="N_near" from="nNleft" to="J" name="Piedmont Rd NE" priority="10" spreadType="roadCenter">
         <lane id="N_near_0" index="0" speed="15.60" length="14.56" width="3.20" shape="39.18,96.92 43.81,83.12"/>
@@ -171,9 +168,9 @@
         <lane id="N_out.37_0" index="0" speed="15.60" length="62.26" width="3.20" shape="53.79,103.67 33.97,162.69"/>
         <lane id="N_out.37_1" index="1" speed="15.60" length="62.26" width="3.20" shape="50.75,102.65 30.94,161.67"/>
     </edge>
-    <edge id="N_out_ext" from="nN" to="nN_ext" name="Piedmont Rd NE" priority="10" spreadType="roadCenter">
-        <lane id="N_out_ext_0" index="0" speed="15.60" length="179.44" width="3.20" shape="35.49,163.20 -21.63,333.31"/>
-        <lane id="N_out_ext_1" index="1" speed="15.60" length="179.44" width="3.20" shape="32.45,162.18 -24.67,332.29"/>
+    <edge id="N_out_ext" from="nN" to="nN_ext" name="Piedmont Rd NE" priority="10" spreadType="roadCenter" shape="29.26,161.08 -27.86,331.19">
+        <lane id="N_out_ext_0" index="0" speed="15.60" length="179.47" width="3.20" shape="33.81,162.61 -23.32,332.74"/>
+        <lane id="N_out_ext_1" index="1" speed="15.60" length="179.47" width="3.20" shape="30.78,161.59 -26.35,331.72"/>
     </edge>
     <edge id="SW_in" from="nSW" to="J" name="Peachtree Rd NE" priority="12" spreadType="roadCenter">
         <lane id="SW_in_0" index="0" speed="15.60" length="89.18" width="3.20" shape="-24.59,4.26 52.79,48.60"/>
@@ -254,13 +251,13 @@
         <request index="1" response="000" foes="001" cont="0"/>
         <request index="2" response="000" foes="001" cont="0"/>
     </junction>
-    <junction id="nN" type="priority" x="29.42" y="161.16" incLanes="N_out.37_0 N_out.37_1 N_far_ext_0 N_far_ext_1 N_far_ext_2" intLanes=":nN_0_0 :nN_0_1 :nN_0_2" shape="35.49,163.20 20.32,158.10 37.00,163.71">
+    <junction id="nN" type="priority" x="29.42" y="161.16" incLanes="N_out.37_0 N_out.37_1 N_far_ext_0 N_far_ext_1 N_far_ext_2" intLanes=":nN_0_0 :nN_0_1 :nN_0_2" shape="35.49,163.19 20.47,158.14 35.32,163.13">
         <request index="0" response="000" foes="000" cont="0"/>
         <request index="1" response="000" foes="000" cont="0"/>
         <request index="2" response="000" foes="000" cont="0"/>
     </junction>
     <junction id="nNE" type="dead_end" x="155.51" y="120.28" incLanes="NE_out_0 NE_out_1 NE_out_2" intLanes="" shape="160.28,111.95 155.51,120.28"/>
-    <junction id="nN_ext" type="dead_end" x="-27.70" y="331.27" incLanes="N_out_ext_0 N_out_ext_1" intLanes="" shape="-27.70,331.27 -20.12,333.82 -26.18,331.78"/>
+    <junction id="nN_ext" type="dead_end" x="-27.70" y="331.27" incLanes="N_out_ext_0 N_out_ext_1" intLanes="" shape="-27.55,331.32 -21.80,333.25 -27.87,331.21"/>
     <junction id="nNleft" type="priority" x="48.52" y="104.28" incLanes="N_far_0 N_far_1 N_far_2" intLanes=":nNleft_0_0 :nNleft_0_1 :nNleft_0_2 :nNleft_0_3" shape="49.79,100.49 37.66,96.41 38.15,105.02 47.25,108.07" customShape="1">
         <request index="0" response="0000" foes="0000" cont="0"/>
         <request index="1" response="0000" foes="0000" cont="0"/>

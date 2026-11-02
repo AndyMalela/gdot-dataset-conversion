@@ -14,7 +14,8 @@ sys.path.insert(0, str(ROOT / "tools"))
 import build_sim as B  # noqa: E402
 
 SITE = ROOT / "atsc/sites/7065"
-sig, _, LP, N = load_site(SITE, SITE / "network/7065v2.net.xml")
+from atsc.sim.run import net_file  # noqa: E402
+sig, _, LP, N = load_site(SITE, net_file(SITE))
 PH = {int(k): Phase(v["min_green"], v["yellow"], v["red"], v["ped_min"], recall=v["recall"]) for k, v in sig["phases"].items()}
 RINGS = {int(r): tuple(tuple(g) for g in gs) for r, gs in sig["rings"].items()}
 

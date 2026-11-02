@@ -9,7 +9,10 @@ from pathlib import Path
 
 
 def net_file(site_dir):
-    return next((Path(site_dir) / "network").glob("*v2.net.xml"))
+    """the site's network, named by network/junction.json (written by the network build script)."""
+    import json
+    net = Path(site_dir) / "network"
+    return net / json.loads((net / "junction.json").read_text())["net_file"]
 
 
 def start(site_dir, routes, begin, end, gui=False, step=1.0, seed=1, extra=()):
@@ -28,7 +31,7 @@ def start(site_dir, routes, begin, end, gui=False, step=1.0, seed=1, extra=()):
     conn.start(cmd)
     import json
     tls = json.loads((site_dir / "signal.json").read_text())["tls"]
-    # the neighbouring signals (7066, 7058, 7071, 7057) are outside the study: unsignalised (GEOMETRY.md)
+    # any other signal in the network is outside the study: unsignalised (GEOMETRY.md)
     for t in conn.trafficlight.getIDList():
         if t != tls:
             conn.trafficlight.setProgram(t, "off")

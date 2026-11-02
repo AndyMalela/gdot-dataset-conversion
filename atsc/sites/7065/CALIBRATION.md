@@ -32,3 +32,20 @@ Full grid (15 settings): `calibration/grid.csv`. tau < 1 s with 1 s steps is not
 - **The step length mattered as much as the driver.** At 1 s steps the simulation loses time at every start-up and every signal change (intervals end up to 1 s late); 0.5 s halves P8 delay at the same driver parameters. All v2 runs use 0.5 s.
 - **The remaining overflow days are the flagged-count days.** With the chosen setting, P8-through delay is 65–75 s on 19 of 22 days, i.e. the cycle delay of a movement right at capacity, with no overflow queue. The three days that overflow (Jul 16, Jul 21, Aug 12) are exactly the days with physically impossible 18:10 count bins (`DEMAND.md` §3).
 - **Caveat:** fitted on one movement. Other approaches share the vehicle type but are not saturated in the field, so their capacity is not observed directly. Phase 1.6 checks their signal behaviour (splits, gap-outs) instead.
+
+## Rerun on the aerial twin (2026-11-02)
+
+After the network switch (`GEOMETRY.md`), the same grid, days and criterion on `network/7065ext.net.xml`. The 7065v2 results above are kept in `calibration/v2osm/`; `calibration/grid.csv` is now the twin's.
+
+| sigma | tau | minGap | step | overflow days | P8 delay median (s) | sim P8 served per lane of nominal green: p25 / median / p75 / p90 |
+|---|---|---|---|---|---|---|
+| 0.5 (SUMO default) | 1.0 | 2.5 | 1.0 | 19 | 592 | 1,778 / 1,852 / 1,926 / 2,001 |
+| 0.2 | 1.0 | 2.5 | 1.0 | 14 | 151 | 1,845 / 1,979 / 2,068 / 2,164 |
+| 0.2 | 1.0 | 2.5 | 0.5 | 2 | 82 | 1,822 / 2,008 / 2,142 / 2,239 |
+| 0.3 | 0.9 | 2.5 | 0.5 | 2 | 76 | 1,815 / 2,008 / 2,142 / 2,269 |
+| **0.2** | **0.9** | **2.5** | **0.5** | **0** | **73** | **1,830 / 2,008 / 2,142 / 2,283** |
+| 0.3 | 0.8 | 2.5 | 0.5 | 0 | 70 | 1,822 / 2,001 / 2,135 / 2,269 |
+| 0.2 | 0.8 | 2.5 | 0.5 | 0 | 68 | 1,822 / 1,993 / 2,157 / 2,276 |
+| field | | | | | | 1,830 / 1,986 / 2,150 / 2,276 |
+
+**Same choice: sigma 0.2, tau 0.9 s, 0.5 s steps** (least generous with no overflow day; `sim.json` unchanged). Discharge 1,966 veh/h per lane of actual green; simulated quantiles within 1.1 % of the field's. 0 teleports in every 0.5 s run; 5 emergency-braking events in all 330 runs (3 in the N bay's lane-change junction area).

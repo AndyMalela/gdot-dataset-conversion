@@ -1,0 +1,65 @@
+{
+ "signal_id": "7065",
+ "net_file": "7065ext.net.xml",
+ "node": "J",
+ "tls": [
+  "J"
+ ],
+ "approaches": [
+  {
+   "edge": "S_in",
+   "label": "NB",
+   "name": "Piedmont Rd NE",
+   "heading_deg": 341,
+   "lanes": 4,
+   "lane_moves": [
+    "R",
+    "T",
+    "T",
+    "L"
+   ]
+  },
+  {
+   "edge": "SW_in",
+   "label": "EB",
+   "name": "Peachtree Rd NE",
+   "heading_deg": 60,
+   "lanes": 5,
+   "lane_moves": [
+    "TR",
+    "T",
+    "T",
+    "L",
+    "L"
+   ]
+  },
+  {
+   "edge": "N_near",
+   "label": "SB",
+   "name": "Piedmont Rd NE",
+   "heading_deg": 161,
+   "lanes": 4,
+   "lane_moves": [
+    "R",
+    "T",
+    "T",
+    "L"
+   ]
+  },
+  {
+   "edge": "NE_in.79",
+   "label": "WB",
+   "name": "Peachtree Rd NE",
+   "heading_deg": 241,
+   "lanes": 5,
+   "lane_moves": [
+    "T",
+    "T",
+    "T",
+    "L",
+    "L"
+   ]
+  }
+ ],
+ "source": "build_ext.py from sumotwin/7065_ext.net.xml"
+}

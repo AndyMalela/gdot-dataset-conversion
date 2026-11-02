@@ -71,7 +71,7 @@ def main():
             notes.append(date)
 
     out = {
-        "signal": "7065", "tls": "cluster_69536528_69537103",
+        "signal": "7065", "tls": "J",
         "rings": rings, "phases": phases, "plans": plans,
         "schedule_by_date": schedule, "canonical_schedule": CANONICAL,
         "notes": {

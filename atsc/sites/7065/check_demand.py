@@ -28,7 +28,8 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     rou = out / f"{date}{a.tag}.rou.xml"
     meta = demand.write_routes(HERE, run.net_file(HERE), date, rou, seed=1, vtype=a.vtype, depart_lane=a.depart_lane)
-    conn = run.start(HERE, rou, b0 - 900, b1)               # 15 min warm-up
+    step = json.loads((HERE / "sim.json").read_text())["step"]       # calibrated tau < 1 s needs the 0.5 s step
+    conn = run.start(HERE, rou, b0 - 900, b1, step=step)    # 15 min warm-up
     sig = SumoSignal(conn, HERE, run.net_file(HERE), ActuatedPolicy(2.0), mode="plan", day=date)
     det = json.loads((HERE / "detectors.json").read_text())
     mv = json.loads((HERE / "movements.json").read_text())["movements"]

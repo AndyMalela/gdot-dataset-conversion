@@ -45,3 +45,14 @@ Notes:
 Check with the smoke-test flows (every movement, 10 min): each stop-bar zone counts exactly the vehicles routed through its lane group (lefts 50/50 per movement, rights 10/10, SW stop bar 60 = 50 through + 10 right on the shared lane). Upstream detectors, with vehicles entering upstream of them: 50/50 on SW and N.
 
 **Note for the demand build (1.4):** in that check every vehicle stayed in the lane it was inserted in (light traffic, no reason to change lanes), so per-lane detector readings depend on how vehicles are spread across lanes at insertion. Demand must insert far enough upstream and spread across lanes (e.g. `departLane="best"` with enough distance, or `"random"`), otherwise per-lane occupancy and gap-out are distorted.
+
+## Rebuilt on the aerial twin (2026-11-02)
+
+Same 28 channels, same lanes, placed on `network/7065ext.net.xml` (`GEOMETRY.md`, network switch). Two placement changes in `atsc/sim/detectors.py`, both about junction areas between edges:
+
+- The upstream walk now adds the junction area between two edges (the gap between their shapes). The twin's lane-count changes are short junction areas (~8 m on SW), which would otherwise shift a 79.2 m zone ~16 m further upstream than 79.2 m.
+- NE stop-bar zones (P2 ch21–23, P5 ch17–18): the stop-line edge is only 6 m long (the free-right slip lane splits off just upstream), so each 12 m zone is now one lane-area detector over the two consecutive lanes instead of being cut to 6 m.
+
+Placement: P8 setback on the 2-lane section above the N bay (79 m), P4 on the S bay (90 m long, so inside it), P6 on SW's 3-lane section (62–89 m), P2 on NE's 6-lane edge.
+
+Demand check, Jul 16 14:30–19:30, calibrated driver (`demand_audit/check/2026-07-16_ext.md`): SW left-turners still pass the P6 through-lane zones (1,179 of them), because at 79.2 m the zone sits upstream of where the left lanes begin (62 m). GDOT reports SW through and left counts separately, so the real P6 count zones likely sit **downstream of ~62 m**. Another hint for the open count-zone distance item; the 79.2 m assumption is unchanged until it is estimated.

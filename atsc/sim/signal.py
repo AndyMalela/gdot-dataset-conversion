@@ -29,7 +29,7 @@ def load_site(site_dir, net_file):
     sig = json.loads((site_dir / "signal.json").read_text())
     det = json.loads((site_dir / "detectors.json").read_text())
     pm = json.loads((REPO / "intersections" / sig["signal"] / "timing/phase_map.json").read_text())
-    junction = json.loads((REPO / "intersections" / f"{sig['signal']}osm" / "network/junction.json").read_text())
+    junction = json.loads((site_dir / "network" / "junction.json").read_text())
     net = sumolib.net.readNet(str(net_file))
     tlid, links = B.link_table(sig["signal"], {"junction": junction}, net)
     assert tlid == sig["tls"], (tlid, sig["tls"])

@@ -1,22 +1,22 @@
 {
  "source": "intersections/7065/config/detectors.csv (GDOT ATSPM configuration table, scraped 2026-10-30 by tools/atspm_config.py); lanes from T&A charts 2026-10-02 08:00 (DETECTORS.md)",
- "tls": "cluster_69536528_69537103",
+ "tls": "J",
  "stopbar_zone_m": {
   "value": 12.0,
   "assumption": "not published; 40 ft long-loop presence zone"
  },
  "approaches": {
   "N": {
-   "edge": "-525767115#1"
+   "edge": "N_near"
   },
   "S": {
-   "edge": "715642217#0"
+   "edge": "S_in"
   },
   "SW": {
-   "edge": "96433201#0"
+   "edge": "SW_in"
   },
   "NE": {
-   "edge": "1153256544#1"
+   "edge": "NE_in.79"
   }
  },
  "detectors": [
