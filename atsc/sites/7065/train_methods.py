@@ -31,8 +31,8 @@ VERSION = "v2"
 METHODS = ("qlearn", "nfq", "nfq_conv", "ars")
 NFQ_FIT = {"nfq": {"iters": 5, "epochs": 2},                                   # as fixed in METHODS.md
            "nfq_conv": {"iters": 400, "epochs": 1, "tol": 0.005}}             # amendment 1 (METHODS.md)
-POOL = int(os.environ.get("ATSC_POOL", N_EP))      # episode workers (no effect on results)
 ITERS, N_EP = 5, 22                     # as LSTDQ
+POOL = int(os.environ.get("ATSC_POOL", N_EP))      # episode workers (no effect on results)
 QL_ALPHA = 0.05
 ARS_ITERS, ARS_N, ARS_B, ARS_ALPHA, ARS_NU = 50, 11, 6, 0.02, 0.03
 
