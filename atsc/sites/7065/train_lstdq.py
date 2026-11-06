@@ -1,7 +1,8 @@
 """Train the LSTDQ controller (atsc/rl/agent.py) on TRAIN weekdays, fully actuated rules (no cycle), and
 evaluate the greedy policy like the baselines.
 
-    uv run python atsc/sites/7065/train_lstdq.py train [--iters 5] [--episodes 22]   -> lstdq/w_it<k>.npy, train_log.csv
+    uv run python atsc/sites/7065/train_lstdq.py train [--iters 5] [--episodes 22] [--seed S]
+        -> lstdq/w_it<k>.npy, train_log.csv (seed 0); lstdq/seed<S>/... for other training seeds
     uv run python atsc/sites/7065/train_lstdq.py eval  --it K                         -> appends to baselines/runs.csv as 'lstdq'
 
 Policy iteration (LSPI with LSTDQ): iteration 0 collects transitions with the actuated gap-out rule plus 20 %
@@ -44,17 +45,22 @@ def episode(args):
                            "teleports": r["teleports"]}
 
 
-def train(iters, n_ep):
+def out_dir(seed):
+    return OUT if seed == 0 else OUT / f"seed{seed}"
+
+
+def train(iters, n_ep, seed=0):
     from atsc.rl.agent import M
     from atsc.rl.lstdq import LinearQ
-    OUT.mkdir(exist_ok=True)
-    rng = random.Random(0)
+    out = out_dir(seed)
+    out.mkdir(parents=True, exist_ok=True)
+    rng = random.Random(seed)
     ds = train_days()
     data, log, w = [], [], None
-    q = LinearQ(M, 2)
+    q = LinearQ(M, 2, seed=seed)
     for it in range(iters + 1):
         eps = 0.2 if it == 0 else 0.1
-        jobs = [(rng.choice(ds), rng.choice(WINDOWS), w, eps, 1000 * it + k) for k in range(n_ep)]
+        jobs = [(rng.choice(ds), rng.choice(WINDOWS), w, eps, 100000 * seed + 1000 * it + k) for k in range(n_ep)]
         with Pool(min(22, n_ep)) as pool:
             res = pool.map(episode, jobs, chunksize=1)
         for s, info in res:
@@ -69,8 +75,8 @@ def train(iters, n_ep):
         X, A, R, X2, D = (np.concatenate([d[i] for d in data]) for i in range(5))
         q.fit(X, A, R / 100.0, X2, D, np.zeros(len(X), bool), GAMMA, ridge=RIDGE, iters=5)
         w = q.w.copy()
-        np.save(OUT / f"w_it{it + 1}.npy", w)
-    with open(OUT / "train_log.csv", "w", newline="") as f:
+        np.save(out / f"w_it{it + 1}.npy", w)
+    with open(out / "train_log.csv", "w", newline="") as f:
         wr = csv.DictWriter(f, fieldnames=list(log[0]))
         wr.writeheader()
         wr.writerows(log)
@@ -112,5 +118,6 @@ if __name__ == "__main__":
     ap.add_argument("--iters", type=int, default=5)
     ap.add_argument("--episodes", type=int, default=22)
     ap.add_argument("--it", type=int)
+    ap.add_argument("--seed", type=int, default=0, help="training seed (0 = the original run, lstdq/)")
     a = ap.parse_args()
-    train(a.iters, a.episodes) if a.cmd == "train" else evaluate(a.it)
+    train(a.iters, a.episodes, a.seed) if a.cmd == "train" else evaluate(a.it)

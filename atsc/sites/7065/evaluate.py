@@ -1,10 +1,12 @@
 """RQ1 evaluation, hour by hour: every controller on the same validation weekdays, several simulation seeds,
 scored per (day, hour, movement), next to the traffic conditions GDOT counted in that hour.
 
-    uv run python atsc/sites/7065/evaluate.py run [--seeds 1 2 3] [--only maxpressure lstdq]
+    uv run python atsc/sites/7065/evaluate.py run [--seeds 1 2 3] [--only maxpressure lstdq lstdq_s1]
         -> eval/hour_mv.csv  (date, controller, seed, hour, movement: vehicles, mean / p95 / max delay, backlog)
     uv run python atsc/sites/7065/evaluate.py conditions
         -> eval/conditions.csv  (date, hour: volume, Y, variability, imbalance, left share, from field counts)
+    uv run python atsc/sites/7065/evaluate.py report
+        -> eval/report.md  (strengths and weaknesses of each controller, by condition)
 
 Resumable: a (date, controller, seed) already in hour_mv.csv is not run again.
 
@@ -56,7 +58,8 @@ def policy(ctrl):
         return MaxPressurePolicy(HERE), {"mode": "free"}
     import numpy as np
     from atsc.rl.agent import LSTDQPolicy
-    return LSTDQPolicy(HERE, w=np.load(HERE / "lstdq" / f"w_it{LSTDQ_IT}.npy")), {"mode": "free"}
+    d = HERE / "lstdq" / (f"seed{ctrl.split('_s')[1]}" if "_s" in ctrl else "")      # lstdq_s<k>: training seed k
+    return LSTDQPolicy(HERE, w=np.load(d / f"w_it{LSTDQ_IT}.npy")), {"mode": "free"}
 
 
 def job(args):
@@ -130,10 +133,105 @@ def conditions():
     print(f"{len(rows)} clean hours on {len(days('validation'))} validation weekdays -> {OUT / 'conditions.csv'}")
 
 
+SPILL_VEH = 10
+Y_BINS = [(0.0, 0.15, "light (Y < 0.15)"), (0.15, 0.30, "moderate (0.15-0.30)"),
+          (0.30, 0.40, "busy (0.30-0.40)"), (0.40, 9.0, "heavy (Y >= 0.40)")]
+
+
+def boot_ci(per_day, n=2000, seed=0):
+    """95 % interval of the mean over days, resampling days (hours of one day are not independent)."""
+    import random
+    rng = random.Random(seed)
+    vals = list(per_day.values())
+    means = sorted(st.mean(rng.choice(vals) for _ in vals) for _ in range(n))
+    return means[int(0.025 * n)], means[int(0.975 * n)]
+
+
+def report():
+    rows = list(csv.DictReader(open(OUT / "hour_mv.csv")))
+    cond = {(r["date"], int(r["hour"])): r for r in csv.DictReader(open(OUT / "conditions.csv"))}
+    present = {r["controller"] for r in rows}
+    ctrls = [c for c in CONTROLLERS if c in present] + sorted(present - set(CONTROLLERS))
+    seeds = sorted({int(r["seed"]) for r in rows})
+    # per (date, hour, controller): seed-averaged hour delay (s/veh), worst movement p95, backlog
+    acc = defaultdict(lambda: [0.0, 0])
+    worst = defaultdict(list)
+    backlog = defaultdict(int)
+    for r in rows:
+        k = (r["date"], int(r["hour"]), r["controller"])
+        acc[k][0] += float(r["mean_s"]) * int(r["veh"])
+        acc[k][1] += int(r["veh"])
+        worst[k].append(float(r["p95_s"]))
+        backlog[k] = max(backlog[k], int(r["backlog_max"]))
+    nseed = defaultdict(set)
+    for r in rows:
+        nseed[(r["date"], int(r["hour"]), r["controller"])].add(r["seed"])
+    D = {k: v[0] / v[1] for k, v in acc.items() if v[1]}
+    # only hours with clean field counts, run by every controller with every seed
+    hours = sorted({(d, h) for d, h, _ in D if (d, h) in cond
+                    and all(len(nseed[(d, h, c)]) == len(seeds) for c in ctrls)})
+    ybin = {dh: next(lab for lo, hi, lab in Y_BINS if lo <= float(cond[dh]["Y"]) < hi) for dh in hours}
+    best = {dh: min(D[(*dh, c)] for c in ctrls) for dh in hours}
+
+    L = ["# RQ1 evaluation: strengths and weaknesses by traffic condition (7065, validation weekdays)", "",
+         f"{len(hours)} clean hours on {len({d for d, _ in hours})} days x {len(seeds)} simulation seeds "
+         f"(seed-averaged per hour). Y = sum of critical flow ratios from the field counts. Intervals: 95 % "
+         "day-bootstrap. **Limitations:** isolated model of a signal in GDOT's coordinated Peachtree group "
+         "(field plan charged coordination's cost without its benefit); P2 count suspect (~half its neighbours'); "
+         "right turns uncounted; LSTDQ = one training seed.", ""]
+
+    def table(title, metric, fmt="{:.1f}"):
+        L.extend([f"## {title}", "", "| Controller | all hours | " + " | ".join(lab for _, _, lab in Y_BINS) + " |",
+                  "|---|---|" + "---|" * len(Y_BINS)])
+        for c in ctrls:
+            cells = []
+            for sel in [None] + [lab for _, _, lab in Y_BINS]:
+                hs = [dh for dh in hours if sel is None or ybin[dh] == sel]
+                per_day = defaultdict(list)
+                for dh in hs:
+                    v = metric(dh, c)
+                    if v is not None:
+                        per_day[dh[0]].append(v)
+                per_day = {d: st.mean(v) for d, v in per_day.items()}
+                if not per_day:
+                    cells.append("-")
+                    continue
+                m = st.mean(per_day.values())
+                lo, hi = boot_ci(per_day)
+                cells.append(fmt.format(m) + f" ({fmt.format(lo)} to {fmt.format(hi)})")
+            L.append(f"| {c} | " + " | ".join(cells) + " |")
+        L.append("")
+
+    L.append("Hours per condition: " + ", ".join(f"{lab} {sum(ybin[dh] == lab for dh in hours)}" for _, _, lab in Y_BINS))
+    L.append("")
+    table("Mean delay (s/veh)", lambda dh, c: D[(*dh, c)])
+    if "webster" in ctrls:
+        table("Gain vs Webster (%, negative = less delay than Webster)",
+              lambda dh, c: 100 * (D[(*dh, c)] / D[(*dh, "webster")] - 1))
+    if "actuated" in ctrls:
+        table("Gain vs actuated (%, negative = less delay than actuated)",
+              lambda dh, c: 100 * (D[(*dh, c)] / D[(*dh, "actuated")] - 1))
+    table("Regret: delay above the best controller in the same hour (s/veh)", lambda dh, c: D[(*dh, c)] - best[dh])
+    table("Worst-off movement: highest 95th-percentile delay of any movement in the hour (s)",
+          lambda dh, c: max(worst[(*dh, c)]))
+    # SUMO holds 1-2 vehicles at entry whenever two arrive on a lane in the same step (median hourly maximum 2
+    # for every controller, also at night), so only a backlog well above that counts as a queue reaching the leg end
+    table(f"Hours with a queue reaching the leg end (share of hours with >= {SPILL_VEH} vehicles unable to enter)",
+          lambda dh, c: 1.0 if backlog[(*dh, c)] >= SPILL_VEH else 0.0, fmt="{:.2f}")
+    L += ["## How often each controller is best in an hour", "", "| Controller | " + " | ".join(lab for _, _, lab in Y_BINS) + " |",
+          "|---|" + "---|" * len(Y_BINS)]
+    for c in ctrls:
+        L.append(f"| {c} | " + " | ".join(
+            f"{100 * st.mean(D[(*dh, c)] == best[dh] for dh in hours if ybin[dh] == lab):.0f} %"
+            if any(ybin[dh] == lab for dh in hours) else "-" for _, _, lab in Y_BINS) + " |")
+    (OUT / "report.md").write_text("\n".join(L) + "\n")
+    print("\n".join(L))
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["run", "conditions"])
+    ap.add_argument("cmd", choices=["run", "conditions", "report"])
     ap.add_argument("--seeds", type=int, nargs="+", default=[1, 2, 3])
     ap.add_argument("--only", nargs="+")
     a = ap.parse_args()
-    run(a.seeds, a.only) if a.cmd == "run" else conditions()
+    {"run": lambda: run(a.seeds, a.only), "conditions": conditions, "report": report}[a.cmd]()
