@@ -173,7 +173,13 @@ def report():
     for r in rows:
         nseed[(r["date"], int(r["hour"]), r["controller"])].add(r["seed"])
     D = {k: v[0] / v[1] for k, v in acc.items() if v[1]}
-    # only hours with clean field counts, run by every controller with every seed
+    # main tables: controllers run with every simulation seed (extra LSTDQ training seeds have seed 1 only and
+    # appear in the training-seed table); hours with clean field counts, run by all of them with every seed
+    all_ctrls = ctrls
+    seeds_of = defaultdict(set)
+    for r in rows:
+        seeds_of[r["controller"]].add(int(r["seed"]))
+    ctrls = [c for c in all_ctrls if len(seeds_of[c]) == len(seeds)]
     hours = sorted({(d, h) for d, h, _ in D if (d, h) in cond
                     and all(len(nseed[(d, h, c)]) == len(seeds) for c in ctrls)})
     ybin = {dh: next(lab for lo, hi, lab in Y_BINS if lo <= float(cond[dh]["Y"]) < hi) for dh in hours}
@@ -210,6 +216,39 @@ def report():
 
     L.append("Hours per condition: " + ", ".join(f"{lab} {sum(ybin[dh] == lab for dh in hours)}" for _, _, lab in Y_BINS))
     L.append("")
+    # overall, every vehicle weighted equally (the tables below weight every hour equally)
+    L += ["## Overall mean delay, vehicle-weighted (s/veh)", "", "| Controller | mean delay (95 % interval) |", "|---|---|"]
+    for c in ctrls:
+        per_day = defaultdict(lambda: [0.0, 0])
+        for d, h in hours:
+            per_day[d][0] += acc[(d, h, c)][0]
+            per_day[d][1] += acc[(d, h, c)][1]
+        per_day = {d: s / n for d, (s, n) in per_day.items()}
+        lo, hi = boot_ci(per_day)
+        L.append(f"| {c} | {st.mean(per_day.values()):.1f} ({lo:.1f} to {hi:.1f}) |")
+    L.append("")
+    # LSTDQ training seeds: spread of each version's overall delay, on simulation seed 1 (all of them have it)
+    groups = defaultdict(list)
+    for c in all_ctrls:
+        if c.startswith("lstdq"):
+            groups[next((x for x in c.split("_") if x in ("v2", "v2f")), "v1")].append(c)
+    if any(len(v) > 1 for v in groups.values()):
+        s1 = defaultdict(lambda: [0.0, 0])
+        for r in rows:
+            if r["seed"] == "1" and (r["date"], int(r["hour"])) in cond:
+                s1[r["controller"]][0] += float(r["mean_s"]) * int(r["veh"])
+                s1[r["controller"]][1] += int(r["veh"])
+        L += ["## LSTDQ versions over training seeds (overall vehicle-weighted delay, simulation seed 1, s/veh)", "",
+              "| Version | training seeds | median | min | max | per seed |", "|---|---|---|---|---|---|"]
+        for v, cs in sorted(groups.items()):
+            vals = {c: s1[c][0] / s1[c][1] for c in cs if s1[c][1]}
+            if vals:
+                L.append(f"| {v} | {len(vals)} | {st.median(vals.values()):.1f} | {min(vals.values()):.1f} | "
+                         f"{max(vals.values()):.1f} | " + ", ".join(f"{c} {x:.1f}" for c, x in sorted(vals.items())) + " |")
+        for c in ("maxpressure", "webster", "actuated"):
+            if s1[c][1]:
+                L.append(f"| {c} (reference) | - | {s1[c][0] / s1[c][1]:.1f} | | | |")
+        L.append("")
     table("Mean delay (s/veh)", lambda dh, c: D[(*dh, c)])
     if "webster" in ctrls:
         table("Gain vs Webster (%, negative = less delay than Webster)",

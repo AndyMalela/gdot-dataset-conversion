@@ -4,6 +4,16 @@
 
 Hours per condition: light (Y < 0.15) 128, moderate (0.15-0.30) 72, busy (0.30-0.40) 186, heavy (Y >= 0.40) 85
 
+## Overall mean delay, vehicle-weighted (s/veh)
+
+| Controller | mean delay (95 % interval) |
+|---|---|
+| gdot | 50.3 (47.5 to 53.8) |
+| actuated | 40.8 (39.8 to 41.9) |
+| webster | 40.0 (38.1 to 42.1) |
+| maxpressure | 34.8 (33.4 to 36.5) |
+| lstdq | 36.5 (35.4 to 37.8) |
+
 ## Mean delay (s/veh)
 
 | Controller | all hours | light (Y < 0.15) | moderate (0.15-0.30) | busy (0.30-0.40) | heavy (Y >= 0.40) |
