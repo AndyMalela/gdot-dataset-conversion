@@ -1,6 +1,6 @@
 # RQ1 evaluation: strengths and weaknesses by traffic condition (7065, validation weekdays)
 
-471 clean hours on 20 days x 3 simulation seeds (seed-averaged per hour). Y = sum of critical flow ratios from the field counts. Intervals: 95 % day-bootstrap. **Limitations:** isolated model of a signal in GDOT's coordinated Peachtree group (field plan charged coordination's cost without its benefit); P2 count suspect (~half its neighbours'); right turns uncounted; LSTDQ = one training seed.
+471 clean hours on 20 days x 3 simulation seeds (seed-averaged per hour). Y = sum of critical flow ratios from the field counts. Intervals: 95 % day-bootstrap. **Limitations:** isolated model of a signal in GDOT's coordinated Peachtree group (field plan charged coordination's cost without its benefit); P2 count suspect (~half its neighbours'); right turns uncounted. Main tables: learnt controllers at one training seed (lstdq = v1 seed 0); all training seeds of every learner are in the training-seed tables (simulation seed 1).
 
 Hours per condition: light (Y < 0.15) 128, moderate (0.15-0.30) 72, busy (0.30-0.40) 186, heavy (Y >= 0.40) 85
 
@@ -13,6 +13,43 @@ Hours per condition: light (Y < 0.15) 128, moderate (0.15-0.30) 72, busy (0.30-0
 | webster | 40.0 (38.1 to 42.1) |
 | maxpressure | 34.8 (33.4 to 36.5) |
 | lstdq | 36.5 (35.4 to 37.8) |
+
+## Learners over training seeds (overall vehicle-weighted delay, simulation seed 1, s/veh)
+
+| Learner | training seeds | median | min | max | per seed |
+|---|---|---|---|---|---|
+| lstdq v1 | 5 | 36.0 | 34.2 | 36.9 | lstdq 36.3, lstdq_s1 36.9, lstdq_s2 35.5, lstdq_s3 36.0, lstdq_s4 34.2 |
+| lstdq v2 | 5 | 34.9 | 34.5 | 37.4 | lstdq_v2_s0 34.9, lstdq_v2_s1 34.5, lstdq_v2_s2 37.4, lstdq_v2_s3 35.2, lstdq_v2_s4 34.5 |
+| lstdq v2f | 5 | 34.1 | 33.5 | 35.3 | lstdq_v2f_s0 34.1, lstdq_v2f_s1 33.9, lstdq_v2f_s2 33.5, lstdq_v2f_s3 35.3, lstdq_v2f_s4 34.2 |
+| maxpressure (reference) | - | 34.5 | | | |
+| webster (reference) | - | 40.1 | | | |
+| actuated (reference) | - | 40.8 | | | |
+
+## Learners over training seeds by condition (mean delay, s/veh, simulation seed 1; median, min to max)
+
+| Learner | light (Y < 0.15) | moderate (0.15-0.30) | busy (0.30-0.40) | heavy (Y >= 0.40) |
+|---|---|---|---|---|
+| lstdq v1 | 26.9 (26.5 to 27.4) | 31.5 (31.1 to 32.0) | 35.2 (33.7 to 36.0) | 40.9 (37.9 to 42.4) |
+| lstdq v2 | 31.1 (30.2 to 34.7) | 32.9 (32.3 to 34.9) | 33.9 (33.4 to 34.8) | 37.8 (37.5 to 43.0) |
+| lstdq v2f | 30.7 (27.5 to 31.4) | 31.4 (30.6 to 32.5) | 33.0 (32.8 to 34.2) | 37.3 (37.2 to 39.0) |
+| maxpressure | 26.6 | 31.0 | 33.1 | 39.6 |
+| webster | 42.3 | 33.1 | 37.2 | 47.5 |
+| actuated | 27.7 | 35.7 | 40.1 | 46.5 |
+
+471 clean hours run by every controller with simulation seed 1.
+
+## Learners over training seeds by condition (worst-off movement p95 delay, s, simulation seed 1; median, min to max)
+
+| Learner | light (Y < 0.15) | moderate (0.15-0.30) | busy (0.30-0.40) | heavy (Y >= 0.40) |
+|---|---|---|---|---|
+| lstdq v1 | 96.9 (95.2 to 101.7) | 103.1 (102.3 to 105.2) | 110.4 (110.0 to 113.4) | 136.6 (130.7 to 147.2) |
+| lstdq v2 | 118.7 (112.2 to 134.5) | 110.1 (107.7 to 149.8) | 107.7 (107.4 to 127.7) | 134.0 (127.9 to 197.0) |
+| lstdq v2f | 118.6 (101.8 to 119.3) | 106.0 (101.7 to 108.2) | 105.6 (104.2 to 114.3) | 133.6 (126.9 to 144.3) |
+| maxpressure | 95.3 | 110.3 | 122.3 | 199.8 |
+| webster | 163.6 | 128.1 | 213.9 | 331.5 |
+| actuated | 98.3 | 111.3 | 117.5 | 145.8 |
+
+471 clean hours run by every controller with simulation seed 1.
 
 ## Mean delay (s/veh)
 

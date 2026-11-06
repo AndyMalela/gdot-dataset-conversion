@@ -41,6 +41,7 @@ from baselines import days, webster_schedule  # noqa: E402
 OUT = HERE / "eval"
 CONTROLLERS = ("gdot", "actuated", "webster", "maxpressure", "lstdq")
 LSTDQ_IT = 5
+LEARNERS = ("qlearn", "nfq", "ars")               # METHODS.md
 S_LANE = 1950
 FIELDS = ["date", "controller", "seed", "hour", "movement", "veh", "mean_s", "p95_s", "max_s", "backlog_max"]
 
@@ -194,7 +195,8 @@ def report():
          f"(seed-averaged per hour). Y = sum of critical flow ratios from the field counts. Intervals: 95 % "
          "day-bootstrap. **Limitations:** isolated model of a signal in GDOT's coordinated Peachtree group "
          "(field plan charged coordination's cost without its benefit); P2 count suspect (~half its neighbours'); "
-         "right turns uncounted; LSTDQ = one training seed.", ""]
+         "right turns uncounted. Main tables: learnt controllers at one training seed (lstdq = v1 seed 0); all "
+         "training seeds of every learner are in the training-seed tables (simulation seed 1).", ""]
 
     def table(title, metric, fmt="{:.1f}"):
         L.extend([f"## {title}", "", "| Controller | all hours | " + " | ".join(lab for _, _, lab in Y_BINS) + " |",
@@ -232,18 +234,26 @@ def report():
         L.append(f"| {c} | {st.mean(per_day.values()):.1f} ({lo:.1f} to {hi:.1f}) |")
     L.append("")
     # LSTDQ training seeds: spread of each version's overall delay, on simulation seed 1 (all of them have it)
-    groups = defaultdict(list)
+    groups = defaultdict(list)                   # learner -> its training seeds' controllers
     for c in all_ctrls:
         if c.startswith("lstdq"):
-            groups[next((x for x in c.split("_") if x in ("v2", "v2f")), "v1")].append(c)
+            groups["lstdq " + next((x for x in c.split("_") if x in ("v2", "v2f")), "v1")].append(c)
+        elif c.split("_")[0] in LEARNERS:
+            groups[c.split("_")[0]].append(c)
     if any(len(v) > 1 for v in groups.values()):
         s1 = defaultdict(lambda: [0.0, 0])
+        s1h = defaultdict(lambda: [0.0, 0])      # (date, hour, controller), simulation seed 1
+        w1 = defaultdict(list)
         for r in rows:
             if r["seed"] == "1" and (r["date"], int(r["hour"])) in cond:
                 s1[r["controller"]][0] += float(r["mean_s"]) * int(r["veh"])
                 s1[r["controller"]][1] += int(r["veh"])
-        L += ["## LSTDQ versions over training seeds (overall vehicle-weighted delay, simulation seed 1, s/veh)", "",
-              "| Version | training seeds | median | min | max | per seed |", "|---|---|---|---|---|---|"]
+                k = (r["date"], int(r["hour"]), r["controller"])
+                s1h[k][0] += float(r["mean_s"]) * int(r["veh"])
+                s1h[k][1] += int(r["veh"])
+                w1[k].append(float(r["p95_s"]))
+        L += ["## Learners over training seeds (overall vehicle-weighted delay, simulation seed 1, s/veh)", "",
+              "| Learner | training seeds | median | min | max | per seed |", "|---|---|---|---|---|---|"]
         for v, cs in sorted(groups.items()):
             vals = {c: s1[c][0] / s1[c][1] for c in cs if s1[c][1]}
             if vals:
@@ -253,6 +263,24 @@ def report():
             if s1[c][1]:
                 L.append(f"| {c} (reference) | - | {s1[c][0] / s1[c][1]:.1f} | | | |")
         L.append("")
+        # by condition: per training seed the hour-averaged value over the bin's hours (simulation seed 1);
+        # cell = median over training seeds (min to max)
+        hrs1 = [dh for dh in sorted({(d, h) for d, h, _ in s1h}) if all(s1h[(*dh, c)][1] for c in all_ctrls)]
+        refs = [c for c in ("maxpressure", "webster", "actuated") if c in all_ctrls]
+        for title, metric in [("mean delay, s/veh", lambda k: s1h[k][0] / s1h[k][1]),
+                              ("worst-off movement p95 delay, s", lambda k: max(w1[k]))]:
+            L += [f"## Learners over training seeds by condition ({title}, simulation seed 1; median, min to max)", "",
+                  "| Learner | " + " | ".join(lab for _, _, lab in Y_BINS) + " |", "|---|" + "---|" * len(Y_BINS)]
+            for v, cs in sorted(groups.items()) + [(c, [c]) for c in refs]:
+                cells = []
+                for _, _, lab in Y_BINS:
+                    hs = [dh for dh in hrs1 if ybin.get(dh, next(lb for lo, hi, lb in Y_BINS
+                                                                  if lo <= float(cond[dh]["Y"]) < hi)) == lab]
+                    vals = sorted(st.mean(metric((*dh, c)) for dh in hs) for c in cs) if hs else []
+                    cells.append("-" if not vals else f"{st.median(vals):.1f}" if len(vals) == 1
+                                 else f"{st.median(vals):.1f} ({vals[0]:.1f} to {vals[-1]:.1f})")
+                L.append(f"| {v} | " + " | ".join(cells) + " |")
+            L += ["", f"{len(hrs1)} clean hours run by every controller with simulation seed 1.", ""]
     table("Mean delay (s/veh)", lambda dh, c: D[(*dh, c)])
     if "webster" in ctrls:
         table("Gain vs Webster (%, negative = less delay than Webster)",
