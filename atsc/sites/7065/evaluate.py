@@ -1,7 +1,7 @@
 """RQ1 evaluation, hour by hour: every controller on the same validation weekdays, several simulation seeds,
 scored per (day, hour, movement), next to the traffic conditions GDOT counted in that hour.
 
-    uv run python atsc/sites/7065/evaluate.py run [--seeds 1 2 3] [--only maxpressure lstdq lstdq_s1]
+    uv run python atsc/sites/7065/evaluate.py run [--seeds 1 2 3] [--only maxpressure lstdq lstdq_s1 lstdq_v2_s0]
         -> eval/hour_mv.csv  (date, controller, seed, hour, movement: vehicles, mean / p95 / max delay, backlog)
     uv run python atsc/sites/7065/evaluate.py conditions
         -> eval/conditions.csv  (date, hour: volume, Y, variability, imbalance, left share, from field counts)
@@ -58,8 +58,14 @@ def policy(ctrl):
         return MaxPressurePolicy(HERE), {"mode": "free"}
     import numpy as np
     from atsc.rl.agent import LSTDQPolicy
-    d = HERE / "lstdq" / (f"seed{ctrl.split('_s')[1]}" if "_s" in ctrl else "")      # lstdq_s<k>: training seed k
-    return LSTDQPolicy(HERE, w=np.load(d / f"w_it{LSTDQ_IT}.npy")), {"mode": "free"}
+    # lstdq = v1 seed 0; lstdq_s<k> = v1 seed k; lstdq_v2_s<k>, lstdq_v2f_s<k> (LSTDQ_V2.md)
+    parts = ctrl.split("_")
+    version = next((x for x in parts if x in ("v2", "v2f")), "v1")
+    seed = int(next((x[1:] for x in parts if x.startswith("s") and x[1:].isdigit()), 0))
+    sys.path.insert(0, str(HERE))
+    from train_lstdq import out_dir
+    w = np.load(out_dir(seed, version) / f"w_it{LSTDQ_IT}.npy")
+    return LSTDQPolicy(HERE, w=w, version=version), {"mode": "free"}
 
 
 def job(args):

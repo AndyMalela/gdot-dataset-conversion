@@ -1,7 +1,8 @@
 """MaxPressure on the NEMA engine, from field detectors only (cyclic variant: the engine keeps the ring
 order, so the rule decides only when to end the current green).
 
-Queue per phase, input-output estimate from the same detectors the other controllers read:
+Queue per phase, input-output estimate from the same detectors the other controllers read (QueueEstimator,
+also an input of LSTDQ v2):
     + vehicles counted on the phase's count zones (setback zones for throughs, stop-bar zones for lefts)
     - discharge at the calibrated saturation flow per lane while the phase shows green and its stop-bar
       zone is occupied
@@ -25,15 +26,13 @@ SAT_FLOW = 1950 / 3600          # veh/s per lane of green (CALIBRATION.md)
 RESET_S = 6.0                   # stop-bar zone empty this long -> queue cleared (~ setback-to-stop-line travel)
 
 
-class MaxPressurePolicy:
-    def __init__(self, site_dir):
-        self.site_dir = Path(site_dir)
-        mv = json.loads((self.site_dir / "movements.json").read_text())["movements"]
+class QueueEstimator:
+    """per-phase queue estimate (vehicles) from count zones and stop-bar zones; call update() every step."""
+    def __init__(self, site_dir, sig):
+        site_dir = Path(site_dir)
+        mv = json.loads((site_dir / "movements.json").read_text())["movements"]
         self.lanes = {m["phases"][0]: m["lanes"] for m in mv.values()}
-        self._init = False
-
-    def _setup(self, sig):
-        det = [d for d in json.loads((self.site_dir / "detectors.json").read_text())["detectors"]
+        det = [d for d in json.loads((site_dir / "detectors.json").read_text())["detectors"]
                if d.get("modelled", True)]
         self.phases = sorted(self.lanes)
         self.stopbar = {p: [f"ch{d['ch']}" for d in det if d["phase"] == p and d["kind"] == "stopbar"
@@ -44,10 +43,8 @@ class MaxPressurePolicy:
         self.seen = {ch: set() for chs in self.count.values() for ch in chs}
         self.q = {p: 0.0 for p in self.phases}
         self.empty_since = {p: 0.0 for p in self.phases}
-        self.rings = {int(r): [p for g in gs for p in g] for r, gs in sig.sig["rings"].items()}
-        self._init = True
 
-    def _update(self, sig, display):
+    def update(self, sig, display):
         conn, dt = sig.conn, sig.conn.simulation.getDeltaT()
         for p in self.phases:
             for ch in self.count[p]:
@@ -63,21 +60,29 @@ class MaxPressurePolicy:
             elif sig.now - self.empty_since[p] >= RESET_S:
                 self.q[p] = 0.0
 
+
+class MaxPressurePolicy:
+    def __init__(self, site_dir):
+        self.site_dir = Path(site_dir)
+        self.est = None
+
     def pressure(self, p):
-        return self.q[p] * self.lanes[p]
+        return self.est.q[p] * self.est.lanes[p]
 
     def end_requests(self, sig):
-        if not self._init:
-            self._setup(sig)
-        self._update(sig, sig.engine.display())
+        if self.est is None:
+            self.est = QueueEstimator(self.site_dir, sig)
+            self.rings = {int(r): [p for g in gs for p in g] for r, gs in sig.sig["rings"].items()}
+        self.est.update(sig, sig.engine.display())
+        q = self.est.q
         out = set()
         for ring in (1, 2):
             p, mode, el, _ = sig.engine.ring_state(ring)
             if mode != "G" or el < sig.engine.ph[p].min_service() - 1e-9:
                 continue
-            waiting = [x for x in self.rings[ring] if x != p and (self.q[x] > 0 or sig.engine._called(x))]
+            waiting = [x for x in self.rings[ring] if x != p and (q[x] > 0 or sig.engine._called(x))]
             if not waiting:
                 continue
-            if self.q[p] <= 0 or self.pressure(p) < max(self.pressure(x) for x in waiting):
+            if q[p] <= 0 or self.pressure(p) < max(self.pressure(x) for x in waiting):
                 out.add(ring)
         return out

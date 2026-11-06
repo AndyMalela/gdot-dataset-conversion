@@ -1,8 +1,8 @@
 """Train the LSTDQ controller (atsc/rl/agent.py) on TRAIN weekdays, fully actuated rules (no cycle), and
 evaluate the greedy policy like the baselines.
 
-    uv run python atsc/sites/7065/train_lstdq.py train [--iters 5] [--episodes 22] [--seed S]
-        -> lstdq/w_it<k>.npy, train_log.csv (seed 0); lstdq/seed<S>/... for other training seeds
+    uv run python atsc/sites/7065/train_lstdq.py train [--iters 5] [--episodes 22] [--seed S] [--version v2]
+        -> lstdq/w_it<k>.npy, train_log.csv (v1 seed 0); lstdq/seed<S>/ (v1); lstdq/<version>/seed<S>/ (v2, v2f)
     uv run python atsc/sites/7065/train_lstdq.py eval  --it K                         -> appends to baselines/runs.csv as 'lstdq'
 
 Policy iteration (LSPI with LSTDQ): iteration 0 collects transitions with the actuated gap-out rule plus 20 %
@@ -38,21 +38,24 @@ def episode(args):
     from atsc.rl.agent import LSTDQPolicy
     from atsc.sim.episode import run_window
     from atsc.sim.signal import actuated_from_site
-    date, (b0, b1), w, eps, seed = args
-    pol = LSTDQPolicy(HERE, w=w, eps=eps, behaviour=actuated_from_site(HERE), seed=seed, record=True)
+    date, (b0, b1), w, eps, seed, version = args
+    pol = LSTDQPolicy(HERE, w=w, eps=eps, behaviour=actuated_from_site(HERE), seed=seed, record=True, version=version)
     r = run_window(HERE, str(date), b0, b1, pol, mode="free", seed=seed)
     return pol.samples(), {"date": str(date), "window": f"{b0}-{b1}", "eps": eps, "delay_all_s": round(r["delay_all_s"], 2),
                            "teleports": r["teleports"]}
 
 
-def out_dir(seed):
-    return OUT if seed == 0 else OUT / f"seed{seed}"
+def out_dir(seed, version="v1"):
+    if version == "v1":
+        return OUT if seed == 0 else OUT / f"seed{seed}"
+    return OUT / version / f"seed{seed}"
 
 
-def train(iters, n_ep, seed=0):
-    from atsc.rl.agent import M
+def train(iters, n_ep, seed=0, version="v1"):
+    from atsc.rl.agent import dims
     from atsc.rl.lstdq import LinearQ
-    out = out_dir(seed)
+    M = dims(version)[2]
+    out = out_dir(seed, version)
     out.mkdir(parents=True, exist_ok=True)
     rng = random.Random(seed)
     ds = train_days()
@@ -60,7 +63,8 @@ def train(iters, n_ep, seed=0):
     q = LinearQ(M, 2, seed=seed)
     for it in range(iters + 1):
         eps = 0.2 if it == 0 else 0.1
-        jobs = [(rng.choice(ds), rng.choice(WINDOWS), w, eps, 100000 * seed + 1000 * it + k) for k in range(n_ep)]
+        jobs = [(rng.choice(ds), rng.choice(WINDOWS), w, eps, 100000 * seed + 1000 * it + k, version)
+                for k in range(n_ep)]
         with Pool(min(22, n_ep)) as pool:
             res = pool.map(episode, jobs, chunksize=1)
         for s, info in res:
@@ -119,5 +123,6 @@ if __name__ == "__main__":
     ap.add_argument("--episodes", type=int, default=22)
     ap.add_argument("--it", type=int)
     ap.add_argument("--seed", type=int, default=0, help="training seed (0 = the original run, lstdq/)")
+    ap.add_argument("--version", default="v1", choices=["v1", "v2", "v2f"], help="LSTDQ_V2.md")
     a = ap.parse_args()
-    train(a.iters, a.episodes, a.seed) if a.cmd == "train" else evaluate(a.it)
+    train(a.iters, a.episodes, a.seed, a.version) if a.cmd == "train" else evaluate(a.it)
