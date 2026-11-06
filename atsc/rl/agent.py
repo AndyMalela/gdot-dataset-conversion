@@ -50,15 +50,22 @@ def dims(version):
 
 
 class LSTDQPolicy:
-    def __init__(self, site_dir, w=None, eps=0.0, behaviour=None, seed=0, record=False, version="v1"):
+    def __init__(self, site_dir, w=None, eps=0.0, behaviour=None, seed=0, record=False, version="v1", qfun=None,
+                 learner=None):
         """w: LinearQ weights (None: no model yet, use `behaviour`); behaviour: fallback policy for
-        iteration 0 (e.g. ActuatedPolicy); eps: share of random actions; record: keep transitions."""
+        iteration 0 (e.g. ActuatedPolicy); eps: share of random actions; record: keep transitions.
+        qfun: x -> action values, in place of w (other learners, atsc/rl/methods.py); learner: online learner,
+        gets every transition as it closes (learner.update(x, a, r, x2, d)) and, unless `behaviour` is
+        used, chooses the actions (learner.q)."""
         assert version in VERSIONS, version
         self.version = version
         self.per, self.block, self.m = dims(version)
         self.site_dir = Path(site_dir)
         self.w = None if w is None else np.asarray(w).reshape(2, self.m)
         self.eps, self.behaviour, self.record = eps, behaviour, record
+        self.qfun, self.learner = qfun, learner
+        if learner is not None and behaviour is None:
+            self.qfun = learner.q
         self.rng = np.random.default_rng(seed)
         mv = json.loads((self.site_dir / "movements.json").read_text())["movements"]
         self.lanes = {}
@@ -169,7 +176,7 @@ class LSTDQPolicy:
         if self.queue is not None:
             self.queue.update(sig, sig.engine.display())
         dt = sig.conn.simulation.getDeltaT()
-        if self.record and self.open:
+        if (self.record or self.learner is not None) and self.open:
             r = self._reward_rate(sig) * dt
             for o in self.open.values():
                 o[2] += r
@@ -182,16 +189,21 @@ class LSTDQPolicy:
                 continue
             self.last_dec[ring] = sig.now
             x = self.features(sig, p, el, ring)
-            if self.record and ring in self.open:
+            if ring in self.open:
                 x0, a0, r0, t0 = self.open.pop(ring)
-                self.X.append(x0); self.A.append(a0); self.R.append(r0); self.X2.append(x); self.D.append(sig.now - t0)
+                if self.record:
+                    self.X.append(x0); self.A.append(a0); self.R.append(r0); self.X2.append(x); self.D.append(sig.now - t0)
+                if self.learner is not None:
+                    self.learner.update(x0, a0, r0, x, sig.now - t0)
             if self.rng.random() < self.eps:
                 a = int(self.rng.integers(2))
+            elif self.qfun is not None:
+                a = int(np.argmax(self.qfun(x)))
             elif self.w is not None:
                 a = int(np.argmax(self.w @ x))
             else:
                 a = int(ring in self.behaviour.end_requests(sig))
-            if self.record:
+            if self.record or self.learner is not None:
                 self.open[ring] = [x, a, 0.0, sig.now]
             if a == 1:
                 out.add(ring)

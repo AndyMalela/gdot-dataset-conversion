@@ -56,6 +56,10 @@ def policy(ctrl):
     if ctrl == "maxpressure":
         from atsc.sim.maxpressure import MaxPressurePolicy
         return MaxPressurePolicy(HERE), {"mode": "free"}
+    if ctrl.split("_")[0] in ("qlearn", "nfq", "ars"):            # METHODS.md: <method>_s<k>
+        from train_methods import load_policy
+        method, seed = ctrl.split("_")
+        return load_policy(method, int(seed[1:])), {"mode": "free"}
     import numpy as np
     from atsc.rl.agent import LSTDQPolicy
     # lstdq = v1 seed 0; lstdq_s<k> = v1 seed k; lstdq_v2_s<k>, lstdq_v2f_s<k> (LSTDQ_V2.md)
