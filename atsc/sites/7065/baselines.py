@@ -9,6 +9,7 @@ Controllers
   gdot      GDOT's own time-of-day plans (coordinated-actuated: fixed force-offs, side phases gap out)
   actuated  fully actuated, no cycle: gap-out, max green = the largest green any GDOT plan gives the phase
   webster   pretimed Webster plans per GDOT time-of-day period (design hour from train days), no skipping
+  maxpressure  cyclic MaxPressure from detector queue estimates, no cycle (atsc/sim/maxpressure.py)
 """
 import csv
 import json
@@ -24,7 +25,7 @@ from atsc.sim.demand import day_quality, day_set, load_counts  # noqa: E402
 
 OUT = HERE / "baselines"
 PERIODS = [("00:00", "E"), ("06:15", "A"), ("13:30", "B"), ("15:30", "C"), ("19:00", "B2"), ("19:30", "D"), ("21:45", "E2")]
-CONTROLLERS = ("gdot", "actuated", "webster")
+CONTROLLERS = ("gdot", "actuated", "webster", "maxpressure")
 
 
 def hhmm(t):
@@ -108,6 +109,9 @@ def job(args):
         r = run_window(HERE, str(date), 0.0, 24.0, actuated_from_site(HERE), mode="plan", **kw)
     elif ctrl == "actuated":        # same fitted passage times; no plan, so no recall
         r = run_window(HERE, str(date), 0.0, 24.0, actuated_from_site(HERE), mode="free", **kw)
+    elif ctrl == "maxpressure":
+        from atsc.sim.maxpressure import MaxPressurePolicy
+        r = run_window(HERE, str(date), 0.0, 24.0, MaxPressurePolicy(HERE), mode="free", **kw)
     else:
         r = run_window(HERE, str(date), 0.0, 24.0, FixedPolicy(), mode="schedule", schedule=webster_schedule(),
                        skip_uncalled=False, **kw)

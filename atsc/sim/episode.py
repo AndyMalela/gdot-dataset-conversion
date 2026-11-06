@@ -5,6 +5,7 @@
     res["crossings"]    per movement: stop-line crossing times (s)
     res["greens"]       NemaEngine green records
     res["backlog_max"]  most vehicles waiting to enter the network, per movement
+    res["by_hour_mv"]   per (count-bin hour, movement): vehicles, mean / 95th-percentile / max delay, backlog
 
 Delay = SUMO timeLoss + departDelay (time lost to the signal, to queues and to waiting for entry),
 from tripinfo output incl. vehicles still in the network at the end (written as unfinished).
@@ -44,6 +45,7 @@ def run_window(site_dir, date, begin_h, end_h, policy, mode="plan", plan=None, f
         prev = {e: set() for e in approach}
         crossings = defaultdict(list)
         backlog = Counter()
+        backlog_h = Counter()                                 # (hour, movement) -> most vehicles waiting to enter
         teleports = 0
         while conn.simulation.getTime() < b1 + drain_s:
             conn.simulationStep()
@@ -57,6 +59,7 @@ def run_window(site_dir, date, begin_h, end_h, policy, mode="plan", plan=None, f
                 prev[e] = now
             for c, n in Counter(v.split(".")[0] for v in conn.simulation.getPendingVehicles()).items():
                 backlog[c] = max(backlog[c], n)
+                backlog_h[(int(t // 3600), c)] = max(backlog_h[(int(t // 3600), c)], n)
         greens = sig.greens_table()
         plan_log = sig.plan_log
         cycle_starts = list(sig.engine.cycle_starts)
@@ -64,6 +67,7 @@ def run_window(site_dir, date, begin_h, end_h, policy, mode="plan", plan=None, f
 
         tot, n, unfinished = defaultdict(float), Counter(), Counter()
         hour = defaultdict(lambda: [0.0, 0])                  # count-bin hour -> [delay sum, vehicles]
+        hour_mv = defaultdict(list)                           # (count-bin hour, movement) -> vehicle delays
         for _, el in ET.iterparse(ti):
             if el.tag != "tripinfo":
                 continue
@@ -75,13 +79,20 @@ def run_window(site_dir, date, begin_h, end_h, policy, mode="plan", plan=None, f
                 n[col] += 1
                 hour[tbin // 3600][0] += dl
                 hour[tbin // 3600][1] += 1
+                hour_mv[(tbin // 3600, col)].append(dl)
                 if float(el.get("arrival", -1)) < 0:
                     unfinished[col] += 1
             el.clear()
     delay = {c: {"veh": n[c], "mean_s": tot[c] / n[c] if n[c] else None, "unfinished": unfinished[c]} for c in mv}
     allv = sum(n.values())
+    by_hour_mv = {}
+    for (h, c), ds in sorted(hour_mv.items()):
+        ds.sort()
+        by_hour_mv[(h, c)] = {"veh": len(ds), "mean_s": sum(ds) / len(ds), "p95_s": ds[int(0.95 * (len(ds) - 1))],
+                              "max_s": ds[-1], "backlog_max": backlog_h.get((h, c), 0)}
     return {"date": str(date), "window_h": [begin_h, end_h], "seed": seed, "vtype": vtype or {},
             "delay": delay, "delay_all_s": sum(tot.values()) / allv if allv else None, "vehicles": allv,
             "delay_by_hour": {h: v for h, v in sorted(hour.items())},
+            "by_hour_mv": by_hour_mv,
             "crossings": dict(crossings), "greens": greens, "plan_log": plan_log, "cycle_starts": cycle_starts,
             "backlog_max": dict(backlog), "teleports": teleports}

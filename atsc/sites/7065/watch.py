@@ -63,7 +63,7 @@ def main():
     ap.add_argument("date")
     ap.add_argument("--from", dest="b", default="17:00")
     ap.add_argument("--to", dest="e", default="18:00")
-    ap.add_argument("--controller", default="gdot", choices=["gdot", "actuated", "webster", "lstdq"])
+    ap.add_argument("--controller", default="gdot", choices=["gdot", "actuated", "webster", "maxpressure", "lstdq"])
     ap.add_argument("--it", type=int, help="LSTDQ iteration (lstdq/w_it<k>.npy)")
     ap.add_argument("--warmup", type=float, default=10, help="minutes simulated before the window")
     ap.add_argument("--focus", choices=["N", "S", "SW", "NE"], help="zoom onto one approach")
@@ -96,6 +96,9 @@ def main():
             sys.path.insert(0, str(HERE))
             from baselines import webster_schedule
             pol, kw = FixedPolicy(), {"mode": "schedule", "schedule": webster_schedule(), "skip_uncalled": False}
+        elif a.controller == "maxpressure":
+            from atsc.sim.maxpressure import MaxPressurePolicy
+            pol, kw["mode"] = MaxPressurePolicy(HERE), "free"
         else:
             import numpy as np
             from atsc.rl.agent import LSTDQPolicy
