@@ -57,9 +57,9 @@ def policy(ctrl):
     if ctrl == "maxpressure":
         from atsc.sim.maxpressure import MaxPressurePolicy
         return MaxPressurePolicy(HERE), {"mode": "free"}
-    if ctrl.split("_")[0] in ("qlearn", "nfq", "ars"):            # METHODS.md: <method>_s<k>
+    if ctrl.split("_")[0] in LEARNERS:                           # METHODS.md: <method>_s<k>
         from train_methods import load_policy
-        method, seed = ctrl.split("_")
+        method, seed = ctrl.rsplit("_", 1)
         return load_policy(method, int(seed[1:])), {"mode": "free"}
     import numpy as np
     from atsc.rl.agent import LSTDQPolicy
@@ -239,7 +239,7 @@ def report():
         if c.startswith("lstdq"):
             groups["lstdq " + next((x for x in c.split("_") if x in ("v2", "v2f")), "v1")].append(c)
         elif c.split("_")[0] in LEARNERS:
-            groups[c.split("_")[0]].append(c)
+            groups[c.rsplit("_", 1)[0]].append(c)
     if any(len(v) > 1 for v in groups.values()):
         s1 = defaultdict(lambda: [0.0, 0])
         s1h = defaultdict(lambda: [0.0, 0])      # (date, hour, controller), simulation seed 1

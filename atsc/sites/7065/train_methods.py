@@ -13,6 +13,7 @@ ars     augmented random search on the linear policy (end if theta . x > 0): per
 """
 import argparse
 import csv
+import os
 import random
 import sys
 from multiprocessing import Pool
@@ -27,7 +28,10 @@ from train_lstdq import GAMMA, WINDOWS, train_days  # noqa: E402
 
 OUT = HERE / "learners"
 VERSION = "v2"
-METHODS = ("qlearn", "nfq", "ars")
+METHODS = ("qlearn", "nfq", "nfq_conv", "ars")
+NFQ_FIT = {"nfq": {"iters": 5, "epochs": 2},                                   # as fixed in METHODS.md
+           "nfq_conv": {"iters": 400, "epochs": 1, "tol": 0.005}}             # amendment 1 (METHODS.md)
+POOL = int(os.environ.get("ATSC_POOL", N_EP))      # episode workers (no effect on results)
 ITERS, N_EP = 5, 22                     # as LSTDQ
 QL_ALPHA = 0.05
 ARS_ITERS, ARS_N, ARS_B, ARS_ALPHA, ARS_NU = 50, 11, 6, 0.02, 0.03
@@ -88,25 +92,28 @@ def _nfq_episode(args):
     return pol.samples(), info
 
 
-def train_nfq(seed):
+def train_nfq(seed, method="nfq"):
     from atsc.rl.agent import dims
     from atsc.rl.methods import MLPQ
-    out = out_dir("nfq", seed)
+    out = out_dir(method, seed)
     out.mkdir(parents=True, exist_ok=True)
     rng, ds = random.Random(seed), train_days()
     net, data, log, fitted = MLPQ(dims(VERSION)[2], seed=seed), [], [], None
     for it in range(ITERS + 1):
         eps = 0.2 if it == 0 else 0.1
         jobs = [(rng.choice(ds), rng.choice(WINDOWS), fitted, eps, 100000 * seed + 1000 * it + k) for k in range(N_EP)]
-        with Pool(N_EP) as pool:
+        with Pool(POOL) as pool:
             res = pool.map(_nfq_episode, jobs, chunksize=1)
         data += [s for s, _ in res if s is not None]
         log += [{"iter": it, **i} for _, i in res]
-        print(f"nfq s{seed} iter {it}: mean delay {np.mean([i['delay_all_s'] for _, i in res]):.1f} s/veh", flush=True)
+        print(f"{method} s{seed} iter {it}: mean delay {np.mean([i['delay_all_s'] for _, i in res]):.1f} s/veh", flush=True)
         if it == ITERS:
             break
         X, A, R, X2, D = (np.concatenate([d[i] for d in data]) for i in range(5))
-        net.fit(X, A, R / 100.0, X2, D, GAMMA)
+        k = net.fit(X, A, R / 100.0, X2, D, GAMMA, **NFQ_FIT[method])
+        q = net.qs(X)
+        print(f"{method} s{seed} fit {it + 1}: {k} backups, mean Q {q.mean():.1f}, share end {np.mean(q[:, 1] > q[:, 0]):.2f}",
+              flush=True)
         np.savez(out / f"net_it{it + 1}.npz", **net.state())
         fitted = net
     _write_log(out, log)
@@ -150,7 +157,7 @@ def load_policy(method, seed):
     d = out_dir(method, seed)
     if method == "qlearn":
         return _policy(w=np.load(d / f"w_it{ITERS}.npy"))
-    if method == "nfq":
+    if method.startswith("nfq"):
         return _policy(qfun=MLPQ.load(d / f"net_it{ITERS}.npz").q)
     return _policy(qfun=ars_qfun(np.load(d / f"theta_it{ARS_ITERS}.npy")))
 
@@ -161,4 +168,5 @@ if __name__ == "__main__":
     ap.add_argument("--method", required=True, choices=METHODS)
     ap.add_argument("--seed", type=int, default=0)
     a = ap.parse_args()
-    {"qlearn": train_qlearn, "nfq": train_nfq, "ars": train_ars}[a.method](a.seed)
+    {"qlearn": train_qlearn, "nfq": train_nfq, "nfq_conv": lambda s: train_nfq(s, "nfq_conv"),
+     "ars": train_ars}[a.method](a.seed)

@@ -99,3 +99,32 @@ Deviations from the draft protocol, stated with the results:
   - All of them against MaxPressure: learnt vs rule, on equal information.
 - Divergence or a degenerate policy (for example, never ending a green) is a result and is reported, not
   re-run with other settings.
+
+## Amendment 1 (2026-11-06 23:45, after the registered results; registered results stay primary in the record)
+
+Registered `nfq`:
+
+- Overall delay: median 69.9 s/veh over 5 training seeds, against LSTDQ v2's 34.9 s/veh.
+- Its fitted values average about −14. The cost-to-go its data and discount imply is about −30, and LSTDQ v2's
+  values average −27.
+- It ends a green at only 7–15 % of decisions; LSTDQ v2 ends at 56 %.
+
+Cause, a design error in the matching:
+
+- LSTDQ's 5 iterations per fit each solve the fixed point exactly.
+- One fitted-Q backup only looks one decision (~1 s) further ahead. The registered 5 backups per fit (25 in
+  all) therefore give a controller that sees about the next 25 s, while γ = 0.99/s implies about 100 s.
+- Ending a green costs lost time now and pays off later, so a short-sighted controller keeps greens.
+- The registered `nfq` therefore tests a truncated horizon, not neural vs linear. H2a cannot be judged on it.
+
+Amended variant `nfq_conv`, identical except for the fit:
+
+- Backups repeat until the targets change by less than 0.5 % (mean absolute, relative), at most 400 per fit.
+- One epoch per backup, to bound the cost.
+- The stopping rule uses only the training data, not validation results.
+
+Reporting and status:
+
+- H2a is reported on `nfq_conv`, with the registered `nfq` shown next to it and this amendment cited.
+- If `nfq_conv` also fails or diverges, that is reported as it is. No further amendment will be made.
+- `qlearn` and `ars` results are unaffected and stay as registered.

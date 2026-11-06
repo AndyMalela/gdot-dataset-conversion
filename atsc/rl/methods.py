@@ -72,16 +72,23 @@ class MLPQ:
             st[1] = b2 * st[1] + (1 - b2) * gr * gr
             p -= lr * (st[0] / (1 - b1 ** self.t)) / (np.sqrt(st[1] / (1 - b2 ** self.t)) + 1e-8)
 
-    def fit(self, X, A, R, X2, D, gamma, iters=5, epochs=2, batch=512, lr=1e-3):
-        """fitted Q iteration: targets r + gamma^d max_a' q(s', a') from the current network, then regression."""
-        for _ in range(iters):
+    def fit(self, X, A, R, X2, D, gamma, iters=5, epochs=2, batch=512, lr=1e-3, tol=None):
+        """fitted Q iteration: targets r + gamma^d max_a' q(s', a') from the current network, then regression.
+        Each backup looks one decision further ahead, so `iters` backups only see ~`iters` decisions; with
+        tol, back up until the targets change by less than tol (relative mean absolute change), at most
+        `iters` backups. Returns the number of backups."""
+        y_old = None
+        for k in range(iters):
             y = (R + gamma ** D * self.qs(X2).max(1)) / self.Q_SCALE
+            if tol is not None and y_old is not None and np.mean(np.abs(y - y_old)) < tol * np.mean(np.abs(y)):
+                return k
+            y_old = y
             for _ in range(epochs):
                 idx = self.rng.permutation(len(X))
                 for i in range(0, len(X), batch):
                     j = idx[i:i + batch]
                     self._step(X[j], A[j], y[j], lr)
-        return self
+        return iters
 
     def state(self):
         return {**{f"W{i}": W for i, W in enumerate(self.W)}, **{f"b{i}": b for i, b in enumerate(self.b)}}
