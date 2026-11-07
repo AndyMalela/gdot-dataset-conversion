@@ -128,3 +128,31 @@ Reporting and status:
 - H2a is reported on `nfq_conv`, with the registered `nfq` shown next to it and this amendment cited.
 - If `nfq_conv` also fails or diverges, that is reported as it is. No further amendment will be made.
 - `qlearn` and `ars` results are unaffected and stay as registered.
+
+## Results (2026-11-07; `eval/report.md`, overall vehicle-weighted delay, median over 5 training seeds, simulation seed 1)
+
+| Learner | median (min–max) s/veh |
+|---|---|
+| LSTDQ v2 | 34.9 (34.5–37.4) |
+| `ars` | 34.9 (34.7–35.1) |
+| `qlearn` | 39.3 (36.9–64.1) |
+| `nfq` (registered) | 69.9 (66.6–75.0) |
+| `nfq_conv` (amendment 1) | 49.3 (47.3–66.4) |
+| MaxPressure (reference) | 34.5 |
+
+- **H2a supported, with a weak neural comparator.** LSTDQ v2 (34.9) is well within 5 % of `nfq_conv` (49.3).
+  - `nfq_conv` never met its stopping rule: every fit ran the 400-backup cap. Its mean fitted value ended
+    near −20, against LSTDQ's −27.
+  - It is also worse than actuated control (40.8).
+  - What this shows: with the same data budget and no tuning, the neural fitted-Q learner is far worse and
+    less stable than the linear one. It does **not** show that no neural controller can do better here.
+- **H2b, first part (mean delay) supported.** LSTDQ v2 ties `ars` (34.9 vs 34.9) and beats `qlearn`.
+- **H2b, second part (spread over seeds vs `qlearn`) supported.** LSTDQ v2's seeds span 2.9 s/veh, `qlearn`'s
+  27.2.
+- **H2b, third part (training episodes vs `ars`) on the boundary.**
+  - The evaluated weights were fitted on 110 episodes, against `ars`'s 1,100: exactly 1/10.
+  - LSTDQ's training runs 132 episodes; the last round is not used for the evaluated weights. Counting all
+    132, it is 0.12, so this part is rejected.
+- **Run note.** `nfq_conv` seed 4 hung in its last training round, the data-collection round after fit 5,
+  whose data the evaluated policy does not use. Its fit-5 network was saved before the hang; the run was
+  stopped after ~17 h. That seed has no train_log.csv; its per-round delays are in the run log only.
