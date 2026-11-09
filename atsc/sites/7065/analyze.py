@@ -135,7 +135,12 @@ def mechanism(groups, ybin, cond):
 # controller; MaxPressure (blue) and LSTDQ v2f (orange) keep their colours in every figure
 COL_A = {"maxpressure": "#2a78d6", "lstdq v2f": "#eb6834", "actuated": "#1baf7a", "webster": "#eda100",
          "gdot": "#6250d6"}
-COL_B = {"lstdq v1": "#e87ba4", "lstdq v2": "#6250d6", "lstdq v2f": "#eb6834", "ars": "#1baf7a", "qlearn": "#008300"}
+COL_B = {"lstdq v1": "#e87ba4", "lstdq v2": "#6250d6", "lstdq v2f": "#eb6834", "ars": "#1baf7a", "qlearn": "#008300",
+         "dqn": "#eda100"}
+COL_T = {"lstdq v2": "#6250d6", "ars": "#1baf7a", "qlearn": "#008300", "dqn": "#eda100", "nfq_conv": "#e34948"}
+TRAIN_LOGS = {"lstdq v2": HERE / "lstdq" / "v2", "qlearn": HERE / "learners" / "qlearn", "ars": HERE / "learners" / "ars",
+              "nfq_conv": HERE / "learners" / "nfq_conv", "dqn": HERE / "learners" / "dqn"}
+ROLL = 22                      # training-curve smoothing: one LSPI round (mixes the four day windows)
 INK, INK2, GRID = "#0b0b0b", "#52514e", "#e4e3df"
 
 
@@ -247,6 +252,54 @@ def figures(D, W, groups, ybin, cond, hours, agg):
         fig.tight_layout()
         fig.savefig(FIG / "mechanism.png", dpi=180)
         plt.close(fig)
+
+
+def training_curves():
+    """training-episode delay of the same-state learners (v2 state): tidy CSV + figure (rolling mean over ROLL
+    episodes per seed, median over seeds). Training episodes explore and mix day windows, so this shows learning
+    progress and stability, not validation performance."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    rows, curves = [], defaultdict(list)
+    for g, base in TRAIN_LOGS.items():
+        for k in range(5):
+            f = base / f"seed{k}" / "train_log.csv"
+            if not f.exists():
+                continue
+            log = list(csv.DictReader(open(f)))
+            for i, r in enumerate(log):
+                rows.append({"learner": g, "label": LABEL[g], "training_seed": k, "episode": i + 1, "date": r["date"],
+                             "window": r["window"], "delay_s_per_veh": r["delay_all_s"], "exploration_eps": r.get("eps", "")})
+            d = np.array([float(r["delay_all_s"]) for r in log])
+            if len(d) >= ROLL:
+                curves[g].append(np.convolve(d, np.ones(ROLL) / ROLL, mode="valid"))
+    if rows:
+        _write("training_curves.csv", rows)
+    if not curves:
+        return
+    fig, ax = plt.subplots(figsize=(12, 4.6))
+    ends = []
+    for g, cs in curves.items():
+        n = min(len(c) for c in cs)
+        med = np.median([c[:n] for c in cs], axis=0)
+        x = np.arange(ROLL, ROLL + n)
+        ax.plot(x, med, color=COL_T[g], lw=2)
+        ends.append((g, f"{LABEL[g]} ({len(cs)} seeds, {x[-1]} episodes)", COL_T[g]))
+    ax.set_xscale("log")
+    ax.set_title(f"Training episodes: delay, rolling mean over {ROLL} episodes, median over training seeds "
+                 "(exploring; mixed day windows)", loc="left", fontsize=11, color=INK)
+    ax.set_xlabel("training episodes (log scale)", color=INK2)
+    ax.set_ylabel("s per vehicle", color=INK2)
+    ax.tick_params(colors=INK2, length=0)
+    ax.grid(axis="y", color=GRID, lw=0.8)
+    for sp in ("top", "right", "left"):
+        ax.spines[sp].set_visible(False)
+    ax.legend([plt.Line2D([], [], color=c, lw=2) for _, _, c in ends], [t for _, t, _ in ends], frameon=False,
+              fontsize=9, loc="upper right")
+    fig.tight_layout()
+    fig.savefig(FIG / "training_curves.png", dpi=180)
+    plt.close(fig)
 
 
 def readout():
@@ -483,6 +536,7 @@ def main():
                      + ", ".join(f"{names[k]} {cell(k)}" for k in others) + " |")
         L.append("")
     export(cond, D, W, groups, ybin, hours, agg, *readout())
+    training_curves()
     (OUT / "analysis.md").write_text("\n".join(L) + "\n")
     (RES / "analysis.md").write_text("\n".join(L) + "\n")
     print("\n".join(L))

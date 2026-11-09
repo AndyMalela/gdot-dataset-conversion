@@ -12,7 +12,8 @@ change the analysis and rerun it. Each CSV is tidy (one row per observation), an
 - **Days and hours.** 20 validation weekdays, full days. Only clean hours are used: every 5-min count bin of the
   hour was measured, with no detector outage. An hour is kept only if every compared controller has it.
 - **Rule controllers** (field plan, Webster, actuated, MaxPressure): 3 simulation seeds each.
-- **Learnt controllers:** 5 training seeds × 3 simulation seeds each. A learner's value for an hour is the
+- **Learnt controllers:** LSTDQ v1/v2/v2f, Q-learning, ARS, NFQ, DQN (all on the same detector state and decision, see `../METHODS.md`).
+- **Learnt-controller runs:** 5 training seeds × 3 simulation seeds each. A learner's value for an hour is the
   mean over all its runs.
 - **Traffic condition** of an hour comes from GDOT's own counts. Y is the sum of the critical flow ratios
   (flow / (lanes × 1,950 veh/h)) on the ring-barrier critical path:
@@ -39,8 +40,9 @@ change the analysis and rerun it. Each CSV is tidy (one row per observation), an
 | `runs_overall.csv` | single run (controller, training seed, simulation seed) | spread over seeds (box or strip plots), consistency |
 | `mechanism_by_condition.csv` | controller × condition × phase | how each controller behaves: cycle length, green per phase, skips, max-outs (simulation seed 2) |
 | `lstdq_v2f_learnt_rule.csv` | signal phase × feature | what the linear controller learnt, per training seed |
+| `training_curves.csv` | learner × training seed × training episode | learning curves: delay of each training episode (exploring, mixed day windows), with exploration rate where the learner has one |
 | `analysis.md` | – | the same results as readable tables (paired tests, ranks, mechanism, learnt rule) |
-| `figures/*.png` | – | slide figures (colour-blind-safe palette, checked) |
+| `figures/*.png` | – | slide figures (colour-blind-safe palette, checked): rules vs LSTDQ v2f, learners vs MaxPressure, mechanism, training curves |
 
 ## Columns
 

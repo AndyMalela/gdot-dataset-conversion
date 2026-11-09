@@ -14,36 +14,36 @@ actuated,Actuated,light,1.27,0.97,1.57,0.0,20,True
 actuated,Actuated,moderate,4.67,3.81,5.21,0.0,20,True
 actuated,Actuated,busy,6.86,6.39,7.23,0.0,20,True
 actuated,Actuated,heavy,6.06,3.46,8.14,0.001,20,True
-lstdq v1,LSTDQ v1,all,0.99,0.29,1.56,0.0121,20,True
-lstdq v1,LSTDQ v1,light,0.11,-0.19,0.39,0.3488,20,False
-lstdq v1,LSTDQ v1,moderate,0.56,-0.23,1.03,0.0007,20,False
-lstdq v1,LSTDQ v1,busy,1.8,1.34,2.17,0.0,20,True
-lstdq v1,LSTDQ v1,heavy,0.8,-2.22,3.15,0.0121,20,False
-lstdq v2,LSTDQ v2,all,1.7,1.26,2.22,0.0,20,True
-lstdq v2,LSTDQ v2,light,5.01,4.61,5.35,0.0,20,True
-lstdq v2,LSTDQ v2,moderate,2.1,1.58,2.89,0.0,20,True
-lstdq v2,LSTDQ v2,busy,0.62,0.04,1.33,0.0006,20,True
-lstdq v2,LSTDQ v2,heavy,-1.41,-3.92,0.8,0.6215,20,False
-lstdq v2f,LSTDQ v2f,all,0.51,-0.07,0.98,0.0172,20,False
-lstdq v2f,LSTDQ v2f,light,3.36,2.98,3.68,0.0,20,True
-lstdq v2f,LSTDQ v2f,moderate,0.64,-0.12,1.12,0.0007,20,False
-lstdq v2f,LSTDQ v2f,busy,-0.07,-0.46,0.19,0.4304,20,False
-lstdq v2f,LSTDQ v2f,heavy,-2.65,-5.45,-0.53,0.0027,20,True
-qlearn,Q-learning,all,6.68,1.17,15.45,0.0002,20,True
-qlearn,Q-learning,light,0.22,0.03,0.4,0.0362,20,True
-qlearn,Q-learning,moderate,2.75,-0.58,8.08,0.0172,20,False
-qlearn,Q-learning,busy,3.57,1.0,7.59,0.0,20,True
-qlearn,Q-learning,heavy,23.09,4.33,50.09,0.0001,20,True
-ars,ARS,all,0.02,-0.19,0.27,0.8695,20,False
-ars,ARS,light,-0.08,-0.26,0.09,0.4749,20,False
-ars,ARS,moderate,-0.27,-0.76,0.02,0.33,20,False
-ars,ARS,busy,0.01,-0.11,0.12,0.5958,20,False
-ars,ARS,heavy,0.53,-0.46,1.91,0.7285,20,False
-nfq_conv,NFQ,all,17.2,15.79,19.3,0.0,20,True
-nfq_conv,NFQ,light,16.77,16.46,17.11,0.0,20,True
-nfq_conv,NFQ,moderate,12.49,11.75,13.0,0.0,20,True
-nfq_conv,NFQ,busy,14.68,14.3,15.09,0.0,20,True
-nfq_conv,NFQ,heavy,26.53,20.01,34.89,0.0,20,True
+lstdq v1,LSTDQ v1,all,1.0,0.31,1.56,0.0121,20,True
+lstdq v1,LSTDQ v1,light,0.17,-0.11,0.42,0.114,20,False
+lstdq v1,LSTDQ v1,moderate,0.55,-0.25,1.03,0.0007,20,False
+lstdq v1,LSTDQ v1,busy,1.78,1.32,2.14,0.0,20,True
+lstdq v1,LSTDQ v1,heavy,0.81,-2.16,3.14,0.0121,20,False
+lstdq v2,LSTDQ v2,all,1.67,1.18,2.22,0.0,20,True
+lstdq v2,LSTDQ v2,light,5.07,4.69,5.38,0.0,20,True
+lstdq v2,LSTDQ v2,moderate,1.88,1.55,2.26,0.0,20,True
+lstdq v2,LSTDQ v2,busy,0.62,0.04,1.34,0.0006,20,True
+lstdq v2,LSTDQ v2,heavy,-1.45,-4.04,0.84,0.7562,20,False
+lstdq v2f,LSTDQ v2f,all,0.52,-0.08,0.99,0.0172,20,False
+lstdq v2f,LSTDQ v2f,light,3.39,2.99,3.72,0.0,20,True
+lstdq v2f,LSTDQ v2f,moderate,0.65,-0.15,1.14,0.0007,20,False
+lstdq v2f,LSTDQ v2f,busy,-0.06,-0.45,0.21,0.3884,20,False
+lstdq v2f,LSTDQ v2f,heavy,-2.68,-5.53,-0.54,0.0023,20,True
+qlearn,Q-learning,all,6.91,1.35,15.74,0.0001,20,True
+qlearn,Q-learning,light,0.22,0.05,0.39,0.0192,20,True
+qlearn,Q-learning,moderate,2.88,-0.41,8.17,0.024,20,False
+qlearn,Q-learning,busy,3.76,1.08,7.78,0.0,20,True
+qlearn,Q-learning,heavy,23.74,5.1,51.1,0.0001,20,True
+ars,ARS,all,0.05,-0.15,0.29,0.498,20,False
+ars,ARS,light,-0.08,-0.25,0.09,0.4749,20,False
+ars,ARS,moderate,-0.26,-0.74,0.03,0.3884,20,False
+ars,ARS,busy,0.03,-0.09,0.13,0.3683,20,False
+ars,ARS,heavy,0.63,-0.29,1.98,0.5459,20,False
+nfq_conv,NFQ,all,17.22,15.82,19.32,0.0,20,True
+nfq_conv,NFQ,light,16.81,16.49,17.16,0.0,20,True
+nfq_conv,NFQ,moderate,12.51,11.72,13.03,0.0,20,True
+nfq_conv,NFQ,busy,14.7,14.33,15.12,0.0,20,True
+nfq_conv,NFQ,heavy,26.49,19.97,34.78,0.0,20,True
 nfq,"NFQ (registered, short horizon)",all,29.9,25.96,36.01,0.0,20,True
 nfq,"NFQ (registered, short horizon)",light,18.07,17.68,18.52,0.0,20,True
 nfq,"NFQ (registered, short horizon)",moderate,23.72,22.81,24.38,0.0,20,True

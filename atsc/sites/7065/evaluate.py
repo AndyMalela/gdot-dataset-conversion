@@ -24,9 +24,15 @@ common cycle all day), but the model is isolated, with random arrivals and no pl
 is charged the cost of coordination without its benefit. P2's count (Peachtree from NE) is suspect
 (about half of what its neighbours imply, not yet resolved).
 """
-import argparse
-import csv
-import json
+import os
+
+# one BLAS thread per worker: 22 workers each spawning a thread per core oversubscribed the machine ~20x
+for _v in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ.setdefault(_v, "1")
+
+import argparse  # noqa: E402
+import csv  # noqa: E402
+import json  # noqa: E402
 import statistics as st
 import sys
 from collections import defaultdict
