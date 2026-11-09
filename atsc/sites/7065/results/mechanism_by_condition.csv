@@ -1,0 +1,321 @@
+controller,label,condition,phase,phase_name,mean_cycle_s,mean_green_s,greens_per_cycle,share_ended_at_max_green
+gdot,Field plan,light,1,P1 Peachtree-SW left,120.9,13.3,0.61,0.0
+gdot,Field plan,light,2,P2 Peachtree-NE through,120.9,55.5,1.0,0.0
+gdot,Field plan,light,3,P3 Piedmont-N left,120.9,12.2,0.018,0.0
+gdot,Field plan,light,4,P4 Piedmont-S through,120.9,39.3,0.997,0.0
+gdot,Field plan,light,5,P5 Peachtree-NE left,120.9,10.7,0.709,0.0
+gdot,Field plan,light,6,P6 Peachtree-SW through,120.9,54.1,0.998,0.0
+gdot,Field plan,light,7,P7 Piedmont-S left,120.9,7.6,0.014,0.0
+gdot,Field plan,light,8,P8 Piedmont-N through,120.9,39.4,0.997,0.0
+gdot,Field plan,moderate,1,P1 Peachtree-SW left,130.0,17.1,0.975,0.0
+gdot,Field plan,moderate,2,P2 Peachtree-NE through,130.0,44.2,1.0,0.0
+gdot,Field plan,moderate,3,P3 Piedmont-N left,130.0,9.5,0.407,0.0
+gdot,Field plan,moderate,4,P4 Piedmont-S through,130.0,42.0,1.001,0.0
+gdot,Field plan,moderate,5,P5 Peachtree-NE left,130.0,12.6,0.964,0.0
+gdot,Field plan,moderate,6,P6 Peachtree-SW through,130.0,47.6,1.007,0.0
+gdot,Field plan,moderate,7,P7 Piedmont-S left,130.0,7.9,0.294,0.0
+gdot,Field plan,moderate,8,P8 Piedmont-N through,130.0,44.5,1.0,0.0
+gdot,Field plan,busy,1,P1 Peachtree-SW left,156.1,26.1,0.996,0.0
+gdot,Field plan,busy,2,P2 Peachtree-NE through,156.1,46.5,1.0,0.0
+gdot,Field plan,busy,3,P3 Piedmont-N left,156.1,12.4,0.888,0.0
+gdot,Field plan,busy,4,P4 Piedmont-S through,156.1,45.9,0.999,0.0
+gdot,Field plan,busy,5,P5 Peachtree-NE left,156.1,16.4,0.996,0.0
+gdot,Field plan,busy,6,P6 Peachtree-SW through,156.1,54.8,0.999,0.0
+gdot,Field plan,busy,7,P7 Piedmont-S left,156.1,7.6,0.773,0.0
+gdot,Field plan,busy,8,P8 Piedmont-N through,156.1,52.2,0.999,0.0
+gdot,Field plan,heavy,1,P1 Peachtree-SW left,173.4,20.5,1.002,0.0
+gdot,Field plan,heavy,2,P2 Peachtree-NE through,173.4,70.5,1.0,0.0
+gdot,Field plan,heavy,3,P3 Piedmont-N left,173.4,13.0,0.853,0.0
+gdot,Field plan,heavy,4,P4 Piedmont-S through,173.4,44.8,1.002,0.0
+gdot,Field plan,heavy,5,P5 Peachtree-NE left,173.4,19.7,1.0,0.0
+gdot,Field plan,heavy,6,P6 Peachtree-SW through,173.4,70.0,1.001,0.0
+gdot,Field plan,heavy,7,P7 Piedmont-S left,173.4,7.9,0.767,0.0
+gdot,Field plan,heavy,8,P8 Piedmont-N through,173.4,50.9,1.003,0.0
+webster,Webster,light,1,P1 Peachtree-SW left,125.5,5.6,0.999,0.0
+webster,Webster,light,2,P2 Peachtree-NE through,125.5,30.1,1.0,0.0
+webster,Webster,light,3,P3 Piedmont-N left,125.5,21.2,0.999,0.0
+webster,Webster,light,4,P4 Piedmont-S through,125.5,36.5,0.999,0.0
+webster,Webster,light,5,P5 Peachtree-NE left,125.5,7.0,1.0,0.0
+webster,Webster,light,6,P6 Peachtree-SW through,125.5,32.5,1.003,0.0
+webster,Webster,light,7,P7 Piedmont-S left,125.5,20.9,0.999,0.0
+webster,Webster,light,8,P8 Piedmont-N through,125.5,37.6,0.999,0.0
+webster,Webster,moderate,1,P1 Peachtree-SW left,111.3,6.3,0.994,0.0
+webster,Webster,moderate,2,P2 Peachtree-NE through,111.3,32.1,1.0,0.0
+webster,Webster,moderate,3,P3 Piedmont-N left,111.3,7.3,0.992,0.0
+webster,Webster,moderate,4,P4 Piedmont-S through,111.3,36.5,0.992,0.0
+webster,Webster,moderate,5,P5 Peachtree-NE left,111.3,7.0,1.0,0.0
+webster,Webster,moderate,6,P6 Peachtree-SW through,111.3,32.5,0.995,0.0
+webster,Webster,moderate,7,P7 Piedmont-S left,111.3,5.8,0.992,0.0
+webster,Webster,moderate,8,P8 Piedmont-N through,111.3,38.4,0.992,0.0
+webster,Webster,busy,1,P1 Peachtree-SW left,111.9,6.1,1.001,0.0
+webster,Webster,busy,2,P2 Peachtree-NE through,111.9,32.6,1.0,0.0
+webster,Webster,busy,3,P3 Piedmont-N left,111.9,7.9,1.002,0.0
+webster,Webster,busy,4,P4 Piedmont-S through,111.9,36.5,1.002,0.0
+webster,Webster,busy,5,P5 Peachtree-NE left,111.9,7.0,1.0,0.0
+webster,Webster,busy,6,P6 Peachtree-SW through,111.9,32.5,1.002,0.0
+webster,Webster,busy,7,P7 Piedmont-S left,111.9,4.5,1.002,0.0
+webster,Webster,busy,8,P8 Piedmont-N through,111.9,40.1,1.002,0.0
+webster,Webster,heavy,1,P1 Peachtree-SW left,111.5,5.5,0.998,0.0
+webster,Webster,heavy,2,P2 Peachtree-NE through,111.5,33.2,1.0,0.0
+webster,Webster,heavy,3,P3 Piedmont-N left,111.5,7.5,0.997,0.0
+webster,Webster,heavy,4,P4 Piedmont-S through,111.5,36.5,0.997,0.0
+webster,Webster,heavy,5,P5 Peachtree-NE left,111.5,7.0,1.0,0.0
+webster,Webster,heavy,6,P6 Peachtree-SW through,111.5,32.5,0.995,0.0
+webster,Webster,heavy,7,P7 Piedmont-S left,111.5,4.5,0.997,0.0
+webster,Webster,heavy,8,P8 Piedmont-N through,111.5,39.8,0.997,0.0
+actuated,Actuated,light,1,P1 Peachtree-SW left,109.4,14.3,0.565,0.001
+actuated,Actuated,light,2,P2 Peachtree-NE through,109.4,35.7,1.0,0.0
+actuated,Actuated,light,3,P3 Piedmont-N left,109.4,11.2,0.404,0.018
+actuated,Actuated,light,4,P4 Piedmont-S through,109.4,40.6,0.996,0.13
+actuated,Actuated,light,5,P5 Peachtree-NE left,109.4,10.9,0.665,0.0
+actuated,Actuated,light,6,P6 Peachtree-SW through,109.4,35.0,0.999,0.0
+actuated,Actuated,light,7,P7 Piedmont-S left,109.4,8.3,0.268,0.007
+actuated,Actuated,light,8,P8 Piedmont-N through,109.4,44.2,0.997,0.009
+actuated,Actuated,moderate,1,P1 Peachtree-SW left,128.9,18.5,0.968,0.007
+actuated,Actuated,moderate,2,P2 Peachtree-NE through,128.9,30.7,1.0,0.0
+actuated,Actuated,moderate,3,P3 Piedmont-N left,128.9,13.5,0.841,0.088
+actuated,Actuated,moderate,4,P4 Piedmont-S through,128.9,41.9,1.002,0.443
+actuated,Actuated,moderate,5,P5 Peachtree-NE left,128.9,13.4,0.954,0.001
+actuated,Actuated,moderate,6,P6 Peachtree-SW through,128.9,34.5,1.0,0.0
+actuated,Actuated,moderate,7,P7 Piedmont-S left,128.9,8.7,0.538,0.02
+actuated,Actuated,moderate,8,P8 Piedmont-N through,128.9,51.2,1.003,0.158
+actuated,Actuated,busy,1,P1 Peachtree-SW left,137.0,21.3,0.995,0.025
+actuated,Actuated,busy,2,P2 Peachtree-NE through,137.0,31.0,1.0,0.0
+actuated,Actuated,busy,3,P3 Piedmont-N left,137.0,13.9,0.887,0.134
+actuated,Actuated,busy,4,P4 Piedmont-S through,137.0,43.7,1.0,0.601
+actuated,Actuated,busy,5,P5 Peachtree-NE left,137.0,15.9,0.995,0.009
+actuated,Actuated,busy,6,P6 Peachtree-SW through,137.0,34.9,1.0,0.0
+actuated,Actuated,busy,7,P7 Piedmont-S left,137.0,9.3,0.688,0.041
+actuated,Actuated,busy,8,P8 Piedmont-N through,137.0,52.3,1.001,0.416
+actuated,Actuated,heavy,1,P1 Peachtree-SW left,138.9,22.4,0.993,0.026
+actuated,Actuated,heavy,2,P2 Peachtree-NE through,138.9,32.0,1.0,0.003
+actuated,Actuated,heavy,3,P3 Piedmont-N left,138.9,13.3,0.81,0.138
+actuated,Actuated,heavy,4,P4 Piedmont-S through,138.9,44.7,0.999,0.547
+actuated,Actuated,heavy,5,P5 Peachtree-NE left,138.9,18.2,0.998,0.027
+actuated,Actuated,heavy,6,P6 Peachtree-SW through,138.9,34.6,1.001,0.001
+actuated,Actuated,heavy,7,P7 Piedmont-S left,138.9,9.0,0.627,0.038
+actuated,Actuated,heavy,8,P8 Piedmont-N through,138.9,52.7,0.998,0.645
+maxpressure,MaxPressure,light,1,P1 Peachtree-SW left,102.9,10.2,0.551,0.0
+maxpressure,MaxPressure,light,2,P2 Peachtree-NE through,102.9,35.3,1.0,0.0
+maxpressure,MaxPressure,light,3,P3 Piedmont-N left,102.9,5.9,0.409,0.0
+maxpressure,MaxPressure,light,4,P4 Piedmont-S through,102.9,39.3,0.997,0.0
+maxpressure,MaxPressure,light,5,P5 Peachtree-NE left,102.9,7.6,0.656,0.0
+maxpressure,MaxPressure,light,6,P6 Peachtree-SW through,102.9,34.4,0.999,0.0
+maxpressure,MaxPressure,light,7,P7 Piedmont-S left,102.9,5.3,0.257,0.0
+maxpressure,MaxPressure,light,8,P8 Piedmont-N through,102.9,41.5,0.997,0.0
+maxpressure,MaxPressure,moderate,1,P1 Peachtree-SW left,110.3,12.0,0.949,0.0
+maxpressure,MaxPressure,moderate,2,P2 Peachtree-NE through,110.3,30.5,1.0,0.0
+maxpressure,MaxPressure,moderate,3,P3 Piedmont-N left,110.3,5.1,0.823,0.0
+maxpressure,MaxPressure,moderate,4,P4 Piedmont-S through,110.3,38.2,1.0,0.0
+maxpressure,MaxPressure,moderate,5,P5 Peachtree-NE left,110.3,7.5,0.945,0.0
+maxpressure,MaxPressure,moderate,6,P6 Peachtree-SW through,110.3,33.5,0.999,0.0
+maxpressure,MaxPressure,moderate,7,P7 Piedmont-S left,110.3,5.0,0.479,0.0
+maxpressure,MaxPressure,moderate,8,P8 Piedmont-N through,110.3,42.7,0.997,0.0
+maxpressure,MaxPressure,busy,1,P1 Peachtree-SW left,111.5,12.4,0.988,0.0
+maxpressure,MaxPressure,busy,2,P2 Peachtree-NE through,111.5,29.9,1.0,0.0
+maxpressure,MaxPressure,busy,3,P3 Piedmont-N left,111.5,5.0,0.875,0.001
+maxpressure,MaxPressure,busy,4,P4 Piedmont-S through,111.5,38.5,1.001,0.0
+maxpressure,MaxPressure,busy,5,P5 Peachtree-NE left,111.5,7.5,0.991,0.0
+maxpressure,MaxPressure,busy,6,P6 Peachtree-SW through,111.5,33.1,1.001,0.0
+maxpressure,MaxPressure,busy,7,P7 Piedmont-S left,111.5,5.0,0.619,0.0
+maxpressure,MaxPressure,busy,8,P8 Piedmont-N through,111.5,42.0,1.002,0.009
+maxpressure,MaxPressure,heavy,1,P1 Peachtree-SW left,112.9,12.4,0.983,0.0
+maxpressure,MaxPressure,heavy,2,P2 Peachtree-NE through,112.9,30.0,1.0,0.0
+maxpressure,MaxPressure,heavy,3,P3 Piedmont-N left,112.9,5.0,0.815,0.0
+maxpressure,MaxPressure,heavy,4,P4 Piedmont-S through,112.9,40.4,1.0,0.0
+maxpressure,MaxPressure,heavy,5,P5 Peachtree-NE left,112.9,7.6,0.998,0.0
+maxpressure,MaxPressure,heavy,6,P6 Peachtree-SW through,112.9,33.1,0.998,0.0
+maxpressure,MaxPressure,heavy,7,P7 Piedmont-S left,112.9,5.0,0.551,0.0
+maxpressure,MaxPressure,heavy,8,P8 Piedmont-N through,112.9,43.9,1.0,0.1
+lstdq v1,LSTDQ v1,light,1,P1 Peachtree-SW left,106.3,12.7,0.537,0.088
+lstdq v1,LSTDQ v1,light,2,P2 Peachtree-NE through,106.3,36.4,1.0,0.0
+lstdq v1,LSTDQ v1,light,3,P3 Piedmont-N left,106.3,6.8,0.404,0.055
+lstdq v1,LSTDQ v1,light,4,P4 Piedmont-S through,106.3,40.0,0.997,0.058
+lstdq v1,LSTDQ v1,light,5,P5 Peachtree-NE left,106.3,7.6,0.673,0.0
+lstdq v1,LSTDQ v1,light,6,P6 Peachtree-SW through,106.3,36.3,1.0,0.008
+lstdq v1,LSTDQ v1,light,7,P7 Piedmont-S left,106.3,5.5,0.257,0.014
+lstdq v1,LSTDQ v1,light,8,P8 Piedmont-N through,106.3,42.6,0.997,0.021
+lstdq v1,LSTDQ v1,moderate,1,P1 Peachtree-SW left,114.7,13.2,0.952,0.008
+lstdq v1,LSTDQ v1,moderate,2,P2 Peachtree-NE through,114.7,30.7,1.0,0.0
+lstdq v1,LSTDQ v1,moderate,3,P3 Piedmont-N left,114.7,6.2,0.809,0.006
+lstdq v1,LSTDQ v1,moderate,4,P4 Piedmont-S through,114.7,40.3,1.0,0.126
+lstdq v1,LSTDQ v1,moderate,5,P5 Peachtree-NE left,114.7,8.2,0.946,0.0
+lstdq v1,LSTDQ v1,moderate,6,P6 Peachtree-SW through,114.7,34.2,1.0,0.0
+lstdq v1,LSTDQ v1,moderate,7,P7 Piedmont-S left,114.7,5.9,0.502,0.002
+lstdq v1,LSTDQ v1,moderate,8,P8 Piedmont-N through,114.7,45.0,1.0,0.009
+lstdq v1,LSTDQ v1,busy,1,P1 Peachtree-SW left,122.0,15.7,0.99,0.036
+lstdq v1,LSTDQ v1,busy,2,P2 Peachtree-NE through,122.0,31.0,1.0,0.0
+lstdq v1,LSTDQ v1,busy,3,P3 Piedmont-N left,122.0,6.5,0.885,0.001
+lstdq v1,LSTDQ v1,busy,4,P4 Piedmont-S through,122.0,42.2,1.001,0.318
+lstdq v1,LSTDQ v1,busy,5,P5 Peachtree-NE left,122.0,9.9,0.993,0.003
+lstdq v1,LSTDQ v1,busy,6,P6 Peachtree-SW through,122.0,35.2,1.0,0.001
+lstdq v1,LSTDQ v1,busy,7,P7 Piedmont-S left,122.0,6.2,0.651,0.005
+lstdq v1,LSTDQ v1,busy,8,P8 Piedmont-N through,122.0,46.7,1.001,0.069
+lstdq v1,LSTDQ v1,heavy,1,P1 Peachtree-SW left,124.2,17.5,0.984,0.07
+lstdq v1,LSTDQ v1,heavy,2,P2 Peachtree-NE through,124.2,32.4,1.0,0.0
+lstdq v1,LSTDQ v1,heavy,3,P3 Piedmont-N left,124.2,6.3,0.818,0.0
+lstdq v1,LSTDQ v1,heavy,4,P4 Piedmont-S through,124.2,42.4,0.999,0.358
+lstdq v1,LSTDQ v1,heavy,5,P5 Peachtree-NE left,124.2,11.8,0.999,0.007
+lstdq v1,LSTDQ v1,heavy,6,P6 Peachtree-SW through,124.2,36.3,0.999,0.001
+lstdq v1,LSTDQ v1,heavy,7,P7 Piedmont-S left,124.2,6.1,0.574,0.005
+lstdq v1,LSTDQ v1,heavy,8,P8 Piedmont-N through,124.2,46.8,0.999,0.08
+lstdq v2,LSTDQ v2,light,1,P1 Peachtree-SW left,126.3,20.0,0.523,0.392
+lstdq v2,LSTDQ v2,light,2,P2 Peachtree-NE through,126.3,48.0,1.0,0.169
+lstdq v2,LSTDQ v2,light,3,P3 Piedmont-N left,126.3,9.8,0.449,0.097
+lstdq v2,LSTDQ v2,light,4,P4 Piedmont-S through,126.3,42.6,0.994,0.161
+lstdq v2,LSTDQ v2,light,5,P5 Peachtree-NE left,126.3,7.6,0.736,0.0
+lstdq v2,LSTDQ v2,light,6,P6 Peachtree-SW through,126.3,48.2,0.999,0.103
+lstdq v2,LSTDQ v2,light,7,P7 Piedmont-S left,126.3,10.3,0.274,0.518
+lstdq v2,LSTDQ v2,light,8,P8 Piedmont-N through,126.3,45.9,0.994,0.032
+lstdq v2,LSTDQ v2,moderate,1,P1 Peachtree-SW left,122.6,13.6,0.964,0.044
+lstdq v2,LSTDQ v2,moderate,2,P2 Peachtree-NE through,122.6,33.7,1.0,0.013
+lstdq v2,LSTDQ v2,moderate,3,P3 Piedmont-N left,122.6,8.7,0.827,0.067
+lstdq v2,LSTDQ v2,moderate,4,P4 Piedmont-S through,122.6,42.3,1.005,0.126
+lstdq v2,LSTDQ v2,moderate,5,P5 Peachtree-NE left,122.6,7.7,0.948,0.0
+lstdq v2,LSTDQ v2,moderate,6,P6 Peachtree-SW through,122.6,38.1,1.002,0.012
+lstdq v2,LSTDQ v2,moderate,7,P7 Piedmont-S left,122.6,6.9,0.505,0.108
+lstdq v2,LSTDQ v2,moderate,8,P8 Piedmont-N through,122.6,48.7,1.005,0.043
+lstdq v2,LSTDQ v2,busy,1,P1 Peachtree-SW left,118.9,12.7,0.996,0.002
+lstdq v2,LSTDQ v2,busy,2,P2 Peachtree-NE through,118.9,31.1,1.0,0.0
+lstdq v2,LSTDQ v2,busy,3,P3 Piedmont-N left,118.9,6.7,0.886,0.021
+lstdq v2,LSTDQ v2,busy,4,P4 Piedmont-S through,118.9,42.0,1.0,0.085
+lstdq v2,LSTDQ v2,busy,5,P5 Peachtree-NE left,118.9,8.3,0.991,0.0
+lstdq v2,LSTDQ v2,busy,6,P6 Peachtree-SW through,118.9,34.2,0.999,0.002
+lstdq v2,LSTDQ v2,busy,7,P7 Piedmont-S left,118.9,5.4,0.621,0.006
+lstdq v2,LSTDQ v2,busy,8,P8 Piedmont-N through,118.9,47.1,0.999,0.074
+lstdq v2,LSTDQ v2,heavy,1,P1 Peachtree-SW left,121.1,13.2,0.985,0.002
+lstdq v2,LSTDQ v2,heavy,2,P2 Peachtree-NE through,121.1,31.5,1.0,0.003
+lstdq v2,LSTDQ v2,heavy,3,P3 Piedmont-N left,121.1,7.4,0.833,0.034
+lstdq v2,LSTDQ v2,heavy,4,P4 Piedmont-S through,121.1,43.3,1.003,0.124
+lstdq v2,LSTDQ v2,heavy,5,P5 Peachtree-NE left,121.1,9.0,0.998,0.0
+lstdq v2,LSTDQ v2,heavy,6,P6 Peachtree-SW through,121.1,33.9,1.002,0.003
+lstdq v2,LSTDQ v2,heavy,7,P7 Piedmont-S left,121.1,5.2,0.55,0.0
+lstdq v2,LSTDQ v2,heavy,8,P8 Piedmont-N through,121.1,49.5,1.005,0.23
+lstdq v2f,LSTDQ v2f,light,1,P1 Peachtree-SW left,120.3,19.3,0.505,0.367
+lstdq v2f,LSTDQ v2f,light,2,P2 Peachtree-NE through,120.3,42.6,1.0,0.077
+lstdq v2f,LSTDQ v2f,light,3,P3 Piedmont-N left,120.3,9.8,0.412,0.139
+lstdq v2f,LSTDQ v2f,light,4,P4 Piedmont-S through,120.3,43.9,0.995,0.036
+lstdq v2f,LSTDQ v2f,light,5,P5 Peachtree-NE left,120.3,7.5,0.711,0.0
+lstdq v2f,LSTDQ v2f,light,6,P6 Peachtree-SW through,120.3,43.0,0.999,0.063
+lstdq v2f,LSTDQ v2f,light,7,P7 Piedmont-S left,120.3,9.6,0.253,0.374
+lstdq v2f,LSTDQ v2f,light,8,P8 Piedmont-N through,120.3,46.7,0.995,0.198
+lstdq v2f,LSTDQ v2f,moderate,1,P1 Peachtree-SW left,118.3,13.3,0.968,0.037
+lstdq v2f,LSTDQ v2f,moderate,2,P2 Peachtree-NE through,118.3,31.5,1.0,0.0
+lstdq v2f,LSTDQ v2f,moderate,3,P3 Piedmont-N left,118.3,7.5,0.848,0.044
+lstdq v2f,LSTDQ v2f,moderate,4,P4 Piedmont-S through,118.3,41.4,1.007,0.045
+lstdq v2f,LSTDQ v2f,moderate,5,P5 Peachtree-NE left,118.3,7.6,0.942,0.0
+lstdq v2f,LSTDQ v2f,moderate,6,P6 Peachtree-SW through,118.3,35.8,1.004,0.004
+lstdq v2f,LSTDQ v2f,moderate,7,P7 Piedmont-S left,118.3,6.0,0.533,0.046
+lstdq v2f,LSTDQ v2f,moderate,8,P8 Piedmont-N through,118.3,46.9,1.01,0.056
+lstdq v2f,LSTDQ v2f,busy,1,P1 Peachtree-SW left,116.5,12.7,0.992,0.0
+lstdq v2f,LSTDQ v2f,busy,2,P2 Peachtree-NE through,116.5,30.4,1.0,0.0
+lstdq v2f,LSTDQ v2f,busy,3,P3 Piedmont-N left,116.5,6.0,0.89,0.016
+lstdq v2f,LSTDQ v2f,busy,4,P4 Piedmont-S through,116.5,41.1,0.999,0.052
+lstdq v2f,LSTDQ v2f,busy,5,P5 Peachtree-NE left,116.5,8.2,0.992,0.0
+lstdq v2f,LSTDQ v2f,busy,6,P6 Peachtree-SW through,116.5,33.5,1.0,0.0
+lstdq v2f,LSTDQ v2f,busy,7,P7 Piedmont-S left,116.5,5.2,0.636,0.004
+lstdq v2f,LSTDQ v2f,busy,8,P8 Piedmont-N through,116.5,45.4,0.999,0.07
+lstdq v2f,LSTDQ v2f,heavy,1,P1 Peachtree-SW left,118.0,13.2,0.985,0.0
+lstdq v2f,LSTDQ v2f,heavy,2,P2 Peachtree-NE through,118.0,30.8,1.0,0.0
+lstdq v2f,LSTDQ v2f,heavy,3,P3 Piedmont-N left,118.0,6.2,0.825,0.025
+lstdq v2f,LSTDQ v2f,heavy,4,P4 Piedmont-S through,118.0,42.2,1.001,0.101
+lstdq v2f,LSTDQ v2f,heavy,5,P5 Peachtree-NE left,118.0,8.8,0.996,0.0
+lstdq v2f,LSTDQ v2f,heavy,6,P6 Peachtree-SW through,118.0,33.4,1.0,0.0
+lstdq v2f,LSTDQ v2f,heavy,7,P7 Piedmont-S left,118.0,5.1,0.518,0.0
+lstdq v2f,LSTDQ v2f,heavy,8,P8 Piedmont-N through,118.0,47.6,1.0,0.181
+qlearn,Q-learning,light,1,P1 Peachtree-SW left,102.7,10.2,0.489,0.0
+qlearn,Q-learning,light,2,P2 Peachtree-NE through,102.7,35.8,1.0,0.0
+qlearn,Q-learning,light,3,P3 Piedmont-N left,102.7,6.1,0.357,0.007
+qlearn,Q-learning,light,4,P4 Piedmont-S through,102.7,39.7,0.995,0.156
+qlearn,Q-learning,light,5,P5 Peachtree-NE left,102.7,7.7,0.635,0.0
+qlearn,Q-learning,light,6,P6 Peachtree-SW through,102.7,34.1,0.999,0.0
+qlearn,Q-learning,light,7,P7 Piedmont-S left,102.7,5.1,0.222,0.0
+qlearn,Q-learning,light,8,P8 Piedmont-N through,102.7,42.3,0.995,0.029
+qlearn,Q-learning,moderate,1,P1 Peachtree-SW left,111.1,12.0,0.961,0.0
+qlearn,Q-learning,moderate,2,P2 Peachtree-NE through,111.1,30.6,1.0,0.0
+qlearn,Q-learning,moderate,3,P3 Piedmont-N left,111.1,5.1,0.823,0.0
+qlearn,Q-learning,moderate,4,P4 Piedmont-S through,111.1,38.7,1.0,0.049
+qlearn,Q-learning,moderate,5,P5 Peachtree-NE left,111.1,7.7,0.949,0.0
+qlearn,Q-learning,moderate,6,P6 Peachtree-SW through,111.1,33.4,0.998,0.0
+qlearn,Q-learning,moderate,7,P7 Piedmont-S left,111.1,5.0,0.457,0.0
+qlearn,Q-learning,moderate,8,P8 Piedmont-N through,111.1,43.5,1.0,0.008
+qlearn,Q-learning,busy,1,P1 Peachtree-SW left,112.3,12.5,0.996,0.0
+qlearn,Q-learning,busy,2,P2 Peachtree-NE through,112.3,30.0,1.0,0.0
+qlearn,Q-learning,busy,3,P3 Piedmont-N left,112.3,5.2,0.879,0.0
+qlearn,Q-learning,busy,4,P4 Piedmont-S through,112.3,38.7,1.0,0.014
+qlearn,Q-learning,busy,5,P5 Peachtree-NE left,112.3,7.6,0.988,0.0
+qlearn,Q-learning,busy,6,P6 Peachtree-SW through,112.3,33.4,1.001,0.0
+qlearn,Q-learning,busy,7,P7 Piedmont-S left,112.3,5.0,0.606,0.0
+qlearn,Q-learning,busy,8,P8 Piedmont-N through,112.3,42.5,1.002,0.012
+qlearn,Q-learning,heavy,1,P1 Peachtree-SW left,115.3,12.4,0.954,0.002
+qlearn,Q-learning,heavy,2,P2 Peachtree-NE through,115.3,33.7,1.0,0.019
+qlearn,Q-learning,heavy,3,P3 Piedmont-N left,115.3,5.2,0.8,0.0
+qlearn,Q-learning,heavy,4,P4 Piedmont-S through,115.3,39.8,1.003,0.005
+qlearn,Q-learning,heavy,5,P5 Peachtree-NE left,115.3,8.9,0.998,0.013
+qlearn,Q-learning,heavy,6,P6 Peachtree-SW through,115.3,34.8,0.998,0.008
+qlearn,Q-learning,heavy,7,P7 Piedmont-S left,115.3,5.1,0.498,0.0
+qlearn,Q-learning,heavy,8,P8 Piedmont-N through,115.3,43.8,0.998,0.039
+ars,ARS,light,1,P1 Peachtree-SW left,101.2,9.9,0.481,0.0
+ars,ARS,light,2,P2 Peachtree-NE through,101.2,35.8,1.0,0.0
+ars,ARS,light,3,P3 Piedmont-N left,101.2,5.4,0.349,0.014
+ars,ARS,light,4,P4 Piedmont-S through,101.2,39.3,0.993,0.048
+ars,ARS,light,5,P5 Peachtree-NE left,101.2,7.5,0.624,0.0
+ars,ARS,light,6,P6 Peachtree-SW through,101.2,34.2,0.998,0.0
+ars,ARS,light,7,P7 Piedmont-S left,101.2,5.0,0.209,0.0
+ars,ARS,light,8,P8 Piedmont-N through,101.2,41.3,0.993,0.01
+ars,ARS,moderate,1,P1 Peachtree-SW left,110.0,11.9,0.949,0.0
+ars,ARS,moderate,2,P2 Peachtree-NE through,110.0,30.5,1.0,0.0
+ars,ARS,moderate,3,P3 Piedmont-N left,110.0,5.0,0.836,0.0
+ars,ARS,moderate,4,P4 Piedmont-S through,110.0,38.2,1.01,0.002
+ars,ARS,moderate,5,P5 Peachtree-NE left,110.0,7.5,0.924,0.0
+ars,ARS,moderate,6,P6 Peachtree-SW through,110.0,33.5,1.0,0.0
+ars,ARS,moderate,7,P7 Piedmont-S left,110.0,5.0,0.45,0.0
+ars,ARS,moderate,8,P8 Piedmont-N through,110.0,43.0,1.006,0.0
+ars,ARS,busy,1,P1 Peachtree-SW left,111.1,12.3,0.992,0.0
+ars,ARS,busy,2,P2 Peachtree-NE through,111.1,29.8,1.0,0.0
+ars,ARS,busy,3,P3 Piedmont-N left,111.1,5.0,0.873,0.0
+ars,ARS,busy,4,P4 Piedmont-S through,111.1,38.2,0.998,0.001
+ars,ARS,busy,5,P5 Peachtree-NE left,111.1,7.5,0.985,0.0
+ars,ARS,busy,6,P6 Peachtree-SW through,111.1,33.2,1.001,0.0
+ars,ARS,busy,7,P7 Piedmont-S left,111.1,5.0,0.617,0.0
+ars,ARS,busy,8,P8 Piedmont-N through,111.1,41.6,1.002,0.0
+ars,ARS,heavy,1,P1 Peachtree-SW left,110.4,12.3,0.969,0.0
+ars,ARS,heavy,2,P2 Peachtree-NE through,110.4,30.3,1.0,0.0
+ars,ARS,heavy,3,P3 Piedmont-N left,110.4,5.0,0.782,0.0
+ars,ARS,heavy,4,P4 Piedmont-S through,110.4,38.4,1.003,0.0
+ars,ARS,heavy,5,P5 Peachtree-NE left,110.4,7.5,0.998,0.0
+ars,ARS,heavy,6,P6 Peachtree-SW through,110.4,33.1,0.998,0.0
+ars,ARS,heavy,7,P7 Piedmont-S left,110.4,5.0,0.471,0.0
+ars,ARS,heavy,8,P8 Piedmont-N through,110.4,42.4,0.997,0.0
+nfq_conv,NFQ,light,1,P1 Peachtree-SW left,152.5,23.8,0.586,0.476
+nfq_conv,NFQ,light,2,P2 Peachtree-NE through,152.5,60.7,1.0,0.357
+nfq_conv,NFQ,light,3,P3 Piedmont-N left,152.5,13.0,0.491,0.442
+nfq_conv,NFQ,light,4,P4 Piedmont-S through,152.5,42.2,0.994,0.468
+nfq_conv,NFQ,light,5,P5 Peachtree-NE left,152.5,28.4,0.72,0.667
+nfq_conv,NFQ,light,6,P6 Peachtree-SW through,152.5,51.2,1.0,0.505
+nfq_conv,NFQ,light,7,P7 Piedmont-S left,152.5,8.7,0.343,0.364
+nfq_conv,NFQ,light,8,P8 Piedmont-N through,152.5,48.3,0.994,0.442
+nfq_conv,NFQ,moderate,1,P1 Peachtree-SW left,147.5,23.9,0.99,0.228
+nfq_conv,NFQ,moderate,2,P2 Peachtree-NE through,147.5,40.8,1.0,0.103
+nfq_conv,NFQ,moderate,3,P3 Piedmont-N left,147.5,10.9,0.925,0.252
+nfq_conv,NFQ,moderate,4,P4 Piedmont-S through,147.5,42.8,1.0,0.435
+nfq_conv,NFQ,moderate,5,P5 Peachtree-NE left,147.5,17.0,0.966,0.273
+nfq_conv,NFQ,moderate,6,P6 Peachtree-SW through,147.5,47.5,1.003,0.345
+nfq_conv,NFQ,moderate,7,P7 Piedmont-S left,147.5,8.4,0.589,0.349
+nfq_conv,NFQ,moderate,8,P8 Piedmont-N through,147.5,50.8,1.003,0.399
+nfq_conv,NFQ,busy,1,P1 Peachtree-SW left,148.8,23.7,0.994,0.228
+nfq_conv,NFQ,busy,2,P2 Peachtree-NE through,148.8,41.5,1.0,0.173
+nfq_conv,NFQ,busy,3,P3 Piedmont-N left,148.8,10.8,0.89,0.241
+nfq_conv,NFQ,busy,4,P4 Piedmont-S through,148.8,45.0,1.002,0.324
+nfq_conv,NFQ,busy,5,P5 Peachtree-NE left,148.8,14.6,0.997,0.207
+nfq_conv,NFQ,busy,6,P6 Peachtree-SW through,148.8,49.5,0.999,0.387
+nfq_conv,NFQ,busy,7,P7 Piedmont-S left,148.8,9.2,0.715,0.419
+nfq_conv,NFQ,busy,8,P8 Piedmont-N through,148.8,50.5,1.001,0.571
+nfq_conv,NFQ,heavy,1,P1 Peachtree-SW left,157.8,27.8,0.986,0.256
+nfq_conv,NFQ,heavy,2,P2 Peachtree-NE through,157.8,45.4,1.0,0.197
+nfq_conv,NFQ,heavy,3,P3 Piedmont-N left,157.8,12.8,0.8,0.329
+nfq_conv,NFQ,heavy,4,P4 Piedmont-S through,157.8,44.3,0.997,0.445
+nfq_conv,NFQ,heavy,5,P5 Peachtree-NE left,157.8,17.5,1.0,0.293
+nfq_conv,NFQ,heavy,6,P6 Peachtree-SW through,157.8,55.2,1.0,0.581
+nfq_conv,NFQ,heavy,7,P7 Piedmont-S left,157.8,10.0,0.655,0.498
+nfq_conv,NFQ,heavy,8,P8 Piedmont-N through,157.8,51.2,0.997,0.61

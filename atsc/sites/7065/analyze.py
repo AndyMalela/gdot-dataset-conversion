@@ -1,6 +1,7 @@
 """RQ1 analysis on top of evaluate.py's runs: paired tests, mechanism, figures, and what LSTDQ learnt.
 
-    uv run python atsc/sites/7065/analyze.py      -> eval/analysis.md, eval/fig_*.png
+    uv run python atsc/sites/7065/analyze.py      -> eval/analysis.md; results/ (tidy CSVs + figures, see
+                                                     results/README.md) for diagrams and the thesis
 
 Learners are pooled over training seeds and simulation seeds: per (day, hour) the delay of a learner is the mean
 over all its runs (5 training seeds x 3 simulation seeds when complete). Rule controllers: 3 simulation seeds.
@@ -28,6 +29,19 @@ sys.path.insert(0, str(HERE))
 from evaluate import OUT, Y_BINS, boot_ci  # noqa: E402
 
 RULES = ("gdot", "webster", "actuated", "maxpressure")
+RES = HERE / "results"
+FIG = RES / "figures"
+FAMILY = {"gdot": ("rule", "fixed field plan (GDOT time-of-day, coordinated cycle)"),
+          "webster": ("rule", "fixed time, Webster splits per plan period"),
+          "actuated": ("rule", "fully actuated gap-out, field passage times"),
+          "maxpressure": ("rule", "MaxPressure on detector queue estimates, cyclic"),
+          "lstdq v1": ("learnt, linear", "LSTDQ / LSPI, base state and reward"),
+          "lstdq v2": ("learnt, linear", "LSTDQ, + queue estimate + other ring, delay reward (LSTDQ_V2.md)"),
+          "lstdq v2f": ("learnt, linear", "LSTDQ v2 + waiting-time fairness term (LSTDQ_V2.md)"),
+          "qlearn": ("learnt, linear", "online linear Q-learning, v2 state (METHODS.md)"),
+          "ars": ("learnt, linear", "augmented random search, linear policy, v2 state (METHODS.md)"),
+          "nfq_conv": ("learnt, neural", "neural fitted Q iterated to convergence, v2 state (METHODS.md amendment 1)"),
+          "nfq": ("learnt, neural", "neural fitted Q as registered: 25 backups, short horizon (METHODS.md)")}
 LABEL = {"gdot": "Field plan", "webster": "Webster", "actuated": "Actuated", "maxpressure": "MaxPressure",
          "lstdq v1": "LSTDQ v1", "lstdq v2": "LSTDQ v2", "lstdq v2f": "LSTDQ v2f", "qlearn": "Q-learning",
          "ars": "ARS", "nfq_conv": "NFQ", "nfq": "NFQ (registered, short horizon)"}
@@ -172,7 +186,7 @@ def figures(D, W, groups, ybin, cond, hours, agg):
     fig.suptitle("Rule-based controllers vs LSTDQ v2f, by degree of saturation Y (20 validation weekdays, "
                  f"hours per bin: {', '.join(str(n_by[b]) for b in bins)})", fontsize=11, color=INK, x=0.01, ha="left")
     fig.tight_layout()
-    fig.savefig(OUT / "fig_rules_vs_lstdq.png", dpi=180)
+    fig.savefig(FIG / "rules_vs_lstdq.png", dpi=180)
     plt.close(fig)
 
     # B: learners minus MaxPressure, paired by hour, 95 % day-bootstrap interval
@@ -209,7 +223,7 @@ def figures(D, W, groups, ybin, cond, hours, agg):
         note += " NFQ off the scale: " + ", ".join(f"{b.split(' (')[0]} {nfq[b][0]:+.0f}" for b in bins if nfq[b]) + " s/veh."
     ax.text(0, -0.2, note, transform=ax.transAxes, fontsize=8.5, color=INK2)
     fig.tight_layout()
-    fig.savefig(OUT / "fig_learners_vs_maxpressure.png", dpi=180)
+    fig.savefig(FIG / "learners_vs_maxpressure.png", dpi=180)
     plt.close(fig)
 
     # C: mechanism (simulation seed 2): cycle length and green of the critical left P5
@@ -230,7 +244,7 @@ def figures(D, W, groups, ybin, cond, hours, agg):
             _label_ends(ax, ends, len(bins) - 1)
         fig.suptitle("How they do it (simulation seed 2)", fontsize=11, color=INK, x=0.01, ha="left")
         fig.tight_layout()
-        fig.savefig(OUT / "fig_mechanism.png", dpi=180)
+        fig.savefig(FIG / "mechanism.png", dpi=180)
         plt.close(fig)
 
 
@@ -271,8 +285,109 @@ def readout():
     return ds, names, raw
 
 
+def _write(name, rows):
+    with open(RES / name, "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(rows[0]))
+        w.writeheader()
+        w.writerows(rows)
+
+
+def export(cond, D, W, groups, ybin, hours, agg, ds, names, raw):
+    """tidy tables for diagrams: one row per observation, plain column names, units in the names."""
+    bins = [lab for _, _, lab in Y_BINS]
+    short_bin = {b: b.split(" (")[0] for b in bins}
+    _write("controllers.csv", [{"controller": g, "label": LABEL[g], "family": FAMILY[g][0], "description": FAMILY[g][1],
+                                "in_main_comparison": g != "nfq"} for g in groups])
+    _write("conditions_by_hour.csv", [{"date": d, "hour": h, "condition": short_bin[ybin[(d, h)]],
+                                       **{k: cond[(d, h)][k] for k in ("volume", "Y", "cv5", "imbalance", "left_share")}}
+                                      for d, h in hours])
+    _write("delay_by_hour.csv", [{"date": d, "hour": h, "condition": short_bin[ybin[(d, h)]], "Y": cond[(d, h)]["Y"],
+                                  "controller": g, "label": LABEL[g], "mean_delay_s_per_veh": round(D[(d, h, g)], 2),
+                                  "worst_movement_p95_delay_s": round(W[(d, h, g)], 1)}
+                                 for d, h in hours for g in groups if (d, h, g) in D])
+    rows = []
+    for g in groups:
+        for sel in [None] + bins:
+            hs = [dh for dh in hours if (sel is None or ybin[dh] == sel) and (*dh, g) in D]
+            if not hs:
+                continue
+            row = {"controller": g, "label": LABEL[g], "condition": "all" if sel is None else short_bin[sel],
+                   "hours": len(hs)}
+            for col, M in [("mean_delay_s_per_veh", D), ("worst_movement_p95_delay_s", W)]:
+                per_day = defaultdict(list)
+                for dh in hs:
+                    per_day[dh[0]].append(M[(*dh, g)])
+                per_day = {d: st.mean(v) for d, v in per_day.items()}
+                lo, hi = boot_ci(per_day)
+                row.update({col: round(st.mean(per_day.values()), 2), col + "_ci_low": round(lo, 2),
+                            col + "_ci_high": round(hi, 2)})
+            rows.append(row)
+    _write("summary_by_condition.csv", rows)
+    rows = []
+    for g in groups:
+        if g == "maxpressure":
+            continue
+        r = paired(D, ybin, g, "maxpressure", hours)
+        for sel in [None] + bins:
+            if r[sel]:
+                m, lo, hi, pv, n = r[sel]
+                rows.append({"controller": g, "label": LABEL[g], "condition": "all" if sel is None else short_bin[sel],
+                             "diff_vs_maxpressure_s_per_veh": round(m, 2), "ci_low": round(lo, 2), "ci_high": round(hi, 2),
+                             "wilcoxon_p": round(pv, 4), "days": n,
+                             "significant": bool(pv < 0.05 and (lo > 0 or hi < 0))})
+    _write("paired_vs_maxpressure.csv", rows)
+    # every run: overall vehicle-weighted delay over the clean hours (training seed x simulation seed spread)
+    acc = defaultdict(lambda: [0.0, 0])
+    hs = set(hours)
+    for r in csv.DictReader(open(OUT / "hour_mv.csv")):
+        if (r["date"], int(r["hour"])) in hs:
+            k = (r["controller"], r["seed"])
+            acc[k][0] += float(r["mean_s"]) * int(r["veh"])
+            acc[k][1] += int(r["veh"])
+    rows = []
+    for (c, sd), (tot, n) in sorted(acc.items()):
+        g = group(c)
+        if g not in LABEL:
+            continue
+        tail = c.rsplit("_", 1)[-1]
+        rows.append({"controller": g, "label": LABEL[g], "run": c,
+                     "training_seed": int(tail[1:]) if tail[:1] == "s" and tail[1:].isdigit() else (0 if g.startswith("lstdq") else ""),
+                     "simulation_seed": int(sd), "vehicles": n, "overall_delay_s_per_veh": round(tot / n, 2)})
+    _write("runs_overall.csv", rows)
+    if agg:
+        rows = []
+        for g in groups:
+            for b in bins:
+                c = agg[(g, b, "cycle")]
+                if not c[0]:
+                    continue
+                for ph in range(1, 9):
+                    a = agg[(g, b, str(ph))]
+                    rows.append({"controller": g, "label": LABEL[g], "condition": short_bin[b], "phase": ph,
+                                 "phase_name": PHASE_NAME[ph], "mean_cycle_s": round(c[1] / c[0], 1),
+                                 "mean_green_s": round(a[1] / a[0], 1) if a[0] else "",
+                                 "greens_per_cycle": round(a[0] / c[0], 3),
+                                 "share_ended_at_max_green": round(a[2] / a[0], 3) if a[0] else ""})
+        _write("mechanism_by_condition.csv", rows)
+    if len(ds):
+        from atsc.rl.agent import PHASES
+        rows = []
+        for i, p in enumerate(PHASES):
+            for k, nm in enumerate(names):
+                vals = raw[:, i, k] if nm == "bias" else ds[:, i, k]
+                if not np.any(vals):
+                    continue
+                mean = vals.mean()
+                rows.append({"serving_phase": p, "serving_phase_name": PHASE_NAME[p], "feature": nm,
+                             "effect_toward_ending_mean": round(float(mean), 4),
+                             **{f"seed{s}": round(float(v), 4) for s, v in enumerate(vals)},
+                             "seeds_agreeing_in_sign": int((np.sign(raw[:, i, k]) == np.sign(raw[:, i, k].mean())).sum())})
+        _write("lstdq_v2f_learnt_rule.csv", rows)
+
+
 def main():
     cond, D, W, groups, ybin, runs_of = load()
+    FIG.mkdir(parents=True, exist_ok=True)
     compare = [g for g in groups if g != "nfq"]
     hours = sorted({(d, h) for d, h, _ in D if all((d, h, g) in D for g in compare)})
     bins = [lab for _, _, lab in Y_BINS]
@@ -338,7 +453,7 @@ def main():
             L.append(f"| {LABEL[g]} | " + " | ".join(cells) + " |")
         L.append("")
     figures(D, W, compare, ybin, cond, hours, agg)
-    L += ["Figures: `fig_rules_vs_lstdq.png`, `fig_learners_vs_maxpressure.png`, `fig_mechanism.png`.", ""]
+    L += ["Figures and tidy data: `results/` (README.md there).", ""]
     # 5. learnt rule
     ds, names, raw = readout()
     if len(ds):
@@ -366,7 +481,9 @@ def main():
                      f"{cell(len(names) - 2)} | {cell(len(names) - 1)} | "
                      + ", ".join(f"{names[k]} {cell(k)}" for k in others) + " |")
         L.append("")
+    export(cond, D, W, groups, ybin, hours, agg, *readout())
     (OUT / "analysis.md").write_text("\n".join(L) + "\n")
+    (RES / "analysis.md").write_text("\n".join(L) + "\n")
     print("\n".join(L))
 
 

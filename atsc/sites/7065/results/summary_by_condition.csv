@@ -1,0 +1,56 @@
+controller,label,condition,hours,mean_delay_s_per_veh,mean_delay_s_per_veh_ci_low,mean_delay_s_per_veh_ci_high,worst_movement_p95_delay_s,worst_movement_p95_delay_s_ci_low,worst_movement_p95_delay_s_ci_high
+gdot,Field plan,all,471,44.29,42.46,46.57,142.46,134.7,151.59
+gdot,Field plan,light,128,29.83,29.38,30.33,107.17,105.92,108.74
+gdot,Field plan,moderate,72,36.01,35.55,36.5,115.3,114.09,116.51
+gdot,Field plan,busy,186,46.05,45.56,46.65,138.92,135.74,143.61
+gdot,Field plan,heavy,85,68.92,60.14,79.03,226.03,188.33,268.59
+webster,Webster,all,471,39.68,38.56,40.86,209.56,193.88,227.31
+webster,Webster,light,128,41.85,40.8,42.99,161.97,153.84,173.62
+webster,Webster,moderate,72,33.18,32.57,34.12,129.2,116.06,150.01
+webster,Webster,busy,186,36.92,35.91,38.0,212.49,194.49,231.82
+webster,Webster,heavy,85,48.03,42.86,53.96,345.31,288.08,412.11
+actuated,Actuated,all,471,37.32,36.69,38.05,116.57,112.91,120.74
+actuated,Actuated,light,128,27.95,27.54,28.43,98.53,97.59,99.59
+actuated,Actuated,moderate,72,35.63,35.23,36.05,111.32,110.82,111.86
+actuated,Actuated,busy,186,40.13,39.94,40.31,117.05,115.97,118.82
+actuated,Actuated,heavy,85,46.56,43.54,49.82,146.5,128.85,165.43
+maxpressure,MaxPressure,all,471,32.44,31.56,33.46,129.86,119.3,141.27
+maxpressure,MaxPressure,light,128,26.67,26.28,27.18,94.98,92.52,99.22
+maxpressure,MaxPressure,moderate,72,30.96,30.42,31.77,108.06,99.64,123.25
+maxpressure,MaxPressure,busy,186,33.27,32.81,33.86,126.24,116.72,137.58
+maxpressure,MaxPressure,heavy,85,40.49,36.47,45.0,210.52,164.5,258.71
+lstdq v1,LSTDQ v1,all,471,33.43,32.81,34.14,111.27,107.85,115.31
+lstdq v1,LSTDQ v1,light,128,26.78,26.51,27.15,97.36,96.45,98.56
+lstdq v1,LSTDQ v1,moderate,72,31.52,31.21,31.87,103.13,102.46,103.84
+lstdq v1,LSTDQ v1,busy,186,35.07,34.93,35.21,110.72,109.72,112.09
+lstdq v1,LSTDQ v1,heavy,85,41.3,38.4,44.42,139.52,122.46,157.77
+lstdq v2,LSTDQ v2,all,471,34.14,33.43,34.98,122.98,116.02,131.36
+lstdq v2,LSTDQ v2,light,128,31.69,31.43,31.95,120.21,119.18,121.19
+lstdq v2,LSTDQ v2,moderate,72,33.06,32.27,34.51,120.23,109.05,141.68
+lstdq v2,LSTDQ v2,busy,186,33.89,33.42,34.53,114.25,107.97,122.89
+lstdq v2,LSTDQ v2,heavy,85,39.08,36.45,41.98,145.77,125.08,168.99
+lstdq v2f,LSTDQ v2f,all,471,32.96,32.44,33.51,113.55,109.81,117.64
+lstdq v2f,LSTDQ v2f,light,128,30.03,29.76,30.32,113.58,112.59,114.63
+lstdq v2f,LSTDQ v2f,moderate,72,31.61,31.46,31.75,105.41,105.03,105.8
+lstdq v2f,LSTDQ v2f,busy,186,33.2,32.98,33.48,107.09,104.76,110.21
+lstdq v2f,LSTDQ v2f,heavy,85,37.84,35.5,40.41,134.36,117.69,152.74
+qlearn,Q-learning,all,471,39.12,33.09,48.37,138.86,118.49,168.43
+qlearn,Q-learning,light,128,26.89,26.49,27.42,96.07,93.39,100.83
+qlearn,Q-learning,moderate,72,33.71,30.56,38.86,113.14,99.95,134.04
+qlearn,Q-learning,busy,186,36.85,34.03,41.08,130.74,118.0,148.71
+qlearn,Q-learning,heavy,85,63.59,42.38,92.6,234.01,166.56,317.55
+ars,ARS,all,471,32.47,31.54,33.47,127.33,116.94,138.21
+ars,ARS,light,128,26.6,26.21,27.1,94.94,92.33,99.42
+ars,ARS,moderate,72,30.69,30.35,31.1,106.85,99.83,118.93
+ars,ARS,busy,186,33.28,32.87,33.78,126.57,117.05,138.23
+ars,ARS,heavy,85,41.02,36.58,45.97,197.69,155.25,245.84
+nfq_conv,NFQ,all,471,49.64,47.71,52.2,168.94,160.8,179.04
+nfq_conv,NFQ,light,128,43.44,43.07,43.89,139.71,138.34,141.68
+nfq_conv,NFQ,moderate,72,43.46,43.14,43.8,139.23,137.75,140.92
+nfq_conv,NFQ,busy,186,47.95,47.45,48.53,164.21,159.62,169.36
+nfq_conv,NFQ,heavy,85,67.02,58.1,77.24,246.07,210.38,285.73
+nfq,"NFQ (registered, short horizon)",all,471,62.34,57.85,69.05,194.04,178.3,215.42
+nfq,"NFQ (registered, short horizon)",light,128,44.75,44.1,45.53,147.11,145.54,149.18
+nfq,"NFQ (registered, short horizon)",moderate,72,54.69,54.16,55.31,159.38,158.28,160.86
+nfq,"NFQ (registered, short horizon)",busy,186,62.05,60.5,64.02,190.53,181.41,201.83
+nfq,"NFQ (registered, short horizon)",heavy,85,93.1,73.88,117.8,294.57,230.35,371.04

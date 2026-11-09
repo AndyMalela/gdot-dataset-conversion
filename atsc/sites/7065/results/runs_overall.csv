@@ -1,0 +1,78 @@
+controller,label,run,training_seed,simulation_seed,vehicles,overall_delay_s_per_veh
+actuated,Actuated,actuated,,1,898944,40.77
+actuated,Actuated,actuated,,2,898944,40.74
+actuated,Actuated,actuated,,3,898944,40.81
+ars,ARS,ars_s0,0,1,898944,34.86
+ars,ARS,ars_s0,0,2,43535,32.44
+ars,ARS,ars_s1,1,1,898944,34.82
+ars,ARS,ars_s1,1,2,43535,32.38
+ars,ARS,ars_s2,2,1,898944,34.91
+ars,ARS,ars_s2,2,2,43535,32.46
+ars,ARS,ars_s3,3,1,898944,34.67
+ars,ARS,ars_s3,3,2,43535,32.41
+ars,ARS,ars_s4,4,1,898944,35.12
+ars,ARS,ars_s4,4,2,43535,32.34
+gdot,Field plan,gdot,,1,898944,50.66
+gdot,Field plan,gdot,,2,898944,50.09
+gdot,Field plan,gdot,,3,898944,50.13
+lstdq v1,LSTDQ v1,lstdq,0,1,898944,36.3
+lstdq v1,LSTDQ v1,lstdq,0,2,898944,36.56
+lstdq v1,LSTDQ v1,lstdq,0,3,898944,36.58
+lstdq v1,LSTDQ v1,lstdq_s1,1,1,898944,36.91
+lstdq v1,LSTDQ v1,lstdq_s1,1,2,87583,35.61
+lstdq v1,LSTDQ v1,lstdq_s2,2,1,898944,35.48
+lstdq v1,LSTDQ v1,lstdq_s2,2,2,87583,34.18
+lstdq v1,LSTDQ v1,lstdq_s3,3,1,898944,35.98
+lstdq v1,LSTDQ v1,lstdq_s3,3,2,87583,34.39
+lstdq v1,LSTDQ v1,lstdq_s4,4,1,898944,34.21
+lstdq v1,LSTDQ v1,lstdq_s4,4,2,87583,33.13
+lstdq v2,LSTDQ v2,lstdq_v2_s0,0,1,898944,34.93
+lstdq v2,LSTDQ v2,lstdq_v2_s0,0,2,87583,33.27
+lstdq v2,LSTDQ v2,lstdq_v2_s1,1,1,898944,34.48
+lstdq v2,LSTDQ v2,lstdq_v2_s1,1,2,87583,33.53
+lstdq v2,LSTDQ v2,lstdq_v2_s2,2,1,898944,37.39
+lstdq v2,LSTDQ v2,lstdq_v2_s2,2,2,87583,33.52
+lstdq v2,LSTDQ v2,lstdq_v2_s3,3,1,898944,35.21
+lstdq v2,LSTDQ v2,lstdq_v2_s3,3,2,87583,33.9
+lstdq v2,LSTDQ v2,lstdq_v2_s4,4,1,898944,34.45
+lstdq v2,LSTDQ v2,lstdq_v2_s4,4,2,87583,33.47
+lstdq v2f,LSTDQ v2f,lstdq_v2f_s0,0,1,898944,34.14
+lstdq v2f,LSTDQ v2f,lstdq_v2f_s0,0,2,87583,33.17
+lstdq v2f,LSTDQ v2f,lstdq_v2f_s1,1,1,898944,33.88
+lstdq v2f,LSTDQ v2f,lstdq_v2f_s1,1,2,87583,32.91
+lstdq v2f,LSTDQ v2f,lstdq_v2f_s2,2,1,898944,33.55
+lstdq v2f,LSTDQ v2f,lstdq_v2f_s2,2,2,87583,32.36
+lstdq v2f,LSTDQ v2f,lstdq_v2f_s3,3,1,898944,35.32
+lstdq v2f,LSTDQ v2f,lstdq_v2f_s3,3,2,87583,33.56
+lstdq v2f,LSTDQ v2f,lstdq_v2f_s4,4,1,898944,34.17
+lstdq v2f,LSTDQ v2f,lstdq_v2f_s4,4,2,43535,33.17
+maxpressure,MaxPressure,maxpressure,,1,898944,34.48
+maxpressure,MaxPressure,maxpressure,,2,898944,34.97
+maxpressure,MaxPressure,maxpressure,,3,898944,34.95
+nfq_conv,NFQ,nfq_conv_s0,0,1,898944,49.25
+nfq_conv,NFQ,nfq_conv_s0,0,2,43535,45.17
+nfq_conv,NFQ,nfq_conv_s1,1,1,898944,47.33
+nfq_conv,NFQ,nfq_conv_s1,1,2,43535,41.18
+nfq_conv,NFQ,nfq_conv_s2,2,1,898944,66.41
+nfq_conv,NFQ,nfq_conv_s2,2,2,43535,57.9
+nfq_conv,NFQ,nfq_conv_s3,3,1,898944,52.64
+nfq_conv,NFQ,nfq_conv_s4,4,1,898944,49.19
+nfq_conv,NFQ,nfq_conv_s4,4,2,43535,44.67
+nfq,"NFQ (registered, short horizon)",nfq_s0,0,1,898944,68.03
+nfq,"NFQ (registered, short horizon)",nfq_s1,1,1,898944,70.55
+nfq,"NFQ (registered, short horizon)",nfq_s2,2,1,898944,74.95
+nfq,"NFQ (registered, short horizon)",nfq_s3,3,1,898944,69.93
+nfq,"NFQ (registered, short horizon)",nfq_s4,4,1,898944,66.58
+qlearn,Q-learning,qlearn_s0,0,1,898944,38.25
+qlearn,Q-learning,qlearn_s0,0,2,43535,33.33
+qlearn,Q-learning,qlearn_s1,1,1,898944,36.95
+qlearn,Q-learning,qlearn_s1,1,2,43535,32.34
+qlearn,Q-learning,qlearn_s2,2,1,898944,45.3
+qlearn,Q-learning,qlearn_s2,2,2,43535,33.15
+qlearn,Q-learning,qlearn_s3,3,1,898944,64.07
+qlearn,Q-learning,qlearn_s3,3,2,43535,32.25
+qlearn,Q-learning,qlearn_s4,4,1,898944,39.25
+qlearn,Q-learning,qlearn_s4,4,2,43535,33.93
+webster,Webster,webster,,1,898944,40.13
+webster,Webster,webster,,2,898944,39.97
+webster,Webster,webster,,3,898944,39.77

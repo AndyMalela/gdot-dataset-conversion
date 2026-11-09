@@ -1,0 +1,12 @@
+controller,label,family,description,in_main_comparison
+gdot,Field plan,rule,"fixed field plan (GDOT time-of-day, coordinated cycle)",True
+webster,Webster,rule,"fixed time, Webster splits per plan period",True
+actuated,Actuated,rule,"fully actuated gap-out, field passage times",True
+maxpressure,MaxPressure,rule,"MaxPressure on detector queue estimates, cyclic",True
+lstdq v1,LSTDQ v1,"learnt, linear","LSTDQ / LSPI, base state and reward",True
+lstdq v2,LSTDQ v2,"learnt, linear","LSTDQ, + queue estimate + other ring, delay reward (LSTDQ_V2.md)",True
+lstdq v2f,LSTDQ v2f,"learnt, linear",LSTDQ v2 + waiting-time fairness term (LSTDQ_V2.md),True
+qlearn,Q-learning,"learnt, linear","online linear Q-learning, v2 state (METHODS.md)",True
+ars,ARS,"learnt, linear","augmented random search, linear policy, v2 state (METHODS.md)",True
+nfq_conv,NFQ,"learnt, neural","neural fitted Q iterated to convergence, v2 state (METHODS.md amendment 1)",True
+nfq,"NFQ (registered, short horizon)","learnt, neural","neural fitted Q as registered: 25 backups, short horizon (METHODS.md)",False
