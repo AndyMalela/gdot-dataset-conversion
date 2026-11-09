@@ -44,6 +44,9 @@ LSTDQ_IT = 5
 LEARNERS = ("qlearn", "nfq", "ars")               # METHODS.md
 S_LANE = 1950
 FIELDS = ["date", "controller", "seed", "hour", "movement", "veh", "mean_s", "p95_s", "max_s", "backlog_max"]
+# mechanism per (run, hour, phase): greens started in the hour, their total green and how many ended at max green;
+# phase "cycle": cycles started in the hour and their total length (s)
+MECH_FIELDS = ["date", "controller", "seed", "hour", "phase", "n", "total_s", "n_max"]
 
 
 def policy(ctrl):
@@ -82,27 +85,51 @@ def job(args):
     except Exception as e:                      # noqa: BLE001
         import traceback
         print(f"FAILED {args}: {e}\n{traceback.format_exc()}", file=sys.stderr, flush=True)
-        return []
-    return [{"date": str(date), "controller": ctrl, "seed": seed, "hour": h, "movement": c,
-             **{k: round(v, 1) if isinstance(v, float) else v for k, v in m.items()}}
-            for (h, c), m in r["by_hour_mv"].items()]
+        return [], []
+    hour_rows = [{"date": str(date), "controller": ctrl, "seed": seed, "hour": h, "movement": c,
+                  **{k: round(v, 1) if isinstance(v, float) else v for k, v in m.items()}}
+                 for (h, c), m in r["by_hour_mv"].items()]
+    mech = defaultdict(lambda: [0, 0.0, 0])
+    for g in r["greens"]:
+        if g["end"] == g["end"]:                                 # ended (not NaN)
+            m = mech[(int(g["start"] // 3600), str(g["phase"]))]
+            m[0] += 1
+            m[1] += g["end"] - g["start"]
+            m[2] += g["how"] == "max"
+    cs = r["cycle_starts"]
+    for a, b in zip(cs, cs[1:]):
+        m = mech[(int(a // 3600), "cycle")]
+        m[0] += 1
+        m[1] += b - a
+    mech_rows = [{"date": str(date), "controller": ctrl, "seed": seed, "hour": h, "phase": ph, "n": n,
+                  "total_s": round(t, 1), "n_max": nm} for (h, ph), (n, t, nm) in sorted(mech.items())]
+    return hour_rows, mech_rows
 
 
-def run(seeds, only):
+def run(seeds, only, mech=False):
+    """mech: also run (date, controller, seed) missing from mech.csv only (their delay rows are not rewritten)."""
     OUT.mkdir(exist_ok=True)
-    f = OUT / "hour_mv.csv"
-    done = {(r["date"], r["controller"], int(r["seed"])) for r in csv.DictReader(open(f))} if f.exists() else set()
+    f, fm = OUT / "hour_mv.csv", OUT / "mech.csv"
+    key = lambda r: (r["date"], r["controller"], int(r["seed"]))  # noqa: E731
+    done = {key(r) for r in csv.DictReader(open(f))} if f.exists() else set()
+    done_m = {key(r) for r in csv.DictReader(open(fm))} if fm.exists() else set()
     jobs = [(d, c, s) for s in seeds for d in days("validation") for c in (only or CONTROLLERS)
-            if (str(d), c, s) not in done]
+            if (str(d), c, s) not in done or (mech and (str(d), c, s) not in done_m)]
     print(f"{len(jobs)} full-day runs ({len(done)} already done)", flush=True)
-    new = not f.exists()
-    with open(f, "a", newline="") as fh, Pool(22) as pool:
-        w = csv.DictWriter(fh, fieldnames=FIELDS)
+    new, new_m = not f.exists(), not fm.exists()
+    with open(f, "a", newline="") as fh, open(fm, "a", newline="") as fhm, Pool(22) as pool:
+        w, wm = csv.DictWriter(fh, fieldnames=FIELDS), csv.DictWriter(fhm, fieldnames=MECH_FIELDS)
         if new:
             w.writeheader()
-        for k, rows in enumerate(pool.imap_unordered(job, jobs), 1):
-            w.writerows(rows)
+        if new_m:
+            wm.writeheader()
+        for k, (rows, mrows) in enumerate(pool.imap_unordered(job, jobs), 1):
+            if rows and key(rows[0]) not in done:
+                w.writerows(rows)
+            if mrows and key(mrows[0]) not in done_m:
+                wm.writerows(mrows)
             fh.flush()
+            fhm.flush()
             print(f"  {k}/{len(jobs)}", flush=True)
 
 
@@ -310,5 +337,6 @@ if __name__ == "__main__":
     ap.add_argument("cmd", choices=["run", "conditions", "report"])
     ap.add_argument("--seeds", type=int, nargs="+", default=[1, 2, 3])
     ap.add_argument("--only", nargs="+")
+    ap.add_argument("--mech", action="store_true", help="also rerun runs missing from mech.csv")
     a = ap.parse_args()
-    {"run": lambda: run(a.seeds, a.only), "conditions": conditions, "report": report}[a.cmd]()
+    {"run": lambda: run(a.seeds, a.only, a.mech), "conditions": conditions, "report": report}[a.cmd]()
