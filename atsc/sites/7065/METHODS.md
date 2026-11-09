@@ -184,7 +184,7 @@ Same controller as every learner in this file: the v2 state (312 values), the bi
 | Batch | 64 | default 32 |
 | Learning starts | 10,000 transitions | |
 | Train frequency | 1 gradient step per 4 transitions | default |
-| Target update | hard copy every 10,000 gradient steps | default |
+| Target update | hard copy every 10,000 transitions (= 2,500 gradient steps) | default (SB3 counts environment steps) |
 | Max gradient norm | 10 | default |
 | Exploration | ε from 1.0 to 0.05, linear over the first 25 % of episodes, then 0.05 | |
 | Episodes | 400 (≈ 1.2M transitions, ≈ 300k gradient steps) | |
@@ -207,3 +207,14 @@ are medians over 5 training seeds, pooled over simulation seeds.
 - Training cost (wall-clock time, episodes) and spread over seeds are reported next to it, which covers RQ2's
   other criteria.
 - With DQN in the comparison, H2a is judged on DQN. The NFQ result is reported as a secondary comparator.
+
+**Correction (2026-11-09 13:35, before any DQN result).** The first launch, at 12:42, copied the target network
+every 10,000 *gradient* steps. Stable-Baselines3's default counts *environment* steps (transitions). At one
+gradient step per 4 transitions, that is 4× too slow.
+
+- With ~300k gradient steps in total, it would have given only ~30 target refreshes. Each refresh extends the
+  values by about one decision, so the result would have been the short horizon that broke NFQ.
+- Corrected to every 10,000 transitions, about 120 refreshes, as the table states.
+- The 12:42 run (stopped when the session ended, no checkpoint) and the 13:25 relaunch (stopped after 10 min, no
+  checkpoint) produced no results. Training restarted from scratch with the correction.
+- Progress is now logged every 10 episodes (delay, transitions, gradient steps, target updates, mean Q).

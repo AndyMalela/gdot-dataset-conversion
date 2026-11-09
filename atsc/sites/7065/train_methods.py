@@ -36,6 +36,7 @@ POOL = int(os.environ.get("ATSC_POOL", N_EP))      # episode workers (no effect 
 QL_ALPHA = 0.05
 ARS_ITERS, ARS_N, ARS_B, ARS_ALPHA, ARS_NU = 50, 11, 6, 0.02, 0.03
 DQN_EPISODES, DQN_EXPLORE, DQN_EPS_END, DQN_SAVE = 400, 0.25, 0.05, 50     # METHODS.md, DQN section
+DQN_REPORT = 10                                                              # progress line + log every 10 episodes
 
 
 def out_dir(method, seed):
@@ -167,18 +168,23 @@ def train_dqn(seed):
         eps = max(DQN_EPS_END, 1.0 - (1.0 - DQN_EPS_END) * k / n_explore)
         date, window = rng.choice(ds), rng.choice(WINDOWS)
         ep_seed = 100000 * seed + k
-        s0, l0 = learner.seen, len(learner.losses)
+        s0 = learner.seen
         info = _run(_policy(eps=eps, seed=ep_seed, learner=learner), date, window, ep_seed)
-        losses = learner.losses[l0:]
+        losses, qs = learner.losses, learner.qmeans
         log.append({"episode": k, "eps": round(eps, 3), **info, "transitions": learner.seen - s0,
-                    "grad_steps": learner.steps, "mean_loss": round(float(np.mean(losses)), 5) if losses else ""})
-        learner.losses.clear()
+                    "grad_steps": learner.steps, "target_updates": learner.steps // (learner.TARGET_EVERY // learner.TRAIN_EVERY),
+                    "mean_loss": round(float(np.mean(losses)), 5) if losses else "",
+                    "mean_q": round(float(np.mean(qs)), 3) if qs else ""})
+        losses.clear()
+        qs.clear()
         if (k + 1) % DQN_SAVE == 0:
             learner.save(out / f"net_ep{k + 1}.pt")
+        if (k + 1) % DQN_REPORT == 0:
             _write_log(out, log)
-            print(f"dqn s{seed} ep {k + 1}: eps {eps:.2f}, mean delay last {DQN_SAVE} "
-                  f"{np.mean([r['delay_all_s'] for r in log[-DQN_SAVE:]]):.1f} s/veh, grad steps {learner.steps}",
-                  flush=True)
+            last = log[-DQN_REPORT:]
+            print(f"dqn s{seed} ep {k + 1}: eps {eps:.2f}, delay {np.mean([r['delay_all_s'] for r in last]):.1f} s/veh, "
+                  f"transitions/ep {np.mean([r['transitions'] for r in last]):.0f}, grad steps {learner.steps}, "
+                  f"target updates {log[-1]['target_updates']}, mean q {log[-1]['mean_q']}", flush=True)
     _write_log(out, log)
 
 

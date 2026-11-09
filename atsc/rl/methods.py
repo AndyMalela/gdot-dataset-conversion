@@ -109,7 +109,8 @@ def ars_qfun(theta):
 
 class DQNLearner:
     """Deep Q-network (Mnih et al. 2015) with the Double-DQN target (van Hasselt et al. 2016): experience replay,
-    a target network copied every TARGET_EVERY gradient steps, Huber loss, Adam, gradient-norm clipping; settings
+    a target network copied every TARGET_EVERY transitions (environment steps, as SB3 counts it), Huber loss,
+    Adam, gradient-norm clipping; settings
     follow Stable-Baselines3's DQN defaults where they apply (sites/7065/METHODS.md, DQN section). Online: gets
     every transition as it closes (LSTDQPolicy learner hook) and takes a gradient step every TRAIN_EVERY
     transitions once LEARN_START transitions are stored. Semi-MDP target: r + gamma^d q_target(s', argmax q(s'))."""
@@ -119,7 +120,7 @@ class DQNLearner:
     BATCH = 64
     LEARN_START = 10_000
     TRAIN_EVERY = 4
-    TARGET_EVERY = 10_000
+    TARGET_EVERY = 10_000              # transitions (= TARGET_EVERY / TRAIN_EVERY gradient steps)
     MAX_GRAD_NORM = 10.0
 
     def __init__(self, m, n_actions=2, gamma=0.99, reward_scale=0.01, seed=0):
@@ -138,7 +139,7 @@ class DQNLearner:
         self.R = np.zeros(self.BUFFER, np.float32)
         self.Dt = np.zeros(self.BUFFER, np.float32)
         self.n, self.ptr, self.seen, self.steps = 0, 0, 0, 0
-        self.losses = []
+        self.losses, self.qmeans = [], []
 
     @classmethod
     def make(cls, m, n_actions):
@@ -175,7 +176,8 @@ class DQNLearner:
         self.opt.step()
         self.steps += 1
         self.losses.append(float(loss))
-        if self.steps % self.TARGET_EVERY == 0:
+        self.qmeans.append(float(qa.mean()))
+        if self.steps % (self.TARGET_EVERY // self.TRAIN_EVERY) == 0:
             self.target.load_state_dict(self.net.state_dict())
 
     def save(self, path):
