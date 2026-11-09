@@ -24,6 +24,19 @@ from . import demand, run
 from .signal import SumoSignal
 
 
+def _tripinfos(ti, site_dir, date, seed):
+    """iterparse the tripinfo file; if SUMO wrote it unreadable (seen twice in ~1,000 DQN training episodes,
+    2026-11-09), keep a copy in <site>/debug/ for diagnosis and re-raise."""
+    try:
+        yield from ET.iterparse(ti)
+    except ET.ParseError:
+        import shutil
+        d = Path(site_dir) / "debug"
+        d.mkdir(exist_ok=True)
+        shutil.copy(ti, d / f"tripinfo_unreadable_{date}_seed{seed}.xml")
+        raise
+
+
 def run_window(site_dir, date, begin_h, end_h, policy, mode="plan", plan=None, free_max=None, vtype=None,
                seed=1, warmup_s=900, drain_s=900, step=None, gui=False, schedule=None, skip_uncalled=True):
     """vtype / step default to the site's calibrated sim.json."""
@@ -68,7 +81,7 @@ def run_window(site_dir, date, begin_h, end_h, policy, mode="plan", plan=None, f
         tot, n, unfinished = defaultdict(float), Counter(), Counter()
         hour = defaultdict(lambda: [0.0, 0])                  # count-bin hour -> [delay sum, vehicles]
         hour_mv = defaultdict(list)                           # (count-bin hour, movement) -> vehicle delays
-        for _, el in ET.iterparse(ti):
+        for _, el in _tripinfos(ti, site_dir, date, seed):
             if el.tag != "tripinfo":
                 continue
             vid = el.get("id")

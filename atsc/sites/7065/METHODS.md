@@ -218,3 +218,14 @@ gradient step per 4 transitions, that is 4× too slow.
 - The 12:42 run (stopped when the session ended, no checkpoint) and the 13:25 relaunch (stopped after 10 min, no
   checkpoint) produced no results. Training restarted from scratch with the correction.
 - Progress is now logged every 10 episodes (delay, transitions, gradient steps, target updates, mean Q).
+
+**Incident (2026-11-09 15:45, before any DQN result).** Training seeds 1 and 2 crashed at about episode 90 and
+100. SUMO wrote an unreadable tripinfo file at the end of an episode (an XML parse error), and the training
+script stopped. Seeds 0, 3 and 4 were not affected.
+
+- Cause not yet known; the corrupt files were in a temporary folder and are gone. `atsc/sim/episode.py` now keeps
+  a copy in `debug/` if it happens again.
+- The tripinfo file only feeds the logged delay of the episode: the learner has every transition before it is
+  read. `train_dqn` now logs such an episode with delay `nan` and continues.
+- Seeds 1 and 2 restarted from scratch at 15:45 (the crashed runs are not used). Training is deterministic per
+  seed, so the restart repeats the same episodes.

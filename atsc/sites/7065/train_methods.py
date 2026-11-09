@@ -16,6 +16,7 @@ import csv
 import os
 import random
 import sys
+import xml.etree.ElementTree as ET
 from multiprocessing import Pool
 from pathlib import Path
 
@@ -169,7 +170,11 @@ def train_dqn(seed):
         date, window = rng.choice(ds), rng.choice(WINDOWS)
         ep_seed = 100000 * seed + k
         s0 = learner.seen
-        info = _run(_policy(eps=eps, seed=ep_seed, learner=learner), date, window, ep_seed)
+        try:
+            info = _run(_policy(eps=eps, seed=ep_seed, learner=learner), date, window, ep_seed)
+        except ET.ParseError:      # SUMO's tripinfo file unreadable: the learner already has every transition
+            info = {"date": str(date), "window": f"{window[0]}-{window[1]}", "delay_all_s": float("nan"),
+                    "teleports": "", "note": "tripinfo unreadable (atsc/sim/episode.py)"}
         losses, qs = learner.losses, learner.qmeans
         log.append({"episode": k, "eps": round(eps, 3), **info, "transitions": learner.seen - s0,
                     "grad_steps": learner.steps, "target_updates": learner.steps // (learner.TARGET_EVERY // learner.TRAIN_EVERY),
@@ -182,7 +187,7 @@ def train_dqn(seed):
         if (k + 1) % DQN_REPORT == 0:
             _write_log(out, log)
             last = log[-DQN_REPORT:]
-            print(f"dqn s{seed} ep {k + 1}: eps {eps:.2f}, delay {np.mean([r['delay_all_s'] for r in last]):.1f} s/veh, "
+            print(f"dqn s{seed} ep {k + 1}: eps {eps:.2f}, delay {np.nanmean([r['delay_all_s'] for r in last]):.1f} s/veh, "
                   f"transitions/ep {np.mean([r['transitions'] for r in last]):.0f}, grad steps {learner.steps}, "
                   f"target updates {log[-1]['target_updates']}, mean q {log[-1]['mean_q']}", flush=True)
     _write_log(out, log)
