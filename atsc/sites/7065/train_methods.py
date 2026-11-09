@@ -28,13 +28,14 @@ from train_lstdq import GAMMA, WINDOWS, train_days  # noqa: E402
 
 OUT = HERE / "learners"
 VERSION = "v2"
-METHODS = ("qlearn", "nfq", "nfq_conv", "ars")
+METHODS = ("qlearn", "nfq", "nfq_conv", "ars", "dqn")
 NFQ_FIT = {"nfq": {"iters": 5, "epochs": 2},                                   # as fixed in METHODS.md
            "nfq_conv": {"iters": 400, "epochs": 1, "tol": 0.005}}             # amendment 1 (METHODS.md)
 ITERS, N_EP = 5, 22                     # as LSTDQ
 POOL = int(os.environ.get("ATSC_POOL", N_EP))      # episode workers (no effect on results)
 QL_ALPHA = 0.05
 ARS_ITERS, ARS_N, ARS_B, ARS_ALPHA, ARS_NU = 50, 11, 6, 0.02, 0.03
+DQN_EPISODES, DQN_EXPLORE, DQN_EPS_END, DQN_SAVE = 400, 0.25, 0.05, 50     # METHODS.md, DQN section
 
 
 def out_dir(method, seed):
@@ -151,12 +152,46 @@ def train_ars(seed):
     _write_log(out, log)
 
 
+def train_dqn(seed):
+    """one learner, DQN_EPISODES episodes one after another; epsilon 1 -> DQN_EPS_END linearly over the first
+    DQN_EXPLORE of the episodes, then constant; checkpoint every DQN_SAVE episodes; final network = evaluated."""
+    from atsc.rl.agent import dims
+    from atsc.rl.methods import DQNLearner
+    out = out_dir("dqn", seed)
+    out.mkdir(parents=True, exist_ok=True)
+    rng, ds = random.Random(seed), train_days()
+    learner = DQNLearner(dims(VERSION)[2], gamma=GAMMA, seed=seed)
+    n_explore = int(DQN_EXPLORE * DQN_EPISODES)
+    log = []
+    for k in range(DQN_EPISODES):
+        eps = max(DQN_EPS_END, 1.0 - (1.0 - DQN_EPS_END) * k / n_explore)
+        date, window = rng.choice(ds), rng.choice(WINDOWS)
+        ep_seed = 100000 * seed + k
+        s0, l0 = learner.seen, len(learner.losses)
+        info = _run(_policy(eps=eps, seed=ep_seed, learner=learner), date, window, ep_seed)
+        losses = learner.losses[l0:]
+        log.append({"episode": k, "eps": round(eps, 3), **info, "transitions": learner.seen - s0,
+                    "grad_steps": learner.steps, "mean_loss": round(float(np.mean(losses)), 5) if losses else ""})
+        learner.losses.clear()
+        if (k + 1) % DQN_SAVE == 0:
+            learner.save(out / f"net_ep{k + 1}.pt")
+            _write_log(out, log)
+            print(f"dqn s{seed} ep {k + 1}: eps {eps:.2f}, mean delay last {DQN_SAVE} "
+                  f"{np.mean([r['delay_all_s'] for r in log[-DQN_SAVE:]]):.1f} s/veh, grad steps {learner.steps}",
+                  flush=True)
+    _write_log(out, log)
+
+
 def load_policy(method, seed):
     """the evaluated policy of a method: the final iterate, no selection on validation days."""
     from atsc.rl.methods import MLPQ, ars_qfun
     d = out_dir(method, seed)
     if method == "qlearn":
         return _policy(w=np.load(d / f"w_it{ITERS}.npy"))
+    if method == "dqn":
+        from atsc.rl.agent import dims
+        from atsc.rl.methods import DQNLearner
+        return _policy(qfun=DQNLearner.load_qfun(d / f"net_ep{DQN_EPISODES}.pt", dims(VERSION)[2]))
     if method.startswith("nfq"):
         return _policy(qfun=MLPQ.load(d / f"net_it{ITERS}.npz").q)
     return _policy(qfun=ars_qfun(np.load(d / f"theta_it{ARS_ITERS}.npy")))
@@ -169,4 +204,4 @@ if __name__ == "__main__":
     ap.add_argument("--seed", type=int, default=0)
     a = ap.parse_args()
     {"qlearn": train_qlearn, "nfq": train_nfq, "nfq_conv": lambda s: train_nfq(s, "nfq_conv"),
-     "ars": train_ars}[a.method](a.seed)
+     "ars": train_ars, "dqn": train_dqn}[a.method](a.seed)

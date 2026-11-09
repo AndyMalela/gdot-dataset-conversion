@@ -40,11 +40,12 @@ FAMILY = {"gdot": ("rule", "fixed field plan (GDOT time-of-day, coordinated cycl
           "lstdq v2f": ("learnt, linear", "LSTDQ v2 + waiting-time fairness term (LSTDQ_V2.md)"),
           "qlearn": ("learnt, linear", "online linear Q-learning, v2 state (METHODS.md)"),
           "ars": ("learnt, linear", "augmented random search, linear policy, v2 state (METHODS.md)"),
+          "dqn": ("learnt, neural", "Double DQN: replay, target network, Huber loss, v2 state (METHODS.md, DQN)"),
           "nfq_conv": ("learnt, neural", "neural fitted Q iterated to convergence, v2 state (METHODS.md amendment 1)"),
           "nfq": ("learnt, neural", "neural fitted Q as registered: 25 backups, short horizon (METHODS.md)")}
 LABEL = {"gdot": "Field plan", "webster": "Webster", "actuated": "Actuated", "maxpressure": "MaxPressure",
          "lstdq v1": "LSTDQ v1", "lstdq v2": "LSTDQ v2", "lstdq v2f": "LSTDQ v2f", "qlearn": "Q-learning",
-         "ars": "ARS", "nfq_conv": "NFQ", "nfq": "NFQ (registered, short horizon)"}
+         "ars": "ARS", "dqn": "DQN", "nfq_conv": "NFQ", "nfq": "NFQ (registered, short horizon)"}
 ORDER = list(LABEL)
 PHASE_NAME = {1: "P1 Peachtree-SW left", 2: "P2 Peachtree-NE through", 3: "P3 Piedmont-N left",
               4: "P4 Piedmont-S through", 5: "P5 Peachtree-NE left", 6: "P6 Peachtree-SW through",

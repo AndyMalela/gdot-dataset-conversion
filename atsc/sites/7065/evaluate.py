@@ -41,7 +41,7 @@ from baselines import days, webster_schedule  # noqa: E402
 OUT = HERE / "eval"
 CONTROLLERS = ("gdot", "actuated", "webster", "maxpressure", "lstdq")
 LSTDQ_IT = 5
-LEARNERS = ("qlearn", "nfq", "ars")               # METHODS.md
+LEARNERS = ("qlearn", "nfq", "ars", "dqn")               # METHODS.md
 S_LANE = 1950
 FIELDS = ["date", "controller", "seed", "hour", "movement", "veh", "mean_s", "p95_s", "max_s", "backlog_max"]
 # mechanism per (run, hour, phase): greens started in the hour, their total green and how many ended at max green;

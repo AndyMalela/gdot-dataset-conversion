@@ -105,3 +105,91 @@ class MLPQ:
 def ars_qfun(theta):
     """ARS linear policy as action values: end (1) when theta . x > 0, else extend (0)."""
     return lambda x: np.array([0.0, theta @ x])
+
+
+class DQNLearner:
+    """Deep Q-network (Mnih et al. 2015) with the Double-DQN target (van Hasselt et al. 2016): experience replay,
+    a target network copied every TARGET_EVERY gradient steps, Huber loss, Adam, gradient-norm clipping; settings
+    follow Stable-Baselines3's DQN defaults where they apply (sites/7065/METHODS.md, DQN section). Online: gets
+    every transition as it closes (LSTDQPolicy learner hook) and takes a gradient step every TRAIN_EVERY
+    transitions once LEARN_START transitions are stored. Semi-MDP target: r + gamma^d q_target(s', argmax q(s'))."""
+    HIDDEN = 256
+    LR = 1e-4
+    BUFFER = 500_000
+    BATCH = 64
+    LEARN_START = 10_000
+    TRAIN_EVERY = 4
+    TARGET_EVERY = 10_000
+    MAX_GRAD_NORM = 10.0
+
+    def __init__(self, m, n_actions=2, gamma=0.99, reward_scale=0.01, seed=0):
+        import torch
+        torch.manual_seed(seed)
+        torch.set_num_threads(1)
+        self.torch, self.gamma, self.rs = torch, gamma, reward_scale
+        self.net = self.make(m, n_actions)
+        self.target = self.make(m, n_actions)
+        self.target.load_state_dict(self.net.state_dict())
+        self.opt = torch.optim.Adam(self.net.parameters(), lr=self.LR)
+        self.rng = np.random.default_rng(seed)
+        self.X = np.zeros((self.BUFFER, m), np.float32)
+        self.X2 = np.zeros((self.BUFFER, m), np.float32)
+        self.A = np.zeros(self.BUFFER, np.int64)
+        self.R = np.zeros(self.BUFFER, np.float32)
+        self.Dt = np.zeros(self.BUFFER, np.float32)
+        self.n, self.ptr, self.seen, self.steps = 0, 0, 0, 0
+        self.losses = []
+
+    @classmethod
+    def make(cls, m, n_actions):
+        import torch.nn as nn
+        return nn.Sequential(nn.Linear(m, cls.HIDDEN), nn.ReLU(), nn.Linear(cls.HIDDEN, cls.HIDDEN), nn.ReLU(),
+                             nn.Linear(cls.HIDDEN, n_actions))
+
+    def q(self, x):
+        with self.torch.no_grad():
+            return self.net(self.torch.as_tensor(x, dtype=self.torch.float32)).numpy()
+
+    def update(self, x, a, r, x2, d):
+        i = self.ptr
+        self.X[i], self.A[i], self.R[i], self.X2[i], self.Dt[i] = x, a, self.rs * r, x2, d
+        self.ptr = (self.ptr + 1) % self.BUFFER
+        self.n = min(self.n + 1, self.BUFFER)
+        self.seen += 1
+        if self.seen >= self.LEARN_START and self.seen % self.TRAIN_EVERY == 0:
+            self._learn()
+
+    def _learn(self):
+        torch = self.torch
+        j = self.rng.integers(0, self.n, self.BATCH)
+        x, x2 = torch.from_numpy(self.X[j]), torch.from_numpy(self.X2[j])
+        a, r, d = torch.from_numpy(self.A[j]), torch.from_numpy(self.R[j]), torch.from_numpy(self.Dt[j])
+        with torch.no_grad():
+            a2 = self.net(x2).argmax(1, keepdim=True)
+            y = r + self.gamma ** d * self.target(x2).gather(1, a2).squeeze(1)
+        qa = self.net(x).gather(1, a[:, None]).squeeze(1)
+        loss = torch.nn.functional.smooth_l1_loss(qa, y)
+        self.opt.zero_grad()
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(self.net.parameters(), self.MAX_GRAD_NORM)
+        self.opt.step()
+        self.steps += 1
+        self.losses.append(float(loss))
+        if self.steps % self.TARGET_EVERY == 0:
+            self.target.load_state_dict(self.net.state_dict())
+
+    def save(self, path):
+        self.torch.save(self.net.state_dict(), path)
+
+    @classmethod
+    def load_qfun(cls, path, m, n_actions=2):
+        import torch
+        torch.set_num_threads(1)
+        net = cls.make(m, n_actions)
+        net.load_state_dict(torch.load(path, weights_only=True))
+        net.eval()
+
+        def qfun(x):
+            with torch.no_grad():
+                return net(torch.as_tensor(x, dtype=torch.float32)).numpy()
+        return qfun

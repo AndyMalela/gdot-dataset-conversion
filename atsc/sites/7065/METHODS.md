@@ -156,3 +156,54 @@ Reporting and status:
 - **Run note.** `nfq_conv` seed 4 hung in its last training round, the data-collection round after fit 5,
   whose data the evaluated policy does not use. Its fit-5 network was saved before the hang; the run was
   stopped after ~17 h. That seed has no train_log.csv; its per-round delays are in the run log only.
+
+## DQN (fixed 2026-11-09, before any DQN training)
+
+Added at the student's request as the deep-RL comparator. It is the standard neural Q-learner in the
+signal-control literature. NFQ stays in the record: it shares LSTDQ's data loop, but it is untuned and did not
+converge.
+
+**Algorithm** (`atsc/rl/methods.py` `DQNLearner`):
+
+- Base method: DQN (Mnih et al. 2015).
+- Double-DQN target (van Hasselt et al. 2016), semi-MDP form: r + γ^d · q_target(s′, argmax_a q(s′, a)).
+- Experience replay and a target network.
+- Huber loss, Adam, gradient-norm clipping.
+- Online: it learns from every transition as it happens, through the controller's learner hook.
+
+Same controller as every learner in this file: the v2 state (312 values), the binary extend / end decision every
+1 s after the minimum green, the v2 reward (/100), γ = 0.99 per second, NEMA rules, training days and windows.
+
+**Settings.** Stable-Baselines3's DQN defaults where they apply, adapted to this problem's scale:
+
+| Setting | Value | SB3 default and reason for any change |
+|---|---|---|
+| Network | 312 → 256 → 256 → 2, ReLU | default 64 × 64; widened for a 312-value input |
+| Learning rate | 1e-4 (Adam) | default |
+| Replay buffer | 500,000 transitions | default 1M; this is about 150 episodes |
+| Batch | 64 | default 32 |
+| Learning starts | 10,000 transitions | |
+| Train frequency | 1 gradient step per 4 transitions | default |
+| Target update | hard copy every 10,000 gradient steps | default |
+| Max gradient norm | 10 | default |
+| Exploration | ε from 1.0 to 0.05, linear over the first 25 % of episodes, then 0.05 | |
+| Episodes | 400 (≈ 1.2M transitions, ≈ 300k gradient steps) | |
+
+The 400 episodes are 3.6 × LSTDQ's 110, used to give a deep learner a fair budget. Training cost is reported
+next to the delay.
+
+**Rules for the run:**
+
+- Training seeds 0–4, all reported.
+- Evaluated network: the final one (episode 400), with no selection on validation days, as for every other
+  learner. Checkpoints every 50 episodes and per-episode training curves are kept and reported.
+- Settings are not tuned on results. If DQN diverges or degenerates, that is reported as it is.
+- Evaluation: `evaluate.py run`, 20 validation weekdays × simulation seeds 1–3, the same as the other learners.
+
+**Hypothesis H2a-DQN** (fixed now): LSTDQ v2's overall vehicle-weighted delay is within **5 %** of DQN's. Both
+are medians over 5 training seeds, pooled over simulation seeds.
+
+- Rejected if LSTDQ v2 > 1.05 × DQN.
+- Training cost (wall-clock time, episodes) and spread over seeds are reported next to it, which covers RQ2's
+  other criteria.
+- With DQN in the comparison, H2a is judged on DQN. The NFQ result is reported as a secondary comparator.
