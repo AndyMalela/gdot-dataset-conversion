@@ -36,7 +36,7 @@ import json  # noqa: E402
 import statistics as st
 import sys
 from collections import defaultdict
-from multiprocessing import Pool
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -123,13 +123,14 @@ def run(seeds, only, mech=False):
             if (str(d), c, s) not in done or (mech and (str(d), c, s) not in done_m)]
     print(f"{len(jobs)} full-day runs ({len(done)} already done)", flush=True)
     new, new_m = not f.exists(), not fm.exists()
-    with open(f, "a", newline="") as fh, open(fm, "a", newline="") as fhm, Pool(22) as pool:
+    with open(f, "a", newline="") as fh, open(fm, "a", newline="") as fhm, ProcessPoolExecutor(22) as pool:   # a dead worker raises, not hangs
         w, wm = csv.DictWriter(fh, fieldnames=FIELDS), csv.DictWriter(fhm, fieldnames=MECH_FIELDS)
         if new:
             w.writeheader()
         if new_m:
             wm.writeheader()
-        for k, (rows, mrows) in enumerate(pool.imap_unordered(job, jobs), 1):
+        for k, fut in enumerate(as_completed([pool.submit(job, j) for j in jobs]), 1):
+            rows, mrows = fut.result()
             if rows and key(rows[0]) not in done:
                 w.writerows(rows)
             if mrows and key(mrows[0]) not in done_m:
