@@ -1,0 +1,9 @@
+Signal:        7071
+Intersection:  SR 237 @ Tower Place Drive
+Source:        GDOT ATSPM, Turning Movement Counts (https://traffic.dot.ga.gov/ATSPM/DefaultCharts)
+Bin size:      5 min
+Days cached:   43 (2026-07-10 to 2026-09-25)
+Complete days: 30   partial: 11   no data: 2
+Movements:     EB_L EB_TR WB_TL NB_L SB_L
+Outage rule:   >= 3 consecutive all-zero bins -> status=outage, counts blank
+Updated:       2026-11-05 18:03

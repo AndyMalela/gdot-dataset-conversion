@@ -81,7 +81,7 @@ Results after the fixes, Jul 16 14:30–19:30, real GDOT plans, gap-out 2 s. Eac
 | free | 78 / 18 / 4 · 55 / 28 / 17 | 78 / 19 / 3 · 50 / 29 / 21 | 56 / 44 · 54 / 46 | 84 / 16 · 59 / 41 |
 | **random** | **33 / 33 / 34 · 31 / 35 / 34** | **45 / 30 / 24 · 39 / 33 / 29** | **53 / 47 · 54 / 46** | **59 / 41 · 52 / 48** |
 
-`random` is adopted. Left-turners inserted in a through lane make their strategic lane change over the 144–320 m of approach.
+`random` is adopted. Left-turners inserted in a through lane make their strategic lane change over the 144–320 m of approach. **Superseded 2026-11-12 by `sorted` (§6).**
 
 ### Simulation check, Jul 16 14:30–19:30 (`demand_audit/check/2026-07-16.md`)
 
@@ -103,3 +103,26 @@ Results after the fixes, Jul 16 14:30–19:30, real GDOT plans, gap-out 2 s. Eac
   - Next: estimate the zone distance from red-phase counts over many T&A cycles.
 - **SW dual-left lane use 66 / 34 %** (fan-out at the bay entry). Left demand there is low (≈ 150 veh/h PM); revisit if P1 turns out critical.
 - **Storage-exceedance recording** (`GEOMETRY.md`) is not implemented yet; it goes with the evaluation metrics.
+
+## 6. Corrections, 2026-11-12
+
+Both are set in the site files and reversible: `ATSC_COUNTS=report` and `ATSC_DEPART_LANE=random` in the environment give the behaviour described above. The state before them is git tag `demand-as-reported-2026-11-09`.
+
+### Peachtree through demand from the upstream count zones
+
+The table in §1 is wrong for Peachtree: GDOT's turning-movement report takes NB_T and SB_T from the **stop-bar** zones (ch5–7, ch21–23), which read 2.5–4.3 times too low on every one of the 63 usable days (`OPEN_ISSUES.md` B2). On Piedmont the report does use the upstream count zones.
+
+- Source now: `intersections/7065/counts/tmc_7065_5min_upstream.csv` (`movements.json` `counts_file`), built by `tools/lanecheck/build_upstream_counts.py` from GDOT's Approach Volume report (`intersections/7065/counts/av_7065_15min.csv`).
+- Rule: per 15-min window, upstream through = Approach Volume (direction) − the report's left + through. That total is split evenly over the window's 5-min bins (remainder 1 → middle bin, 2 → first and last). **The 5-min shape inside a quarter hour is therefore not measured for NB_T and SB_T**; the 15-min totals are exact portal numbers.
+- Lefts and Piedmont: as reported. Approach Volume equals the report on Piedmont in all 11,882 windows.
+- Totals over the 63 days: NB_T 355,942 → 1,376,248; SB_T 564,689 → 1,522,898.
+- Known limits: the SW figure is an upper estimate (signal 7066 sends 60–80 % of it); left turns show the same undercount signature and have no second detector (kept as reported; bounded sensitivity run planned).
+- Audit rerun (`demand_audit/`): no Peachtree bin exceeds the physical bound; the 5 flagged EB_T bins are unchanged.
+
+### Insertion lane: `sorted`
+
+Each vehicle is inserted on a lane drawn at random among the entry lanes from which its movement is reached without a lane change (`atsc/sim/demand.sorted_lanes`; `sim.json` `depart_lane`). Lanes: NB_L [2], NB_T [0, 1, 2], SB_L [4, 5], SB_T [1, 2, 3], EB_L [1], EB_T [0, 1], WB_L [1], WB_T [0, 1]. Departure times are unchanged.
+
+- Why: §4's argument for `random` assumed 144–320 m of approach for the lane change. On the aerial twin the entries leave 42 m (SW) and 130 m (NE) before the turn bays. At the corrected Peachtree volumes, vehicles inserted in a lane that does not lead to their movement stopped in it and blocked the approach ("wrong lane" teleports under every controller; MaxPressure 350–427 s/veh and Webster 120–199 s/veh on two test days, against 36–42 and 61–78 with `sorted`; `debug/lane_check.csv`).
+- Assumption: drivers have chosen their lane before the point where the model starts. Lane choice upstream of the model is not observed.
+- Through lane shares stay even (random among the through lanes), as §4 intended.

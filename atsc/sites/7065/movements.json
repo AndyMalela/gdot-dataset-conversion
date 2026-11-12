@@ -10,6 +10,8 @@
   "WB_L": {"leg": "S", "move": "L", "from": "S_in", "to": "SW_out", "phases": [7, 8], "lanes": 1, "counted_at": "stopbar"},
   "WB_T": {"leg": "S", "move": "T", "from": "S_in", "to": "N_out", "phases": [4], "lanes": 2, "counted_at": "setback"}
  },
+ "counts_file": "tmc_7065_5min_upstream.csv",
+ "counts_note": "2026-11-12 (OPEN_ISSUES.md B2): GDOT's report counts Peachtree through traffic (NB_T, SB_T) with stop-bar presence zones and reads 2.5-4.3x below the upstream count zones every day. NB_T and SB_T are taken from the upstream zones (Approach Volume minus the report's left + through, 15-min totals split evenly over the 5-min bins; tools/lanecheck/build_upstream_counts.py). Every other column is the report as exported. SB_T is confirmed by signal 7058 hour by hour; NB_T is an upper estimate (signal 7066 sends 60-80 % of it). Left turns use the same zone type and are probably undercounted; kept as reported. ATSC_COUNTS=report in the environment selects the report as exported.",
  "entry_edges": {
   "N": "N_far_ext",
   "S": "S_in_ext",

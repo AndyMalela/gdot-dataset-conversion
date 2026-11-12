@@ -22,7 +22,11 @@ and housekeeping (E).
   incomplete. `results/` dates from 2026-11-09 12:45: learners on simulation seed 1 only, and no DQN.
 - **Next step.** About 1¾ h of compute with the machine left on. The run is resumable and skips finished work.
   Then `evaluate.py report`, `analyze.py`, and commit `results/`.
-- **Resolution.**
+- **Resolution.** *Superseded 2026-11-12:* the demand was corrected (B2), so every result is being regenerated.
+  The old runs and trained weights are in `atsc/sites/7065/archive_demand_as_reported/` (git tag
+  `demand-as-reported-2026-11-09`). Stage 3 (LSTDQ v1/v2/v2f and Q-learning retrained, evaluated on simulation
+  seed 1) started 2026-11-12 18:07 (`atsc/sites/7065/debug/stage3.sh`). Stage 4: ARS, NFQ, DQN last, simulation
+  seeds 2–3, left-turn sensitivity run. Item stays open until those are done.
 
 ### A2. The machine is unreliable
 - [ ] **Problem.** There are two separate faults.
@@ -77,7 +81,15 @@ and housekeeping (E).
 - **Next step.**
   - Midterm: state it openly as a limitation, with the likely cause.
   - After the midterm: test whether the ranking survives it (D3).
-- **Resolution.**
+- **Resolution.** *Not resolved; restated 2026-11-12.* Attempts 3 (corrected Peachtree demand) and 4 (plus
+  sorted lane insertion, B9) give the same verdict: V1 20/28 within 3 s, worst 10.0 s **fail**; V2 17/30, worst
+  60 **fail**; V3 25/30 pass; V4 +0.4 % pass; V5 0 teleports, overflow on Sep 14, 23, 25, 28 **fail**. The scored
+  pairs moved by ≤ 1 s and ≤ 6 points against attempt 2, because the corrected movements (P2, P6) are the
+  coordinated phases and are not scored. So the validation neither supports nor contradicts the Peachtree
+  correction, and the failure remains the left-turn phases (P5 3–10 s short, P3 4–6 s short in plans B/C, P4
+  inheriting P3's time). The criteria are fixed and are not tuned. Midterm wording: "accepted on capacity (V4)
+  and health; not validated on the left-turn phases, whose counts are suspect and cannot be checked from the
+  portal".
 
 ### B2. Peachtree through counts are far too low (confirmed 2026-11-10)
 - [ ] **Problem.** 7065's Peachtree through counts (P2 "SB_T" from the NE, P6 "NB_T" from the SW) come from
@@ -197,7 +209,22 @@ and housekeeping (E).
   - Midterm wording: "GDOT's report counts Peachtree through traffic with presence zones that miss queued
     vehicles; it reads 2–9× below the count zones in the daytime. Current results use the report as given; the
     corrected demand is the next step."
-- **Resolution.**
+- **Resolution.** *Correction applied 2026-11-12 (student: "follow the stage plan").* Peachtree through demand
+  now comes from the upstream zones (`intersections/7065/counts/tmc_7065_5min_upstream.csv`, rule in
+  `atsc/sites/7065/DEMAND.md` §6); lefts and Piedmont as reported. `DETECTORS.md` corrected.
+  - **Stage 1** (3 days, rule controllers): the network carries the load; daily vehicles 45.6k → 77.1k (Sep 16).
+  - **Stage 2** (controller fit, validation, rule controllers on 20 days): fitted GDOT controller settings
+    unchanged; validation verdict unchanged (B1); V4 +0.4 %.
+  - **Further support from GDOT's own timing:** plan C gives P2 85 s of the 180 s cycle (47 %); Webster's design
+    on the corrected flows gives 62.5 of 137.8 s (45 %).
+  - **Rule controllers, 20 validation weekdays, corrected demand, sorted insertion (median s/veh):** field plan
+    46.1, actuated 46.7, Webster 55.5, MaxPressure 35.8; 0 teleports. On demand as reported (random
+    insertion): 47.3, 39.4, 37.3, 32.8. The all-vehicle mean is not comparable between the two demand sets (the
+    corrected one has about 1.7 times the vehicles, most of them on the coordinated Peachtree phases), but the
+    order is: actuated's and Webster's lead over the field plan is gone, MaxPressure's is not.
+  - Still open: SW through is an upper estimate; left turns as reported (sensitivity run planned); the locked
+    test days need the same Approach Volume pull at the final evaluation; the 5-min shape of Peachtree through
+    inside a quarter hour is not measured.
 
 ### B8. Doubt: are the Peachtree and Piedmont counts assigned to the right roads?
 - [ ] **Question (student, 2026-11-10).** The simulation puts GDOT's NB/SB columns on Peachtree and EB/WB on
@@ -227,6 +254,24 @@ and housekeeping (E).
   channels of the charts titled "SR 141 Peachtree Road SB / NB" (table in B2). Only Peachtree has three through
   lanes. The ambiguous link is explained by B2: that column falls as traffic rises.
 - **Next step.** Student to confirm or keep the doubt open.
+- **Resolution.**
+
+### B9. Vehicles were inserted on a random lane; changed to a lane that leads to their movement **(decide)**
+- [ ] **Problem.** With `departLane="random"` a left-turner can enter in a through lane and a through vehicle
+  in a left lane. The twin's entries leave 42 m (SW) and 130 m (NE) before the turn bays. At the corrected
+  Peachtree volumes such vehicles stop in the wrong lane and block the approach.
+- **Evidence.** `atsc/sites/7065/debug/lane_check.csv`, two days, random → sorted (s/veh): field plan 48.3 → 45.5
+  and 59.9 → 55.3; actuated 49.2 → 46.6 and 65.7 → 54.8; Webster 119.7 → 61.0 and 198.6 → 78.2; MaxPressure
+  350.0 → 35.7 and 426.5 → 42.4. Teleports: all "wrong lane", 0 with sorted. On 20 days with random insertion:
+  Webster 103.8, MaxPressure 352.9 (`baselines/attempt3_random_insertion/`).
+- **Why it matters.** It decides the ranking: with random insertion MaxPressure looks like the worst controller,
+  with sorted insertion the best rule controller. My stage-1 statement "the ranking flips, the field plan is
+  best" was this artifact.
+- **Change made.** `sim.json` `depart_lane: "sorted"`: a random lane among those that reach the movement without
+  a lane change. Assumption: drivers have chosen their lane before the model starts; not observable. One line
+  (or `ATSC_DEPART_LANE=random`) reverts it.
+- **Next step.** Student to agree or reject. Training on it started 2026-11-12 18:07 so as not to lose the
+  night; if rejected, the alternative is to lengthen the entry edges to the real block lengths and retrain.
 - **Resolution.**
 
 ### B3. "Heavy" demand is not really saturated

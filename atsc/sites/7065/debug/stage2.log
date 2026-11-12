@@ -1,0 +1,617 @@
++ date
+Thu Nov 12 03:45:02 PM JST 2026
++ uv run python atsc/sites/7065/audit_demand.py
+days by set / type / quality
+  train      saturday  complete 7
+  train      weekday   complete 22  usable 9
+  validation saturday  complete 5
+  validation weekday   complete 17  usable 3
+usable days: 63  (weekday 51, saturday 12)
+
+bins above the physical bound (2400 veh/h/lane of green+yellow, + setback storage), complete/usable weekday+Saturday days:
+  NB_L:    0 bins on  0 days,      0 of  167220 veh (0.00 %); bins above the same bound at 1900: 1
+  NB_T:    0 bins on  0 days,      0 of 1376248 veh (0.00 %); bins above the same bound at 1900: 0
+  SB_L:    0 bins on  0 days,      0 of  189649 veh (0.00 %); bins above the same bound at 1900: 0
+  SB_T:    0 bins on  0 days,      0 of 1522898 veh (0.00 %); bins above the same bound at 1900: 0
+  EB_L:    0 bins on  0 days,      0 of  158691 veh (0.00 %); bins above the same bound at 1900: 0
+  EB_T:    5 bins on  5 days,   1038 of  848484 veh (0.12 %); bins above the same bound at 1900: 19
+  WB_L:    0 bins on  0 days,      0 of   63014 veh (0.00 %); bins above the same bound at 1900: 0
+  WB_T:    0 bins on  0 days,      0 of  429343 veh (0.00 %); bins above the same bound at 1900: 0
+  flagged bins by hour: {'18': 5}
+
+wrote atsc/sites/7065/demand_audit/days.csv, flagged_bins.csv (5 rows)
++ date
+Thu Nov 12 03:45:05 PM JST 2026
++ uv run python atsc/sites/7065/validate.py fit-passage
+max recall (train-day rule): {'A': [4, 7, 8], 'B': [4, 7, 8], 'C': [4, 7, 8]}
+train: 31 days x 5 controller settings = 155 full-day runs
+Warning: Teleporting vehicle 'SB_L.27900.2'; waited too long (wrong lane), lane='NE_in.79_2', time=28370.00.
+Warning: Vehicle 'SB_L.27900.2' ends teleporting on edge 'S_out', time=28370.00.
+Warning: Teleporting vehicle 'SB_T.31500.18'; waited too long (wrong lane), lane='NE_in.79_3', time=32042.50.
+Warning: Vehicle 'SB_T.31500.18' ends teleporting on edge 'SW_out', time=32042.50.
+Warning: Teleporting vehicle 'SB_T.33600.68'; waited too long (wrong lane), lane='NE_in.79_3', time=33936.50.
+Warning: Teleporting vehicle 'SB_L.33300.1'; waited too long (wrong lane), lane='NE_in.79_2', time=33936.50.
+Warning: Vehicle 'SB_L.33300.1' ends teleporting on edge 'S_out', time=33936.50.
+Warning: Vehicle 'SB_T.33600.68' ends teleporting on edge 'SW_out', time=33936.50.
+Warning: Teleporting vehicle 'SB_L.44400.3'; waited too long (wrong lane), lane='NE_in.79_2', time=44943.00.
+Warning: Vehicle 'SB_L.44400.3' ends teleporting on edge 'S_out', time=44943.00.
+Warning: Teleporting vehicle 'SB_T.44400.78'; waited too long (yield), lane='NE_in.79_2', time=44943.50.
+Warning: Vehicle 'SB_T.44400.78' ends teleporting on edge 'SW_out', time=44943.50.
+Warning: Teleporting vehicle 'SB_L.49500.6'; waited too long (wrong lane), lane='NE_in.79_2', time=50083.00.
+Warning: Vehicle 'SB_L.49500.6' ends teleporting on edge 'S_out', time=50083.00.
+Warning: Vehicle 'EB_T.56700.1' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=56942.50.
+Warning: Teleporting vehicle 'SB_T.57000.85'; waited too long (wrong lane), lane='NE_in.79_3', time=57580.00.
+Warning: Vehicle 'SB_T.57000.85' ends teleporting on edge 'SW_out', time=57580.00.
+Warning: Teleporting vehicle 'SB_L.57000.5'; waited too long (yield), lane='NE_in.79_3', time=57581.50.
+Warning: Vehicle 'SB_L.57000.5' ends teleporting on edge 'S_out', time=57581.50.
+Warning: Teleporting vehicle 'SB_L.64800.0'; waited too long (wrong lane), lane='NE_in.79_2', time=65160.00.
+Warning: Teleporting vehicle 'SB_T.64800.107'; waited too long (wrong lane), lane='NE_in.79_3', time=65160.00.
+Warning: Vehicle 'SB_T.64800.107' ends teleporting on edge 'SW_out', time=65160.00.
+Warning: Vehicle 'SB_L.64800.0' teleports beyond arrival edge 'S_out', time=65166.00.
+Warning: Teleporting vehicle 'SB_L.66300.18'; waited too long (wrong lane), lane='NE_in.79_2', time=66783.50.
+Warning: Vehicle 'SB_L.66300.18' ends teleporting on edge 'S_out', time=66783.50.
+Warning: Teleporting vehicle 'SB_T.66300.173'; waited too long (yield), lane='NE_in.79_2', time=66784.00.
+Warning: Vehicle 'SB_T.66300.173' ends teleporting on edge 'SW_out', time=66784.00.
+Warning: Teleporting vehicle 'SB_L.67500.12'; waited too long (wrong lane), lane='NE_in.79_2', time=68045.50.
+Warning: Vehicle 'SB_L.67500.12' ends teleporting on edge 'S_out', time=68045.50.
+Warning: Teleporting vehicle 'SB_T.67500.13'; waited too long (yield), lane='NE_in.79_2', time=68047.00.
+Warning: Vehicle 'SB_T.67500.13' ends teleporting on edge 'SW_out', time=68047.00.
+Warning: Vehicle 'NB_L.72000.9' performs emergency braking on lane ':nSW_b1_3_2' with decel=9.00, wished=4.50, severity=1.00, time=72174.50.
+Warning: Vehicle 'EB_T.83100.32' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=83371.50.
+Warning: Teleporting vehicle 'SB_L.30300.0'; waited too long (wrong lane), lane='NE_in.79_2', time=30766.00.
+Warning: Vehicle 'SB_L.30300.0' ends teleporting on edge 'S_out', time=30766.00.
+Warning: Vehicle 'EB_T.35100.15' performs emergency braking on lane 'N_far_1' with decel=9.00, wished=4.50, severity=1.00, time=35265.50.
+Warning: Teleporting vehicle 'SB_L.44400.7'; waited too long (wrong lane), lane='NE_in.79_2', time=44803.00.
+Warning: Vehicle 'SB_L.44400.7' ends teleporting on edge 'S_out', time=44803.00.
+Warning: Teleporting vehicle 'SB_T.44700.53'; waited too long (wrong lane), lane='NE_in.79_3', time=45024.00.
+Warning: Teleporting vehicle 'SB_L.44700.11'; waited too long (wrong lane), lane='NE_in.79_2', time=45024.00.
+Warning: Vehicle 'SB_L.44700.11' ends teleporting on edge 'S_out', time=45024.00.
+Warning: Vehicle 'SB_T.44700.53' ends teleporting on edge 'SW_out', time=45024.00.
+Warning: Teleporting vehicle 'SB_L.42600.15'; waited too long (wrong lane), lane='NE_in.79_2', time=43199.00.
+Warning: Vehicle 'SB_L.42600.15' ends teleporting on edge 'S_out', time=43199.00.
+Warning: Teleporting vehicle 'SB_L.47100.3'; waited too long (wrong lane), lane='NE_in.79_2', time=47685.00.
+Warning: Vehicle 'SB_L.47100.3' ends teleporting on edge 'S_out', time=47685.00.
+Warning: Teleporting vehicle 'EB_T.62100.37'; waited too long (yield), lane='N_near_2', time=62662.50.
+Warning: Vehicle 'EB_T.62100.37' ends teleporting on edge 'S_out', time=62662.50.
+Warning: Teleporting vehicle 'EB_T.62100.13'; waited too long (yield), lane='N_near_1', time=62663.50.
+Warning: Vehicle 'EB_T.62100.13' ends teleporting on edge 'S_out', time=62663.50.
+Warning: Teleporting vehicle 'SB_L.62100.17'; waited too long (yield), lane='NE_in.79_4', time=62706.50.
+Warning: Vehicle 'SB_L.62100.17' ends teleporting on edge 'S_out', time=62706.50.
+Warning: Teleporting vehicle 'SB_L.62400.0'; waited too long (jam), lane=':J11_1_3', time=62714.00.
+Warning: Teleporting vehicle 'SB_L.62400.17'; waited too long (yield), lane='NE_in.79_3', time=62715.50.
+Warning: Vehicle 'SB_L.62400.17' ends teleporting on edge 'S_out', time=62720.00.
+Warning: Vehicle 'SB_L.62400.0' ends teleporting on edge 'S_out', time=62721.00.
+Warning: Teleporting vehicle 'NB_L.62400.5'; waited too long (yield), lane='SW_in_3', time=62794.50.
+Warning: Vehicle 'NB_L.62400.5' ends teleporting on edge 'N_out', time=62794.50.
+Warning: Teleporting vehicle 'WB_T.62400.6'; waited too long (yield), lane='S_in_2', time=62844.00.
+Warning: Vehicle 'WB_T.62400.6' ends teleporting on edge 'N_out', time=62844.00.
+Warning: Teleporting vehicle 'WB_T.62400.1'; waited too long (yield), lane='S_in_1', time=62849.00.
+Warning: Vehicle 'WB_T.62400.1' ends teleporting on edge 'N_out', time=62849.00.
+Warning: Teleporting vehicle 'EB_T.62100.37'; waited too long (yield), lane='N_near_2', time=62662.00.
+Warning: Vehicle 'EB_T.62100.37' ends teleporting on edge 'S_out', time=62662.00.
+Warning: Teleporting vehicle 'EB_T.62100.13'; waited too long (yield), lane='N_near_1', time=62666.50.
+Warning: Vehicle 'EB_T.62100.13' ends teleporting on edge 'S_out', time=62666.50.
+Warning: Teleporting vehicle 'SB_L.62100.19'; waited too long (yield), lane='NE_in.79_3', time=62696.50.
+Warning: Vehicle 'SB_L.62100.19' ends teleporting on edge 'S_out', time=62698.50.
+Warning: Teleporting vehicle 'SB_L.62100.12'; waited too long (yield), lane='NE_in.79_4', time=62703.50.
+Warning: Vehicle 'SB_L.62100.12' ends teleporting on edge 'S_out', time=62705.50.
+Warning: Teleporting vehicle 'NB_L.62400.5'; waited too long (yield), lane='SW_in_3', time=62794.50.
+Warning: Vehicle 'NB_L.62400.5' ends teleporting on edge 'N_out', time=62794.50.
+Warning: Teleporting vehicle 'WB_T.62400.6'; waited too long (yield), lane='S_in_1', time=62844.00.
+Warning: Vehicle 'WB_T.62400.6' ends teleporting on edge 'N_out', time=62844.00.
+Warning: Teleporting vehicle 'WB_T.62400.1'; waited too long (yield), lane='S_in_2', time=62848.50.
+Warning: Vehicle 'WB_T.62400.1' ends teleporting on edge 'N_out', time=62848.50.
+Warning: Teleporting vehicle 'SB_L.27300.10'; waited too long (wrong lane), lane='NE_in.79_2', time=27681.00.
+Warning: Vehicle 'SB_L.27300.10' ends teleporting on edge 'S_out', time=27681.00.
+Warning: Teleporting vehicle 'SB_L.48300.7'; waited too long (wrong lane), lane='NE_in.79_2', time=48803.50.
+Warning: Vehicle 'SB_L.48300.7' ends teleporting on edge 'S_out', time=48803.50.
+Warning: Teleporting vehicle 'SB_L.45900.0'; waited too long (wrong lane), lane='NE_in.79_2', time=46247.50.
+Warning: Vehicle 'SB_L.45900.0' ends teleporting on edge 'S_out', time=46247.50.
+Warning: Teleporting vehicle 'SB_T.38700.49'; waited too long (wrong lane), lane='NE_in.79_3', time=39199.00.
+Warning: Teleporting vehicle 'SB_L.38700.6'; waited too long (wrong lane), lane='NE_in.79_2', time=39199.00.
+Warning: Vehicle 'SB_L.38700.6' ends teleporting on edge 'S_out', time=39199.00.
+Warning: Vehicle 'SB_T.38700.49' ends teleporting on edge 'SW_out', time=39199.00.
+Warning: Teleporting vehicle 'SB_L.39300.4'; waited too long (wrong lane), lane='NE_in.79_2', time=39842.50.
+Warning: Vehicle 'SB_L.39300.4' ends teleporting on edge 'S_out', time=39842.50.
+Warning: Teleporting vehicle 'SB_L.46800.5'; waited too long (wrong lane), lane='NE_in.79_2', time=47203.50.
+Warning: Vehicle 'SB_L.46800.5' ends teleporting on edge 'S_out', time=47203.50.
+Warning: Vehicle 'EB_T.34500.33' performs emergency braking on lane 'N_far_1' with decel=9.00, wished=4.50, severity=1.00, time=34752.00.
+Warning: Teleporting vehicle 'SB_T.50700.30'; waited too long (wrong lane), lane='NE_in.79_3', time=51043.00.
+Warning: Teleporting vehicle 'SB_L.50700.13'; waited too long (wrong lane), lane='NE_in.79_2', time=51043.00.
+Warning: Vehicle 'SB_L.50700.13' ends teleporting on edge 'S_out', time=51043.00.
+Warning: Vehicle 'SB_T.50700.30' ends teleporting on edge 'SW_out', time=51043.00.
+Warning: Teleporting vehicle 'SB_L.42600.12'; waited too long (wrong lane), lane='NE_in.79_2', time=43202.00.
+Warning: Teleporting vehicle 'SB_T.42600.85'; waited too long (wrong lane), lane='NE_in.79_3', time=43202.00.
+Warning: Vehicle 'SB_L.42600.12' ends teleporting on edge 'S_out', time=43202.00.
+Warning: Vehicle 'SB_T.42600.85' ends teleporting on edge 'SW_out', time=43202.00.
+Warning: Teleporting vehicle 'SB_L.46800.3'; waited too long (wrong lane), lane='NE_in.79_2', time=47217.00.
+Warning: Vehicle 'SB_L.46800.3' ends teleporting on edge 'S_out', time=47217.00.
+Warning: Vehicle 'NB_L.59700.0' performs emergency braking on lane ':nSW_b1_3_2' with decel=9.00, wished=4.50, severity=1.00, time=59801.00.
+Warning: Teleporting vehicle 'NB_T.59700.107'; collision with vehicle 'NB_L.59700.0', lane='SW_up_2', gap=-0.19, time=59801.00, stage=move.
+Warning: Vehicle 'NB_T.59700.107' ends teleporting on edge 'SW_mid', time=59803.00.
+Warning: Vehicle 'NB_L.50100.2' performs emergency braking on lane ':nSW_b1_3_3' with decel=9.00, wished=4.50, severity=1.00, time=50228.50.
+Warning: Teleporting vehicle 'SB_L.57000.14'; waited too long (wrong lane), lane='NE_in.79_2', time=57417.00.
+Warning: Teleporting vehicle 'SB_T.57000.136'; waited too long (yield), lane='NE_in.79_2', time=57418.50.
+Warning: Vehicle 'SB_T.57000.136' ends teleporting on edge 'SW_out', time=57418.50.
+Warning: Vehicle 'SB_L.57000.14' teleports beyond arrival edge 'S_out', time=57423.50.
+Warning: Teleporting vehicle 'SB_L.66300.10'; waited too long (wrong lane), lane='NE_in.79_2', time=66958.00.
+Warning: Teleporting vehicle 'SB_T.66600.162'; waited too long (yield), lane='NE_in.79_2', time=66959.50.
+Warning: Vehicle 'SB_L.66300.10' ends teleporting on edge 'S_out', time=66959.50.
+Warning: Vehicle 'SB_T.66600.162' ends teleporting on edge 'SW_out', time=66959.50.
+Warning: Vehicle 'EB_T.54300.33' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=54592.00.
+Warning: Teleporting vehicle 'SB_L.64200.8'; waited too long (wrong lane), lane='NE_in.79_2', time=64804.00.
+Warning: Vehicle 'SB_L.64200.8' ends teleporting on edge 'S_out', time=64804.00.
+Warning: Teleporting vehicle 'SB_T.64200.32'; waited too long (yield), lane='NE_in.79_2', time=64806.00.
+Warning: Vehicle 'SB_T.64200.32' ends teleporting on edge 'SW_out', time=64806.00.
+Warning: Teleporting vehicle 'EB_T.61500.17'; waited too long (yield), lane='N_near_1', time=62081.50.
+Warning: Vehicle 'EB_T.61500.17' ends teleporting on edge 'S_out', time=62081.50.
+Warning: Teleporting vehicle 'SB_L.61500.25'; waited too long (yield), lane='NE_in.79_3', time=62113.00.
+Warning: Vehicle 'SB_L.61500.25' ends teleporting on edge 'S_out', time=62118.50.
+Warning: Teleporting vehicle 'SB_L.61500.27'; waited too long (yield), lane='NE_in.79_3', time=62119.50.
+Warning: Vehicle 'SB_L.61500.27' ends teleporting on edge 'S_out', time=62119.50.
+Warning: Teleporting vehicle 'WB_T.61800.15'; waited too long (yield), lane='S_in_2', time=62264.00.
+Warning: Vehicle 'WB_T.61800.15' ends teleporting on edge 'N_out', time=62264.00.
+Warning: Teleporting vehicle 'WB_T.61800.11'; waited too long (yield), lane='S_in_1', time=62264.50.
+Warning: Vehicle 'WB_T.61800.11' ends teleporting on edge 'N_out', time=62264.50.
+Warning: Teleporting vehicle 'SB_L.61200.0'; waited too long (wrong lane), lane='NE_in.79_2', time=61749.50.
+Warning: Teleporting vehicle 'SB_T.61200.148'; waited too long (yield), lane='NE_in.79_2', time=61753.50.
+Warning: Vehicle 'SB_T.61200.148' ends teleporting on edge 'SW_out', time=61753.50.
+Warning: Vehicle 'SB_L.61200.0' teleports beyond arrival edge 'S_out', time=61755.50.
+Warning: Teleporting vehicle 'SB_T.65400.40'; waited too long (wrong lane), lane='NE_in.79_3', time=65885.50.
+Warning: Teleporting vehicle 'SB_L.65400.8'; waited too long (wrong lane), lane='NE_in.79_2', time=65885.50.
+Warning: Vehicle 'SB_T.65400.40' ends teleporting on edge 'SW_out', time=65885.50.
+Warning: Vehicle 'SB_L.65400.8' teleports beyond arrival edge 'S_out', time=65892.50.
+Warning: Vehicle 'NB_L.31500.17' performs emergency braking on lane ':nSW_b1_3_3' with decel=9.00, wished=4.50, severity=1.00, time=31643.50.
+Warning: Teleporting vehicle 'SB_L.48600.6'; waited too long (wrong lane), lane='NE_in.79_2', time=49122.50.
+Warning: Vehicle 'SB_L.48600.6' ends teleporting on edge 'S_out', time=49122.50.
+Warning: Vehicle 'NB_L.35100.5' performs emergency braking on lane ':nSW_b1_3_1' with decel=9.00, wished=4.50, severity=1.00, time=35120.00.
+Warning: Teleporting vehicle 'SB_T.54600.35'; waited too long (wrong lane), lane='NE_in.79_3', time=55203.00.
+Warning: Vehicle 'SB_T.54600.35' ends teleporting on edge 'SW_out', time=55203.00.
+Warning: Teleporting vehicle 'SB_T.48900.74'; waited too long (wrong lane), lane='NE_in.79_3', time=49285.00.
+Warning: Teleporting vehicle 'SB_L.48900.0'; waited too long (wrong lane), lane='NE_in.79_2', time=49285.00.
+Warning: Vehicle 'SB_L.48900.0' ends teleporting on edge 'S_out', time=49285.00.
+Warning: Vehicle 'SB_T.48900.74' ends teleporting on edge 'SW_out', time=49285.00.
+Warning: Vehicle 'NB_L.39600.5' performs emergency braking on lane 'SW_mid_1' with decel=9.00, wished=4.50, severity=1.00, time=39760.50.
+Warning: Teleporting vehicle 'SB_L.62400.17'; waited too long (wrong lane), lane='NE_in.79_2', time=62827.00.
+Warning: Vehicle 'SB_L.62400.17' ends teleporting on edge 'S_out', time=62830.00.
+Warning: Teleporting vehicle 'SB_T.62400.106'; waited too long (yield), lane='NE_in.79_2', time=62831.50.
+Warning: Vehicle 'SB_T.62400.106' ends teleporting on edge 'SW_out', time=62831.50.
+Warning: Teleporting vehicle 'SB_L.66300.0'; waited too long (wrong lane), lane='NE_in.79_2', time=66784.00.
+Warning: Vehicle 'SB_L.66300.0' teleports beyond arrival edge 'S_out', time=66790.50.
+Warning: Teleporting vehicle 'SB_T.66300.98'; waited too long (yield), lane='NE_in.79_2', time=66793.50.
+Warning: Vehicle 'SB_T.66300.98' ends teleporting on edge 'SW_out', time=66793.50.
+Warning: Teleporting vehicle 'SB_L.65100.10'; waited too long (wrong lane), lane='NE_in.79_2', time=65702.50.
+Warning: Vehicle 'SB_L.65100.10' ends teleporting on edge 'S_out', time=65703.00.
+Warning: Teleporting vehicle 'SB_T.65100.143'; waited too long (yield), lane='NE_in.79_2', time=65704.00.
+Warning: Vehicle 'SB_T.65100.143' ends teleporting on edge 'SW_out', time=65704.00.
+Warning: Vehicle 'NB_T.72900.17' performs emergency braking on lane 'SW_up_2' with decel=9.00, wished=4.50, severity=1.00, time=73081.00.
+Warning: Vehicle 'EB_T.38700.54' performs emergency braking on lane 'N_far_1' with decel=9.00, wished=4.50, severity=1.00, time=38732.00.
+Warning: Teleporting vehicle 'SB_L.35700.15'; waited too long (wrong lane), lane='NE_in.79_2', time=36165.00.
+Warning: Vehicle 'SB_L.35700.15' ends teleporting on edge 'S_out', time=36165.00.
+Warning: Vehicle 'NB_L.27900.0' performs emergency braking on lane ':nSW_b1_3_3' with decel=9.00, wished=4.50, severity=1.00, time=27992.50.
+Warning: Teleporting vehicle 'SB_L.49200.2'; waited too long (wrong lane), lane='NE_in.79_2', time=49600.50.
+Warning: Vehicle 'SB_L.49200.2' ends teleporting on edge 'S_out', time=49600.50.
+Warning: Teleporting vehicle 'SB_T.34200.87'; waited too long (wrong lane), lane='NE_in.79_3', time=34568.00.
+Warning: Teleporting vehicle 'SB_L.34200.1'; waited too long (wrong lane), lane='NE_in.79_2', time=34568.00.
+Warning: Vehicle 'SB_L.34200.1' ends teleporting on edge 'S_out', time=34568.00.
+Warning: Vehicle 'SB_T.34200.87' ends teleporting on edge 'SW_out', time=34568.00.
+Warning: Teleporting vehicle 'SB_L.55800.10'; waited too long (wrong lane), lane='NE_in.79_2', time=56167.50.
+Warning: Vehicle 'SB_L.55800.10' ends teleporting on edge 'S_out', time=56167.50.
+Warning: Teleporting vehicle 'SB_T.55800.91'; waited too long (yield), lane='NE_in.79_2', time=56171.50.
+Warning: Vehicle 'SB_T.55800.91' ends teleporting on edge 'SW_out', time=56171.50.
+Warning: Teleporting vehicle 'SB_T.43800.56'; waited too long (wrong lane), lane='NE_in.79_3', time=44169.50.
+Warning: Vehicle 'SB_T.43800.56' ends teleporting on edge 'SW_out', time=44169.50.
+Warning: Teleporting vehicle 'SB_T.61500.45'; waited too long (wrong lane), lane='NE_in.79_3', time=61924.00.
+Warning: Vehicle 'SB_T.61500.45' ends teleporting on edge 'SW_out', time=61924.00.
+Warning: Teleporting vehicle 'SB_L.61500.21'; waited too long (yield), lane='NE_in.79_3', time=61925.50.
+Warning: Vehicle 'SB_L.61500.21' ends teleporting on edge 'S_out', time=61927.50.
+Warning: Teleporting vehicle 'SB_L.41700.12'; waited too long (wrong lane), lane='NE_in.79_2', time=42085.50.
+Warning: Vehicle 'SB_L.41700.12' ends teleporting on edge 'S_out', time=42085.50.
+Warning: Vehicle 'EB_T.63900.50' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=63962.00.
+Warning: Teleporting vehicle 'SB_L.61500.2'; waited too long (wrong lane), lane='NE_in.79_2', time=62100.50.
+Warning: Vehicle 'SB_L.61500.2' teleports beyond arrival edge 'S_out', time=62107.00.
+Warning: Teleporting vehicle 'SB_L.59100.11'; waited too long (wrong lane), lane='NE_in.79_2', time=59591.50.
+Warning: Teleporting vehicle 'SB_T.59100.19'; waited too long (yield), lane='NE_in.79_2', time=59594.00.
+Warning: Vehicle 'SB_T.59100.19' ends teleporting on edge 'SW_out', time=59594.00.
+Warning: Vehicle 'SB_L.59100.11' ends teleporting on edge 'S_out', time=59597.50.
+Warning: Teleporting vehicle 'SB_L.63000.8'; waited too long (wrong lane), lane='NE_in.79_2', time=63548.00.
+Warning: Vehicle 'SB_L.63000.8' ends teleporting on edge 'S_out', time=63548.00.
+Warning: Teleporting vehicle 'SB_T.63000.118'; waited too long (yield), lane='NE_in.79_2', time=63549.50.
+Warning: Vehicle 'SB_T.63000.118' ends teleporting on edge 'SW_out', time=63549.50.
+Warning: Teleporting vehicle 'SB_L.68700.17'; waited too long (wrong lane), lane='NE_in.79_2', time=69266.50.
+Warning: Vehicle 'SB_L.68700.17' ends teleporting on edge 'S_out', time=69266.50.
+Warning: Teleporting vehicle 'SB_T.68700.9'; waited too long (wrong lane), lane='NE_in.79_3', time=69572.50.
+Warning: Teleporting vehicle 'SB_L.68700.6'; waited too long (wrong lane), lane='NE_in.79_2', time=69572.50.
+Warning: Vehicle 'SB_L.68700.6' ends teleporting on edge 'S_out', time=69572.50.
+Warning: Vehicle 'SB_T.68700.9' ends teleporting on edge 'SW_out', time=69572.50.
+Warning: Teleporting vehicle 'SB_L.34800.6'; waited too long (wrong lane), lane='NE_in.79_2', time=35204.50.
+Warning: Vehicle 'SB_L.34800.6' ends teleporting on edge 'S_out', time=35204.50.
+Warning: Teleporting vehicle 'SB_L.48600.9'; waited too long (wrong lane), lane='NE_in.79_2', time=48965.00.
+Warning: Vehicle 'SB_L.48600.9' ends teleporting on edge 'S_out', time=48965.00.
+Warning: Teleporting vehicle 'SB_L.42000.10'; waited too long (wrong lane), lane='NE_in.79_2', time=42574.00.
+Warning: Vehicle 'SB_L.42000.10' ends teleporting on edge 'S_out', time=42574.00.
+Warning: Teleporting vehicle 'SB_L.54900.6'; waited too long (wrong lane), lane='NE_in.79_2', time=55523.00.
+Warning: Teleporting vehicle 'SB_T.55200.54'; waited too long (wrong lane), lane='NE_in.79_3', time=55523.00.
+Warning: Vehicle 'SB_L.54900.6' ends teleporting on edge 'S_out', time=55523.00.
+Warning: Vehicle 'SB_T.55200.54' ends teleporting on edge 'SW_out', time=55523.00.
+Warning: Teleporting vehicle 'SB_L.55200.4'; waited too long (wrong lane), lane='NE_in.79_2', time=55831.00.
+Warning: Vehicle 'SB_L.55200.4' ends teleporting on edge 'S_out', time=55831.00.
+Warning: Teleporting vehicle 'SB_T.55200.120'; waited too long (yield), lane='NE_in.79_2', time=55834.00.
+Warning: Vehicle 'SB_T.55200.120' ends teleporting on edge 'SW_out', time=55834.00.
+Warning: Vehicle 'EB_T.37800.61' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=37987.50.
+Warning: Teleporting vehicle 'SB_L.57000.23'; waited too long (wrong lane), lane='NE_in.79_2', time=57599.50.
+Warning: Teleporting vehicle 'SB_T.57000.51'; waited too long (yield), lane='NE_in.79_2', time=57603.00.
+Warning: Vehicle 'SB_T.57000.51' ends teleporting on edge 'SW_out', time=57603.00.
+Warning: Vehicle 'SB_L.57000.23' teleports beyond arrival edge 'S_out', time=57606.50.
+Warning: Teleporting vehicle 'SB_L.50400.4'; waited too long (wrong lane), lane='NE_in.79_2', time=50737.00.
+Warning: Vehicle 'SB_L.50400.4' ends teleporting on edge 'S_out', time=50737.00.
+Warning: Vehicle 'NB_L.65700.3' performs emergency braking on lane ':nSW_b1_3_2' with decel=9.00, wished=4.50, severity=1.00, time=65897.50.
+Warning: Vehicle 'EB_T.54900.63' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=54917.00.
+Warning: Vehicle 'EB_T.55200.21' performs emergency braking on lane 'N_far_1' with decel=9.00, wished=4.50, severity=1.00, time=55388.00.
+Warning: Teleporting vehicle 'SB_T.55800.139'; waited too long (wrong lane), lane='NE_in.79_3', time=56500.00.
+Warning: Vehicle 'SB_T.55800.139' ends teleporting on edge 'SW_out', time=56500.00.
+Warning: Teleporting vehicle 'SB_L.55800.0'; waited too long (yield), lane='NE_in.79_3', time=56503.00.
+Warning: Vehicle 'SB_L.55800.0' ends teleporting on edge 'S_out', time=56503.00.
+Warning: Teleporting vehicle 'SB_L.62100.13'; waited too long (wrong lane), lane='NE_in.79_2', time=62639.50.
+Warning: Teleporting vehicle 'SB_T.62100.143'; waited too long (yield), lane='NE_in.79_2', time=62641.00.
+Warning: Vehicle 'SB_T.62100.143' ends teleporting on edge 'SW_out', time=62641.00.
+Warning: Vehicle 'SB_L.62100.13' teleports beyond arrival edge 'S_out', time=62646.00.
+Warning: Teleporting vehicle 'SB_L.68700.6'; waited too long (wrong lane), lane='NE_in.79_2', time=69265.50.
+Warning: Vehicle 'SB_L.68700.6' ends teleporting on edge 'S_out', time=69265.50.
+Warning: Teleporting vehicle 'SB_T.72300.0'; waited too long (wrong lane), lane='NE_in.79_3', time=72616.50.
+Warning: Teleporting vehicle 'SB_L.72000.0'; waited too long (wrong lane), lane='NE_in.79_2', time=72616.50.
+Warning: Vehicle 'SB_L.72000.0' ends teleporting on edge 'S_out', time=72616.50.
+Warning: Vehicle 'SB_T.72300.0' ends teleporting on edge 'SW_out', time=72616.50.
+Warning: Teleporting vehicle 'SB_L.36300.3'; waited too long (wrong lane), lane='NE_in.79_2', time=36802.00.
+Warning: Vehicle 'SB_L.36300.3' ends teleporting on edge 'S_out', time=36802.00.
+Warning: Teleporting vehicle 'SB_L.27000.3'; waited too long (wrong lane), lane='NE_in.79_2', time=27364.50.
+Warning: Vehicle 'SB_L.27000.3' ends teleporting on edge 'S_out', time=27364.50.
+Warning: Teleporting vehicle 'SB_T.43200.94'; waited too long (wrong lane), lane='NE_in.79_3', time=43682.50.
+Warning: Vehicle 'SB_T.43200.94' ends teleporting on edge 'SW_out', time=43682.50.
+Warning: Teleporting vehicle 'SB_T.43200.16'; waited too long (wrong lane), lane='NE_in.79_3', time=43984.50.
+Warning: Vehicle 'SB_T.43200.16' ends teleporting on edge 'SW_out', time=43984.50.
+Warning: Teleporting vehicle 'SB_L.43200.3'; waited too long (yield), lane='NE_in.79_3', time=43986.50.
+Warning: Vehicle 'SB_L.43200.3' ends teleporting on edge 'S_out', time=43986.50.
+Warning: Teleporting vehicle 'SB_T.42600.121'; collision with vehicle 'SB_T.42600.38', lane='NE_in.15_3', gap=-0.03, time=42737.50, stage=move.
+Warning: Vehicle 'SB_T.42600.121' teleports beyond arrival edge 'SW_out', time=42738.50.
+Warning: Teleporting vehicle 'SB_L.51600.6'; waited too long (wrong lane), lane='NE_in.79_2', time=52001.50.
+Warning: Vehicle 'SB_L.51600.6' ends teleporting on edge 'S_out', time=52001.50.
+Warning: Teleporting vehicle 'SB_T.64800.25'; waited too long (wrong lane), lane='NE_in.79_3', time=65502.50.
+Warning: Vehicle 'SB_T.64800.25' ends teleporting on edge 'SW_out', time=65502.50.
+Warning: Teleporting vehicle 'SB_L.64800.16'; waited too long (yield), lane='NE_in.79_3', time=65506.50.
+Warning: Vehicle 'SB_L.64800.16' ends teleporting on edge 'S_out', time=65506.50.
+Warning: Teleporting vehicle 'SB_L.59400.5'; waited too long (wrong lane), lane='NE_in.79_2', time=59939.50.
+Warning: Teleporting vehicle 'SB_T.59400.29'; waited too long (yield), lane='NE_in.79_2', time=59941.00.
+Warning: Vehicle 'SB_T.59400.29' ends teleporting on edge 'SW_out', time=59941.00.
+Warning: Vehicle 'SB_L.59400.5' teleports beyond arrival edge 'S_out', time=59947.00.
+Warning: Teleporting vehicle 'SB_L.63300.5'; waited too long (wrong lane), lane='NE_in.79_2', time=63912.00.
+Warning: Vehicle 'SB_L.63300.5' ends teleporting on edge 'S_out', time=63917.00.
+Warning: Teleporting vehicle 'SB_L.63300.0'; waited too long (wrong lane), lane='NE_in.79_2', time=63907.00.
+Warning: Teleporting vehicle 'SB_T.63300.10'; waited too long (yield), lane='NE_in.79_2', time=63909.00.
+Warning: Vehicle 'SB_T.63300.10' ends teleporting on edge 'SW_out', time=63909.00.
+Warning: Vehicle 'SB_L.63300.0' teleports beyond arrival edge 'S_out', time=63913.50.
+Warning: Teleporting vehicle 'SB_L.63300.19'; waited too long (wrong lane), lane='NE_in.79_2', time=63909.50.
+Warning: Teleporting vehicle 'SB_T.63600.4'; waited too long (yield), lane='NE_in.79_2', time=63910.50.
+Warning: Vehicle 'SB_T.63600.4' ends teleporting on edge 'SW_out', time=63910.50.
+Warning: Vehicle 'SB_L.63300.19' ends teleporting on edge 'S_out', time=63911.00.
+Warning: Vehicle 'NB_L.71100.3' performs emergency braking on lane ':nSW_b1_3_3' with decel=9.00, wished=4.50, severity=1.00, time=71391.50.
+{'phase': 1, 'passage_s': 2.0, 'plans': 5, 'mean_abs_gap_diff_pts': 43.8, 'mean_abs_split_diff_s': 0.67}
+{'phase': 1, 'passage_s': 3.0, 'plans': 5, 'mean_abs_gap_diff_pts': 43.1, 'mean_abs_split_diff_s': 0.67}
+{'phase': 1, 'passage_s': 4.0, 'plans': 5, 'mean_abs_gap_diff_pts': 42.4, 'mean_abs_split_diff_s': 0.68}
+{'phase': 1, 'passage_s': 6.0, 'plans': 5, 'mean_abs_gap_diff_pts': 37.0, 'mean_abs_split_diff_s': 0.64}
+{'phase': 1, 'passage_s': 8.0, 'plans': 5, 'mean_abs_gap_diff_pts': 29.3, 'mean_abs_split_diff_s': 0.5}
+{'phase': 3, 'passage_s': 2.0, 'plans': 5, 'mean_abs_gap_diff_pts': 41.0, 'mean_abs_split_diff_s': 5.87}
+{'phase': 3, 'passage_s': 3.0, 'plans': 5, 'mean_abs_gap_diff_pts': 39.4, 'mean_abs_split_diff_s': 5.3}
+{'phase': 3, 'passage_s': 4.0, 'plans': 5, 'mean_abs_gap_diff_pts': 35.3, 'mean_abs_split_diff_s': 4.57}
+{'phase': 3, 'passage_s': 6.0, 'plans': 5, 'mean_abs_gap_diff_pts': 37.3, 'mean_abs_split_diff_s': 3.26}
+{'phase': 3, 'passage_s': 8.0, 'plans': 5, 'mean_abs_gap_diff_pts': 33.5, 'mean_abs_split_diff_s': 2.05}
+{'phase': 4, 'passage_s': 2.0, 'plans': 2, 'mean_abs_gap_diff_pts': 35.8, 'mean_abs_split_diff_s': 0.75}
+{'phase': 4, 'passage_s': 3.0, 'plans': 2, 'mean_abs_gap_diff_pts': 28.8, 'mean_abs_split_diff_s': 1.25}
+{'phase': 4, 'passage_s': 4.0, 'plans': 2, 'mean_abs_gap_diff_pts': 21.2, 'mean_abs_split_diff_s': 1.56}
+{'phase': 4, 'passage_s': 6.0, 'plans': 2, 'mean_abs_gap_diff_pts': 17.5, 'mean_abs_split_diff_s': 1.77}
+{'phase': 4, 'passage_s': 8.0, 'plans': 2, 'mean_abs_gap_diff_pts': 15.1, 'mean_abs_split_diff_s': 2.03}
+{'phase': 5, 'passage_s': 2.0, 'plans': 5, 'mean_abs_gap_diff_pts': 29.1, 'mean_abs_split_diff_s': 11.38}
+{'phase': 5, 'passage_s': 3.0, 'plans': 5, 'mean_abs_gap_diff_pts': 28.8, 'mean_abs_split_diff_s': 10.55}
+{'phase': 5, 'passage_s': 4.0, 'plans': 5, 'mean_abs_gap_diff_pts': 28.2, 'mean_abs_split_diff_s': 9.55}
+{'phase': 5, 'passage_s': 6.0, 'plans': 5, 'mean_abs_gap_diff_pts': 26.5, 'mean_abs_split_diff_s': 7.38}
+{'phase': 5, 'passage_s': 8.0, 'plans': 5, 'mean_abs_gap_diff_pts': 21.7, 'mean_abs_split_diff_s': 5.05}
+{'phase': 7, 'passage_s': 2.0, 'plans': 2, 'mean_abs_gap_diff_pts': 22.1, 'mean_abs_split_diff_s': 1.98}
+{'phase': 7, 'passage_s': 3.0, 'plans': 2, 'mean_abs_gap_diff_pts': 18.1, 'mean_abs_split_diff_s': 1.71}
+{'phase': 7, 'passage_s': 4.0, 'plans': 2, 'mean_abs_gap_diff_pts': 17.7, 'mean_abs_split_diff_s': 1.27}
+{'phase': 7, 'passage_s': 6.0, 'plans': 2, 'mean_abs_gap_diff_pts': 7.0, 'mean_abs_split_diff_s': 0.63}
+{'phase': 7, 'passage_s': 8.0, 'plans': 2, 'mean_abs_gap_diff_pts': 10.5, 'mean_abs_split_diff_s': 0.31}
+{'phase': 8, 'passage_s': 2.0, 'plans': 2, 'mean_abs_gap_diff_pts': 21.3, 'mean_abs_split_diff_s': 2.07}
+{'phase': 8, 'passage_s': 3.0, 'plans': 2, 'mean_abs_gap_diff_pts': 13.7, 'mean_abs_split_diff_s': 2.52}
+{'phase': 8, 'passage_s': 4.0, 'plans': 2, 'mean_abs_gap_diff_pts': 8.7, 'mean_abs_split_diff_s': 2.8}
+{'phase': 8, 'passage_s': 6.0, 'plans': 2, 'mean_abs_gap_diff_pts': 17.0, 'mean_abs_split_diff_s': 2.81}
+{'phase': 8, 'passage_s': 8.0, 'plans': 2, 'mean_abs_gap_diff_pts': 24.7, 'mean_abs_split_diff_s': 3.01}
+wrote sim.json controller: {'source': 'fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)', 'max_recall': {'A': [4, 7, 8], 'B': [4, 7, 8], 'C': [4, 7, 8]}, 'passage_s': {'1': 8.0, '3': 8.0, '4': 8.0, '5': 8.0, '7': 6.0, '8': 4.0}}
++ date
+Thu Nov 12 04:22:22 PM JST 2026
++ uv run python atsc/sites/7065/validate.py run
+validation: 20 days x 1 controller settings = 20 full-day runs
+Warning: Vehicle 'EB_T.26100.30' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=26138.50.
+Warning: Teleporting vehicle 'SB_L.32700.3'; waited too long (wrong lane), lane='NE_in.79_2', time=33131.50.
+Warning: Vehicle 'SB_L.32700.3' ends teleporting on edge 'S_out', time=33131.50.
+Warning: Vehicle 'NB_L.39000.2' performs emergency braking on lane ':nSW_b1_3_2' with decel=9.00, wished=4.50, severity=1.00, time=39199.00.
+Warning: Teleporting vehicle 'SB_L.36300.6'; waited too long (wrong lane), lane='NE_in.79_2', time=36956.00.
+Warning: Vehicle 'SB_L.36300.6' ends teleporting on edge 'S_out', time=36956.00.
+Warning: Teleporting vehicle 'SB_T.43200.65'; waited too long (wrong lane), lane='NE_in.79_3', time=43693.00.
+Warning: Vehicle 'SB_T.43200.65' ends teleporting on edge 'SW_out', time=43693.00.
+Warning: Vehicle 'NB_L.42000.8' performs emergency braking on lane ':nSW_b1_3_2' with decel=9.00, wished=4.50, severity=1.00, time=42211.00.
+Warning: Teleporting vehicle 'SB_L.48600.7'; waited too long (wrong lane), lane='NE_in.79_2', time=49124.50.
+Warning: Vehicle 'SB_L.48600.7' ends teleporting on edge 'S_out', time=49124.50.
+Warning: Teleporting vehicle 'SB_L.42300.1'; waited too long (wrong lane), lane='NE_in.79_2', time=42760.00.
+Warning: Vehicle 'SB_L.42300.1' ends teleporting on edge 'S_out', time=42760.00.
+Warning: Teleporting vehicle 'SB_T.42300.31'; waited too long (jam), lane='NE_in.79_2', time=42761.50.
+Warning: Vehicle 'SB_T.42300.31' ends teleporting on edge 'SW_out', time=42761.50.
+Warning: Teleporting vehicle 'SB_L.48900.15'; waited too long (wrong lane), lane='NE_in.79_2', time=49293.50.
+Warning: Vehicle 'SB_L.48900.15' ends teleporting on edge 'S_out', time=49293.50.
+Warning: Vehicle 'NB_L.48900.6' performs emergency braking on lane ':nSW_b1_3_2' with decel=9.00, wished=4.50, severity=1.00, time=49130.00.
+Warning: Teleporting vehicle 'SB_L.53400.19'; waited too long (wrong lane), lane='NE_in.79_2', time=53761.00.
+Warning: Vehicle 'SB_L.53400.19' ends teleporting on edge 'S_out', time=53761.00.
+Warning: Teleporting vehicle 'SB_T.63900.58'; waited too long (wrong lane), lane='NE_in.79_3', time=64454.00.
+Warning: Vehicle 'SB_T.63900.58' ends teleporting on edge 'SW_out', time=64454.00.
+Warning: Teleporting vehicle 'SB_L.63900.15'; waited too long (yield), lane='NE_in.79_3', time=64456.00.
+Warning: Vehicle 'SB_L.63900.15' ends teleporting on edge 'S_out', time=64456.00.
+Warning: Teleporting vehicle 'SB_T.61800.3'; collision with vehicle 'SB_L.61800.23', lane='NE_in.15_2', gap=-0.02, time=61943.00, stage=move.
+Warning: Vehicle 'SB_T.61800.3' ends teleporting on edge 'SW_out', time=61950.00.
+Warning: Teleporting vehicle 'SB_T.65100.8'; waited too long (wrong lane), lane='NE_in.79_3', time=65725.50.
+Warning: Vehicle 'SB_T.65100.8' ends teleporting on edge 'SW_out', time=65725.50.
+Warning: Teleporting vehicle 'SB_L.65100.21'; waited too long (yield), lane='NE_in.79_3', time=65735.00.
+Warning: Vehicle 'SB_L.65100.21' ends teleporting on edge 'S_out', time=65735.00.
+Warning: Teleporting vehicle 'SB_L.71400.2'; waited too long (wrong lane), lane='NE_in.79_2', time=71836.00.
+Warning: Vehicle 'SB_L.71400.2' ends teleporting on edge 'S_out', time=71836.00.
+Warning: Teleporting vehicle 'SB_T.71400.44'; waited too long (yield), lane='NE_in.79_2', time=71838.50.
+Warning: Vehicle 'SB_T.71400.44' ends teleporting on edge 'SW_out', time=71838.50.
+Warning: Teleporting vehicle 'SB_L.55500.12'; waited too long (wrong lane), lane='NE_in.79_2', time=55872.00.
+Warning: Vehicle 'SB_L.55500.12' ends teleporting on edge 'S_out', time=55872.00.
+Warning: Vehicle 'NB_L.55800.8' performs emergency braking on lane 'SW_mid_1' with decel=9.00, wished=4.50, severity=1.00, time=56034.00.
+Warning: Vehicle 'NB_L.57900.13' performs emergency braking on lane ':nSW_b1_3_3' with decel=9.00, wished=4.50, severity=1.00, time=58025.00.
+Warning: Teleporting vehicle 'SB_L.60300.1'; waited too long (wrong lane), lane='NE_in.79_2', time=60850.50.
+Warning: Teleporting vehicle 'SB_T.60300.97'; waited too long (yield), lane='NE_in.79_2', time=60854.50.
+Warning: Vehicle 'SB_T.60300.97' ends teleporting on edge 'SW_out', time=60854.50.
+Warning: Vehicle 'SB_L.60300.1' ends teleporting on edge 'S_out', time=60857.00.
+Warning: Vehicle 'NB_L.60600.2' performs emergency braking on lane 'SW_mid_1' with decel=9.00, wished=4.50, severity=1.00, time=60856.00.
+Warning: Teleporting vehicle 'SB_T.63600.1'; waited too long (wrong lane), lane='NE_in.79_3', time=64109.00.
+Warning: Teleporting vehicle 'SB_L.63600.2'; waited too long (wrong lane), lane='NE_in.79_2', time=64109.00.
+Warning: Vehicle 'SB_T.63600.1' ends teleporting on edge 'SW_out', time=64109.00.
+Warning: Vehicle 'SB_L.63600.2' ends teleporting on edge 'S_out', time=64110.50.
+Warning: Teleporting vehicle 'SB_T.61500.53'; waited too long (wrong lane), lane='NE_in.79_3', time=61945.50.
+Warning: Vehicle 'SB_T.61500.53' ends teleporting on edge 'SW_out', time=61945.50.
+Warning: Teleporting vehicle 'SB_L.61500.12'; waited too long (yield), lane='NE_in.79_3', time=61946.00.
+Warning: Vehicle 'SB_L.61500.12' ends teleporting on edge 'S_out', time=61949.00.
+Warning: Vehicle 'NB_L.68100.4' performs emergency braking on lane ':nSW_b1_3_2' with decel=9.00, wished=4.50, severity=1.00, time=68288.00.
+Warning: Teleporting vehicle 'SB_L.68100.10'; waited too long (wrong lane), lane='NE_in.79_2', time=68605.50.
+Warning: Vehicle 'SB_L.68100.10' ends teleporting on edge 'S_out', time=68605.50.
++ uv run python atsc/sites/7065/validate.py score
+| Phase | Plan | days | avg split sim − field (s) | % gap-outs sim − field | % skips sim − field |
+|---|---|---|---|---|---|
+| P1 | A | 24 | +0.5 | +17 | +0 |
+| P1 | B | 38 | +0.7 | +20 | +0 |
+| P1 | C | 21 | +0.7 | +39 | +0 |
+| P1 | D | 18 | +0.5 | +29 | +0 |
+| P1 | E | 39 | +0.4 | -3 | +3 |
+| P3 | A | 19 | -0.3 | +32 | +10 |
+| P3 | B | 38 | -3.8 | +60 | +13 |
+| P3 | C | 22 | -5.5 | +57 | +16 |
+| P3 | D | 22 | -0.5 | -18 | +10 |
+| P3 | E | 51 | — | +0 | +0 |
+| P4 | A | 24 | +0.7 | +0 | +0 |
+| P4 | B | 37 | +5.0 | +0 | +0 |
+| P4 | C | 23 | +7.4 | +0 | +0 |
+| P4 | D | 23 | +0.5 | +16 | +0 |
+| P4 | E | 50 | +2.7 | -12 | +0 |
+| P5 | A | 24 | -4.2 | +20 | +0 |
+| P5 | B | 33 | -6.7 | +29 | -2 |
+| P5 | C | 18 | -8.8 | +32 | -1 |
+| P5 | D | 22 | -3.0 | +16 | +0 |
+| P5 | E | 49 | +1.1 | -5 | +1 |
+| P7 | A | 18 | -1.2 | +0 | +24 |
+| P7 | B | 38 | -1.0 | -9 | +20 |
+| P7 | C | 23 | -0.9 | -4 | +23 |
+| P7 | D | 19 | -1.0 | +11 | +20 |
+| P7 | E | 51 | — | +0 | +0 |
+| P8 | A | 24 | +3.0 | +0 | +0 |
+| P8 | B | 37 | +2.3 | +0 | +0 |
+| P8 | C | 22 | +2.9 | +0 | +0 |
+| P8 | D | 23 | +2.6 | -2 | +0 |
+| P8 | E | 51 | +2.7 | -14 | +0 |
+
+- **V1 average split:** 21/28 pairs within 3 s, worst 8.8 s → **FAIL**
+- **V2 % gap-outs:** 17/30 pairs within 15 points, worst 60 → **FAIL**
+- **V3 % skips:** 25/30 pairs within 15 points → **PASS** (reported)
+- **V4 P8 discharge:** sim median 1949 vs field 1934 veh/h per lane of nominal green (+0.8 %) → **PASS**
+- **V5 health:** 8 teleports; overflow days outside flagged days: 2026-09-14, 2026-09-23, 2026-09-25, 2026-09-28 → **FAIL**
++ date
+Thu Nov 12 04:28:01 PM JST 2026
++ uv run python atsc/sites/7065/baselines.py design
+W-E   from 00:00: cycle 107.0  Y 0.11  C0 107.0  splits {2: 39.5, 1: 13.1, 5: 14.0, 6: 38.5, 3: 11.1, 4: 43.3, 7: 10.4, 8: 44.0}
+W-A   from 06:15: cycle 112.9  Y 0.52  C0 112.9  splits {2: 41.1, 1: 14.0, 5: 14.0, 6: 41.1, 3: 14.7, 4: 43.1, 7: 10.9, 8: 46.9}
+W-B   from 13:30: cycle 111.6  Y 0.56  C0 111.6  splits {2: 40.5, 1: 12.3, 5: 14.0, 6: 38.7, 3: 15.7, 4: 43.1, 7: 10.8, 8: 48.0}
+W-C   from 15:30: cycle 137.8  Y 0.68  C0 137.8  splits {2: 62.5, 1: 12.3, 5: 17.3, 6: 57.5, 3: 18.5, 4: 44.5, 7: 10.6, 8: 52.4}
+W-B2  from 19:00: cycle 111.3  Y 0.53  C0 111.3  splits {2: 40.0, 1: 12.8, 5: 14.0, 6: 38.7, 3: 15.4, 4: 43.1, 7: 10.9, 8: 47.6}
+W-D   from 19:30: cycle 110.5  Y 0.46  C0 110.5  splits {2: 39.8, 1: 13.1, 5: 14.1, 6: 38.8, 3: 14.4, 4: 43.2, 7: 10.8, 8: 46.8}
+W-E2  from 21:45: cycle 108.3  Y 0.28  C0 108.3  splits {2: 39.6, 1: 12.9, 5: 14.0, 6: 38.5, 3: 12.8, 4: 43.0, 7: 10.6, 8: 45.3}
++ uv run python atsc/sites/7065/baselines.py run
+80 full-day runs
+Warning: Vehicle 'NB_L.32400.8' performs emergency braking on lane ':nSW_b1_3_2' with decel=9.00, wished=4.50, severity=1.00, time=32507.50.
+Warning: Teleporting vehicle 'SB_L.43500.7'; waited too long (wrong lane), lane='NE_in.79_2', time=44108.00.
+Warning: Vehicle 'SB_L.43500.7' ends teleporting on edge 'S_out', time=44108.50.
+Warning: Teleporting vehicle 'SB_T.43800.37'; waited too long (yield), lane='NE_in.79_2', time=44118.00.
+Warning: Vehicle 'SB_T.43800.37' ends teleporting on edge 'SW_out', time=44118.00.
+Warning: Teleporting vehicle 'SB_T.44100.87'; waited too long (wrong lane), lane='NE_in.79_3', time=44669.00.
+Warning: Vehicle 'SB_T.44100.87' ends teleporting on edge 'SW_out', time=44669.00.
+Warning: Teleporting vehicle 'SB_L.44100.1'; waited too long (yield), lane='NE_in.79_3', time=44670.00.
+Warning: Vehicle 'SB_L.44100.1' ends teleporting on edge 'S_out', time=44670.00.
+Warning: Vehicle 'NB_L.48900.6' performs emergency braking on lane ':nSW_b1_3_2' with decel=9.00, wished=4.50, severity=1.00, time=49130.00.
+Warning: Teleporting vehicle 'SB_L.48900.15'; waited too long (wrong lane), lane='NE_in.79_2', time=49293.50.
+Warning: Vehicle 'SB_L.48900.15' ends teleporting on edge 'S_out', time=49293.50.
+Warning: Teleporting vehicle 'SB_T.52800.106'; waited too long (wrong lane), lane='NE_in.79_3', time=53330.50.
+Warning: Vehicle 'SB_T.52800.106' ends teleporting on edge 'SW_out', time=53330.50.
+Warning: Teleporting vehicle 'SB_L.52800.14'; waited too long (yield), lane='NE_in.79_3', time=53332.50.
+Warning: Vehicle 'SB_L.52800.14' ends teleporting on edge 'S_out', time=53332.50.
+Warning: Vehicle 'NB_L.54900.15' performs emergency braking on lane ':nSW_b1_3_2' with decel=9.00, wished=4.50, severity=1.00, time=55007.50.
+Warning: Teleporting vehicle 'SB_L.50700.14'; waited too long (wrong lane), lane='NE_in.79_2', time=51040.50.
+Warning: Vehicle 'SB_L.50700.14' ends teleporting on edge 'S_out', time=51040.50.
+Warning: Teleporting vehicle 'SB_L.53400.14'; waited too long (wrong lane), lane='NE_in.79_2', time=53869.00.
+Warning: Vehicle 'SB_L.53400.14' ends teleporting on edge 'S_out', time=53869.00.
+Warning: Vehicle 'EB_T.59100.26' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=59133.00.
+Warning: Teleporting vehicle 'SB_T.57000.24'; waited too long (wrong lane), lane='NE_in.79_3', time=57468.50.
+Warning: Vehicle 'SB_T.57000.24' ends teleporting on edge 'SW_out', time=57468.50.
+Warning: Teleporting vehicle 'SB_L.62700.3'; waited too long (wrong lane), lane='NE_in.79_2', time=63086.50.
+Warning: Vehicle 'SB_L.62700.3' ends teleporting on edge 'S_out', time=63086.50.
+Warning: Teleporting vehicle 'SB_T.62700.162'; waited too long (yield), lane='NE_in.79_2', time=63087.00.
+Warning: Vehicle 'SB_T.62700.162' ends teleporting on edge 'SW_out', time=63087.00.
+Warning: Teleporting vehicle 'SB_T.61800.3'; collision with vehicle 'SB_L.61800.23', lane='NE_in.15_2', gap=-0.02, time=61943.00, stage=move.
+Warning: Vehicle 'SB_T.61800.3' ends teleporting on edge 'SW_out', time=61950.00.
+Warning: Teleporting vehicle 'SB_L.64800.4'; waited too long (wrong lane), lane='NE_in.79_2', time=65439.00.
+Warning: Teleporting vehicle 'SB_T.65100.166'; waited too long (wrong lane), lane='NE_in.79_3', time=65439.00.
+Warning: Vehicle 'SB_L.64800.4' ends teleporting on edge 'S_out', time=65439.00.
+Warning: Vehicle 'SB_T.65100.166' ends teleporting on edge 'SW_out', time=65439.00.
+Warning: Teleporting vehicle 'SB_T.69300.16'; waited too long (wrong lane), lane='NE_in.79_3', time=69659.50.
+Warning: Vehicle 'SB_T.69300.16' ends teleporting on edge 'SW_out', time=69659.50.
+Warning: Teleporting vehicle 'SB_L.69300.5'; waited too long (wrong lane), lane='NE_in.79_2', time=69661.50.
+Warning: Vehicle 'SB_L.69300.5' ends teleporting on edge 'S_out', time=69661.50.
+Warning: Vehicle 'NB_L.42000.8' performs emergency braking on lane ':nSW_b1_3_2' with decel=9.00, wished=4.50, severity=1.00, time=42211.00.
+Warning: Teleporting vehicle 'SB_L.42300.1'; waited too long (wrong lane), lane='NE_in.79_2', time=42760.00.
+Warning: Vehicle 'SB_L.42300.1' ends teleporting on edge 'S_out', time=42760.00.
+Warning: Teleporting vehicle 'SB_T.42300.31'; waited too long (jam), lane='NE_in.79_2', time=42761.50.
+Warning: Vehicle 'SB_T.42300.31' ends teleporting on edge 'SW_out', time=42761.50.
+Warning: Teleporting vehicle 'SB_T.43200.63'; waited too long (wrong lane), lane='NE_in.79_3', time=43617.50.
+Warning: Vehicle 'SB_T.43200.63' ends teleporting on edge 'SW_out', time=43617.50.
+Warning: Teleporting vehicle 'SB_L.43200.8'; waited too long (yield), lane='NE_in.79_3', time=43619.00.
+Warning: Vehicle 'SB_L.43200.8' ends teleporting on edge 'S_out', time=43619.00.
+Warning: Vehicle 'EB_T.49200.9' performs emergency braking on lane 'N_far_1' with decel=9.00, wished=4.50, severity=1.00, time=49484.50.
+Warning: Teleporting vehicle 'SB_L.55800.13'; waited too long (wrong lane), lane='NE_in.79_2', time=56432.00.
+Warning: Vehicle 'SB_L.55800.13' ends teleporting on edge 'S_out', time=56432.00.
+Warning: Teleporting vehicle 'SB_T.56100.133'; waited too long (yield), lane='NE_in.79_2', time=56434.00.
+Warning: Vehicle 'SB_T.56100.133' ends teleporting on edge 'SW_out', time=56434.00.
+Warning: Teleporting vehicle 'SB_L.72600.0'; waited too long (wrong lane), lane='NE_in.79_2', time=76819.50.
+Warning: Teleporting vehicle 'SB_T.72600.38'; waited too long (wrong lane), lane='NE_in.79_3', time=76819.50.
+Warning: Vehicle 'SB_L.72600.0' ends teleporting on edge 'S_out', time=76819.50.
+Warning: Vehicle 'SB_T.72600.38' ends teleporting on edge 'SW_out', time=76819.50.
+Warning: Teleporting vehicle 'SB_T.65100.8'; waited too long (wrong lane), lane='NE_in.79_3', time=65725.50.
+Warning: Vehicle 'SB_T.65100.8' ends teleporting on edge 'SW_out', time=65725.50.
+Warning: Teleporting vehicle 'SB_L.65100.21'; waited too long (yield), lane='NE_in.79_3', time=65735.00.
+Warning: Vehicle 'SB_L.65100.21' ends teleporting on edge 'S_out', time=65735.00.
+Warning: Teleporting vehicle 'SB_L.63000.15'; waited too long (wrong lane), lane='NE_in.79_2', time=63430.50.
+Warning: Vehicle 'SB_L.63000.15' ends teleporting on edge 'S_out', time=63430.50.
+Warning: Vehicle 'EB_T.79500.11' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=79694.00.
+Warning: Teleporting vehicle 'SB_L.63300.1'; waited too long (wrong lane), lane='NE_in.79_2', time=65824.50.
+Warning: Vehicle 'SB_L.63300.1' ends teleporting on edge 'S_out', time=65824.50.
+Warning: Teleporting vehicle 'SB_T.63300.79'; waited too long (yield), lane='NE_in.79_2', time=65826.50.
+Warning: Vehicle 'SB_T.63300.79' ends teleporting on edge 'SW_out', time=65826.50.
+Warning: Teleporting vehicle 'SB_L.57300.6'; waited too long (wrong lane), lane='NE_in.79_2', time=57772.00.
+Warning: Vehicle 'SB_L.57300.6' ends teleporting on edge 'S_out', time=57774.50.
+Warning: Teleporting vehicle 'SB_L.36300.6'; waited too long (wrong lane), lane='NE_in.79_2', time=36956.00.
+Warning: Vehicle 'SB_L.36300.6' ends teleporting on edge 'S_out', time=36956.00.
+Warning: Vehicle 'NB_L.39000.2' performs emergency braking on lane ':nSW_b1_3_2' with decel=9.00, wished=4.50, severity=1.00, time=39199.00.
+Warning: Teleporting vehicle 'SB_L.63900.5'; waited too long (wrong lane), lane='NE_in.79_2', time=66550.50.
+Warning: Vehicle 'SB_L.63900.5' teleports beyond arrival edge 'S_out', time=66557.00.
+Warning: Teleporting vehicle 'SB_L.32700.3'; waited too long (wrong lane), lane='NE_in.79_2', time=33131.50.
+Warning: Vehicle 'SB_L.32700.3' ends teleporting on edge 'S_out', time=33131.50.
+Warning: Teleporting vehicle 'SB_L.57900.9'; waited too long (wrong lane), lane='NE_in.79_2', time=58660.00.
+Warning: Teleporting vehicle 'SB_T.57900.0'; waited too long (wrong lane), lane='NE_in.79_3', time=58660.00.
+Warning: Vehicle 'SB_L.57900.9' ends teleporting on edge 'S_out', time=58660.00.
+Warning: Vehicle 'SB_T.57900.0' ends teleporting on edge 'SW_out', time=58660.00.
+Warning: Teleporting vehicle 'SB_L.76200.9'; waited too long (wrong lane), lane='NE_in.79_2', time=76663.50.
+Warning: Vehicle 'SB_L.76200.9' ends teleporting on edge 'S_out', time=76663.50.
+Warning: Teleporting vehicle 'SB_T.76200.19'; waited too long (yield), lane='NE_in.79_2', time=76670.00.
+Warning: Vehicle 'SB_T.76200.19' ends teleporting on edge 'SW_out', time=76670.00.
+Warning: Teleporting vehicle 'SB_T.43200.65'; waited too long (wrong lane), lane='NE_in.79_3', time=43693.00.
+Warning: Vehicle 'SB_T.43200.65' ends teleporting on edge 'SW_out', time=43693.00.
+Warning: Teleporting vehicle 'SB_L.71400.2'; waited too long (wrong lane), lane='NE_in.79_2', time=71836.00.
+Warning: Vehicle 'SB_L.71400.2' ends teleporting on edge 'S_out', time=71836.00.
+Warning: Teleporting vehicle 'SB_T.71400.44'; waited too long (yield), lane='NE_in.79_2', time=71838.50.
+Warning: Vehicle 'SB_T.71400.44' ends teleporting on edge 'SW_out', time=71838.50.
+Warning: Teleporting vehicle 'SB_L.48600.7'; waited too long (wrong lane), lane='NE_in.79_2', time=49124.50.
+Warning: Vehicle 'SB_L.48600.7' ends teleporting on edge 'S_out', time=49124.50.
+Warning: Teleporting vehicle 'SB_L.72900.6'; waited too long (wrong lane), lane='NE_in.79_2', time=76665.50.
+Warning: Vehicle 'SB_L.72900.6' ends teleporting on edge 'S_out', time=76665.50.
+Warning: Teleporting vehicle 'SB_T.72900.32'; waited too long (yield), lane='NE_in.79_2', time=76667.50.
+Warning: Vehicle 'SB_T.72900.32' ends teleporting on edge 'SW_out', time=76667.50.
+Warning: Teleporting vehicle 'SB_L.56400.4'; waited too long (wrong lane), lane='NE_in.79_2', time=56941.00.
+Warning: Vehicle 'SB_L.56400.4' ends teleporting on edge 'S_out', time=56941.00.
+Warning: Teleporting vehicle 'SB_T.56400.92'; waited too long (yield), lane='NE_in.79_2', time=56943.50.
+Warning: Vehicle 'SB_T.56400.92' ends teleporting on edge 'SW_out', time=56943.50.
+Warning: Teleporting vehicle 'SB_L.49500.7'; waited too long (wrong lane), lane='NE_in.79_2', time=50010.50.
+Warning: Vehicle 'SB_L.49500.7' ends teleporting on edge 'S_out', time=50010.50.
+Warning: Vehicle 'EB_T.26100.30' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=26138.50.
+Warning: Vehicle 'EB_T.32400.58' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=32699.00.
+Warning: Teleporting vehicle 'SB_L.52200.15'; waited too long (wrong lane), lane='NE_in.79_2', time=53157.50.
+Warning: Vehicle 'SB_L.52200.15' ends teleporting on edge 'S_out', time=53157.50.
+Warning: Teleporting vehicle 'SB_T.63900.58'; waited too long (wrong lane), lane='NE_in.79_3', time=64454.00.
+Warning: Vehicle 'SB_T.63900.58' ends teleporting on edge 'SW_out', time=64454.00.
+Warning: Teleporting vehicle 'SB_L.63900.15'; waited too long (yield), lane='NE_in.79_3', time=64456.00.
+Warning: Vehicle 'SB_L.63900.15' ends teleporting on edge 'S_out', time=64456.00.
+Warning: Teleporting vehicle 'SB_T.59700.40'; waited too long (wrong lane), lane='NE_in.79_3', time=61116.50.
+Warning: Vehicle 'SB_T.59700.40' ends teleporting on edge 'SW_out', time=61116.50.
+Warning: Teleporting vehicle 'SB_L.59700.20'; waited too long (yield), lane='NE_in.79_3', time=61119.00.
+Warning: Vehicle 'SB_L.59700.20' ends teleporting on edge 'S_out', time=61119.00.
+Warning: Teleporting vehicle 'SB_L.53100.0'; waited too long (wrong lane), lane='NE_in.79_2', time=54563.50.
+Warning: Teleporting vehicle 'SB_T.53100.57'; waited too long (yield), lane='NE_in.79_2', time=54564.50.
+Warning: Vehicle 'SB_T.53100.57' ends teleporting on edge 'SW_out', time=54564.50.
+Warning: Vehicle 'SB_L.53100.0' teleports beyond arrival edge 'S_out', time=54570.00.
+Warning: Vehicle 'NB_L.34200.9' performs emergency braking on lane ':nSW_b1_3_2' with decel=9.00, wished=4.50, severity=1.00, time=34305.50.
+Warning: Teleporting vehicle 'SB_L.41100.1'; waited too long (wrong lane), lane='NE_in.79_2', time=41669.00.
+Warning: Vehicle 'SB_L.41100.1' ends teleporting on edge 'S_out', time=41670.00.
+Warning: Teleporting vehicle 'SB_T.41100.50'; waited too long (yield), lane='NE_in.79_2', time=41670.50.
+Warning: Vehicle 'SB_T.41100.50' ends teleporting on edge 'SW_out', time=41670.50.
+Warning: Teleporting vehicle 'SB_L.56700.10'; waited too long (wrong lane), lane='NE_in.79_2', time=58652.00.
+Warning: Vehicle 'SB_L.56700.10' teleports beyond arrival edge 'S_out', time=58659.00.
+Warning: Teleporting vehicle 'SB_L.48000.12'; waited too long (wrong lane), lane='NE_in.79_2', time=48774.00.
+Warning: Vehicle 'SB_L.48000.12' ends teleporting on edge 'S_out', time=48774.00.
+Warning: Teleporting vehicle 'SB_L.53400.19'; waited too long (wrong lane), lane='NE_in.79_2', time=53761.00.
+Warning: Vehicle 'SB_L.53400.19' ends teleporting on edge 'S_out', time=53761.00.
+Warning: Vehicle 'EB_T.53100.18' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=53378.00.
+Warning: Teleporting vehicle 'SB_T.52500.36'; waited too long (wrong lane), lane='NE_in.79_3', time=53679.00.
+Warning: Vehicle 'SB_T.52500.36' ends teleporting on edge 'SW_out', time=53679.00.
+Warning: Teleporting vehicle 'SB_L.52500.2'; waited too long (yield), lane='NE_in.79_3', time=53683.00.
+Warning: Vehicle 'SB_L.52500.2' ends teleporting on edge 'S_out', time=53683.00.
+Warning: Vehicle 'EB_T.38700.32' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=38717.00.
+Warning: Teleporting vehicle 'SB_L.54300.4'; waited too long (wrong lane), lane='NE_in.79_2', time=54847.00.
+Warning: Teleporting vehicle 'SB_T.54300.25'; waited too long (yield), lane='NE_in.79_2', time=54849.50.
+Warning: Vehicle 'SB_L.54300.4' ends teleporting on edge 'S_out', time=54849.50.
+Warning: Vehicle 'SB_T.54300.25' ends teleporting on edge 'SW_out', time=54849.50.
+Warning: Teleporting vehicle 'SB_T.66000.49'; waited too long (wrong lane), lane='NE_in.79_3', time=67446.50.
+Warning: Teleporting vehicle 'SB_L.66000.11'; waited too long (wrong lane), lane='NE_in.79_2', time=67446.50.
+Warning: Vehicle 'SB_L.66000.11' ends teleporting on edge 'S_out', time=67446.50.
+Warning: Vehicle 'SB_T.66000.49' ends teleporting on edge 'SW_out', time=67446.50.
+Warning: Teleporting vehicle 'SB_L.69300.8'; waited too long (wrong lane), lane='NE_in.79_2', time=73494.50.
+Warning: Vehicle 'SB_L.69300.8' ends teleporting on edge 'S_out', time=73494.50.
+Warning: Vehicle 'EB_L.72900.8' performs emergency braking on lane ':nNleft_0_3' with decel=9.00, wished=4.50, severity=1.00, time=73186.00.
+Warning: Teleporting vehicle 'SB_L.75900.8'; waited too long (wrong lane), lane='NE_in.79_2', time=79202.50.
+Warning: Vehicle 'SB_L.75900.8' ends teleporting on edge 'S_out', time=79202.50.
+Warning: Teleporting vehicle 'SB_T.76200.53'; waited too long (yield), lane='NE_in.79_2', time=79204.00.
+Warning: Vehicle 'SB_T.76200.53' ends teleporting on edge 'SW_out', time=79204.00.
+Warning: Teleporting vehicle 'SB_L.79200.3'; waited too long (wrong lane), lane='NE_in.79_2', time=81464.00.
+Warning: Teleporting vehicle 'SB_T.79200.30'; waited too long (yield), lane='NE_in.79_2', time=81464.50.
+Warning: Vehicle 'SB_L.79200.3' ends teleporting on edge 'S_out', time=81464.50.
+Warning: Vehicle 'SB_T.79200.30' ends teleporting on edge 'SW_out', time=81464.50.
++ uv run python atsc/sites/7065/baselines.py report
+# Baselines on validation weekdays (full day)
+
+Mean delay per vehicle (s/veh): signal delay + queueing + waiting to enter. Median over days; days with flagged count bins marked separately.
+
+| Controller | all days median | IQR | days without flagged bins, median | P8 through (Piedmont-N) median | teleports |
+|---|---|---|---|---|---|
+| gdot | 48.4 | 48.0–56.6 | 48.3 | 52.4 | 15 |
+| actuated | 49.5 | 48.5–57.6 | 49.3 | 47.9 | 17 |
+| webster | 103.8 | 86.5–141.5 | 103.8 | 35.2 | 1 |
+| maxpressure | 352.9 | 292.2–426.5 | 343.9 | 31.4 | 37 |
+| lstdq | 35.1 | 34.9–37.1 | 35.0 | 30.8 | 0 |
+
+Mean delay by time of day (s/veh, all validation weekdays pooled):
+
+| Controller | night 00–06 | AM 06–10 | midday 10–15 | PM 15–19 | evening 19–24 |
+|---|---|---|---|---|---|
+| gdot | 27.7 | 50.2 | 55.4 | 64.5 | 41.9 |
+| actuated | 28.6 | 48.2 | 52.9 | 67.8 | 46.1 |
+| webster | 43.8 | 43.1 | 51.7 | 249.8 | 111.3 |
+| maxpressure | 26.3 | 46.8 | 65.5 | 676.1 | 732.8 |
+| lstdq | 26.5 | 34.8 | 37.0 | 40.5 | 34.1 |
++ date
+Thu Nov 12 04:50:57 PM JST 2026
++ echo STAGE2 DONE
+STAGE2 DONE

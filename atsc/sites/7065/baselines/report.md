@@ -4,18 +4,16 @@ Mean delay per vehicle (s/veh): signal delay + queueing + waiting to enter. Medi
 
 | Controller | all days median | IQR | days without flagged bins, median | P8 through (Piedmont-N) median | teleports |
 |---|---|---|---|---|---|
-| gdot | 47.3 | 46.2–52.5 | 47.0 | 53.0 | 0 |
-| actuated | 39.4 | 39.1–42.1 | 39.3 | 33.8 | 0 |
-| webster | 37.3 | 36.7–45.4 | 37.1 | 31.1 | 0 |
-| maxpressure | 32.8 | 32.6–37.3 | 32.8 | 28.0 | 0 |
-| lstdq | 35.1 | 34.9–37.1 | 35.0 | 30.8 | 0 |
+| gdot | 46.1 | 45.5–49.7 | 45.8 | 51.9 | 0 |
+| actuated | 46.7 | 46.0–51.1 | 46.6 | 44.6 | 0 |
+| webster | 55.5 | 48.5–64.6 | 55.5 | 35.0 | 0 |
+| maxpressure | 35.8 | 35.3–41.0 | 35.7 | 33.5 | 0 |
 
 Mean delay by time of day (s/veh, all validation weekdays pooled):
 
 | Controller | night 00–06 | AM 06–10 | midday 10–15 | PM 15–19 | evening 19–24 |
 |---|---|---|---|---|---|
-| gdot | 29.8 | 45.5 | 49.0 | 69.0 | 41.0 |
-| actuated | 27.9 | 39.4 | 42.0 | 45.0 | 38.6 |
-| webster | 43.5 | 38.6 | 38.3 | 45.1 | 37.3 |
-| maxpressure | 26.7 | 32.6 | 34.8 | 37.3 | 34.3 |
-| lstdq | 26.5 | 34.8 | 37.0 | 40.5 | 34.1 |
+| gdot | 27.7 | 47.5 | 49.8 | 56.9 | 39.6 |
+| actuated | 28.6 | 46.2 | 49.4 | 57.4 | 42.8 |
+| webster | 43.8 | 36.5 | 41.2 | 97.4 | 50.2 |
+| maxpressure | 26.3 | 35.8 | 38.1 | 45.2 | 34.7 |

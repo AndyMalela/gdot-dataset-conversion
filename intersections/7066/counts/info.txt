@@ -1,0 +1,9 @@
+Signal:        7066
+Intersection:  SR 141 @ Maple Drive
+Source:        GDOT ATSPM, Turning Movement Counts (https://traffic.dot.ga.gov/ATSPM/DefaultCharts)
+Bin size:      5 min
+Days cached:   60 (2026-07-10 to 2026-10-02)
+Complete days: 55   partial: 5   no data: 0
+Movements:     EB_L EB_TR WB_TL NB_L NB_T NB_TR SB_L SB_T
+Outage rule:   >= 3 consecutive all-zero bins -> status=outage, counts blank
+Updated:       2026-11-05 17:56

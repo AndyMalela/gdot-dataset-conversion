@@ -57,13 +57,25 @@ def is_locked(split, date):
     return s is not None and split["sets"][s].get("locked", False)
 
 
+def counts_path(site_dir):
+    """The site's count table. movements.json "counts_file" names it (7065: the report with the Peachtree
+    through columns taken from the upstream count zones, OPEN_ISSUES.md B2); without it, or with
+    ATSC_COUNTS=report in the environment, GDOT's turning-movement report as exported."""
+    import os
+    sig, mv, _ = _site(site_dir)
+    name = mv.get("counts_file")
+    if not name or os.environ.get("ATSC_COUNTS") == "report":
+        name = f"tmc_{sig['signal']}_5min.csv"
+    return REPO / "intersections" / sig["signal"] / "counts" / name
+
+
 def load_counts(site_dir, allow_locked=False):
-    """{date: [Bin]} from intersections/<sig>/counts/tmc_<sig>_5min.csv. Rows of locked test days are
+    """{date: [Bin]} from the site's count table (counts_path). Rows of locked test days are
     skipped without reading their values unless allow_locked (final evaluation only)."""
     sig, mv, split = _site(site_dir)
     cols = list(mv["movements"])
     out = {}
-    path = REPO / "intersections" / sig["signal"] / "counts" / f"tmc_{sig['signal']}_5min.csv"
+    path = counts_path(site_dir)
     for r in csv.DictReader(open(path)):
         d = dt.date.fromisoformat(r["date"])
         if is_locked(split, d) and not allow_locked:
@@ -180,13 +192,41 @@ class BinBound:
 
 
 # ---------------------------------------------------------------------------- routes
-def write_routes(site_dir, net_file, date, out, seed=1, vtype=None, depart_lane="random", allow_locked=False):
+def sorted_lanes(net, edges, lanes_allowed=None):
+    """lane indices of the first edge from which the last edge of `edges` is reached without a lane change
+    (following lane-to-lane connections along the route)."""
+    first = net.getEdge(edges[0])
+    good = []
+    for ln in first.getLanes():
+        frontier = {ln.getID()}
+        for a, b in zip(edges, edges[1:]):
+            nxt = set()
+            for lid in frontier:
+                for c in net.getLane(lid).getOutgoing():
+                    if c.getToLane().getEdge().getID() == b:
+                        nxt.add(c.getToLane().getID())
+                    elif c.getViaLaneID() and False:
+                        pass
+            frontier = nxt
+            if not frontier:
+                break
+        if frontier:
+            good.append(ln.getIndex())
+    return good
+
+
+def write_routes(site_dir, net_file, date, out, seed=1, vtype=None, depart_lane=None, allow_locked=False):
     """One vehicle per counted vehicle, at a uniformly random time in its 5-min bin (Poisson arrivals
     with the measured count), departing early by its free-flow time from the network entry to the
     detector that counted it, so it reaches that detector inside its bin. Outage bins: no vehicles.
     Writes `out` and `out`.meta.json (outage windows, per-movement totals)."""
+    import os
     import sumolib
     sig, mv, split = _site(site_dir)
+    if depart_lane is None:                       # sim.json "depart_lane"; ATSC_DEPART_LANE overrides (experiments)
+        cal_f = Path(site_dir) / "sim.json"
+        cal = json.loads(cal_f.read_text()) if cal_f.exists() else {}
+        depart_lane = os.environ.get("ATSC_DEPART_LANE") or cal.get("depart_lane", "random")
     date = dt.date.fromisoformat(str(date))
     if is_locked(split, date) and not allow_locked:
         raise PermissionError(f"{date} is in the locked test set")
@@ -197,7 +237,7 @@ def write_routes(site_dir, net_file, date, out, seed=1, vtype=None, depart_lane=
     tls = sig["tls"]
     tl_in = {c[0].getEdge().getID() for c in net.getTLS(tls).getConnections()}
 
-    routes, lead = {}, {}
+    routes, lead, good = {}, {}, {}
     for col, m in mv["movements"].items():
         entry = net.getEdge(mv["entry_edges"][m["leg"]])
         p1, _ = net.getShortestPath(entry, net.getEdge(m["from"]), vClass="passenger")
@@ -206,6 +246,7 @@ def write_routes(site_dir, net_file, date, out, seed=1, vtype=None, depart_lane=
         if sum(e in tl_in for e in edges) != 1:
             raise ValueError(f"route for {col} crosses {tls} {sum(e in tl_in for e in edges)} times")
         routes[col] = " ".join(edges)
+        good[col] = sorted_lanes(net, edges) if depart_lane == "sorted" else None
         # free-flow time from the entry to the counting detector (setback loop or stop line)
         to_stop = sum(e.getLength() / e.getSpeed() for e in p1)
         back = setback_m[m["phases"][0]] if m["counted_at"] == "setback" else 0.0
@@ -222,11 +263,15 @@ def write_routes(site_dir, net_file, date, out, seed=1, vtype=None, depart_lane=
             for i in range(n):
                 veh.append((max(0.0, round(b.t + rng.uniform(0, BIN) - lead[col], 2)), f"{col}.{b.t}.{i}", col))
     veh.sort()
+    # "sorted": a random lane among the entry lanes that lead to the vehicle's movement without a lane change
+    # (drivers choose their lane upstream of the modelled entry); a separate generator, so times are unchanged
+    lrng = random.Random(1000003 * seed + 17)
+    lane_of = (lambda c: lrng.choice(good[c])) if depart_lane == "sorted" else (lambda c: depart_lane)
 
     va = {"vClass": "passenger", **(vtype or {})}
     L = ["<routes>", '  <vType id="car" ' + " ".join(f'{k}="{v}"' for k, v in va.items()) + "/>"]
     L += [f'  <route id="{c}" edges="{e}"/>' for c, e in routes.items()]
-    L += [f'  <vehicle id="{v}" type="car" route="{c}" depart="{t}" departLane="{depart_lane}" departSpeed="max"/>'
+    L += [f'  <vehicle id="{v}" type="car" route="{c}" depart="{t}" departLane="{lane_of(c)}" departSpeed="max"/>'
           for t, v, c in veh]
     L.append("</routes>")
     Path(out).write_text("\n".join(L) + "\n")
@@ -238,6 +283,8 @@ def write_routes(site_dir, net_file, date, out, seed=1, vtype=None, depart_lane=
         else:
             wins.append([t, t + BIN])
     meta = {"date": str(date), "seed": seed, "vtype": va, "depart_lane": depart_lane, "vehicles": len(veh), "per_movement": total,
+            "counts_file": counts_path(site_dir).name,
+            "sorted_lanes": good if depart_lane == "sorted" else None,
             "outage_windows_s": wins, "lead_s": {c: round(v, 1) for c, v in lead.items()},
             "rights": "not counted by GDOT: no right-turn demand"}
     Path(str(out) + ".meta.json").write_text(json.dumps(meta, indent=1))

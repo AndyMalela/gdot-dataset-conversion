@@ -161,3 +161,70 @@ Scoring fix applied after the run (`validate.py compare`): bands where the field
 The student spotted that the twin's upstream lanes were offset sideways (N's 2 lanes over left + inner through, SW's through lanes shifting at each new left lane); fixed in `build_ext.py` (`GEOMETRY.md`), geometry only. Calibration and controller fit rerun on train days: same results. `validation/score.md` is now this rerun (the table above is in git, commit e7455c5d).
 
 Change from the table above: ≤ 4 gap-out points, ≤ 4 skip points, ≤ 0.4 s split on every pair. **V1 19/28, worst 9.7 s FAIL; V2 17/30, worst 59 FAIL; V3 25/30 PASS; V4 +0.8 % PASS; V5 4 teleports (Sep 21, flagged), overflow Sep 3, 14, 23, 28 FAIL.** Verdict unchanged.
+
+## Results — attempt 3 (2026-11-12): Peachtree through demand from the upstream count zones
+
+**Change, justified independently of the validation numbers:** GDOT's turning-movement report takes the Peachtree through counts (P2, P6) from the stop-bar presence zones, which read 2.5–4.3 times too low on all 63 usable days (`OPEN_ISSUES.md` B2: lane-by-lane charts, Approach Volume, neighbour 7058). Demand for P2 and P6 now comes from the upstream count zones (Approach Volume minus the report's left + through, `tools/lanecheck/build_upstream_counts.py`, `intersections/7065/counts/tmc_7065_5min_upstream.csv`). Left turns and Piedmont are as reported. Controller fit rerun on train days: same max recall and passage times. Driver-model calibration **not** rerun (it is fitted on Piedmont's P8 discharge, which the correction does not touch; V4 checks it out of sample). Criteria, days and scoring unchanged. Outputs: `validation/attempt3_random_insertion/`.
+
+- **V1 average split:** 21/28 pairs within 3 s, worst 8.8 s → **FAIL** (P5 −3.0 to −8.8 s in A–D, P3 −3.8/−5.5 in B/C, P4 +5.0/+7.4 in B/C)
+- **V2 % gap-outs:** 17/30 pairs within 15 points, worst 60 → **FAIL**
+- **V3 % skips:** 25/30 pairs within 15 points → **PASS** (reported)
+- **V4 P8 discharge:** sim median 1949 vs field 1934 veh/h per lane of nominal green (+0.8 %) → **PASS**
+- **V5 health:** 8 teleports; overflow days outside flagged days: Sep 14, 23, 25, 28 → **FAIL**
+
+**Verdict: not accepted.** The same phase-plan pairs fail as in attempts 1 and 2.
+
+**Fault found in this attempt (not a validation criterion):** vehicles were inserted on a random lane of the entry edge (`departLane="random"`, `DEMAND.md`). The twin's entries leave 42 m (SW) to 130 m (NE) before the turn bays, so at the corrected Peachtree volumes vehicles inserted in a lane that does not lead to their movement blocked the approach: "wrong lane" teleports under every controller, and Webster and MaxPressure collapsed (median 103.8 and 352.9 s/veh over the 20 days; `baselines/attempt3_random_insertion/`). Check on two days, four rule controllers, random vs sorted insertion: `debug/lane_check.csv` (MaxPressure 350.0 → 35.7 and 426.5 → 42.4 s/veh; teleports → 0 for all four).
+
+## Results — attempt 4 (2026-11-12): vehicles inserted on a lane that leads to their movement
+
+**Change, justified independently of the validation numbers:** each vehicle enters on a lane drawn at random among the entry lanes from which its movement is reached without a lane change (`sim.json` `depart_lane: "sorted"`, `atsc/sim/demand.py sorted_lanes`). The twin's entries leave 42 m (SW) and 130 m (NE) before the turn bays, against the 144–320 m `DEMAND.md` §4 assumed when it adopted random insertion; drivers choose their lane upstream of where the model starts, so random-lane insertion on these short entries creates blocking that the field does not have (`DEMAND.md` §6). Departure times and counts are unchanged. This is a modelling assumption (lane choice upstream of the model is not observed). Controller fit rerun on train days: same result. Nothing else changed. `validation/score.md` is this attempt.
+
+| Phase | Plan | days | avg split sim − field (s) | % gap-outs sim − field | % skips sim − field |
+|---|---|---|---|---|---|
+| P1 | A | 24 | +0.6 | +18 | +0 |
+| P1 | B | 38 | +0.7 | +23 | +0 |
+| P1 | C | 21 | +0.7 | +40 | +0 |
+| P1 | D | 18 | +0.5 | +29 | +0 |
+| P1 | E | 39 | +0.4 | -2 | +3 |
+| P3 | A | 19 | -0.4 | +32 | +11 |
+| P3 | B | 38 | -3.8 | +60 | +13 |
+| P3 | C | 22 | -5.6 | +56 | +15 |
+| P3 | D | 22 | -0.5 | -18 | +10 |
+| P3 | E | 51 | — | +0 | +0 |
+| P4 | A | 24 | +0.8 | +0 | +0 |
+| P4 | B | 37 | +5.0 | +0 | +0 |
+| P4 | C | 23 | +7.4 | +0 | +0 |
+| P4 | D | 23 | +0.3 | +16 | +0 |
+| P4 | E | 50 | +2.7 | -12 | +0 |
+| P5 | A | 24 | -4.8 | +24 | +1 |
+| P5 | B | 33 | -7.6 | +29 | -2 |
+| P5 | C | 18 | -10.0 | +40 | -1 |
+| P5 | D | 22 | -3.4 | +18 | +0 |
+| P5 | E | 49 | +1.1 | -5 | +1 |
+| P7 | A | 18 | -1.2 | +0 | +24 |
+| P7 | B | 38 | -1.0 | -9 | +19 |
+| P7 | C | 23 | -0.9 | -4 | +21 |
+| P7 | D | 19 | -1.0 | +10 | +20 |
+| P7 | E | 51 | — | +0 | +0 |
+| P8 | A | 24 | +2.9 | +0 | +0 |
+| P8 | B | 37 | +2.3 | +0 | +0 |
+| P8 | C | 22 | +2.8 | +0 | +0 |
+| P8 | D | 23 | +2.6 | -3 | +0 |
+| P8 | E | 51 | +2.7 | -14 | +0 |
+
+- **V1 average split:** 20/28 pairs within 3 s, worst 10.0 s → **FAIL**
+- **V2 % gap-outs:** 17/30 pairs within 15 points, worst 60 → **FAIL**
+- **V3 % skips:** 25/30 pairs within 15 points → **PASS** (reported)
+- **V4 P8 discharge:** sim median 1941 vs field 1934 veh/h per lane of nominal green (+0.4 %) → **PASS**
+- **V5 health:** 0 teleports; overflow days outside flagged days: Sep 14, 23, 25, 28 (P8-through PM delay 118, 159, 105, 103 s) → **FAIL**
+
+**Verdict: not accepted**, as in attempts 1–3.
+
+### What attempts 3 and 4 show
+
+- **The validation result does not depend on the Peachtree through demand.** P2 and P6 are the coordinated phases and are not scored; the scored pairs moved by ≤ 1 s of split and ≤ 6 gap-out points between attempt 2 (demand as reported) and attempt 4 (corrected). The correction is supported by other evidence (`OPEN_ISSUES.md` B2), not by this validation.
+- **The failures are still the left-turn phases.** P5 ends 3–10 s early and P3 4–6 s early in plans B and C, P4 inherits P3's unused time (+5.0/+7.4 s), and P1, P3, P5 gap out 18–60 points more often than in the field. Left-turn counts come from a single stop-bar zone that both counts and holds the call; two PM Timing & Actuation charts show the undercount signature (zone occupied through 13.5 s of green, 1 count). No second detector exists for the left turns, so they are kept as reported in the main run, with a bounded sensitivity run (ceiling = measured green × HCM 1,900 veh/h/lane) planned.
+- **What holds:** the critical movement's capacity out of sample (V4, +0.4 %); 0 teleports on all 20 days; P7 and P8 split and termination; skips.
+- **V5:** the same PM overflow days on the Piedmont-N through as before (Sep 14, 23, 28), with Sep 25 just over the 100 s line and Sep 3 now under it (90.5 s).
+- **Consequence:** the simulation is used for the comparison as **not validated on the left-turn phases**, and every result says so. The simulated field plan is somewhat optimistic for the coordinated phases, which inherit the left phases' unused time.
