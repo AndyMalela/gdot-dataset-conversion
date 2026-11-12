@@ -3,6 +3,7 @@ scored per (day, hour, movement), next to the traffic conditions GDOT counted in
 
     uv run python atsc/sites/7065/evaluate.py run [--seeds 1 2 3] [--only maxpressure lstdq lstdq_s1 lstdq_v2_s0]
         -> eval/hour_mv.csv  (date, controller, seed, hour, movement: vehicles, mean / p95 / max delay, backlog)
+           eval/runs.csv     (date, controller, seed: vehicles, mean delay, teleports)
     uv run python atsc/sites/7065/evaluate.py conditions
         -> eval/conditions.csv  (date, hour: volume, Y, variability, imbalance, left share, from field counts)
     uv run python atsc/sites/7065/evaluate.py report
@@ -53,6 +54,7 @@ FIELDS = ["date", "controller", "seed", "hour", "movement", "veh", "mean_s", "p9
 # mechanism per (run, hour, phase): greens started in the hour, their total green and how many ended at max green;
 # phase "cycle": cycles started in the hour and their total length (s)
 MECH_FIELDS = ["date", "controller", "seed", "hour", "phase", "n", "total_s", "n_max"]
+RUN_FIELDS = ["date", "controller", "seed", "vehicles", "delay_all_s", "teleports"]      # eval/runs.csv, one row per run
 
 
 def policy(ctrl):
@@ -91,7 +93,7 @@ def job(args):
     except Exception as e:                      # noqa: BLE001
         import traceback
         print(f"FAILED {args}: {e}\n{traceback.format_exc()}", file=sys.stderr, flush=True)
-        return [], []
+        return [], [], None
     hour_rows = [{"date": str(date), "controller": ctrl, "seed": seed, "hour": h, "movement": c,
                   **{k: round(v, 1) if isinstance(v, float) else v for k, v in m.items()}}
                  for (h, c), m in r["by_hour_mv"].items()]
@@ -109,28 +111,38 @@ def job(args):
         m[1] += b - a
     mech_rows = [{"date": str(date), "controller": ctrl, "seed": seed, "hour": h, "phase": ph, "n": n,
                   "total_s": round(t, 1), "n_max": nm} for (h, ph), (n, t, nm) in sorted(mech.items())]
-    return hour_rows, mech_rows
+    # per run: teleports (a teleported vehicle stops accumulating delay, so a run with teleports understates delay)
+    return hour_rows, mech_rows, {"date": str(date), "controller": ctrl, "seed": seed, "vehicles": r["vehicles"],
+                                  "delay_all_s": "" if r["delay_all_s"] is None else round(r["delay_all_s"], 2),
+                                  "teleports": r["teleports"]}
 
 
 def run(seeds, only, mech=False):
     """mech: also run (date, controller, seed) missing from mech.csv only (their delay rows are not rewritten)."""
     OUT.mkdir(exist_ok=True)
-    f, fm = OUT / "hour_mv.csv", OUT / "mech.csv"
+    f, fm, fr = OUT / "hour_mv.csv", OUT / "mech.csv", OUT / "runs.csv"
     key = lambda r: (r["date"], r["controller"], int(r["seed"]))  # noqa: E731
     done = {key(r) for r in csv.DictReader(open(f))} if f.exists() else set()
     done_m = {key(r) for r in csv.DictReader(open(fm))} if fm.exists() else set()
     jobs = [(d, c, s) for s in seeds for d in days("validation") for c in (only or CONTROLLERS)
             if (str(d), c, s) not in done or (mech and (str(d), c, s) not in done_m)]
     print(f"{len(jobs)} full-day runs ({len(done)} already done)", flush=True)
-    new, new_m = not f.exists(), not fm.exists()
-    with open(f, "a", newline="") as fh, open(fm, "a", newline="") as fhm, ProcessPoolExecutor(22) as pool:   # a dead worker raises, not hangs
+    new, new_m, new_r = not f.exists(), not fm.exists(), not fr.exists()
+    with open(f, "a", newline="") as fh, open(fm, "a", newline="") as fhm, open(fr, "a", newline="") as fhr, \
+            ProcessPoolExecutor(22) as pool:                     # a dead worker raises, not hangs
         w, wm = csv.DictWriter(fh, fieldnames=FIELDS), csv.DictWriter(fhm, fieldnames=MECH_FIELDS)
+        wr = csv.DictWriter(fhr, fieldnames=RUN_FIELDS)
         if new:
             w.writeheader()
         if new_m:
             wm.writeheader()
+        if new_r:
+            wr.writeheader()
         for k, fut in enumerate(as_completed([pool.submit(job, j) for j in jobs]), 1):
-            rows, mrows = fut.result()
+            rows, mrows, rrow = fut.result()
+            if rrow:
+                wr.writerow(rrow)
+                fhr.flush()
             if rows and key(rows[0]) not in done:
                 w.writerows(rows)
             if mrows and key(mrows[0]) not in done_m:

@@ -1,0 +1,181 @@
+Thu Nov 12 06:07:30 PM JST 2026
+== lstdq v2 seed 0 Thu Nov 12 06:07:30 PM JST 2026
+iter 0: actuated+random episodes, mean delay 43.9 s/veh, transitions so far 107030
+iter 1: greedy(w)+random episodes, mean delay 105.0 s/veh, transitions so far 219141
+iter 2: greedy(w)+random episodes, mean delay 49.0 s/veh, transitions so far 364272
+iter 3: greedy(w)+random episodes, mean delay 42.3 s/veh, transitions so far 491803
+iter 4: greedy(w)+random episodes, mean delay 46.6 s/veh, transitions so far 613787
+iter 5: greedy(w)+random episodes, mean delay 43.0 s/veh, transitions so far 733943
+== lstdq v2 seed 1 Thu Nov 12 06:15:57 PM JST 2026
+iter 0: actuated+random episodes, mean delay 42.1 s/veh, transitions so far 103254
+iter 1: greedy(w)+random episodes, mean delay 44.9 s/veh, transitions so far 209762
+iter 2: greedy(w)+random episodes, mean delay 45.0 s/veh, transitions so far 337020
+iter 3: greedy(w)+random episodes, mean delay 45.4 s/veh, transitions so far 449462
+iter 4: greedy(w)+random episodes, mean delay 39.2 s/veh, transitions so far 551980
+iter 5: greedy(w)+random episodes, mean delay 48.6 s/veh, transitions so far 646024
+== lstdq v2 seed 2 Thu Nov 12 06:23:50 PM JST 2026
+iter 0: actuated+random episodes, mean delay 50.3 s/veh, transitions so far 113080
+iter 1: greedy(w)+random episodes, mean delay 57.8 s/veh, transitions so far 218192
+iter 2: greedy(w)+random episodes, mean delay 41.6 s/veh, transitions so far 334621
+iter 3: greedy(w)+random episodes, mean delay 46.1 s/veh, transitions so far 465471
+iter 4: greedy(w)+random episodes, mean delay 45.0 s/veh, transitions so far 587131
+iter 5: greedy(w)+random episodes, mean delay 40.5 s/veh, transitions so far 691814
+== lstdq v2 seed 3 Thu Nov 12 06:31:51 PM JST 2026
+iter 0: actuated+random episodes, mean delay 44.9 s/veh, transitions so far 103674
+iter 1: greedy(w)+random episodes, mean delay 139.1 s/veh, transitions so far 221686
+iter 2: greedy(w)+random episodes, mean delay 47.8 s/veh, transitions so far 353662
+iter 3: greedy(w)+random episodes, mean delay 60.3 s/veh, transitions so far 467369
+iter 4: greedy(w)+random episodes, mean delay 44.3 s/veh, transitions so far 580614
+iter 5: greedy(w)+random episodes, mean delay 41.1 s/veh, transitions so far 685912
+== lstdq v2 seed 4 Thu Nov 12 06:40:28 PM JST 2026
+iter 0: actuated+random episodes, mean delay 49.9 s/veh, transitions so far 115254
+iter 1: greedy(w)+random episodes, mean delay 101.1 s/veh, transitions so far 224119
+iter 2: greedy(w)+random episodes, mean delay 48.8 s/veh, transitions so far 359886
+iter 3: greedy(w)+random episodes, mean delay 44.9 s/veh, transitions so far 482100
+iter 4: greedy(w)+random episodes, mean delay 46.1 s/veh, transitions so far 608171
+iter 5: greedy(w)+random episodes, mean delay 43.9 s/veh, transitions so far 729257
+== lstdq v1 seed 0 Thu Nov 12 06:49:00 PM JST 2026
+iter 0: actuated+random episodes, mean delay 43.9 s/veh, transitions so far 107030
+iter 1: greedy(w)+random episodes, mean delay 143.6 s/veh, transitions so far 226851
+iter 2: greedy(w)+random episodes, mean delay 48.3 s/veh, transitions so far 362095
+iter 3: greedy(w)+random episodes, mean delay 43.7 s/veh, transitions so far 494596
+iter 4: greedy(w)+random episodes, mean delay 49.9 s/veh, transitions so far 623361
+iter 5: greedy(w)+random episodes, mean delay 44.0 s/veh, transitions so far 752493
+== lstdq v1 seed 1 Thu Nov 12 06:56:00 PM JST 2026
+iter 0: actuated+random episodes, mean delay 42.1 s/veh, transitions so far 103254
+iter 1: greedy(w)+random episodes, mean delay 98.0 s/veh, transitions so far 209794
+iter 2: greedy(w)+random episodes, mean delay 103.7 s/veh, transitions so far 334019
+iter 3: greedy(w)+random episodes, mean delay 194.7 s/veh, transitions so far 466030
+iter 4: greedy(w)+random episodes, mean delay 45.4 s/veh, transitions so far 568390
+iter 5: greedy(w)+random episodes, mean delay 47.2 s/veh, transitions so far 658512
+== lstdq v1 seed 2 Thu Nov 12 07:03:19 PM JST 2026
+iter 0: actuated+random episodes, mean delay 50.3 s/veh, transitions so far 113080
+iter 1: greedy(w)+random episodes, mean delay 41.0 s/veh, transitions so far 219700
+iter 2: greedy(w)+random episodes, mean delay 40.1 s/veh, transitions so far 327676
+iter 3: greedy(w)+random episodes, mean delay 40.1 s/veh, transitions so far 427003
+iter 4: greedy(w)+random episodes, mean delay 38.3 s/veh, transitions so far 518330
+iter 5: greedy(w)+random episodes, mean delay 36.2 s/veh, transitions so far 597429
+== lstdq v1 seed 3 Thu Nov 12 07:09:45 PM JST 2026
+iter 0: actuated+random episodes, mean delay 44.9 s/veh, transitions so far 103674
+iter 1: greedy(w)+random episodes, mean delay 178.7 s/veh, transitions so far 223238
+iter 2: greedy(w)+random episodes, mean delay 138.9 s/veh, transitions so far 356823
+iter 3: greedy(w)+random episodes, mean delay 139.0 s/veh, transitions so far 475606
+iter 4: greedy(w)+random episodes, mean delay 82.3 s/veh, transitions so far 585456
+iter 5: greedy(w)+random episodes, mean delay 55.9 s/veh, transitions so far 687582
+== lstdq v1 seed 4 Thu Nov 12 07:17:11 PM JST 2026
+iter 0: actuated+random episodes, mean delay 49.9 s/veh, transitions so far 115254
+iter 1: greedy(w)+random episodes, mean delay 138.4 s/veh, transitions so far 205707
+iter 2: greedy(w)+random episodes, mean delay 96.7 s/veh, transitions so far 311526
+iter 3: greedy(w)+random episodes, mean delay 68.5 s/veh, transitions so far 413211
+iter 4: greedy(w)+random episodes, mean delay 43.9 s/veh, transitions so far 518445
+iter 5: greedy(w)+random episodes, mean delay 38.7 s/veh, transitions so far 612977
+== lstdq v2f seed 0 Thu Nov 12 07:23:06 PM JST 2026
+iter 0: actuated+random episodes, mean delay 43.9 s/veh, transitions so far 107030
+iter 1: greedy(w)+random episodes, mean delay 82.0 s/veh, transitions so far 213324
+iter 2: greedy(w)+random episodes, mean delay 51.5 s/veh, transitions so far 358653
+iter 3: greedy(w)+random episodes, mean delay 41.9 s/veh, transitions so far 482427
+iter 4: greedy(w)+random episodes, mean delay 48.1 s/veh, transitions so far 599741
+iter 5: greedy(w)+random episodes, mean delay 43.5 s/veh, transitions so far 717556
+== lstdq v2f seed 1 Thu Nov 12 07:29:56 PM JST 2026
+iter 0: actuated+random episodes, mean delay 42.1 s/veh, transitions so far 103254
+iter 1: greedy(w)+random episodes, mean delay 48.2 s/veh, transitions so far 204852
+iter 2: greedy(w)+random episodes, mean delay 42.4 s/veh, transitions so far 316004
+iter 3: greedy(w)+random episodes, mean delay 39.6 s/veh, transitions so far 415046
+iter 4: greedy(w)+random episodes, mean delay 37.0 s/veh, transitions so far 499452
+iter 5: greedy(w)+random episodes, mean delay 48.1 s/veh, transitions so far 580875
+== lstdq v2f seed 2 Thu Nov 12 07:36:23 PM JST 2026
+iter 0: actuated+random episodes, mean delay 50.3 s/veh, transitions so far 113080
+iter 1: greedy(w)+random episodes, mean delay 51.0 s/veh, transitions so far 214130
+iter 2: greedy(w)+random episodes, mean delay 39.2 s/veh, transitions so far 316265
+iter 3: greedy(w)+random episodes, mean delay 39.2 s/veh, transitions so far 409852
+iter 4: greedy(w)+random episodes, mean delay 37.7 s/veh, transitions so far 496103
+iter 5: greedy(w)+random episodes, mean delay 35.3 s/veh, transitions so far 567203
+== lstdq v2f seed 3 Thu Nov 12 07:42:36 PM JST 2026
+iter 0: actuated+random episodes, mean delay 44.9 s/veh, transitions so far 103674
+iter 1: greedy(w)+random episodes, mean delay 136.6 s/veh, transitions so far 212964
+iter 2: greedy(w)+random episodes, mean delay 49.5 s/veh, transitions so far 349571
+iter 3: greedy(w)+random episodes, mean delay 49.9 s/veh, transitions so far 470492
+iter 4: greedy(w)+random episodes, mean delay 43.7 s/veh, transitions so far 587741
+iter 5: greedy(w)+random episodes, mean delay 40.6 s/veh, transitions so far 696229
+== lstdq v2f seed 4 Thu Nov 12 07:49:32 PM JST 2026
+iter 0: actuated+random episodes, mean delay 49.9 s/veh, transitions so far 115254
+iter 1: greedy(w)+random episodes, mean delay 73.1 s/veh, transitions so far 217325
+iter 2: greedy(w)+random episodes, mean delay 48.8 s/veh, transitions so far 347376
+iter 3: greedy(w)+random episodes, mean delay 42.5 s/veh, transitions so far 459391
+iter 4: greedy(w)+random episodes, mean delay 44.1 s/veh, transitions so far 568931
+iter 5: greedy(w)+random episodes, mean delay 40.2 s/veh, transitions so far 668356
+== lstdq done Thu Nov 12 07:56:22 PM JST 2026; waiting for qlearn
+qlearn s1 exit 0
+qlearn s0 exit 0
+qlearn s2 exit 0
+qlearn s3 exit 0
+qlearn s4 exit 0
+Thu Nov 12 07:56:22 PM JST 2026
+  476/480
+  477/480
+  478/480
+  479/480
+  480/480
+471 clean hours on 20 validation weekdays -> /home/andy/Downloads/GDOT/atsc/sites/7065/eval/conditions.csv
+| qlearn_s3 | 250.5 (214.4 to 298.3) | 102.2 (100.3 to 104.9) | 104.4 (102.5 to 107.5) | 134.0 (105.9 to 179.5) | 351.9 (292.9 to 430.1) |
+| qlearn_s4 | 312.4 (259.7 to 384.2) | 101.2 (99.6 to 103.5) | 106.8 (103.8 to 111.5) | 229.1 (131.6 to 384.0) | 450.1 (367.7 to 563.0) |
+
+## Hours with a queue reaching the leg end (share of hours with >= 10 vehicles unable to enter)
+
+| Controller | all hours | light (Y < 0.15) | moderate (0.15-0.30) | busy (0.30-0.40) | heavy (Y >= 0.40) |
+|---|---|---|---|---|---|
+| gdot | 0.55 (0.54 to 0.56) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.94 (0.93 to 0.95) |
+| actuated | 0.57 (0.56 to 0.58) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.07 (0.00 to 0.20) | 0.97 (0.95 to 0.99) |
+| webster | 0.46 (0.44 to 0.49) | 0.01 (0.00 to 0.02) | 0.03 (0.00 to 0.07) | 0.20 (0.06 to 0.37) | 0.76 (0.72 to 0.79) |
+| maxpressure | 0.40 (0.37 to 0.42) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.68 (0.64 to 0.71) |
+| lstdq | 0.58 (0.56 to 0.59) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.07 (0.00 to 0.16) | 0.97 (0.96 to 0.99) |
+| lstdq_s1 | 0.47 (0.45 to 0.49) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.02 (0.00 to 0.06) | 0.80 (0.76 to 0.84) |
+| lstdq_s2 | 0.55 (0.53 to 0.57) | 0.01 (0.00 to 0.02) | 0.03 (0.00 to 0.08) | 0.25 (0.08 to 0.44) | 0.91 (0.88 to 0.93) |
+| lstdq_s3 | 0.54 (0.53 to 0.56) | 0.01 (0.00 to 0.02) | 0.00 (0.00 to 0.00) | 0.11 (0.00 to 0.28) | 0.92 (0.89 to 0.95) |
+| lstdq_s4 | 0.54 (0.51 to 0.56) | 0.00 (0.00 to 0.00) | 0.03 (0.00 to 0.08) | 0.22 (0.06 to 0.44) | 0.90 (0.86 to 0.93) |
+| lstdq_v2_s0 | 0.54 (0.52 to 0.56) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.02 (0.00 to 0.06) | 0.92 (0.90 to 0.95) |
+| lstdq_v2_s1 | 0.49 (0.47 to 0.51) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.84 (0.80 to 0.87) |
+| lstdq_v2_s2 | 0.56 (0.54 to 0.57) | 0.01 (0.00 to 0.02) | 0.00 (0.00 to 0.00) | 0.06 (0.00 to 0.17) | 0.95 (0.92 to 0.97) |
+| lstdq_v2_s3 | 0.55 (0.53 to 0.56) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.93 (0.91 to 0.96) |
+| lstdq_v2_s4 | 0.55 (0.54 to 0.56) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.05 (0.00 to 0.12) | 0.94 (0.92 to 0.96) |
+| lstdq_v2f_s0 | 0.55 (0.53 to 0.56) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.94 (0.91 to 0.96) |
+| lstdq_v2f_s1 | 0.47 (0.45 to 0.49) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.81 (0.77 to 0.85) |
+| lstdq_v2f_s2 | 0.48 (0.45 to 0.50) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.81 (0.77 to 0.85) |
+| lstdq_v2f_s3 | 0.56 (0.55 to 0.58) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.11 (0.00 to 0.28) | 0.95 (0.93 to 0.97) |
+| lstdq_v2f_s4 | 0.52 (0.51 to 0.54) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.89 (0.86 to 0.93) |
+| qlearn_s0 | 0.59 (0.56 to 0.61) | 0.00 (0.00 to 0.00) | 0.08 (0.02 to 0.17) | 0.52 (0.30 to 0.74) | 0.95 (0.92 to 0.97) |
+| qlearn_s1 | 0.48 (0.45 to 0.50) | 0.01 (0.00 to 0.02) | 0.00 (0.00 to 0.00) | 0.17 (0.00 to 0.33) | 0.80 (0.76 to 0.84) |
+| qlearn_s2 | 0.56 (0.53 to 0.59) | 0.01 (0.00 to 0.02) | 0.08 (0.02 to 0.17) | 0.59 (0.37 to 0.81) | 0.89 (0.84 to 0.93) |
+| qlearn_s3 | 0.43 (0.40 to 0.45) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.06 (0.00 to 0.17) | 0.73 (0.68 to 0.77) |
+| qlearn_s4 | 0.53 (0.51 to 0.55) | 0.00 (0.00 to 0.00) | 0.00 (0.00 to 0.00) | 0.11 (0.00 to 0.28) | 0.90 (0.87 to 0.92) |
+
+## How often each controller is best in an hour
+
+| Controller | light (Y < 0.15) | moderate (0.15-0.30) | busy (0.30-0.40) | heavy (Y >= 0.40) |
+|---|---|---|---|---|
+| gdot | 6 % | 18 % | 21 % | 0 % |
+| actuated | 3 % | 0 % | 0 % | 0 % |
+| webster | 0 % | 2 % | 7 % | 12 % |
+| maxpressure | 23 % | 30 % | 18 % | 60 % |
+| lstdq | 0 % | 0 % | 0 % | 0 % |
+| lstdq_s1 | 0 % | 0 % | 0 % | 0 % |
+| lstdq_s2 | 14 % | 5 % | 0 % | 0 % |
+| lstdq_s3 | 0 % | 0 % | 0 % | 0 % |
+| lstdq_s4 | 0 % | 0 % | 0 % | 0 % |
+| lstdq_v2_s0 | 0 % | 0 % | 0 % | 0 % |
+| lstdq_v2_s1 | 1 % | 0 % | 0 % | 0 % |
+| lstdq_v2_s2 | 1 % | 0 % | 0 % | 0 % |
+| lstdq_v2_s3 | 0 % | 0 % | 0 % | 0 % |
+| lstdq_v2_s4 | 0 % | 0 % | 0 % | 0 % |
+| lstdq_v2f_s0 | 0 % | 0 % | 0 % | 1 % |
+| lstdq_v2f_s1 | 12 % | 9 % | 11 % | 5 % |
+| lstdq_v2f_s2 | 14 % | 16 % | 7 % | 3 % |
+| lstdq_v2f_s3 | 0 % | 0 % | 0 % | 0 % |
+| lstdq_v2f_s4 | 0 % | 0 % | 0 % | 1 % |
+| qlearn_s0 | 1 % | 0 % | 0 % | 0 % |
+| qlearn_s1 | 23 % | 19 % | 14 % | 2 % |
+| qlearn_s2 | 1 % | 2 % | 4 % | 0 % |
+| qlearn_s3 | 0 % | 0 % | 18 % | 14 % |
+| qlearn_s4 | 1 % | 0 % | 0 % | 0 % |
+Thu Nov 12 11:10:51 PM JST 2026
+STAGE3 DONE

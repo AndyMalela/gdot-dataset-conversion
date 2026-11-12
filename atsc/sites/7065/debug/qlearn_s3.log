@@ -1,0 +1,13 @@
+Warning: Vehicle 'EB_T.47400.36' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=47413.50.
+Warning: Vehicle 'EB_T.43500.24' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=43528.50.
+qlearn s3 iter 0: mean delay 44.9 s/veh, |w| 85.671
+Warning: Vehicle 'EB_T.65700.12' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=65914.00.
+Warning: Vehicle 'EB_T.50100.14' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=50253.00.
+qlearn s3 iter 1: mean delay 61.9 s/veh, |w| 236.169
+Warning: Vehicle 'NB_T.66000.96' performs emergency braking on lane ':nSW_b1_3_2' with decel=9.00, wished=4.50, severity=1.00, time=66211.50.
+Warning: Vehicle 'EB_T.68100.63' performs emergency braking on lane ':nNleft_0_2' with decel=9.00, wished=4.50, severity=1.00, time=68367.00.
+Warning: Vehicle 'EB_T.26700.21' performs emergency braking on lane 'N_far_1' with decel=9.00, wished=4.50, severity=1.00, time=26859.00.
+Warning: Vehicle 'EB_T.31200.4' performs emergency braking on lane 'N_far_1' with decel=9.00, wished=4.50, severity=1.00, time=31404.00.
+qlearn s3 iter 2: mean delay 40.2 s/veh, |w| 214.812
+qlearn s3 iter 3: mean delay 43.3 s/veh, |w| 211.924
+qlearn s3 iter 4: mean delay 38.3 s/veh, |w| 215.165
