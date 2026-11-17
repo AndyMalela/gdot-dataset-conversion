@@ -1,0 +1,120 @@
+== archive Tue Nov 17 05:12:48 PM JST 2026
+== F3 saturation flow Tue Nov 17 05:12:48 PM JST 2026
+| phase | kind | headways | mean headway s | sat flow veh/h/lane | source |
+|---|---|---|---|---|---|
+| 1 | left | 0 |  | 1963 | pooled left |
+| 2 | through | 13467 | 1.65 | 2176 | own |
+| 3 | left | 1 | 2.0 | 1963 | pooled left |
+| 4 | through | 4209 | 1.75 | 2057 | own |
+| 5 | left | 0 |  | 1963 | pooled left |
+| 6 | through | 3131 | 1.66 | 2175 | own |
+| 7 | left | 333 | 1.83 | 1964 | own |
+| 8 | through | 155 | 1.73 | 2078 | own |
+pooled left: 334 headways, 1963 veh/h/lane
+pooled through: 20962 headways, 2150 veh/h/lane
+== attempt 8: fit + validation Tue Nov 17 05:13:21 PM JST 2026
+{'phase': 8, 'passage_s': 8.0, 'plans': 4, 'mean_abs_gap_diff_pts': 2.1, 'mean_abs_split_diff_s': 2.77}
+wrote sim.json controller: {'source': 'fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)', 'max_recall': {}, 'passage_s': {'1': 6.0, '3': 6.0, '4': 4.0, '5': 6.0, '7': 6.0, '8': 8.0}}
+validation: 20 days x 1 controller settings = 20 full-day runs
+| Phase | Plan | days | avg split sim − field (s) | % gap-outs sim − field | % skips sim − field |
+|---|---|---|---|---|---|
+| P1 | A | 6 | +0.0 | +7 | -11 |
+| P1 | B | 7 | -0.3 | +4 | -3 |
+| P1 | C | 7 | -0.0 | +6 | +4 |
+| P1 | D | 7 | +0.4 | +12 | -24 |
+| P1 | E | 42 | -0.3 | +17 | -9 |
+| P1 | G | 5 | +0.1 | -1 | +32 |
+| P3 | A | 6 | -1.3 | +6 | -22 |
+| P3 | B | 6 | -1.0 | +8 | -25 |
+| P3 | C | 5 | -0.9 | +11 | -25 |
+| P3 | D | 7 | -0.2 | +17 | -21 |
+| P3 | E | 31 | -0.4 | -4 | -18 |
+| P4 | A | 8 | -1.4 | +12 | -9 |
+| P4 | B | 8 | -1.7 | +6 | -4 |
+| P4 | C | 7 | -2.4 | +14 | -1 |
+| P4 | D | 8 | +2.1 | +13 | -15 |
+| P4 | E | 36 | -1.7 | +18 | -4 |
+| P4 | G | 5 | -1.6 | +28 | +0 |
+| P5 | A | 8 | +0.6 | +1 | -23 |
+| P5 | B | 7 | -0.1 | -3 | -11 |
+| P5 | C | 7 | +0.4 | +4 | -20 |
+| P5 | D | 7 | +0.7 | +5 | -25 |
+| P5 | E | 39 | +0.3 | +12 | -16 |
+| P5 | G | 8 | +0.2 | -3 | +3 |
+| P7 | A | 8 | +1.2 | -1 | -26 |
+| P7 | B | 5 | -0.7 | -16 | -17 |
+| P7 | C | 7 | -0.3 | -10 | -12 |
+| P7 | D | 7 | +3.1 | +17 | -36 |
+| P7 | E | 35 | +1.4 | -20 | -17 |
+| P7 | G | 5 | -0.6 | +7 | -30 |
+| P8 | A | 9 | -0.6 | -2 | -0 |
+| P8 | B | 8 | -1.4 | -3 | -3 |
+| P8 | C | 8 | -1.0 | +2 | -5 |
+| P8 | D | 8 | +0.7 | -1 | -0 |
+| P8 | E | 41 | -2.6 | +10 | -2 |
+| P8 | G | 10 | -2.0 | +4 | -5 |
+
+- **V1 average split:** 34/35 pairs within 3 s, worst 3.1 s → **PASS**
+- **V2 % gap-outs:** 28/35 pairs within 15 points, worst 28 → **PASS**
+- **V3 % skips:** 18/35 pairs within 15 points → **FAIL** (reported)
+- **V4:** not defined for 137 (VALIDATION.md)
+- **V5 health:** 0 teleports; days with W Paces Ferry through PM delay > 100 s: none → **PASS**
+
+**Accepted (V1, V2, V5):** YES
+== Webster redesign Tue Nov 17 05:46:56 PM JST 2026
+W-N   from 00:00: cycle  84.0  Y 0.14  C0  84.0  splits {1: 12.0, 2: 30.8, 5: 11.9, 6: 31.0, 3: 11.7, 4: 29.5, 7: 13.1, 8: 28.1}
+W-A   from 06:30: cycle  94.8  Y 0.59  C0  94.8  splits {1: 11.9, 2: 40.9, 5: 15.3, 6: 37.5, 3: 11.9, 4: 30.1, 7: 13.4, 8: 28.7}
+W-B   from 10:00: cycle  88.7  Y 0.56  C0  88.7  splits {1: 12.3, 2: 33.0, 5: 13.7, 6: 31.6, 3: 12.1, 4: 31.2, 7: 15.6, 8: 27.8}
+W-C   from 14:00: cycle  94.9  Y 0.59  C0  94.9  splits {1: 12.1, 2: 39.9, 5: 16.6, 6: 35.4, 3: 11.9, 4: 31.0, 7: 14.5, 8: 28.4}
+W-D   from 20:00: cycle  84.3  Y 0.40  C0  84.3  splits {1: 12.2, 2: 30.7, 5: 11.9, 6: 31.1, 3: 11.7, 4: 29.6, 7: 13.9, 8: 27.4}
+W-N2  from 22:00: cycle  84.0  Y 0.28  C0  84.0  splits {1: 12.2, 2: 30.6, 5: 11.8, 6: 31.0, 3: 11.7, 4: 29.5, 7: 13.8, 8: 27.4}
+== LSTDQ v2 seeds 0-4 Tue Nov 17 05:46:56 PM JST 2026
+iter 5: greedy(w)+random episodes, mean delay 26.6 s/veh, transitions so far 761932
+lstdq s0 exit 0
+iter 5: greedy(w)+random episodes, mean delay 23.9 s/veh, transitions so far 805991
+lstdq s1 exit 0
+iter 5: greedy(w)+random episodes, mean delay 22.6 s/veh, transitions so far 761879
+lstdq s2 exit 0
+iter 5: greedy(w)+random episodes, mean delay 26.2 s/veh, transitions so far 836728
+lstdq s3 exit 0
+iter 5: greedy(w)+random episodes, mean delay 25.7 s/veh, transitions so far 874644
+lstdq s4 exit 0
+== Q-learning x5 (parallel) + ARS seeds 0-4 Tue Nov 17 06:08:45 PM JST 2026
+ars s0 exit 0
+qlearn s1 exit 0
+qlearn s0 exit 0
+qlearn s3 exit 0
+qlearn s2 exit 0
+qlearn s4 exit 0
+ars s1 exit 0
+ars s2 exit 0
+ars s3 exit 0
+ars s4 exit 0
+== F4 iterate selection Tue Nov 17 08:10:47 PM JST 2026
+
+  800/900
+  900/900
+| learner | seed | delay per iterate (s/veh) | selected |
+|---|---|---|---|
+| ars | 0 | it10 30.6, it20 28.0, it30 32.6, it40 30.3, it50 31.8 | it20 |
+| ars | 1 | it10 30.8, it20 32.6, it30 34.0, it40 31.1, it50 29.1 | it50 |
+| ars | 2 | it10 29.9, it20 28.0, it30 29.9, it40 28.0, it50 32.2 | it20 |
+| ars | 3 | it10 30.0, it20 27.7, it30 29.2, it40 28.6, it50 30.1 | it20 |
+| ars | 4 | it10 28.7, it20 30.9, it30 34.6, it40 30.7, it50 29.8 | it10 |
+| lstdq_v2 | 0 | it1 26.7, it2 32.6, it3 24.7, it4 25.7, it5 27.5 | it3 |
+| lstdq_v2 | 1 | it1 48.9, it2 24.4, it3 25.3, it4 24.6, it5 27.6 | it2 |
+| lstdq_v2 | 2 | it1 32.9, it2 24.8, it3 25.3, it4 25.2, it5 25.6 | it2 |
+| lstdq_v2 | 3 | it1 27.0, it2 26.4, it3 25.6, it4 25.5, it5 25.7 | it4 |
+| lstdq_v2 | 4 | it1 49.0, it2 29.6, it3 28.3, it4 28.1, it5 27.4 | it5 |
+| qlearn | 0 | it1 29.0, it2 27.8, it3 31.6, it4 31.6, it5 31.6 | it2 |
+| qlearn | 1 | it1 34.6, it2 28.5, it3 37.5, it4 41.1, it5 29.4 | it2 |
+| qlearn | 2 | it1 31.3, it2 28.4, it3 30.1, it4 31.2, it5 30.9 | it2 |
+| qlearn | 3 | it1 28.0, it2 31.6, it3 29.4, it4 29.9, it5 32.4 | it1 |
+| qlearn | 4 | it1 37.8, it2 28.4, it3 31.7, it4 28.6, it5 28.8 | it2 |
+== validation evaluation, seed 1 Tue Nov 17 08:27:26 PM JST 2026
+480 clean hours on 20 validation weekdays -> /home/andy/Downloads/GDOT/atsc/sites/137/eval/conditions.csv
+  380/380
+== test evaluation, seeds 1-5 Tue Nov 17 09:53:05 PM JST 2026
+168 clean hours on 7 test weekdays -> /home/andy/Downloads/GDOT/atsc/sites/137/eval_test/conditions.csv
+  665/665
+ALL DONE Wed Nov 18 12:20:08 AM JST 2026

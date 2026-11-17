@@ -138,3 +138,28 @@ validation days (simulation seed 1) and the test days (seeds 1–5) with the reg
 If attempt 8 is not accepted, its methods results are still reported, labelled "model not accepted".
 Not changed (reviewed, judged not to reorder results or to be method design): delay at 138 counted in 137's score;
 learner training windows without 23–06 h; Q-learning's step size; demand.
+
+### Amendment 1 results (post-test bug fix; run 2026-11-17 17:12 – 11-18 00:20; `debug/amendment1.log`)
+
+Attempt 8 accepted (V1 34/35, V2 28/35, V5 pass; V3 18/35, reported only — F1 did not explain V3). Measured
+saturation flow (veh/h/lane): P2 2176, P4 2057, P6 2175, P8 2078, P7 1964; pooled left 1963 (P1, P3, P5).
+Selected iterates (F4): LSTDQ it3/it2/it2/it4/it5, Q-learning it2/it2/it2/it1/it2, ARS it20/it50/it20/it20/it10
+(seeds 0–4). Test: 665 runs, 0 failed, 0 teleports; same 7 days and timing as the first test.
+
+Overall vehicle-weighted delay on the test days (s/veh): actuated 24.9, LSTDQ 25.3, MaxPressure 26.1, ARS 30.4,
+Q-learning 30.6, GDOT plan 31.2, Webster 117.7.
+
+| method | validation ratio (before → after) | test ratio before | **test ratio after (95 % CI)** | p Holm | p TOST | days won | verdict |
+|---|---|---|---|---|---|---|---|
+| MaxPressure | 0.973 → 1.003 | 1.025 | 1.037 (0.894–1.204) | 1.000 | 0.355 | 4/7 | inconclusive |
+| LSTDQ | 1.022 → 0.958 | 1.198 | **1.014 (0.953–1.078)** | 1.000 | **0.026** | 4/7 | **equivalent** |
+| Q-learning | 1.215 → 1.098 | 1.328 | 1.190 (0.952–1.486) | 0.314 | 0.864 | 2/7 | inconclusive |
+| ARS | 1.148 → 1.144 | 1.196 | 1.192 (1.002–1.418) | 0.192 | 0.913 | 1/7 | inconclusive |
+| GDOT plan | 1.174 → 1.186 | 1.227 | 1.239 (1.079–1.423) | 0.046 | 0.969 | 0/7 | worse |
+| Webster | 1.700 → 2.484 | 3.167 | 4.348 (2.851–6.631) | 0.001 | 0.998 | 0/7 | worse |
+
+Reading: with the engine fixed, LSTDQ is equivalent to actuated on the test days (H1 margin) and better on the
+validation days (0.958, p Holm 0.021, 19/20 days); before the fix it was 1.198 on test. Second look at the test days:
+not a clean held-out test. Webster's further loss (F2 scores vehicles that never enter; F3's higher saturation flow
+shortens its cycles) is examined separately. Post hoc isolation of LSTDQ's change and the demand sweep on the
+attempt-8 model: `debug/after_amendment1.sh` (validation days only).
