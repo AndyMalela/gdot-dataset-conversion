@@ -13,6 +13,7 @@ ars     augmented random search on the linear policy (end if theta . x > 0): per
 """
 import argparse
 import csv
+import json
 import os
 import random
 import sys
@@ -194,18 +195,21 @@ def train_dqn(seed):
 
 
 def load_policy(method, seed):
-    """the evaluated policy of a method: the final iterate, no selection on validation days."""
+    """the evaluated policy of a method: the iterate in selected.json (train-day selection, amendment 1 F4), else the
+    final iterate; never a selection on validation or test days."""
     from atsc.rl.methods import MLPQ, ars_qfun
     d = out_dir(method, seed)
+    sel = d / "selected.json"                    # TEST_PLAN.md amendment 1, F4: iterate chosen on train days
+    it = json.loads(sel.read_text())["iterate"] if sel.exists() else None
     if method == "qlearn":
-        return _policy(w=np.load(d / f"w_it{ITERS}.npy"))
+        return _policy(w=np.load(d / f"w_it{it or ITERS}.npy"))
     if method == "dqn":
         from atsc.rl.agent import dims
         from atsc.rl.methods import DQNLearner
         return _policy(qfun=DQNLearner.load_qfun(d / f"net_ep{DQN_EPISODES}.pt", dims(VERSION)[2]))
     if method.startswith("nfq"):
         return _policy(qfun=MLPQ.load(d / f"net_it{ITERS}.npz").q)
-    return _policy(qfun=ars_qfun(np.load(d / f"theta_it{ARS_ITERS}.npy")))
+    return _policy(qfun=ars_qfun(np.load(d / f"theta_it{it or ARS_ITERS}.npy")))
 
 
 if __name__ == "__main__":

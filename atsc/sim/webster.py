@@ -23,7 +23,8 @@ def design(sig, flow, lanes, s_lane, name="W"):
     ph = {int(k): v for k, v in sig["phases"].items()}
     clr = {p: v["yellow"] + v["red"] for p, v in ph.items()}
     mins = {p: max(v["min_green"], v["ped_min"]) + clr[p] for p, v in ph.items()}
-    y = {p: flow.get(p, 0.0) / (lanes[p] * s_lane) for p in ph}
+    sat = s_lane if isinstance(s_lane, dict) else {p: s_lane for p in ph}     # per phase (137) or one value
+    y = {p: flow.get(p, 0.0) / (lanes[p] * sat[p]) for p in ph}
 
     # critical path per barrier group: the ring with the larger sum of flow ratios
     groups = range(len(rings[1]))

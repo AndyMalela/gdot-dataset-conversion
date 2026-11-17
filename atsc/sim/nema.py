@@ -69,6 +69,7 @@ class _Ring:
     barrier: bool = False
     pending: str = ""               # termination type to log when the green ends
     ped: bool = False               # this green serves a pedestrian call (ped_actuated phases)
+    dwell: int = 0                  # plan mode: cycles this green has dwelt past its force-off (no conflicting call)
 
 
 class NemaEngine:
@@ -109,6 +110,10 @@ class NemaEngine:
     def _seq(self, ring):
         return self.rings[ring][self.group]
 
+    def _group_called(self, g):
+        """a phase of barrier group g (either ring) is to be served (TEST_PLAN.md amendment 1, F1)"""
+        return any(self._serve(q) for ring in (1, 2) for q in self.rings[ring][g])
+
     def _fo_offset(self, ring, p, group_end=False):
         """cycle-time of p's force-off (fixed force-offs), or of the group end when p is the last
         phase served in its group (the following phase was skipped)."""
@@ -137,7 +142,7 @@ class NemaEngine:
         fo = self._fo_offset(ring, s.phase, group_end)
         # this cycle's force-off point, even when the green started a little late (step rounding) and its
         # minimum runs past it: the green then ends when the minimum is done (tick), the cycle is not skipped
-        s.force_off = self._next_abs(fo, s.start - LATE_TOL)
+        s.force_off = self._next_abs(fo, s.start - LATE_TOL) + s.dwell * self.plan.cycle
         p = s.phase
         if p in self.plan.floating and p not in self.plan.coordinated:
             # floating force-off: never longer than the phase's own split, even when it started early
@@ -165,8 +170,12 @@ class NemaEngine:
             a, b = self._seq(ring)
             if self._omitted(a) or (self._serve(b) and not self._serve(a)):
                 self._start_green(ring, b)
-            else:
+            elif self._serve(a) or a == b:
                 self._start_green(ring, a)
+            else:
+                # dual entry (F1): no call in this ring's group: serve its through phase (even NEMA number)
+                # beside the other ring's call, not an uncalled left
+                self._start_green(ring, a if a % 2 == 0 and not self._omitted(a) else b)
 
     def _end_green(self, ring, how, barrier=False):
         s = self.r[ring]
@@ -187,6 +196,12 @@ class NemaEngine:
         a, b = self._seq(ring)
         if s.phase == a and a != b and self._serve(b):
             self._end_green(ring, how)
+        elif how in ("force", "max") and not self._group_called(1 - self.group):
+            # F1: no conflicting call: the last phase of the group is not terminated; it rests in green
+            # (plan mode: dwells and yields at its next cycle's force-off point)
+            if how == "force":
+                s.dwell += 1
+                self._set_force_off(ring)
         elif how in ("force", "max"):
             self._end_green(ring, how, barrier=True)        # terminated: clear now, wait at the barrier in red
         else:
@@ -238,7 +253,10 @@ class NemaEngine:
 
         # barrier: both rings done with this group (resting in green, or cleared/clearing towards it)
         ready = lambda x: self.r[x].mode in (REST, WAIT) or (self.r[x].mode == CLEAR and self.r[x].barrier)
-        if all(ready(x) for x in (1, 2)) and any(self.r[x].mode == REST for x in (1, 2)):
+        # F1: only towards a call on the other side; a ring already cleared to red (terminated when a call was there)
+        # still crosses, so a call that drops meanwhile cannot leave it waiting in red
+        cross = self._group_called(1 - self.group) or any(self.r[x].mode in (WAIT, CLEAR) for x in (1, 2))
+        if all(ready(x) for x in (1, 2)) and any(self.r[x].mode == REST for x in (1, 2)) and cross:
             for x in (1, 2):
                 if self.r[x].mode == REST:
                     self._end_green(x, self.r[x].pending or "gap", barrier=True)

@@ -120,3 +120,34 @@ def test_late_start_with_ped_min_filling_split_keeps_cycle():
         assert all(abs((b - a) - 160) <= step + 1e-6 for a, b in zip(starts[1:], starts[2:])), starts
         p4 = [g for g in eng.greens if g.phase == 4 and g.start > 160]
         assert all(g.green >= ph[4].ped_min - 1e-6 for g in p4)
+
+
+def _no_recall(max_green=math.inf):
+    return {p: Phase(min_green=5, yellow=Y[p], red=R[p], max_green=max_green, recall=p in (2, 6)) for p in range(1, 9)}
+
+
+def test_free_rests_in_main_green_without_side_call():
+    """TEST_PLAN.md amendment 1, F1: no side-street call -> no barrier crossing, no max-out, P2/P6 stay green."""
+    eng = NemaEngine(RINGS, _no_recall(max_green=30), None)
+    run(eng, 300, calls=lambda t: set(), ends=lambda t, e: {1, 2})
+    assert not [g for g in eng.greens if g.phase not in (2, 6)]
+    assert eng.display().get(2) == "G" and eng.display().get(6) == "G"
+
+
+def test_dual_entry_serves_through_not_uncalled_left():
+    """a call on P4 only: ring 2 serves its through P8 alongside, never the uncalled left P7."""
+    eng = NemaEngine(RINGS, _no_recall(), None)
+    run(eng, 200, calls=lambda t: {4} if 50 <= t < 70 else set(), ends=lambda t, e: {1, 2})
+    served = {g.phase for g in eng.greens}
+    assert 4 in served and 8 in served and 3 not in served and 7 not in served
+
+
+def test_coordinated_phase_dwells_and_yields_at_force_off_point():
+    """plan mode, side call arriving mid-cycle: P2/P6 dwell until their next fixed force-off point."""
+    eng = NemaEngine(RINGS, _no_recall(), PLAN_A)
+    run(eng, 400, calls=lambda t: {8} if t >= 200 else set(), ends=lambda t, e: {1, 2})
+    p8 = [g for g in eng.greens if g.phase == 8]
+    assert p8
+    fo2 = next(g.end for g in eng.greens if g.phase == 2)
+    # P2 leads an uncalled P1, so it runs to the group end: splits 2 + 1 minus its own clearance
+    assert abs(((fo2 - PLAN_A.offset) % PLAN_A.cycle) - (50 + 35 - 3.1 - 2.6)) < 0.2 + 1e-6 and fo2 >= 200

@@ -99,3 +99,42 @@ drives its "light" and "very variable" hour figures.
 
 Post hoc (labelled, not part of the registered analysis), without 05-22: same directions; ratios MaxPressure 1.038,
 LSTDQ 1.210, Q-learning 1.366, ARS 1.209, GDOT plan 1.251, Webster 2.905; no Holm p < 0.05 (6 days).
+
+## Amendment 1 — post-test bug-fix pass (registered 2026-11-17 ~17:30, before any of it is run)
+
+Trigger: an independent review after the test (user: "this result isn't acceptable for a research I feel like";
+review asked to find errors, not better numbers). Fixes are justified by NEMA controller rules, a scoring error, and
+site measurements on train days — not by the test results. The original test results above stay the registered
+result; everything below is reported next to them, labelled **post-test bug fix (amendment 1)**. The test days have
+now been seen once, so the second test run is not a clean held-out test; no change is made after it.
+
+Fixes:
+
+- **F1 engine (`atsc/sim/nema.py`), every controller.** Found: with no call on the side street, the engine still
+  crossed the barrier and started each ring's first side phase (P3/P7) uncalled, every cycle (≈18 s of needless
+  main-street red per cycle at night; likely part of the V3 skip mismatch). NEMA rules implemented instead:
+  (a) the barrier is crossed only when a phase of the other group is called (otherwise the resting phases stay
+  green); (b) the last phase of a group is not maxed out (free mode) or forced off (plan mode) without a call in the
+  other group — in plan mode a coordinated phase then dwells and yields at its next fixed force-off point (one
+  yield point per cycle, coordination kept); (c) dual entry: a ring with no call in the entered group serves its
+  through phase (P2/P6/P4/P8) while the other ring serves its call — ASSUMPTION (GDOT's dual-entry setting is not
+  visible on the portal; standard practice). Fixed-time (Webster, skip_uncalled off) is unchanged.
+- **F2 scoring (`atsc/sim/episode.py`).** Vehicles that never enter the network were not scored (only Webster,
+  1 validation and 5 test runs). `--tripinfo-output.write-undeparted true`: they are scored with their waiting time.
+- **F3 saturation flow, 137.** The queue estimate used by MaxPressure and LSTDQ v2 assumed 1,950 veh/h/lane
+  (7065's calibration) and Webster was designed at 1,900 (HCM base, mislabelled "calibrated"). Both use 137's
+  simulated saturation discharge instead, measured per phase on train days (`sat_flow.py`: stop-line departure
+  headways of queued vehicles from the 5th onward during the phase's own protected green, GDOT plan, train weekdays
+  15:30–19:30), stored in `sim.json`. 7065 keeps its value.
+- **F4 learner iterate (every learner).** Q-learning's weights diverged (|w| 27 → 182, training delay rising) and
+  the final-iterate rule kept the diverged policy. For LSTDQ v2, Q-learning and ARS alike, the evaluated iterate is
+  the saved iterate with the lowest greedy, vehicle-weighted delay on fixed train-day selection windows
+  (`select_iterate.py`); train days only, chosen before any evaluation.
+
+Order: (1) validation attempt 8 = attempt 7 + F1–F3, controller refit on train days as before, same criteria
+(V1 + V2 + V5); reported whatever the outcome; (2) Webster redesigned (F3); (3) LSTDQ v2, Q-learning, ARS
+retrained, 5 seeds each, on the attempt-8 model; (4) iterate selection (F4); (5) every controller evaluated on the
+validation days (simulation seed 1) and the test days (seeds 1–5) with the registered analysis (§5) unchanged.
+If attempt 8 is not accepted, its methods results are still reported, labelled "model not accepted".
+Not changed (reviewed, judged not to reorder results or to be method design): delay at 138 counted in 137's score;
+learner training windows without 23–06 h; Q-learning's step size; demand.

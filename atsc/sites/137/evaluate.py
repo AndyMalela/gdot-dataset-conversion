@@ -82,7 +82,10 @@ def policy(ctrl):
     seed = int(next((x[1:] for x in parts if x.startswith("s") and x[1:].isdigit()), 0))
     sys.path.insert(0, str(HERE))
     from train_lstdq import out_dir
-    w = np.load(out_dir(seed, version) / f"w_it{LSTDQ_IT}.npy")
+    d = out_dir(seed, version)
+    sel = d / "selected.json"                    # TEST_PLAN.md amendment 1, F4: iterate chosen on train days
+    it = json.loads(sel.read_text())["iterate"] if sel.exists() else LSTDQ_IT
+    w = np.load(d / f"w_it{it}.npy")
     return LSTDQPolicy(HERE, w=w, version=version), {"mode": "free"}
 
 

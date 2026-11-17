@@ -44,7 +44,8 @@ def design():
     sig = json.loads((HERE / "signal.json").read_text())
     mv = json.loads((HERE / "movements.json").read_text())["movements"]
     cal = json.loads((HERE / "sim.json").read_text())
-    s_lane = 1900                           # HCM base saturation flow: 137 is not calibrated (sim.json)
+    # measured simulated saturation flow per phase (sat_flow.py, train days; TEST_PLAN.md amendment 1, F3)
+    s_lane = {int(k): v for k, v in cal["sat_flow_veh_h_lane"].items()}
     cnt = load_counts(HERE)
     ds = days("train")
     # median over train weekdays of each movement's 5-min count
@@ -79,7 +80,7 @@ def design():
     OUT.mkdir(exist_ok=True)
     (OUT / "webster.json").write_text(json.dumps({
         "source": f"designed from {len(ds)} train weekdays (median 5-min counts), s = {s_lane} veh/h/lane "
-                  "(calibrated), GDOT clearances and minimum services incl. pedestrian walk + FDW every cycle",
+                  "(measured simulated discharge, sat_flow.py), GDOT clearances and minimum services incl. pedestrian walk + FDW every cycle",
         "vtype": cal["vtype"], "plans": plans}, indent=1))
 
 

@@ -57,7 +57,8 @@ def run_window(site_dir, date, begin_h, end_h, policy, mode="plan", plan=None, f
             demand.write_routes(nd, run.net_file(site_dir), date, nr, seed=seed, vtype=vtype, prefix=f"N{k}_")
             rous.append(str(nr))
         conn = run.start(site_dir, ",".join(rous), b0 - warmup_s, b1 + drain_s, gui=gui, step=step, seed=seed,
-                         extra=["--tripinfo-output", str(ti), "--tripinfo-output.write-unfinished", "true"])
+                         extra=["--tripinfo-output", str(ti), "--tripinfo-output.write-unfinished", "true",
+                                "--tripinfo-output.write-undeparted", "true"])   # F2: never-entered vehicles scored too
         from .signal import actuated_from_site
         nsigs = [SumoSignal(conn, nd, run.net_file(site_dir), actuated_from_site(nd), mode="plan", day=str(date), seed=seed)
                  for nd, _ in run.neighbours(site_dir)]             # field timing, whatever controls the site

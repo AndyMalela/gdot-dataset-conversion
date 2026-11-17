@@ -32,6 +32,11 @@ class QueueEstimator:
         site_dir = Path(site_dir)
         mv = json.loads((site_dir / "movements.json").read_text())["movements"]
         self.lanes = {m["phases"][0]: m["lanes"] for m in mv.values()}
+        # per-phase saturation flow of the site (sim.json "sat_flow_veh_h_lane", measured: 137 sat_flow.py),
+        # else SAT_FLOW (7065's calibration)
+        cal_f = site_dir / "sim.json"
+        sf = json.loads(cal_f.read_text()).get("sat_flow_veh_h_lane", {}) if cal_f.exists() else {}
+        self.sat = {p: (sf.get(str(p)) or SAT_FLOW * 3600) / 3600 for p in self.lanes}
         det = [d for d in json.loads((site_dir / "detectors.json").read_text())["detectors"]
                if d.get("modelled", True)]
         self.phases = sorted(self.lanes)
@@ -56,7 +61,7 @@ class QueueEstimator:
             if occupied:
                 self.empty_since[p] = sig.now
                 if display.get(p) == "G":
-                    self.q[p] = max(0.0, self.q[p] - SAT_FLOW * self.lanes[p] * dt)
+                    self.q[p] = max(0.0, self.q[p] - self.sat[p] * self.lanes[p] * dt)
             elif sig.now - self.empty_since[p] >= RESET_S:
                 self.q[p] = 0.0
 
