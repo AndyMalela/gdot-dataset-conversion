@@ -1,0 +1,45 @@
+== isolation (a) old weights, fixed engine Wed Nov 18 12:20:27 AM JST 2026
+  120/120
+== isolation (b) new weights, final iterate Wed Nov 18 12:48:34 AM JST 2026
+  120/120
+== scale x1.25 Wed Nov 18 01:16:49 AM JST 2026
+  95/95
+480 clean hours on 20 validation weekdays -> /home/andy/Downloads/GDOT/atsc/sites/137/eval_x1.25/conditions.csv
+== scale x1.5 Wed Nov 18 01:46:17 AM JST 2026
+  95/95
+480 clean hours on 20 validation weekdays -> /home/andy/Downloads/GDOT/atsc/sites/137/eval_x1.5/conditions.csv
+== scale x1.75 Wed Nov 18 02:24:26 AM JST 2026
+  35/35
+480 clean hours on 20 validation weekdays -> /home/andy/Downloads/GDOT/atsc/sites/137/eval_x1.75/conditions.csv
+== scale x2.0 Wed Nov 18 02:45:17 AM JST 2026
+  35/35
+480 clean hours on 20 validation weekdays -> /home/andy/Downloads/GDOT/atsc/sites/137/eval_x2.0/conditions.csv
+== scale x2.5 Wed Nov 18 03:14:56 AM JST 2026
+  35/35
+480 clean hours on 20 validation weekdays -> /home/andy/Downloads/GDOT/atsc/sites/137/eval_x2.5/conditions.csv
+# Demand-scale sweep (137, preliminary subset of validation days, simulation seed 1)
+
+Every 5-min count of the real day multiplied by k (labelled sensitivity experiment, not real traffic). Cell: vehicle-weighted mean delay s/veh (days run) · teleports · hours with a queue reaching the leg end / hours. Controllers trained at x1 only.
+
+| Controller | x1 | x1.25 | x1.5 | x1.75 | x2 | x2.5 |
+|---|---|---|---|---|---|---|
+| actuated | 25.3 (20d) · 0 tp · 27/480 h | 45.0 (5d) · 0 tp · 39/120 h | 204.5 (5d) · 0 tp · 68/120 h | 916.0 (5d) · 0 tp · 83/120 h | 2438.6 (5d) · 0 tp · 88/120 h | 5967.3 (5d) · 0 tp · 90/120 h |
+| gdot | 34.3 (20d) · 2 tp · 34/480 h | 63.1 (5d) · 0 tp · 40/120 h | 280.6 (5d) · 0 tp · 74/120 h | 1155.3 (5d) · 0 tp · 84/120 h | 2708.6 (5d) · 0 tp · 88/120 h | 6275.5 (5d) · 0 tp · 90/120 h |
+| maxpressure | 27.6 (20d) · 0 tp · 30/480 h | 51.3 (5d) · 0 tp · 39/120 h | 303.0 (5d) · 0 tp · 73/120 h | 1643.0 (5d) · 0 tp · 87/120 h | 3528.0 (5d) · 0 tp · 88/120 h | 7675.2 (5d) · 0 tp · 93/120 h |
+| webster | 122.0 (20d) · 0 tp · 151/480 h | 902.6 (5d) · 0 tp · 80/120 h | 2167.3 (5d) · 0 tp · 87/120 h | 3470.0 (5d) · 0 tp · 90/120 h | 4950.0 (5d) · 0 tp · 91/120 h | 8449.8 (5d) · 0 tp · 93/120 h |
+| ars_s0 | 37.2 (20d) · 0 tp · 53/480 h | 87.0 (5d) · 0 tp · 50/120 h | 422.7 (5d) · 0 tp · 75/120 h | 1307.5 (5d) · 0 tp · 85/120 h | 2969.6 (5d) · 0 tp · 89/120 h | 7385.3 (5d) · 0 tp · 92/120 h |
+| ars_s1 | 31.3 (20d) · 0 tp · 55/480 h | 74.8 (5d) · 0 tp · 53/120 h | 263.2 (5d) · 0 tp · 78/120 h | - | - | - |
+| ars_s2 | 40.0 (20d) · 0 tp · 48/480 h | 95.0 (5d) · 0 tp · 41/120 h | 598.1 (5d) · 0 tp · 78/120 h | - | - | - |
+| ars_s3 | 32.2 (20d) · 0 tp · 49/480 h | 125.6 (5d) · 0 tp · 52/120 h | 733.0 (5d) · 0 tp · 78/120 h | - | - | - |
+| ars_s4 | 41.6 (20d) · 0 tp · 47/480 h | 119.9 (5d) · 0 tp · 45/120 h | 850.0 (5d) · 0 tp · 79/120 h | - | - | - |
+| lstdq_v2_s0 | 23.8 (20d) · 0 tp · 9/480 h | 64.1 (5d) · 0 tp · 29/120 h | 624.9 (5d) · 0 tp · 75/120 h | 2464.4 (5d) · 0 tp · 86/120 h | 3910.1 (5d) · 0 tp · 86/120 h | 6687.5 (5d) · 0 tp · 89/120 h |
+| lstdq_v2_s1 | 24.2 (20d) · 0 tp · 20/480 h | 42.0 (5d) · 0 tp · 29/120 h | 237.0 (5d) · 0 tp · 68/120 h | - | - | - |
+| lstdq_v2_s2 | 24.7 (20d) · 0 tp · 12/480 h | 44.4 (5d) · 0 tp · 28/120 h | 234.7 (5d) · 0 tp · 69/120 h | - | - | - |
+| lstdq_v2_s3 | 24.5 (20d) · 0 tp · 11/480 h | 47.5 (5d) · 0 tp · 26/120 h | 238.7 (5d) · 0 tp · 64/120 h | - | - | - |
+| lstdq_v2_s4 | 25.7 (20d) · 0 tp · 15/480 h | 60.3 (5d) · 0 tp · 34/120 h | 283.6 (5d) · 0 tp · 69/120 h | - | - | - |
+| qlearn_s0 | 34.0 (20d) · 0 tp · 58/480 h | 81.3 (5d) · 0 tp · 48/120 h | 510.0 (5d) · 0 tp · 80/120 h | 1680.2 (5d) · 0 tp · 87/120 h | 3022.9 (5d) · 0 tp · 91/120 h | 6408.8 (5d) · 0 tp · 93/120 h |
+| qlearn_s1 | 31.1 (20d) · 0 tp · 58/480 h | 68.4 (5d) · 0 tp · 53/120 h | 268.5 (5d) · 0 tp · 77/120 h | - | - | - |
+| qlearn_s2 | 32.4 (20d) · 0 tp · 52/480 h | 83.2 (5d) · 0 tp · 52/120 h | 473.2 (5d) · 0 tp · 80/120 h | - | - | - |
+| qlearn_s3 | 27.0 (20d) · 0 tp · 44/480 h | 77.1 (5d) · 0 tp · 52/120 h | 323.1 (5d) · 0 tp · 78/120 h | - | - | - |
+| qlearn_s4 | 32.8 (20d) · 0 tp · 52/480 h | 74.6 (5d) · 0 tp · 52/120 h | 415.9 (5d) · 0 tp · 77/120 h | - | - | - |
+AFTER DONE Wed Nov 18 04:09:46 AM JST 2026

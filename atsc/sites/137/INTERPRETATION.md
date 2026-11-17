@@ -194,3 +194,44 @@ Fixes to the analysis outputs (no effect on the registered comparison): headers 
 RQ2 mech tables use training seed 0 and, on test, keep one simulation seed per hour; the worst-movement metric
 has no minimum-volume filter and takes the max over 5 simulation seeds on test vs 1 on validation; Y bands use
 1,950 veh/h rather than the measured saturation flow; `evaluate.py` docstring still describes 7065.
+
+## 11. Demand sweep on the amendment-1 model (post hoc, run 2026-11-18 00:20–04:10, `debug/after_amendment1.sh`)
+
+Same 5 validation days as stage 2 (04-20, 04-24, 04-30, 05-06, 05-12), every 5-min count × k, simulation seed 1.
+×1.25 and ×1.5: all 5 seeds per learner (pooled); ×1.75–2.5: seed 0 only. Learners trained at ×1 only, so this is
+robustness to unseen demand (Chen 2025 / Song 2026 design), not learned control at saturation. Full table:
+`eval/scale_summary.md`.
+
+Ratio to actuated (geometric mean over the 5 days) and mean cycle length:
+
+| | ×1 | ×1.25 | ×1.5 | ×1.75 | ×2 | ×2.5 |
+|---|---|---|---|---|---|---|
+| actuated delay s/veh (cycle s) | 24.5 (89) | 45.0 (97) | 204 (110) | 916 (120) | 2,439 (128) | 5,967 (133) |
+| LSTDQ | 0.95 | 1.09 | 1.97 | 3.74* | 1.69* | 1.12* |
+| MaxPressure | 0.93 | 1.12 | 1.76 | 2.41 | 1.51 | 1.29 |
+| Q-learning | 1.08 | 1.54 | 2.46 | 2.48* | 1.28* | 1.08* |
+| ARS | 1.08 | 1.78 | 3.42 | 1.83* | 1.27* | 1.24* |
+| GDOT plan | 1.12 | 1.28 | 1.45 | 1.46 | 1.13 | 1.05 |
+| Webster | 2.78 | 13.5 | 15.5 | 5.2 | 2.2 | 1.4 |
+
+\* seed 0 only. Hours with a queue reaching the end of the modelled leg: actuated 39/120 at ×1.25, 68/120 at ×1.5,
+83/120 at ×1.75 — from ×1.5 every controller is unstable for much of the day, so delay there depends on the
+simulated horizon and is not a fair ranking (Song 2026). The meaningful range is ×1 to ×1.25.
+
+- **The ranking flips as soon as demand leaves the training range.** At ×1 LSTDQ and MaxPressure are ahead of
+  actuated on these days; at ×1.25 (+25 %) every adaptive method is behind it (LSTDQ +9 %, MaxPressure +12 %,
+  Q-learning +54 %, ARS +78 %). Same direction as Sahachaiseree's up-scaling test (agents trained on low demand
+  struggled at higher demand).
+- **Cycle length vs lost time shows up clearly here.** Actuated lengthens its cycle with demand (89 → 97 → 110 s);
+  Q-learning (81 s) and ARS (78 s) do not at ×1.25 and lose most. LSTDQ does lengthen (105 s) and still loses, which
+  points to its side-street transfer (§1): under higher demand the starved side queue grows instead of clearing.
+- **Under oversaturation the long fixed cycle catches up.** GDOT's coordinated plan (111–115 s) goes from 1.28 at
+  ×1.25 to 1.05 at ×2.5: when every phase is maxing out, the best a controller can do is run long cycles that
+  minimise lost time, which actuated (maxing out to ~130 s) and the long fixed plan both do. Adaptivity has no value
+  left when there is no slack to allocate (HCM / Webster: oversaturated signals should maximise capacity).
+- Webster's ratio falls at high k only because every controller is gridlocked; it collapses first (×1.25: 13.5×).
+- **Seed spread explodes outside the training range:** at ×1.5 LSTDQ seeds range 235–625 s/veh, ARS 263–850,
+  Q-learning 269–510. A learned controller's behaviour outside its training distribution is not reliable from one
+  seed — which is why ×1.75+ (seed 0 only) are indicative at best; LSTDQ seed 0 is its worst seed at ×1.5.
+- Differs from the stage-2 sweep on the attempt-1 model (MaxPressure best at ×1.5): that model had the engine bug,
+  uncorrected side-street demand and the old EB geometry; not comparable.
