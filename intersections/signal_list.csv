@@ -1,6 +1,6 @@
 signal_id,name,status,dates_checked,days,days_complete_partial_nodata,vehicle_movements,reason
 137,W. Paces Ferry Rd @ E. Andrews Dr/Slaton Dr,complete,2026-09-26 to 2026-10-02,7,5/2/0,EB_L EB_TR WB_L WB_TR NB_L NB_T NB_R SB_L SB_T SB_R,
-7065,SR 141 @ SR 237,complete,2026-05-06 to 2026-10-03,10,5/5/0,EB_L EB_T WB_L WB_T NB_L NB_T SB_L SB_T,
+7065,SR 141 @ SR 237,complete,2026-05-06 to 2026-10-22,112,65/46/1,EB_L EB_T WB_L WB_T NB_L NB_T SB_L SB_T,
 129,MLK Drive @ Central Avenue,accepted,2026-09-26 to 2026-10-02,7,5/2/0,WB_T WB_R NB_T NB_TL,"no counts on EB/SB; left and through counted together: NB_TL; WB has no left count — accepted 2026-10-05: MLK one-way WB and Central one-way NB (user; OSM confirms), so no EB/SB approaches, no WB left, no NB right exist. NB_TL is the detector on the left-only lane (OSM turn:lanes left|none x4 + user's map check: dedicated left lane), labelled TL in GDOT's setup, so it counts NB lefts"
 191,W. Peachtree St @ 17th St,accepted,2026-09-26 to 2026-10-02,7,3/4/0,EB_L EB_T EB_TL WB_T WB_TR NB_T,"no counts on SB; left and through counted together: EB_TL; WB has no left count; NB has no left count — accepted 2026-10-05: W. Peachtree is one-way northbound (confirmed by user), so no SB approach and no WB left exist; remaining gaps: EB has a shared left/through lane (EB_TL), NB has only a through count"
 7100,SR 9 @ Lindbergh Drive,accepted,2026-09-26 to 2026-10-02,7,4/3/0,EB_TL WB_L WB_TL WB_R NB_T NB_TR SB_L SB_T SB_TR,"left and through counted together: EB_TL WB_TL; NB has no left count — accepted 2026-10-05: EB left+through shared (EB_TL); WB has a dedicated left plus a shared left/through lane (WB_TL); NB has no left count (prohibited or undetected, not verified)"
@@ -17,6 +17,11 @@ signal_id,name,status,dates_checked,days,days_complete_partial_nodata,vehicle_mo
 244,10th Street @ State Street,incomplete,2026-09-27 to 2026-10-03,7,2/5/0,NB_TL SB_TL,no counts on EB/WB; left and through counted together: NB_TL SB_TL
 337,Pryor Rd SW @ Ridge Ave SW,incomplete,2026-09-27 to 2026-10-03,7,0/7/0,WB_T,no counts on EB/NB/SB; WB has no left count
 362,Hank Aaron Dr @ Atlanta Ave,incomplete,2026-09-27 to 2026-10-03,7,0/0/7,EB_TL EB_TR,detectors log nothing (every day all zeros)
+7058,SR 141 (Peachtree Rd) @ Highland Dr,incomplete,2026-09-14 to 2026-09-25,10,10/0/0,EB_TL WB_L WB_TR NB_L NB_T SB_L SB_T,left and through counted together: EB_TL
+7066,SR 141 @ Maple Drive,incomplete,2026-07-10 to 2026-10-02,60,55/5/0,EB_L EB_TR WB_TL NB_L NB_T NB_TR SB_L SB_T,left and through counted together: WB_TL
+7071,SR 237 @ Tower Place Drive,incomplete,2026-07-10 to 2026-09-25,43,30/11/2,EB_L EB_TR WB_TL NB_L SB_L,left and through counted together: WB_TL; NB has no through count; SB has no through count
+7079,SR 237 @ E Paces Ferry,incomplete,2026-09-14 to 2026-09-25,10,8/2/0,EB_L EB_T EB_R WB_T NB_T NB_TL SB_T,left and through counted together: NB_TL; WB has no left count; SB has no left count
+7088,SR 9 @ Pharr Road,incomplete,2026-09-29 to 2026-10-02,4,2/2/0,EB_L EB_TR WB_L WB_T SB_L,no counts on NB; SB has no through count
 7126,SR 237 @ Cheshire Bridge,incomplete,2026-09-26 to 2026-10-02,7,3/4/0,EB_TL EB_TR WB_L WB_TR NB_L NB_T SB_L SB_T,"left and through counted together: EB_TL — skipped 2026-10-05: OSM maps this as 4 separate signalised junctions (Piedmont Rd / Piedmont Cir / Cheshire Bridge split); automatic network build fails, would need a hand-built network"
 7820,SR 139 (RDA) @ Lawton St,incomplete,2026-09-27 to 2026-10-03,7,0/0/7,EB_TL WB_T NB_TL SB_TL,detectors log nothing (every day all zeros)
 7948,17th St @ Village St,incomplete,2026-09-27 to 2026-10-03,7,4/3/0,EB_L WB_L NB_L NB_TR SB_L SB_TR,EB has no through count; WB has no through count

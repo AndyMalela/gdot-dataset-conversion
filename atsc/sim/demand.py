@@ -53,8 +53,10 @@ def day_set(split, date):
 
 
 def is_locked(split, date):
+    """a locked test day; ATSC_FINAL_TEST=1 in the environment unlocks it (final evaluation only, TEST_PLAN.md)"""
+    import os
     s = day_set(split, date)
-    return s is not None and split["sets"][s].get("locked", False)
+    return s is not None and split["sets"][s].get("locked", False) and os.environ.get("ATSC_FINAL_TEST") != "1"
 
 
 def counts_path(site_dir):
@@ -134,11 +136,15 @@ def max_service(sig, plan_name, serving, window=BIN, dt_=0.5):
     """Most seconds of green + yellow the `serving` phases can get in any `window` s under the plan,
     with the NEMA rules of nema.py: the serving phases always called and never asked to end, every
     other phase called only if on recall and ended as soon as its minimum allows."""
-    ph = {int(k): Phase(v["min_green"], v["yellow"], v["red"], v["ped_min"], recall=v["recall"])
+    ph = {int(k): Phase(v["min_green"], v["yellow"], v["red"], v["ped_min"], recall=v["recall"],
+                        ped_actuated=v.get("ped_actuated", False))
           for k, v in sig["phases"].items()}
     rings = {int(r): tuple(tuple(g) for g in gs) for r, gs in sig["rings"].items()}
+    if plan_name == "FREE":                 # no plan (free mode): the serving phases can hold green for the whole window
+        return float(window)
     p = sig["plans"][plan_name]
-    plan = Plan(plan_name, p["cycle"], {int(k): v for k, v in p["splits"].items()}, tuple(p["coordinated"]))
+    plan = Plan(plan_name, p["cycle"], {int(k): v for k, v in p["splits"].items()}, tuple(p["coordinated"]),
+                floating=tuple(p.get("floating_force_off", ())))
     eng = NemaEngine(rings, ph, plan)
     calls, on = set(serving), []
     t, end = 0.0, 12 * plan.cycle
@@ -215,7 +221,7 @@ def sorted_lanes(net, edges, lanes_allowed=None):
     return good
 
 
-def write_routes(site_dir, net_file, date, out, seed=1, vtype=None, depart_lane=None, allow_locked=False):
+def write_routes(site_dir, net_file, date, out, seed=1, vtype=None, depart_lane=None, allow_locked=False, prefix=""):
     """One vehicle per counted vehicle, at a uniformly random time in its 5-min bin (Poisson arrivals
     with the measured count), departing early by its free-flow time from the network entry to the
     detector that counted it, so it reaches that detector inside its bin. Outage bins: no vehicles.
@@ -253,15 +259,22 @@ def write_routes(site_dir, net_file, date, out, seed=1, vtype=None, depart_lane=
         lead[col] = to_stop - back / net.getEdge(m["from"]).getSpeed()
 
     rng = random.Random(seed)
+    # ATSC_DEMAND_SCALE: a labelled sensitivity experiment only (never a correction of the data): every bin's count
+    # is multiplied by k, the fractional part drawn at random per bin, so the real profile and turning shares are kept
+    scale = float(os.environ.get("ATSC_DEMAND_SCALE", "1"))
+    srng = random.Random(7919 * seed + 3)
     veh, outage, total = [], [], {c: 0 for c in mv["movements"]}
     for b in sorted(bins, key=lambda b: b.t):
         if b.status != "ok":
             outage.append(b.t)
             continue
         for col, n in b.counts.items():
+            if scale != 1:
+                x = n * scale
+                n = int(x) + (1 if srng.random() < x - int(x) else 0)
             total[col] += n
             for i in range(n):
-                veh.append((max(0.0, round(b.t + rng.uniform(0, BIN) - lead[col], 2)), f"{col}.{b.t}.{i}", col))
+                veh.append((max(0.0, round(b.t + rng.uniform(0, BIN) - lead[col], 2)), f"{prefix}{col}.{b.t}.{i}", col))
     veh.sort()
     # "sorted": a random lane among the entry lanes that lead to the vehicle's movement without a lane change
     # (drivers choose their lane upstream of the modelled entry); a separate generator, so times are unchanged
@@ -269,9 +282,10 @@ def write_routes(site_dir, net_file, date, out, seed=1, vtype=None, depart_lane=
     lane_of = (lambda c: lrng.choice(good[c])) if depart_lane == "sorted" else (lambda c: depart_lane)
 
     va = {"vClass": "passenger", **(vtype or {})}
-    L = ["<routes>", '  <vType id="car" ' + " ".join(f'{k}="{v}"' for k, v in va.items()) + "/>"]
-    L += [f'  <route id="{c}" edges="{e}"/>' for c, e in routes.items()]
-    L += [f'  <vehicle id="{v}" type="car" route="{c}" depart="{t}" departLane="{lane_of(c)}" departSpeed="max"/>'
+    vt = f"{prefix}car"                      # neighbour flows get their own type / route ids (one routes file each)
+    L = ["<routes>", f'  <vType id="{vt}" ' + " ".join(f'{k}="{v}"' for k, v in va.items()) + "/>"]
+    L += [f'  <route id="{prefix}{c}" edges="{e}"/>' for c, e in routes.items()]
+    L += [f'  <vehicle id="{v}" type="{vt}" route="{prefix}{c}" depart="{t}" departLane="{lane_of(c)}" departSpeed="max"/>'
           for t, v, c in veh]
     L.append("</routes>")
     Path(out).write_text("\n".join(L) + "\n")
@@ -283,6 +297,7 @@ def write_routes(site_dir, net_file, date, out, seed=1, vtype=None, depart_lane=
         else:
             wins.append([t, t + BIN])
     meta = {"date": str(date), "seed": seed, "vtype": va, "depart_lane": depart_lane, "vehicles": len(veh), "per_movement": total,
+            "demand_scale": scale,
             "counts_file": counts_path(site_dir).name,
             "sorted_lanes": good if depart_lane == "sorted" else None,
             "outage_windows_s": wins, "lead_s": {c: round(v, 1) for c, v in lead.items()},

@@ -1,0 +1,11 @@
+Detector ID,Det. Channel,Direction,Phase,Perm. Phase,Overlap,Enabled,Detection Types,Detection Hardware,Latency Correction,Movement Type,Lane Number,Lane Type,Dist. From Stop Bar,Decision Point,Move. Delay,Min Speed Filter,Comment
+109001,1,EB,1,6,False,True,Lane-by-lane Count; Stop Bar Presence,Wavetronix Matrix,0,Left,1,Vehicle,,,,,
+109003,3,WB,2,,False,True,Advanced Count; Lane-by-lane Count,Inductive Loops,0,Thru,1,Vehicle,420,,,,
+109004,4,WB,2,,False,True,Advanced Count; Lane-by-lane Count,Inductive Loops,0,Thru,2,Vehicle,420,,,,
+109009,9,SB,7,4,False,True,Lane-by-lane Count; Stop Bar Presence,Inductive Loops,0,Left,1,Vehicle,,,,,
+109011,11,SB,4,,False,True,Lane-by-lane Count; Stop Bar Presence,Inductive Loops,0,Thru,1,Vehicle,,,,,
+109019,19,WB,5,2,False,True,Lane-by-lane Count; Stop Bar Presence,Inductive Loops,0,Left,1,Vehicle,,,,,
+109021,21,EB,6,,False,True,Advanced Count; Lane-by-lane Count,Inductive Loops,0,Thru,1,Vehicle,430,,,,
+109022,22,EB,6,,False,True,Advanced Count; Lane-by-lane Count,Inductive Loops,0,Thru,2,Vehicle,430,,,,
+109029,29,NB,3,8,False,True,Lane-by-lane Count; Stop Bar Presence,Inductive Loops,0,Left,1,Vehicle,,,,,
+109031,31,NB,8,,False,True,Lane-by-lane Count; Stop Bar Presence,Inductive Loops,0,Thru,1,Vehicle,,,,,

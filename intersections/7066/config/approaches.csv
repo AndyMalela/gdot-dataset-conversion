@@ -1,0 +1,7 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Northbound,SR 141 Peachtree Rd NBL,1,2,,,,,,
+Southbound,SR 141 Peachtree Rd SB,2,,,,,,,35
+Eastbound,Maple Drive EB,4,4,,,,,,
+Southbound,SR 141 Peachtree Rd SBL,5,6,,,,,,
+Northbound,SR 141 Peachtree Rd NB,6,,,,,,,35
+Westbound,Maple Drive WB,8,8,,,,,,

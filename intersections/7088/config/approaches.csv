@@ -1,0 +1,8 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Southbound,SR 9 Peachtree Rd SB,2,,,,,,,35
+Eastbound,Pharr Rd EB LT,3,8,,,,,,
+Westbound,Pharr Rd WB,4,,,,,,,
+Southbound,SR 9 Peachtree Rd SBLT,5,2,,,,,,
+Northbound,SR 9 Peachtree Rd NB,6,,,,,,,35
+Westbound,Pharr Rd WB LT,7,4,,,,,,
+Eastbound,Pharr Rd EB,8,,,,,,,

@@ -1,0 +1,12 @@
+Signal:        1090
+Name:          SR 10 @ SR 53
+Controller Type:MaxTime
+Description:   Region 1
+Primary Name:  SR 10
+Secondary Name:SR 53
+Latitude:      33.89984
+Longitude:     -83.57476
+Versions:      4/26/2023 - Copy of Initial | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-16 01:46
+Detectors:     10   Approaches: 8

@@ -1,0 +1,68 @@
+{
+ "signal_id": "138",
+ "source": "GDOT ATSPM approach table (protected / permissive phases), transcribed 2026-11-16",
+ "phases": [
+  {
+   "phase": 1,
+   "approach": "EB",
+   "move": "L",
+   "type": "protected",
+   "desc": "W Paces Ferry EBL"
+  },
+  {
+   "phase": 6,
+   "approach": "EB",
+   "move": "L",
+   "type": "permissive",
+   "desc": "W Paces Ferry EBL"
+  },
+  {
+   "phase": 6,
+   "approach": "EB",
+   "move": "T",
+   "type": "protected",
+   "desc": "W Paces Ferry EBT"
+  },
+  {
+   "phase": 2,
+   "approach": "WB",
+   "move": "T",
+   "type": "protected",
+   "desc": "W Paces Ferry WBT"
+  },
+  {
+   "phase": 5,
+   "approach": "WB",
+   "move": "L",
+   "type": "protected",
+   "desc": "W Paces Ferry WBL (driveway leg not modelled)"
+  },
+  {
+   "phase": 2,
+   "approach": "WB",
+   "move": "L",
+   "type": "permissive",
+   "desc": "W Paces Ferry WBL"
+  },
+  {
+   "phase": 4,
+   "approach": "NB",
+   "move": "all",
+   "type": "protected",
+   "desc": "Driveway NB (not modelled)"
+  },
+  {
+   "phase": 8,
+   "approach": "SB",
+   "move": "all",
+   "type": "protected",
+   "desc": "Paces Place SB"
+  }
+ ],
+ "count_labels": {
+  "NB": "NB",
+  "EB": "EB",
+  "SB": "SB",
+  "WB": "WB"
+ }
+}

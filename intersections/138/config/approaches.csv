@@ -1,0 +1,7 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Eastbound,W Paces Ferry EBL,1,6,,,,,,
+Westbound,W Paces Ferry WBT,2,,,,,,,
+Northbound,Driveway NB,4,,,,,,,
+Westbound,W Paces Ferry WBL,5,2,,,,,,
+Eastbound,W Paces Ferry EBT,6,,,,,,,
+Southbound,Paces Place SB,8,,,,,,,

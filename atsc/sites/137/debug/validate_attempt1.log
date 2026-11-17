@@ -1,0 +1,93 @@
+validation: 20 days x 1 controller settings = 20 full-day runs
+Warning: Vehicle 'SB_L.5400.0' performs emergency braking on lane '9273981#9_2' with decel=9.00, wished=4.50, severity=1.00, time=5636.00.
+Warning: Vehicle 'NB_L.9600.3' performs emergency braking on lane '9269817#3_2' with decel=9.00, wished=4.50, severity=1.00, time=9716.00.
+Warning: Vehicle 'SB_L.29700.3' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=29822.50.
+Warning: Vehicle 'SB_L.38400.1' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=38488.50.
+Warning: Vehicle 'SB_L.37800.5' performs emergency braking on lane '9273981#9_2' with decel=9.00, wished=4.50, severity=1.00, time=37978.50.
+Warning: Vehicle 'NB_L.39600.0' performs emergency braking on lane '9269817#3_2' with decel=9.00, wished=4.50, severity=1.00, time=39882.50.
+Warning: Vehicle 'SB_L.45900.1' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=46002.00.
+Warning: Vehicle 'SB_L.44100.3' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=44411.00.
+Warning: Vehicle 'SB_L.44700.7' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=44914.00.
+Warning: Vehicle 'SB_L.44700.6' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=44945.50.
+Warning: Vehicle 'SB_L.47400.12' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=47620.00.
+Warning: Vehicle 'NB_L.51000.2' performs emergency braking on lane '9269817#3_2' with decel=9.00, wished=4.50, severity=1.00, time=51110.00.
+Warning: Vehicle 'SB_L.48600.7' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=48731.50.
+Warning: Vehicle 'SB_L.57900.10' performs emergency braking on lane '9273981#9_2' with decel=9.00, wished=4.50, severity=1.00, time=57904.50.
+Warning: Vehicle 'SB_L.57000.4' performs emergency braking on lane ':69545429_10_0' with decel=9.00, wished=4.50, severity=1.00, time=57088.50.
+Warning: Vehicle 'SB_L.57300.7' performs emergency braking on lane ':69545429_10_0' with decel=9.00, wished=4.50, severity=1.00, time=57465.50.
+Warning: Vehicle 'SB_L.59700.3' performs emergency braking on lane '9273981#9_2' with decel=9.00, wished=4.50, severity=1.00, time=59960.50.
+Warning: Vehicle 'SB_L.55200.5' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=55451.50.
+Warning: Vehicle 'SB_L.52800.9' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=52869.50.
+Warning: Vehicle 'SB_L.61800.4' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=62055.00.
+Warning: Vehicle 'SB_L.56700.15' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=56999.00.
+Warning: Vehicle 'SB_L.62100.3' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=62296.00.
+Warning: Vehicle 'SB_L.71100.11' performs emergency braking on lane '9273981#9_2' with decel=9.00, wished=4.50, severity=1.00, time=71307.50.
+Warning: Vehicle 'SB_L.61500.7' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=61778.50.
+Warning: Vehicle 'SB_L.64200.6' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=64370.00.
+Warning: Vehicle 'SB_L.62700.3' performs emergency braking on lane '9273981#9_2' with decel=9.00, wished=4.50, severity=1.00, time=62754.00.
+Warning: Vehicle 'NB_L.64800.0' performs emergency braking on lane '9269817#3_2' with decel=9.00, wished=4.50, severity=1.00, time=64844.50.
+Warning: Vehicle 'SB_L.62700.1' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=62900.50.
+Warning: Vehicle 'SB_L.66900.9' performs emergency braking on lane '9273981#9_2' with decel=9.00, wished=4.50, severity=1.00, time=66948.00.
+Warning: Vehicle 'SB_L.69300.0' performs emergency braking on lane '9273981#9_2' with decel=9.00, wished=4.50, severity=1.00, time=69317.50.
+Warning: Vehicle 'SB_L.66600.6' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=66635.00.
+Warning: Vehicle 'SB_L.73500.17' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=73763.00.
+Warning: Vehicle 'SB_L.76800.6' performs emergency braking on lane '9273981#9_2' with decel=9.00, wished=4.50, severity=1.00, time=76985.50.
+Warning: Vehicle 'NB_L.78900.0' performs emergency braking on lane '9269817#3_2' with decel=9.00, wished=4.50, severity=1.00, time=79009.50.
+Warning: Vehicle 'SB_L.81600.5' performs emergency braking on lane '9273981#9_2' with decel=9.00, wished=4.50, severity=1.00, time=81612.00.
+Warning: Vehicle 'NB_L.80100.0' performs emergency braking on lane '9269817#3_2' with decel=9.00, wished=4.50, severity=1.00, time=80189.50.
+Warning: Vehicle 'SB_L.56100.9' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=56259.50.
+Warning: Vehicle 'SB_L.55200.7' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=55339.50.
+Warning: Vehicle 'SB_L.55200.10' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=55499.50.
+Warning: Vehicle 'NB_L.55800.2' performs emergency braking on lane ':69545429_12_0' with decel=9.00, wished=4.50, severity=1.00, time=55846.00.
+Warning: Vehicle 'SB_L.56700.1' performs emergency braking on lane '9273981#9_2' with decel=9.00, wished=4.50, severity=1.00, time=56861.50.
+Warning: Vehicle 'NB_L.56400.2' performs emergency braking on lane ':69545429_7_0' with decel=9.00, wished=4.50, severity=1.00, time=56682.00.
+Warning: Vehicle 'SB_L.60900.2' performs emergency braking on lane '9273981#9_2' with decel=9.00, wished=4.50, severity=1.00, time=61036.00.
+Warning: Vehicle 'SB_L.60900.4' performs emergency braking on lane '9273981#9_2' with decel=9.00, wished=4.50, severity=1.00, time=61189.50.
+Warning: Vehicle 'SB_L.63000.1' performs emergency braking on lane ':69545429_2_0' with decel=9.00, wished=4.50, severity=1.00, time=63276.00.
+Warning: Vehicle 'SB_L.62100.0' performs emergency braking on lane '9273981#9_2' with decel=9.00, wished=4.50, severity=1.00, time=62369.00.
+Warning: Vehicle 'SB_L.64500.2' performs emergency braking on lane '9273981#9_2' with decel=9.00, wished=4.50, severity=1.00, time=64533.00.
+| Phase | Plan | days | avg split sim − field (s) | % gap-outs sim − field | % skips sim − field |
+|---|---|---|---|---|---|
+| P1 | A | 6 | -2.1 | +25 | -16 |
+| P1 | B | 7 | -1.8 | +35 | -17 |
+| P1 | C | 7 | -2.1 | +38 | +0 |
+| P1 | D | 7 | -1.6 | +27 | -22 |
+| P1 | E | 42 | -3.2 | +28 | -12 |
+| P1 | G | 5 | +10.7 | -1 | +20 |
+| P3 | A | 6 | -2.3 | +45 | -5 |
+| P3 | B | 6 | +0.7 | -10 | -3 |
+| P3 | C | 5 | -1.3 | +48 | -5 |
+| P3 | D | 7 | +0.1 | +50 | -18 |
+| P3 | E | 31 | -3.7 | +40 | -5 |
+| P4 | A | 8 | -7.1 | +10 | +2 |
+| P4 | B | 8 | -7.0 | +35 | -1 |
+| P4 | C | 7 | -9.9 | +11 | +3 |
+| P4 | D | 8 | -2.5 | -8 | +9 |
+| P4 | E | 36 | -8.8 | +20 | +0 |
+| P4 | G | 5 | -5.5 | +30 | +4 |
+| P5 | A | 8 | -1.1 | +32 | -4 |
+| P5 | B | 7 | -1.2 | +38 | +9 |
+| P5 | C | 7 | -0.7 | +42 | -2 |
+| P5 | D | 7 | +0.0 | +29 | -10 |
+| P5 | E | 39 | -2.5 | +30 | +2 |
+| P5 | G | 8 | +11.2 | -3 | +12 |
+| P7 | A | 8 | +0.5 | +32 | -27 |
+| P7 | B | 5 | +0.7 | +30 | -15 |
+| P7 | C | 7 | -0.8 | +23 | -10 |
+| P7 | D | 7 | -0.3 | +56 | -36 |
+| P7 | E | 35 | -0.6 | +29 | -16 |
+| P7 | G | 5 | +4.6 | -1 | -29 |
+| P8 | A | 9 | -8.4 | -9 | +18 |
+| P8 | B | 8 | -6.9 | +22 | +11 |
+| P8 | C | 8 | -10.6 | +2 | +9 |
+| P8 | D | 8 | -5.3 | -18 | +20 |
+| P8 | E | 41 | -12.1 | +9 | +7 |
+| P8 | G | 10 | -7.8 | +11 | +3 |
+
+- **V1 average split:** 19/35 pairs within 3 s, worst 12.1 s → **FAIL**
+- **V2 % gap-outs:** 11/35 pairs within 15 points, worst 56 → **FAIL**
+- **V3 % skips:** 24/35 pairs within 15 points → **FAIL** (reported)
+- **V4:** not defined for 137 (VALIDATION.md)
+- **V5 health:** 0 teleports; days with W Paces Ferry through PM delay > 100 s: none → **PASS**
+
+**Accepted (V1, V2, V5):** NO

@@ -11,6 +11,7 @@ from __future__ import annotations
 import dataclasses
 import datetime as dt
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -102,7 +103,7 @@ def actuated_from_site(site_dir):
 # ---------------------------------------------------------------------------- the controller
 class SumoSignal:
     def __init__(self, conn, site_dir, net_file, policy, mode="plan", day=None, plan=None,
-                 skip_uncalled=True, free_max=None, schedule=None):
+                 skip_uncalled=True, free_max=None, schedule=None, seed=1):
         """mode 'plan': GDOT's time-of-day plans for `day` (YYYY-MM-DD); mode 'fixed': one given Plan;
         mode 'schedule': own time-of-day plans, `schedule` = [(start s, Plan)] (e.g. Webster);
         mode 'free': no cycle, max greens `free_max` (default: signal.json max_green_free)."""
@@ -114,7 +115,7 @@ class SumoSignal:
             q = int(k)
             mx = (free_max or {}).get(q, v["max_green_free"])
             ph[q] = Phase(min_green=v["min_green"], yellow=v["yellow"], red=v["red"], ped_min=v["ped_min"],
-                          max_green=mx, recall=v["recall"])
+                          max_green=mx, recall=v["recall"], ped_actuated=v.get("ped_actuated", False))
         rings = {int(r): tuple(tuple(g) for g in gs) for r, gs in self.sig["rings"].items()}
         self.engine = NemaEngine(rings, ph, None, skip_uncalled=skip_uncalled)
         if mode == "plan":
@@ -131,6 +132,11 @@ class SumoSignal:
         for d in [d for d in det["detectors"] if d.get("modelled", True)]:
             (self.stopbar if d["kind"] == "stopbar" else self.setback).setdefault(d["phase"], []).append(f"ch{d['ch']}")
         self.last_actuation = {}
+        # pedestrian pushes (signal.json "ped_calls_per_h": {phase: [24 hourly rates]}, measured from GDOT's charts):
+        # Poisson arrivals, drawn from their own generator so vehicle demand is unchanged
+        import random as _random
+        self.ped_rate = {int(k): v for k, v in self.sig.get("ped_calls_per_h", {}).items()}
+        self.ped_rng = _random.Random(104729 * seed + 11)
         self.now = 0.0
         self._last_state = None
         self.plan_log = []              # (time, plan name) at every change
@@ -150,9 +156,15 @@ class SumoSignal:
             return self.engine.plan
         self._cur_plan_name = name
         self.plan_log.append((now, name))
+        if name == "FREE":                  # Split Monitor 'Actuated'/Free band: no plan -> engine free mode (137 nights)
+            return None
         p = self.sig["plans"][name]
         # the new plan's cycle starts now (real controllers transition over a few cycles; not modelled)
-        return Plan(name, p["cycle"], {int(k): v for k, v in p["splits"].items()}, tuple(p["coordinated"]), offset=now)
+        off = now
+        if "offset_s" in p:                  # absolute offset (s after midnight, mod cycle): coordinated with neighbours
+            off = p["offset_s"] + math.floor((now - p["offset_s"]) / p["cycle"]) * p["cycle"]
+        return Plan(name, p["cycle"], {int(k): v for k, v in p["splits"].items()}, tuple(p["coordinated"]), offset=off,
+                    floating=tuple(p.get("floating_force_off", ())))
 
     def _own_plan_at(self, now):
         cur = [p for t0, p in self._own if t0 <= now][-1:] or [self._own[0][1]]
@@ -181,7 +193,10 @@ class SumoSignal:
         self.now = self.conn.simulation.getTime()
         calls = self.read_detectors()
         ends = self.policy.end_requests(self) if self.engine._started else set()
-        disp = self.engine.tick(self.now, calls, ends)
+        dt = self.conn.simulation.getDeltaT()
+        h = int(self.now // 3600) % 24
+        peds = {p for p, r in self.ped_rate.items() if self.ped_rng.random() < r[h] / 3600 * dt}
+        disp = self.engine.tick(self.now, calls, ends, peds)
         state = link_state(disp, self.lp, self.n_links)
         if state != self._last_state:
             self.conn.trafficlight.setRedYellowGreenState(self.tls, state)

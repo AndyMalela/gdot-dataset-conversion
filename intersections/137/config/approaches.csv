@@ -1,0 +1,9 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Westbound,WBL W Paces Ferry,1,2,,,,,,25
+Eastbound,W Paces Ferry EBT,2,,,,,,,35
+Northbound,Slaton Dr NB,3,8,,,,,,35
+Southbound,E Andrews Dr SB,4,,,,,,,35
+Eastbound,W Paces Ferry EBL,5,2,,,,,,35
+Westbound,W Paces Ferry WBT,6,,,,,,,35
+Southbound,E Andrews SBL,7,4,,,,,,35
+Northbound,Slaton Drive NB,8,,,,,,,35

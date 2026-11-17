@@ -9,6 +9,23 @@ uv run python tools/watch.py real       --day 2026-10-02 --from 16:00 --to 18:00
 uv run python tools/watch.py real-fixed --day 2026-10-02 --from 16:00 --to 18:00   # GDOT timing, exact phase order
 ```
 
+## OSM 7065
+
+cd intersections/7065osm/sim
+uv run sumo-gui -c gui.sumocfg            # AM peak 07:45–09:00; press play (▶)
+
+other views
+
+# PM peak, 16:00–18:00
+uv run sumo-gui -c sim.sumocfg --gui-settings-file view.xml --begin 57600 --end 64800
+
+# Just the network, to inspect the lanes
+uv run sumo-gui -n ../network/7065osm.net.xml
+
+# Inspect it in netedit
+uv run netedit ../network/7065osm.net.xml
+
+
 ## Options
 
 | Option | Meaning | Default |

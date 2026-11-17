@@ -1,0 +1,12 @@
+Signal:        134
+Name:          Pharr Rd @ Grandview Ave
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  Pharr Rd
+Secondary Name:Grandview Ave
+Latitude:      33.83701
+Longitude:     -84.37634
+Versions:      5/12/2022 - Detection Upgrades | 3/8/2022 - SigOps Standardization | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-16 02:33
+Detectors:     9   Approaches: 5

@@ -1,0 +1,9 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Northbound,SR 400 NBL,1,6,,,,,,
+Southbound,SR 400 SB,2,,,,,,,65
+Westbound,Settingdown Rd WBL,3,8,,,,,,
+Eastbound,Settingdown Road EB,4,,,,,,,
+Southbound,SR 400 SBLT,5,2,,,,,,
+Northbound,SR 400 NB,6,,,,,,,65
+Eastbound,Settingdown Rd EBL,7,4,,,,,,
+Westbound,Settingdown Road WB,8,,,,,,,

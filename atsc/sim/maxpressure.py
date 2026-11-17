@@ -67,7 +67,7 @@ class MaxPressurePolicy:
         self.est = None
 
     def pressure(self, p):
-        return self.est.q[p] * self.est.lanes[p]
+        return self.est.q.get(p, 0.0) * self.est.lanes.get(p, 1)      # a phase without a counted movement (137 P1): no queue
 
     def end_requests(self, sig):
         if self.est is None:
@@ -78,11 +78,11 @@ class MaxPressurePolicy:
         out = set()
         for ring in (1, 2):
             p, mode, el, _ = sig.engine.ring_state(ring)
-            if mode != "G" or el < sig.engine.ph[p].min_service() - 1e-9:
+            if mode != "G" or el < sig.engine.ph[p].min_service(sig.engine.r[ring].ped) - 1e-9:
                 continue
-            waiting = [x for x in self.rings[ring] if x != p and (q[x] > 0 or sig.engine._called(x))]
+            waiting = [x for x in self.rings[ring] if x != p and (q.get(x, 0.0) > 0 or sig.engine._called(x))]
             if not waiting:
                 continue
-            if q[p] <= 0 or self.pressure(p) < max(self.pressure(x) for x in waiting):
+            if q.get(p, 0.0) <= 0 or self.pressure(p) < max(self.pressure(x) for x in waiting):
                 out.add(ring)
         return out

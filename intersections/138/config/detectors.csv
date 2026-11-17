@@ -1,0 +1,7 @@
+Detector ID,Det. Channel,Direction,Phase,Perm. Phase,Overlap,Enabled,Detection Types,Detection Hardware,Latency Correction,Movement Type,Lane Number,Lane Type,Dist. From Stop Bar,Decision Point,Move. Delay,Min Speed Filter,Comment
+13801,1,EB,1,6,False,True,Lane-by-lane Count; Stop Bar Presence,Wavetronix Matrix,0,Left,1,Vehicle,,,,,
+13803,3,WB,2,,False,True,Advanced Count; Lane-by-lane Count,Wavetronix Advance,0,Thru,1,Vehicle,,,,,
+13811,11,NB,4,,False,True,Lane-by-lane Count; Stop Bar Presence,Wavetronix Matrix,0,Thru-Left,1,Vehicle,,,,,
+13819,19,WB,5,2,False,True,Lane-by-lane Count; Stop Bar Presence,Wavetronix Matrix,0,Left,1,Vehicle,,,,,
+13821,21,EB,6,,False,True,Advanced Count; Lane-by-lane Count,Wavetronix Advance,0,Thru,1,Vehicle,,,,,
+13831,31,SB,8,,False,True,Lane-by-lane Count; Stop Bar Presence,Wavetronix Matrix,0,Thru-Left,1,Vehicle,,,,,

@@ -1,0 +1,6 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Westbound,Pharr Rd WB,2,,,,,,,
+Southbound,Grandview Ave SB,3,8,,,,,,
+Northbound,Grandview Ave NB,4,,,,,,,
+Eastbound,Pharr Rd EB,6,,,,,,,
+Southbound,Grandview Ave SB,8,,,,,,,

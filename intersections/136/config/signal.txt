@@ -1,0 +1,12 @@
+Signal:        136
+Name:          E. Paces Ferry Rd @ Grandview Ave
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  E. Paces Ferry Rd
+Secondary Name:Grandview Ave
+Latitude:      33.83905
+Longitude:     -84.37643
+Versions:      3/2/2022 - SigOps Standardization | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-16 02:33
+Detectors:     4   Approaches: 4

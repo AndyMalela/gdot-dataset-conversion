@@ -1,0 +1,8 @@
+<additional>
+  <laneAreaDetector id="ch1001" lane="-1378035586#1_2" endPos="18.27" length="12.00" period="86400" file="NUL"/>
+  <inductionLoop id="ch1021" lane="-289670475#9_0" pos="165.42" period="86400" file="NUL"/>
+  <inductionLoop id="ch1022" lane="-289670475#9_0" pos="163.79" period="86400" file="NUL"/>
+  <inductionLoop id="ch1003" lane="828479500#3_1" pos="20.98" period="86400" file="NUL"/>
+  <inductionLoop id="ch1004" lane="828479500#3_1" pos="20.37" period="86400" file="NUL"/>
+  <laneAreaDetector id="ch1031" lane="-9269949#3_0" endPos="77.94" length="12.00" period="86400" file="NUL"/>
+</additional>

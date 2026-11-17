@@ -183,7 +183,7 @@ class LSTDQPolicy:
         out = set()
         for ring in (1, 2):
             p, mode, el, _ = sig.engine.ring_state(ring)
-            if mode != "G" or el < sig.engine.ph[p].min_service() - 1e-9:
+            if mode != "G" or el < sig.engine.ph[p].min_service(sig.engine.r[ring].ped) - 1e-9:
                 continue
             if sig.now - self.last_dec[ring] < DECISION_S - 1e-9:
                 continue

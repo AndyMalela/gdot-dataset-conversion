@@ -1,0 +1,21 @@
+== LSTDQ v2 seeds 0-4 Tue Nov 17 10:36:15 AM JST 2026
+iter 5: greedy(w)+random episodes, mean delay 25.9 s/veh, transitions so far 830937
+lstdq s0 exit 0
+iter 5: greedy(w)+random episodes, mean delay 25.7 s/veh, transitions so far 872854
+lstdq s1 exit 0
+iter 5: greedy(w)+random episodes, mean delay 23.2 s/veh, transitions so far 852972
+lstdq s2 exit 0
+iter 5: greedy(w)+random episodes, mean delay 27.3 s/veh, transitions so far 917691
+lstdq s3 exit 0
+iter 5: greedy(w)+random episodes, mean delay 25.3 s/veh, transitions so far 799273
+lstdq s4 exit 0
+== Q-learning seeds 0-4 Tue Nov 17 10:57:53 AM JST 2026
+qlearn s1 exit 0
+qlearn s3 exit 0
+qlearn s2 exit 0
+qlearn s0 exit 0
+qlearn s4 exit 0
+== evaluation, all validation weekdays Tue Nov 17 11:21:25 AM JST 2026
+  199/200
+  200/200
+ALL DONE Tue Nov 17 12:08:40 PM JST 2026

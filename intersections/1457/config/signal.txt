@@ -1,0 +1,12 @@
+Signal:        1457
+Name:          Barrett Parkway @ Burnt Hickory Rd
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  Barrett Parkway
+Secondary Name:Burnt Hickory Rd
+Latitude:      33.964024
+Longitude:     -84.615702
+Versions:      1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-16 01:46
+Detectors:     11   Approaches: 8

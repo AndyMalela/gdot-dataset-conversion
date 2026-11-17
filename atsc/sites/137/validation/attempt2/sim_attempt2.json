@@ -1,0 +1,20 @@
+{
+ "source": "2026-11-16: NO capacity calibration for 137 yet (7065's Phase 1.5 step not done here). Driver model = SUMO defaults. Controller settings: passage times from the old pipeline's fit to the recorded greens (intersections/137/sim/README.md: 4 s through, 3 s left, fitted on 2026-10-02 with 20 m stop-bar zones), max recall where the Split Monitor shows < 5 % gap-outs (plan B: P3, P7).",
+ "vtype": {},
+ "step": 0.5,
+ "passage_s": 2.0,
+ "controller": {
+  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)",
+  "max_recall": {},
+  "passage_s": {
+   "1": 8.0,
+   "3": 8.0,
+   "4": 8.0,
+   "5": 8.0,
+   "7": 8.0,
+   "8": 8.0
+  }
+ },
+ "depart_lane": "sorted",
+ "calibration_note": "uncalibrated: saturation flow and discharge headways not checked against the field; results are provisional until Phase 1.5/1.6 are done for 137"
+}

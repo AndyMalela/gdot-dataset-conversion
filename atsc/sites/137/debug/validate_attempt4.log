@@ -1,0 +1,97 @@
+Mon Nov 16 10:25:14 AM JST 2026
+== factors
+saturation flow 1650 veh/h/lane (H = 2.18 s); windows skipped for row order: 3
+| movement | windows | reported | zone activations | estimated vehicles | factor k | PASS s |
+|---|---|---|---|---|---|---|
+| EB_L | 72 | 621 | 630 | 848 | 1.366 | 1.9 |
+| NB_L | 71 | 205 | 215 | 480 | 2.341 | 1.9 |
+| NB_R | 71 | 342 | 339 | 890 | 2.602 | 1.6 |
+| NB_T | 71 | 266 | 265 | 369 | 1.387 | 3.5 |
+| SB_L | 72 | 598 | 607 | 945 | 1.58 | 2.6 |
+| SB_R | 71 | 487 | 514 | 1202 | 2.468 | 1.8 |
+| SB_T | 71 | 498 | 539 | 1055 | 2.118 | 2.1 |
+saturation flow 1900 veh/h/lane (H = 1.89 s); windows skipped for row order: 3
+| movement | windows | reported | zone activations | estimated vehicles | factor k | PASS s |
+|---|---|---|---|---|---|---|
+| EB_L | 72 | 621 | 630 | 876 | 1.411 | 1.9 |
+| NB_L | 71 | 205 | 215 | 517 | 2.522 | 1.9 |
+| NB_R | 71 | 342 | 339 | 1009 | 2.95 | 1.6 |
+| NB_T | 71 | 266 | 265 | 387 | 1.455 | 3.5 |
+| SB_L | 72 | 598 | 607 | 1033 | 1.727 | 2.6 |
+| SB_R | 71 | 487 | 514 | 1325 | 2.721 | 1.8 |
+| SB_T | 71 | 498 | 539 | 1138 | 2.285 | 2.1 |
+== counts
+intersections/137/counts/tmc_137_5min_estimated.csv: presence-zone movements x factor in daytime bins; vehicles added over the period: {'EB_L': 35781, 'NB_L': 44485, 'NB_R': 99539, 'NB_T': 18011, 'SB_L': 61349, 'SB_R': 118989, 'SB_T': 89965}
+intersections/137/counts/tmc_137_5min_upstream.csv: 63 days (2026-03-02..2026-05-29), 18144 bins, 658 outage bins (238 because 138 had an outage)
+bins where 138's WB + NB_TL < 137's WB_L (set to 0): 203
+WB_TR total over the period: 137's zone 883677 -> from 138 330808
+movements.json -> tmc_137_5min_estimated.csv
+== audit
+usable days: 49  (weekday 49, saturday 0)
+
+bins above the physical bound (2400 veh/h/lane of green+yellow, + setback storage), complete/usable weekday+Saturday days:
+  EB_L:    0 bins on  0 days,      0 of  110739 veh (0.00 %); bins above the same bound at 1900: 0
+  EB_TR:    0 bins on  0 days,      0 of  501723 veh (0.00 %); bins above the same bound at 1900: 0
+  WB_L:    0 bins on  0 days,      0 of   63172 veh (0.00 %); bins above the same bound at 1900: 0
+  WB_TR:    0 bins on  0 days,      0 of  271137 veh (0.00 %); bins above the same bound at 1900: 0
+  NB_L:    0 bins on  0 days,      0 of   62645 veh (0.00 %); bins above the same bound at 1900: 1
+  NB_T:    0 bins on  0 days,      0 of   50104 veh (0.00 %); bins above the same bound at 1900: 0
+  NB_R:    2 bins on  1 days,    157 of  126684 veh (0.12 %); bins above the same bound at 1900: 7
+  SB_L:    0 bins on  0 days,      0 of  132056 veh (0.00 %); bins above the same bound at 1900: 0
+  SB_T:    0 bins on  0 days,      0 of  140301 veh (0.00 %); bins above the same bound at 1900: 8
+  SB_R:    5 bins on  3 days,    392 of  158986 veh (0.25 %); bins above the same bound at 1900: 24
+  flagged bins by hour: {'10': 1, '11': 1, '16': 1, '19': 1, '20': 2, '21': 1}
+
+wrote atsc/sites/137/demand_audit/days.csv, flagged_bins.csv (7 rows)
+== fit + validation Mon Nov 16 10:25:40 AM JST 2026
+{'phase': 8, 'passage_s': 6.0, 'plans': 4, 'mean_abs_gap_diff_pts': 6.1, 'mean_abs_split_diff_s': 1.36}
+{'phase': 8, 'passage_s': 8.0, 'plans': 4, 'mean_abs_gap_diff_pts': 2.3, 'mean_abs_split_diff_s': 2.47}
+wrote sim.json controller: {'source': 'fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)', 'max_recall': {}, 'passage_s': {'1': 8.0, '3': 6.0, '4': 3.0, '5': 8.0, '7': 6.0, '8': 8.0}}
+validation: 20 days x 1 controller settings = 20 full-day runs
+| Phase | Plan | days | avg split sim − field (s) | % gap-outs sim − field | % skips sim − field |
+|---|---|---|---|---|---|
+| P1 | A | 6 | +2.0 | +20 | -25 |
+| P1 | B | 7 | +0.9 | -3 | -21 |
+| P1 | C | 7 | +2.9 | +27 | -14 |
+| P1 | D | 7 | +3.0 | +27 | -30 |
+| P1 | E | 42 | +2.0 | +27 | -21 |
+| P1 | G | 5 | +3.1 | +22 | +26 |
+| P3 | A | 6 | -1.4 | +5 | -23 |
+| P3 | B | 6 | -1.0 | +6 | -25 |
+| P3 | C | 5 | -1.0 | +7 | -27 |
+| P3 | D | 7 | +0.4 | +19 | -25 |
+| P3 | E | 31 | -0.4 | -4 | -20 |
+| P4 | A | 8 | -1.1 | +14 | -7 |
+| P4 | B | 8 | -1.9 | +12 | -3 |
+| P4 | C | 7 | -2.8 | +8 | -2 |
+| P4 | D | 8 | +1.3 | +7 | -9 |
+| P4 | E | 36 | -1.3 | +18 | -4 |
+| P4 | G | 5 | -1.2 | +26 | -1 |
+| P5 | A | 8 | +3.7 | +20 | -26 |
+| P5 | B | 7 | +1.4 | -6 | -11 |
+| P5 | C | 7 | +3.8 | +32 | -25 |
+| P5 | D | 7 | +4.5 | +23 | -26 |
+| P5 | E | 39 | +3.2 | +22 | -15 |
+| P5 | G | 8 | +4.0 | +30 | +4 |
+| P7 | A | 8 | +0.4 | -5 | -32 |
+| P7 | B | 5 | -0.6 | -18 | -20 |
+| P7 | C | 7 | -0.2 | -14 | -13 |
+| P7 | D | 7 | +2.8 | +21 | -39 |
+| P7 | E | 35 | +0.9 | -20 | -18 |
+| P7 | G | 5 | -0.1 | +6 | -33 |
+| P8 | A | 9 | -1.0 | -6 | +3 |
+| P8 | B | 8 | -1.6 | -3 | -2 |
+| P8 | C | 8 | -0.9 | +5 | -4 |
+| P8 | D | 8 | -0.1 | -5 | +4 |
+| P8 | E | 41 | -2.6 | +9 | -3 |
+| P8 | G | 10 | -2.2 | +5 | -6 |
+
+- **V1 average split:** 29/35 pairs within 3 s, worst 4.5 s → **PASS**
+- **V2 % gap-outs:** 19/35 pairs within 15 points, worst 32 → **FAIL**
+- **V3 % skips:** 16/35 pairs within 15 points → **FAIL** (reported)
+- **V4:** not defined for 137 (VALIDATION.md)
+- **V5 health:** 0 teleports; days with W Paces Ferry through PM delay > 100 s: none → **PASS**
+
+**Accepted (V1, V2, V5):** NO
+Mon Nov 16 10:37:41 AM JST 2026
+ATTEMPT4 DONE

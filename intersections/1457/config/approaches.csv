@@ -1,0 +1,9 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Northbound,Barrett Pkwy NB LT,1,6,,,,,,
+Southbound,Barrett Pkwy SB,2,,,,,,,45
+Eastbound,Burnt Hickory Rd EB LT,3,8,,,,,,
+Westbound,Burnt Hickory Rd WB,4,,,,,,,
+Southbound,Barrett Pkwy SB LT,5,2,,,,,,
+Northbound,Barrett Pkwy NB,6,,,,,,,45
+Westbound,Burnt Hickory Rd WB LT,7,4,,,,,,
+Eastbound,Burnt Hickory Rd EB,8,,,,,,,

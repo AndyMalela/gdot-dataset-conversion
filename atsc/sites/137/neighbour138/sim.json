@@ -1,0 +1,16 @@
+{
+ "source": "138: no field fit; passage as 137's attempt-1 values (3 s left/side, 4 s main) ASSUMPTION",
+ "vtype": {},
+ "step": 0.5,
+ "passage_s": 3.0,
+ "controller": {
+  "max_recall": {},
+  "passage_s": {
+   "1": 3.0,
+   "2": 4.0,
+   "6": 4.0,
+   "8": 3.0
+  }
+ },
+ "depart_lane": "sorted"
+}

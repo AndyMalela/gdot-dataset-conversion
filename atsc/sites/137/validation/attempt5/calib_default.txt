@@ -1,0 +1,7 @@
+simulation site vtype: activations ending ... (share)
+| left turn | n | protected | permissive | other |
+|---|---|---|---|---|
+| WB_L | 341 | 33% | 66% | 1% |
+| EB_L | 597 | 28% | 71% | 2% |
+| NB_L | 196 | 61% | 33% | 7% |
+| SB_L | 161 | 55% | 43% | 2% |

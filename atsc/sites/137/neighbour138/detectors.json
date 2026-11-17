@@ -1,0 +1,73 @@
+{
+ "source": "intersections/138/config/detectors.csv; advance zones assumed at 260 ft as at 137 (no distance published)",
+ "tls": "69548021",
+ "stopbar_zone_m": {
+  "value": 12.0,
+  "assumption": "as at 137"
+ },
+ "approaches": {
+  "EB": {
+   "edge": "-1378035586#1"
+  },
+  "WB": {
+   "edge": "1160003917"
+  },
+  "SB": {
+   "edge": "-9269949#3"
+  }
+ },
+ "detectors": [
+  {
+   "phase": 1,
+   "leg": "EB",
+   "kind": "stopbar",
+   "lane": 2,
+   "ch": 1001,
+   "hardware": "Wavetronix Matrix"
+  },
+  {
+   "phase": 6,
+   "leg": "EB",
+   "kind": "setback",
+   "lane": 0,
+   "ch": 1021,
+   "dist_m": 79.25,
+   "hardware": "Wavetronix Advance"
+  },
+  {
+   "phase": 6,
+   "leg": "EB",
+   "kind": "setback",
+   "lane": 1,
+   "ch": 1022,
+   "dist_m": 79.25,
+   "hardware": "Wavetronix Advance"
+  },
+  {
+   "phase": 2,
+   "leg": "WB",
+   "kind": "setback",
+   "lane": 1,
+   "ch": 1003,
+   "dist_m": 79.25,
+   "hardware": "Wavetronix Advance"
+  },
+  {
+   "phase": 2,
+   "leg": "WB",
+   "kind": "setback",
+   "lane": 2,
+   "ch": 1004,
+   "dist_m": 79.25,
+   "hardware": "Wavetronix Advance"
+  },
+  {
+   "phase": 8,
+   "leg": "SB",
+   "kind": "stopbar",
+   "lane": 0,
+   "ch": 1031,
+   "hardware": "Wavetronix Matrix"
+  }
+ ]
+}

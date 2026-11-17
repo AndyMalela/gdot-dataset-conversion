@@ -1,0 +1,48 @@
+{
+ "source": "138's own counted movements that do not reach 137 (WB through at 138 is already 137's WB demand)",
+ "movements": {
+  "EB_L": {
+   "leg": "EB",
+   "move": "L",
+   "from": "-1378035586#1",
+   "to": "9269949#0",
+   "phases": [
+    1,
+    6
+   ],
+   "lanes": 1,
+   "counted_at": "stopbar"
+  },
+  "EB_T": {
+   "leg": "EB",
+   "move": "T",
+   "from": "-1378035586#1",
+   "to": "-1160003919#1",
+   "phases": [
+    6
+   ],
+   "lanes": 2,
+   "counted_at": "setback"
+  },
+  "SB_TL": {
+   "leg": "SB",
+   "move": "L",
+   "from": "-9269949#3",
+   "to": "-1160003919#1",
+   "phases": [
+    8
+   ],
+   "lanes": 1,
+   "counted_at": "stopbar"
+  }
+ },
+ "counts_file": "tmc_138_5min.csv",
+ "entry_edges": {
+  "EB": "-289670475#1",
+  "SB": "-9269949#3"
+ },
+ "notes": {
+  "not_modelled": "WB_L (to the driveway) and NB_TL (from the driveway): no driveway leg in OSM; NB_TL vehicles heading west are inside 137's WB demand",
+  "undercount": "138's EB_L and SB_TL are presence-zone counts (same defect as 137): lower bounds"
+ }
+}

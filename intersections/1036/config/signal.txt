@@ -1,0 +1,12 @@
+Signal:        1036
+Name:          SR 400 @ Settingdown Road
+Controller Type:MaxTime
+Description:   Region 1
+Primary Name:  SR 400
+Secondary Name:Settingdown Road
+Latitude:      34.28214
+Longitude:     -84.07616
+Versions:      9/12/2025 - WB dual left | 10/18/2024 - Copy of New Ph5 SBLT | 5/10/2023 - New Ph5 SBLT | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-16 01:46
+Detectors:     10   Approaches: 8

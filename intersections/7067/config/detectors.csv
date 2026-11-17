@@ -1,0 +1,12 @@
+Detector ID,Det. Channel,Direction,Phase,Perm. Phase,Overlap,Enabled,Detection Types,Detection Hardware,Latency Correction,Movement Type,Lane Number,Lane Type,Dist. From Stop Bar,Decision Point,Move. Delay,Min Speed Filter,Comment
+706703,3,SB,2,,False,True,Advanced Count; Lane-by-lane Count,Wavetronix Advance,0,Thru,1,Vehicle,260,,,,
+706711,11,EB,8,,False,True,Stop Bar Presence,Wavetronix Matrix,0,Thru-Left,1,Vehicle,,,,,
+7067117,117,WB,4,,False,True,Lane-by-lane Count,Wavetronix Matrix,0,Thru-Left,1,Vehicle,,,,,
+7067123,123,WB,4,,False,True,Lane-by-lane Count,Wavetronix Matrix,0,Thru,1,Exit,,,,,
+706721,21,NB,6,,False,True,Advanced Count; Lane-by-lane Count,Wavetronix Advance,0,Thru,1,Vehicle,260,,,,
+706731,31,WB,4,,False,True,Stop Bar Presence,Wavetronix Matrix,0,Thru-Left,1,Vehicle,,,,,
+706775,75,SB,2,,False,True,Lane-by-lane Count,Wavetronix Matrix,0,Thru,1,Exit,,,,,
+706776,76,SB,2,,False,True,Lane-by-lane Count,Wavetronix Matrix,0,Thru,2,Exit,,,,,
+706777,77,SB,2,,False,True,Lane-by-lane Count,Wavetronix Matrix,0,Thru,3,Exit,,,,,
+706785,85,EB,8,,False,True,Lane-by-lane Count,Wavetronix Matrix,0,Thru-Left,1,Vehicle,,,,,
+706791,91,EB,8,,False,True,Lane-by-lane Count,Wavetronix Matrix,0,Thru,1,Exit,,,,,

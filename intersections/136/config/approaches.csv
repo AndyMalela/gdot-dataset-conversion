@@ -1,0 +1,5 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Westbound,E. Paces Ferry Rd WB,2,,,,,,,
+Northbound,Grandview Ave NB,4,,,,,,,
+Eastbound,E. Paces Ferry Rd EB,6,,,,,,,35
+Southbound,Grandview Ave SB,8,,,,,,,

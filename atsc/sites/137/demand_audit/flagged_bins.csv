@@ -1,0 +1,8 @@
+date,set,time,movement,count,limit,ratio,plans,prev,next
+2026-03-20,train,16:50,SB_R,79,77,1.02,C,63,27
+2026-04-07,train,10:25,NB_R,80,76,1.05,B,44,21
+2026-04-07,train,11:15,NB_R,77,76,1.01,B,45,33
+2026-04-16,train,21:55,SB_R,77,76,1.01,B,62,11
+2026-05-06,validation,19:05,SB_R,71,68,1.04,E,46,21
+2026-05-06,validation,20:10,SB_R,89,68,1.31,E,2,22
+2026-05-06,validation,20:25,SB_R,76,68,1.12,E,11,19

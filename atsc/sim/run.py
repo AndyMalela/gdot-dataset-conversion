@@ -15,6 +15,16 @@ def net_file(site_dir):
     return net / json.loads((net / "junction.json").read_text())["net_file"]
 
 
+def neighbours(site_dir):
+    """[(neighbour site dir, tls id)] from <site>/neighbours.json: signals simulated under their own field timing
+    (e.g. 137's upstream signal 138, VALIDATION.md attempt 6). Without the file every other signal is off."""
+    import json
+    f = Path(site_dir) / "neighbours.json"
+    if not f.exists():
+        return []
+    return [(Path(site_dir) / n["dir"], n["tls"]) for n in json.loads(f.read_text())["signals"]]
+
+
 def start(site_dir, routes, begin, end, gui=False, step=1.0, seed=1, extra=()):
     site_dir = Path(site_dir)
     if gui:
@@ -23,8 +33,10 @@ def start(site_dir, routes, begin, end, gui=False, step=1.0, seed=1, extra=()):
     else:
         import libsumo as conn
         binary = "sumo"
+    nb = neighbours(site_dir)
+    adds = [str(site_dir / "network" / "detectors.add.xml")] + [str(Path(d) / "network" / "detectors.add.xml") for d, _ in nb]
     cmd = [binary, "-n", str(net_file(site_dir)), "-r", str(routes),
-           "-a", str(site_dir / "network" / "detectors.add.xml"),
+           "-a", ",".join(adds),
            "-b", str(begin), "-e", str(end), "--step-length", str(step), "--seed", str(seed),
            "--no-step-log", "true", "--duration-log.disable", "true",
            "--time-to-teleport", "300", *extra]
@@ -32,7 +44,8 @@ def start(site_dir, routes, begin, end, gui=False, step=1.0, seed=1, extra=()):
     import json
     tls = json.loads((site_dir / "signal.json").read_text())["tls"]
     # any other signal in the network is outside the study: unsignalised (GEOMETRY.md)
+    keep = {tls} | {t for _, t in nb}
     for t in conn.trafficlight.getIDList():
-        if t != tls:
+        if t not in keep:
             conn.trafficlight.setProgram(t, "off")
     return conn

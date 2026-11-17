@@ -7,7 +7,7 @@ Complete (like 7065) = every approach has its own left-turn count plus a through
 | Signal | Intersection | Dates checked | Days ok/partial/none | Movements |
 |---|---|---|---|---|
 | 137 | W. Paces Ferry Rd @ E. Andrews Dr/Slaton Dr | 2026-09-26 to 2026-10-02 | 5/2/0 | EB_L EB_TR WB_L WB_TR NB_L NB_T NB_R SB_L SB_T SB_R |
-| 7065 | SR 141 @ SR 237 | 2026-05-06 to 2026-10-03 | 5/5/0 | EB_L EB_T WB_L WB_T NB_L NB_T SB_L SB_T |
+| 7065 | SR 141 @ SR 237 | 2026-05-06 to 2026-10-22 | 65/46/1 | EB_L EB_T WB_L WB_T NB_L NB_T SB_L SB_T |
 
 ## Accepted by decision (6)
 
@@ -26,7 +26,7 @@ Complete (like 7065) = every approach has its own left-turn count plus a through
 |---|---|---|---|---|
 | 7431 | SR 237 @ Morningside Mill S/C | 2026-09-26 to 2026-10-02 | EB_T WB_L WB_R NB_T SB_L SB_T | EB has no left count; WB has no through count; NB has no left count — put aside 2026-10-05: shopping-centre entrance on Piedmont (~94% of volume is Piedmont through); timing plans read fine and are coordinated with the SR 237 corridor; OSM side legs are a parking-lot mesh, so the network needs the real centre entrance drawn by hand; uncounted: NB right into centre, west driveway turns (tiny) |
 
-## Incomplete (12)
+## Incomplete (17)
 
 | Signal | Intersection | Dates checked | Movements | Why |
 |---|---|---|---|---|
@@ -39,6 +39,11 @@ Complete (like 7065) = every approach has its own left-turn count plus a through
 | 244 | 10th Street @ State Street | 2026-09-27 to 2026-10-03 | NB_TL SB_TL | no counts on EB/WB; left and through counted together: NB_TL SB_TL |
 | 337 | Pryor Rd SW @ Ridge Ave SW | 2026-09-27 to 2026-10-03 | WB_T | no counts on EB/NB/SB; WB has no left count |
 | 362 | Hank Aaron Dr @ Atlanta Ave | 2026-09-27 to 2026-10-03 | EB_TL EB_TR | detectors log nothing (every day all zeros) |
+| 7058 | SR 141 (Peachtree Rd) @ Highland Dr | 2026-09-14 to 2026-09-25 | EB_TL WB_L WB_TR NB_L NB_T SB_L SB_T | left and through counted together: EB_TL |
+| 7066 | SR 141 @ Maple Drive | 2026-07-10 to 2026-10-02 | EB_L EB_TR WB_TL NB_L NB_T NB_TR SB_L SB_T | left and through counted together: WB_TL |
+| 7071 | SR 237 @ Tower Place Drive | 2026-07-10 to 2026-09-25 | EB_L EB_TR WB_TL NB_L SB_L | left and through counted together: WB_TL; NB has no through count; SB has no through count |
+| 7079 | SR 237 @ E Paces Ferry | 2026-09-14 to 2026-09-25 | EB_L EB_T EB_R WB_T NB_T NB_TL SB_T | left and through counted together: NB_TL; WB has no left count; SB has no left count |
+| 7088 | SR 9 @ Pharr Road | 2026-09-29 to 2026-10-02 | EB_L EB_TR WB_L WB_T SB_L | no counts on NB; SB has no through count |
 | 7126 | SR 237 @ Cheshire Bridge | 2026-09-26 to 2026-10-02 | EB_TL EB_TR WB_L WB_TR NB_L NB_T SB_L SB_T | left and through counted together: EB_TL — skipped 2026-10-05: OSM maps this as 4 separate signalised junctions (Piedmont Rd / Piedmont Cir / Cheshire Bridge split); automatic network build fails, would need a hand-built network |
 | 7820 | SR 139 (RDA) @ Lawton St | 2026-09-27 to 2026-10-03 | EB_TL WB_T NB_TL SB_TL | detectors log nothing (every day all zeros) |
 | 7948 | 17th St @ Village St | 2026-09-27 to 2026-10-03 | EB_L WB_L NB_L NB_TR SB_L SB_TR | EB has no through count; WB has no through count |

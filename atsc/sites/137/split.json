@@ -1,0 +1,27 @@
+{
+ "source": "137 study period 2026-03-02..05-29 (chosen 2026-11-16 03:00: the only period where GDOT's report counts all ten movements; see movements.json counts_note). Chronological; the test weeks are locked and never read. (decide) user to confirm the lock window",
+ "sets": {
+  "train": {
+   "from": "2026-03-02",
+   "to": "2026-04-17",
+   "use": "RL training, Webster design, actuated tuning"
+  },
+  "validation": {
+   "from": "2026-04-20",
+   "to": "2026-05-15",
+   "use": "all evaluation and diagnosis before the final test"
+  },
+  "test": {
+   "from": "2026-05-18",
+   "to": "2026-05-29",
+   "use": "LOCKED: final evaluation only",
+   "locked": true
+  }
+ },
+ "day_types": "weekdays only",
+ "holidays": [
+  "2026-05-25"
+ ],
+ "not_in_any_set": "2026-06-15, 07-15, 08-03..10-03 (EB_TR/WB_L not counted, WB zone unreliable): screening and diagnosis only",
+ "holidays_note": "2026-05-25 Memorial Day (US federal holiday), excluded before the test days were read (TEST_PLAN.md); train and validation contain no federal holiday"
+}

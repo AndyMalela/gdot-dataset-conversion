@@ -1,0 +1,104 @@
+Mon Nov 16 04:06:16 PM JST 2026
+== A. data Mon Nov 16 04:06:16 PM JST 2026
+intersections/137/counts/tmc_137_5min_estimated.csv: presence-zone movements x factor in daytime bins; vehicles added over the period: {'EB_L': 35781, 'NB_L': 44485, 'NB_R': 99539, 'NB_T': 18011, 'SB_L': 61349, 'SB_R': 118989, 'SB_T': 89965}
+intersections/137/counts/tmc_137_5min_upstream.csv: 63 days (2026-03-02..2026-05-29), 18144 bins, 658 outage bins (238 because 138 had an outage)
+bins where 138's WB + NB_TL < 137's WB_L (set to 0): 203
+WB_TR total over the period: 137's zone 883677 -> from 138 330808
+per day WB_TR, train + validation only (from 138 / 137's zone): 03-02:5432/18739  03-03:5351/18824  03-04:5318/16859  03-05:5202/10371  03-06:5559/10989  03-09:5293/12456  03-10:5074/15791  03-11:5150/13149  03-12:6748/20684  03-13:6418/19413  03-16:7499/16808  03-17:6854/19920  03-18:6060/13315  03-19:5802/12101  03-20:5961/14464  03-23:5195/13484  03-24:4925/18959  03-25:4854/15990  03-26:4296/12167  03-27:4772/15738  03-30:5027/13311  03-31:4810/11041  04-01:4973/10723  04-02:5223/15263  04-03:5033/14346  04-06:2305/3675  04-07:4628/18439  04-08:5412/17120  04-09:5344/15299  04-10:4926/12940  04-13:2963/5684  04-14:5202/15379  04-15:598/9028  04-16:5602/11182  04-17:5689/12825  04-20:4980/18719  04-21:5062/18327  04-22:5245/15623  04-23:5430/12931  04-24:5831/15933  04-27:5545/19031  04-28:6846/18403  04-29:5506/12994  04-30:6342/15169  05-01:6101/15887  05-04:5116/11864  05-05:5344/14658  05-06:5474/11305  05-07:5791/8845  05-08:6020/11644  05-11:5220/11806  05-12:5515/22603  05-13:5356/15161  05-14:5845/15459  05-15:5641/18462
+  P8: min 7.8 (n=257), Y 2.8, R 2.1, max(free) 35.1
+rings {'1': [[1, 2], [3, 4]], '2': [[5, 6], [7, 8]]}
+days by set / type / quality
+  train      weekday   bad 6  complete 28  usable 1
+  validation weekday   complete 20
+usable days: 49  (weekday 49, saturday 0)
+
+bins above the physical bound (2400 veh/h/lane of green+yellow, + setback storage), complete/usable weekday+Saturday days:
+  EB_L:    0 bins on  0 days,      0 of  110739 veh (0.00 %); bins above the same bound at 1900: 0
+  EB_TR:    0 bins on  0 days,      0 of  501723 veh (0.00 %); bins above the same bound at 1900: 0
+  WB_L:    0 bins on  0 days,      0 of   63172 veh (0.00 %); bins above the same bound at 1900: 0
+  WB_TR:    0 bins on  0 days,      0 of  271137 veh (0.00 %); bins above the same bound at 1900: 0
+  NB_L:    0 bins on  0 days,      0 of   62645 veh (0.00 %); bins above the same bound at 1900: 1
+  NB_T:    0 bins on  0 days,      0 of   50104 veh (0.00 %); bins above the same bound at 1900: 0
+  NB_R:    2 bins on  1 days,    157 of  126684 veh (0.12 %); bins above the same bound at 1900: 7
+  SB_L:    0 bins on  0 days,      0 of  132056 veh (0.00 %); bins above the same bound at 1900: 0
+  SB_T:    0 bins on  0 days,      0 of  140301 veh (0.00 %); bins above the same bound at 1900: 8
+  SB_R:    5 bins on  3 days,    392 of  158986 veh (0.25 %); bins above the same bound at 1900: 24
+  flagged bins by hour: {'10': 1, '11': 1, '16': 1, '19': 1, '20': 2, '21': 1}
+
+wrote atsc/sites/137/demand_audit/days.csv, flagged_bins.csv (7 rows)
+W-N   from 00:00: cycle  84.0  Y 0.15  C0  84.0  splits {1: 12.0, 2: 30.8, 5: 11.9, 6: 31.0, 3: 11.7, 4: 29.5, 7: 13.1, 8: 28.1}
+W-A   from 06:30: cycle 112.4  Y 0.65  C0 112.4  splits {1: 12.1, 2: 55.0, 5: 19.1, 6: 48.0, 3: 12.4, 4: 32.9, 7: 15.4, 8: 29.9}
+W-B   from 10:00: cycle 101.8  Y 0.62  C0 101.8  splits {1: 12.3, 2: 40.8, 5: 17.4, 6: 35.8, 3: 12.5, 4: 36.1, 7: 18.7, 8: 30.0}
+W-C   from 14:00: cycle 112.2  Y 0.65  C0 112.2  splits {1: 12.2, 2: 51.9, 5: 21.7, 6: 42.3, 3: 12.0, 4: 36.2, 7: 17.5, 8: 30.7}
+W-D   from 20:00: cycle  84.5  Y 0.45  C0  84.5  splits {1: 11.9, 2: 31.3, 5: 12.0, 6: 31.2, 3: 11.7, 4: 29.6, 7: 14.0, 8: 27.3}
+W-N2  from 22:00: cycle  84.0  Y 0.31  C0  84.0  splits {1: 12.2, 2: 30.7, 5: 11.8, 6: 31.0, 3: 11.7, 4: 29.5, 7: 13.8, 8: 27.4}
+preliminary validation subset: 2026-04-20,2026-04-24,2026-04-30,2026-05-06,2026-05-12
+== B. preliminary, seed 0 Mon Nov 16 04:06:21 PM JST 2026
+iter 4: greedy(w)+random episodes, mean delay 30.3 s/veh, transitions so far 701218
+iter 5: greedy(w)+random episodes, mean delay 29.4 s/veh, transitions so far 850442
+ars s0 exit 0
+qlearn s0 exit 0
+== B. evaluation on the subset Mon Nov 16 04:44:32 PM JST 2026
+  34/35
+  35/35
+480 clean hours on 20 validation weekdays -> /home/andy/Downloads/GDOT/atsc/sites/137/eval/conditions.csv
+== B. DONE: atsc/sites/137/eval/report_preliminary.md Mon Nov 16 04:52:42 PM JST 2026
+== C. full, seeds 1-4 Mon Nov 16 04:52:42 PM JST 2026
+iter 5: greedy(w)+random episodes, mean delay 24.8 s/veh, transitions so far 928384
+iter 5: greedy(w)+random episodes, mean delay 23.3 s/veh, transitions so far 895249
+iter 5: greedy(w)+random episodes, mean delay 27.9 s/veh, transitions so far 899465
+iter 5: greedy(w)+random episodes, mean delay 29.1 s/veh, transitions so far 874892
+ars s1 exit 0
+qlearn s1 exit 0
+qlearn s2 exit 0
+qlearn s3 exit 0
+qlearn s4 exit 0
+ars s2 exit 0
+ars s3 exit 0
+ars s4 exit 0
+== C. evaluation, all validation weekdays Mon Nov 16 06:48:49 PM JST 2026
+  344/345
+  345/345
+480 clean hours on 20 validation weekdays -> /home/andy/Downloads/GDOT/atsc/sites/137/eval/conditions.csv
+# RQ1 evaluation: strengths and weaknesses by traffic condition (137, validation weekdays)
+
+480 clean hours on 20 days x 1 simulation seeds (seed-averaged per hour). Y = sum of critical flow ratios from the field counts. Intervals: 95 % day-bootstrap. **Limitations (137, 2026-11-16):** uncalibrated driver model; GDOT timing not yet field-validated; WB through from the upstream signal 138; EB/WB right turns run as through; P2/P6 stop-bar presence added in the model; coordinated corridor site (138 at ~260 m) modelled isolated; no pedestrian timing (atsc/sites/137/README.md). Main tables: learnt controllers at one training seed (lstdq_v2_s0 = LSTDQ, qlearn_s0, ars_s0); all training seeds of every learner are in the training-seed tables (simulation seed 1).
+
+Hours per condition: light (Y < 0.15) 120, moderate (0.15-0.30) 44, busy (0.30-0.40) 24, heavy (Y >= 0.40) 292
+
+## Overall mean delay, vehicle-weighted (s/veh)
+
+| Controller | mean delay (95 % interval) |
+|---|---|
+| gdot | 34.2 (27.3 to 47.2) |
+| actuated | 25.8 (24.5 to 27.9) |
+| webster | 58.5 (35.4 to 89.3) |
+| maxpressure | 26.4 (22.3 to 34.1) |
+| ars_s0 | 43.4 (27.6 to 65.8) |
+| ars_s1 | 28.9 (23.1 to 39.7) |
+| ars_s2 | 35.4 (25.2 to 51.7) |
+| ars_s3 | 35.7 (24.4 to 56.8) |
+| ars_s4 | 30.1 (23.2 to 42.6) |
+| lstdq_v2_s0 | 29.3 (25.0 to 35.4) |
+| lstdq_v2_s1 | 25.6 (23.6 to 28.8) |
+| lstdq_v2_s2 | 24.9 (23.2 to 27.5) |
+| lstdq_v2_s3 | 26.6 (24.1 to 31.1) |
+| lstdq_v2_s4 | 30.5 (26.6 to 35.6) |
+| qlearn_s0 | 37.3 (26.3 to 54.2) |
+| qlearn_s1 | 33.8 (25.0 to 49.5) |
+| qlearn_s2 | 37.2 (26.5 to 54.2) |
+| qlearn_s3 | 37.3 (26.3 to 54.2) |
+| qlearn_s4 | 36.6 (26.5 to 52.0) |
+
+## Learners over training seeds (overall vehicle-weighted delay, simulation seed 1, s/veh)
+
+| Learner | training seeds | median | min | max | per seed |
+|---|---|---|---|---|---|
+| ars | 5 | 36.3 | 29.3 | 45.0 | ars_s0 45.0, ars_s1 29.3, ars_s2 36.3, ars_s3 36.5, ars_s4 30.6 |
+| lstdq v2 | 5 | 26.8 | 25.0 | 30.7 | lstdq_v2_s0 29.5, lstdq_v2_s1 25.7, lstdq_v2_s2 25.0, lstdq_v2_s3 26.8, lstdq_v2_s4 30.7 |
+| qlearn | 5 | 38.1 | 34.5 | 38.3 | qlearn_s0 38.3, qlearn_s1 34.5, qlearn_s2 38.1, qlearn_s3 38.3, qlearn_s4 37.5 |
+| maxpressure (reference) | - | 26.7 | | | |
+| webster (reference) | - | 60.9 | | | |
+| actuated (reference) | - | 25.9 | | | |
+Mon Nov 16 08:08:46 PM JST 2026
+STAGE1 DONE

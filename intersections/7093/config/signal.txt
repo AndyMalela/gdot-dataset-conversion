@@ -1,0 +1,12 @@
+Signal:        7093
+Name:          SR 9 @ Peachtree Avenue
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 9
+Secondary Name:Peachtree Avenue
+Latitude:      33.83489
+Longitude:     -84.38244
+Versions:      5/1/2019 - Mark 1 | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-16 02:34
+Detectors:     8   Approaches: 5

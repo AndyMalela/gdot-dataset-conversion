@@ -16,11 +16,13 @@
    "name": "Slaton Drive Northwest",
    "label": "NB",
    "heading_deg": 27,
-   "lanes": 1,
-   "lanes_tag": "2",
-   "turn_lanes_tag": null,
+   "lanes": 3,
+   "lanes_tag": "4",
+   "turn_lanes_tag": "left|through|right",
    "lane_moves": [
-    "LTR"
+    "R",
+    "T",
+    "L"
    ],
    "movements": {
     "R": [
@@ -33,18 +35,18 @@
      "1302258405#0"
     ]
    },
-   "length_m": 333,
-   "upstream_m": 333
+   "length_m": 335,
+   "upstream_m": 335
   },
   {
-   "edge": "-1302258405#1",
-   "osm_way": "1302258405",
+   "edge": "-1303415424",
+   "osm_way": "1303415424",
    "name": "West Paces Ferry Road Northwest",
    "label": "EB",
-   "heading_deg": 132,
+   "heading_deg": 133,
    "lanes": 2,
    "lanes_tag": "3",
-   "turn_lanes_tag": "left|none",
+   "turn_lanes_tag": null,
    "lane_moves": [
     "T",
     "L"
@@ -57,8 +59,8 @@
      "-9273981#14"
     ]
    },
-   "length_m": 47,
-   "upstream_m": 321
+   "length_m": 96,
+   "upstream_m": 329
   },
   {
    "edge": "9273981#9",
@@ -66,11 +68,13 @@
    "name": "East Andrews Drive Northwest",
    "label": "SB",
    "heading_deg": 210,
-   "lanes": 1,
-   "lanes_tag": null,
-   "turn_lanes_tag": null,
+   "lanes": 3,
+   "lanes_tag": "4",
+   "turn_lanes_tag": "left|through|right",
    "lane_moves": [
-    "LTR"
+    "R",
+    "T",
+    "L"
    ],
    "movements": {
     "R": [
@@ -83,7 +87,7 @@
      "-289670475#9"
     ]
    },
-   "length_m": 178,
+   "length_m": 177,
    "upstream_m": 377
   },
   {
@@ -92,16 +96,14 @@
    "name": "West Paces Ferry Road Northwest",
    "label": "WB",
    "heading_deg": 310,
-   "lanes": 1,
+   "lanes": 2,
    "lanes_tag": "3",
-   "turn_lanes_tag": null,
+   "turn_lanes_tag": "left|through",
    "lane_moves": [
-    "LTR"
+    "T",
+    "L"
    ],
    "movements": {
-    "R": [
-     "-9273981#14"
-    ],
     "T": [
      "1302258405#0"
     ],
@@ -109,22 +111,21 @@
      "-9269817#8"
     ]
    },
-   "length_m": 183,
-   "upstream_m": 225
+   "length_m": 176,
+   "upstream_m": 219
   }
  ],
  "flags": [
-  "EB approach (West Paces Ferry Road Northwest) heads 132\u00b0, 42\u00b0 off the compass label; check the label",
+  "EB approach (West Paces Ferry Road Northwest) heads 133\u00b0, 43\u00b0 off the compass label; check the label",
   "WB approach (West Paces Ferry Road Northwest) heads 310\u00b0, 40\u00b0 off the compass label; check the label",
-  "NB approach (Slaton Drive Northwest): two-way way with lanes=2 total and no lanes:forward/backward; per-direction split guessed by netconvert",
-  "SB approach (East Andrews Drive Northwest): OSM way 9273981 has no lanes tag; 1 lane(s) is a netconvert default",
-  "ATSPM counts EB_TR but the OSM EB approach has no 'R' movement"
+  "ATSPM counts EB_TR but the OSM EB approach has no 'R' movement",
+  "ATSPM counts WB_TR but the OSM WB approach has no 'R' movement"
  ],
  "smoke_test": {
-  "flows": 11,
+  "flows": 10,
   "returncode": 0,
-  "loaded": 220,
-  "inserted": 220,
+  "loaded": 200,
+  "inserted": 200,
   "running": 0,
   "waiting": 0,
   "teleports": 0,

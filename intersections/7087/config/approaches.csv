@@ -1,0 +1,7 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Eastbound,Buckhead Ave EB LT,0,8,,,,,,
+Westbound,Buckhead Ave WB LT,0,4,,,,,,
+Northbound,SR 9 Peachtree Rd NB LT,1,6,,,,,,
+Westbound,Buckhead Ave WB,4,,,,,,,
+Southbound,SR 9 Peachtree Rd SB LT,5,2,,,,,,
+Eastbound,Buckhead Ave EB,8,,,,,,,

@@ -1,0 +1,9 @@
+Signal:        7088
+Intersection:  SR 9 @ Pharr Road
+Source:        GDOT ATSPM, Turning Movement Counts (https://traffic.dot.ga.gov/ATSPM/DefaultCharts)
+Bin size:      5 min
+Days cached:   4 (2026-09-29 to 2026-10-02)
+Complete days: 2   partial: 2   no data: 0
+Movements:     EB_L EB_TR WB_L WB_T SB_L
+Outage rule:   >= 3 consecutive all-zero bins -> status=outage, counts blank
+Updated:       2026-11-16 01:44

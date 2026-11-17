@@ -28,9 +28,10 @@ class Phase:
     ped_min: float = 0.0            # walk + flashing don't walk, served every cycle (ped recall)
     max_green: float = math.inf     # free mode only
     recall: bool = False            # always called (e.g. through phases with ped recall)
+    ped_actuated: bool = False      # ped_min applies only to a green that starts with a pedestrian call pending
 
-    def min_service(self):
-        return max(self.min_green, self.ped_min)
+    def min_service(self, ped=True):
+        return max(self.min_green, self.ped_min if (ped or not self.ped_actuated) else 0.0)
 
 
 @dataclass
@@ -42,6 +43,7 @@ class Plan:
     splits: dict[int, float]
     coordinated: tuple[int, ...] = (2, 6)
     offset: float = 0.0
+    floating: tuple[int, ...] = ()  # phases with a floating force-off: green capped at split - yellow - red
 
 
 @dataclass
@@ -66,6 +68,7 @@ class _Ring:
     force_off: float = math.inf     # abs time, coordinated mode
     barrier: bool = False
     pending: str = ""               # termination type to log when the green ends
+    ped: bool = False               # this green serves a pedestrian call (ped_actuated phases)
 
 
 class NemaEngine:
@@ -86,6 +89,7 @@ class NemaEngine:
         self.greens: list[GreenRecord] = []
         self._open: dict[int, GreenRecord] = {}
         self.calls: set[int] = set()
+        self.ped_calls: set[int] = set()    # pending pedestrian calls (ped_actuated phases), kept until served
         self.now = 0.0
         self.cycle_starts: list[float] = []
         self._started = False
@@ -93,7 +97,7 @@ class NemaEngine:
 
     # ------------------------------------------------------------------ helpers
     def _called(self, p):
-        return p in self.calls or self.ph[p].recall
+        return p in self.calls or self.ph[p].recall or p in self.ped_calls
 
     def _omitted(self, p):
         """a phase with no time in the current plan (e.g. plan E's split 0 for P3/P7) is never served."""
@@ -112,7 +116,7 @@ class NemaEngine:
         t = 0.0
         for g, seq in enumerate(self.rings[ring]):
             for q in seq:
-                t += pl.splits[q]
+                t += pl.splits.get(q, 0.0)          # a phase the plan omits (no split) takes no cycle time
                 if q == p and g == self.group and not group_end:
                     return t - self.ph[p].yellow - self.ph[p].red
             if g == self.group and group_end:
@@ -134,9 +138,16 @@ class NemaEngine:
         # this cycle's force-off point, even when the green started a little late (step rounding) and its
         # minimum runs past it: the green then ends when the minimum is done (tick), the cycle is not skipped
         s.force_off = self._next_abs(fo, s.start - LATE_TOL)
+        p = s.phase
+        if p in self.plan.floating and p not in self.plan.coordinated:
+            # floating force-off: never longer than the phase's own split, even when it started early
+            cap = s.start + self.plan.splits.get(p, 0.0) - self.ph[p].yellow - self.ph[p].red
+            s.force_off = min(s.force_off, max(cap, s.start + self.ph[p].min_service(s.ped)))
 
     def _start_green(self, ring, p):
         s = _Ring(phase=p, start=self.now)
+        s.ped = p in self.ped_calls                       # a pedestrian call waiting now is served by this green
+        self.ped_calls.discard(p)
         self.r[ring] = s
         self._open[ring] = GreenRecord(p, self.now)
         self._set_force_off(ring)
@@ -168,7 +179,7 @@ class NemaEngine:
         s.clr_end = self.now + ph.yellow + ph.red
 
     def _min_done(self, s):
-        return self.now - s.start >= self.ph[s.phase].min_service() - 1e-9
+        return self.now - s.start >= self.ph[s.phase].min_service(s.ped) - 1e-9
 
     def _try_end(self, ring, how):
         """end the current green of `ring`: move to the partner phase, or rest at the barrier."""
@@ -186,9 +197,11 @@ class NemaEngine:
         """takes effect for phases starting from now on (call it at a barrier / cycle boundary)."""
         self.plan = plan
 
-    def tick(self, now, calls=(), end_requests=()):
+    def tick(self, now, calls=(), end_requests=(), ped_calls=()):
         self.now = now
         self.calls = set(calls)
+        # a pedestrian push during its own phase's green waits for the next service (no re-service of the walk)
+        self.ped_calls |= {p for p in ped_calls if not (p in [x.phase for x in self.r.values() if x.mode in (GREEN, REST)])}
         if not self._started:
             self._started = True
             self.cycle_starts.append(now)

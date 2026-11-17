@@ -1,0 +1,12 @@
+Signal:        7067
+Name:          SR 141 @ Shadowlawn Avenue
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 141
+Secondary Name:Shadowlawn Avenue
+Latitude:      33.8419
+Longitude:     -84.37418
+Versions:      2/13/2025 - SigOps Central Review | 3/27/2024 - VLAN IP Update | 9/6/2023 - Copy of Signal Reconfiguration | 4/30/2019 - Mark 1 | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-12 22:10
+Detectors:     11   Approaches: 4

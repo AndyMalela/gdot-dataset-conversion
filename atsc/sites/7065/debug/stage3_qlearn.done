@@ -1,0 +1,5 @@
+qlearn s1 exit 0
+qlearn s0 exit 0
+qlearn s2 exit 0
+qlearn s3 exit 0
+qlearn s4 exit 0

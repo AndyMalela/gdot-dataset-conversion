@@ -1,0 +1,12 @@
+Signal:        138
+Name:          W. Paces Ferry Rd @ Paces Ferry Pl
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  W. Paces Ferry Rd
+Secondary Name:Paces Ferry Pl
+Latitude:      33.84044
+Longitude:     -84.38222
+Versions:      3/8/2022 - Copy of Initial | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-16 02:33
+Detectors:     6   Approaches: 6

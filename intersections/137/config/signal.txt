@@ -1,0 +1,12 @@
+Signal:        137
+Name:          W. Paces Ferry Rd @ E. Andrews Dr/Slaton Dr
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  W. Paces Ferry Rd
+Secondary Name:E. Andrews Dr/Slaton Dr
+Latitude:      33.84166
+Longitude:     -84.38459
+Versions:      8/1/2026 - SigOps Metro Central Review | 3/7/2022 - SigOps Standardization | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-16 02:00
+Detectors:     13   Approaches: 8

@@ -51,10 +51,18 @@ def run_window(site_dir, date, begin_h, end_h, policy, mode="plan", plan=None, f
         rou = Path(tmp) / "d.rou.xml"
         ti = Path(tmp) / "ti.xml"
         demand.write_routes(site_dir, run.net_file(site_dir), date, rou, seed=seed, vtype=vtype)
-        conn = run.start(site_dir, rou, b0 - warmup_s, b1 + drain_s, gui=gui, step=step, seed=seed,
+        rous = [str(rou)]
+        for k, (nd, _) in enumerate(run.neighbours(site_dir)):        # neighbour signals' own counted movements
+            nr = Path(tmp) / f"n{k}.rou.xml"
+            demand.write_routes(nd, run.net_file(site_dir), date, nr, seed=seed, vtype=vtype, prefix=f"N{k}_")
+            rous.append(str(nr))
+        conn = run.start(site_dir, ",".join(rous), b0 - warmup_s, b1 + drain_s, gui=gui, step=step, seed=seed,
                          extra=["--tripinfo-output", str(ti), "--tripinfo-output.write-unfinished", "true"])
+        from .signal import actuated_from_site
+        nsigs = [SumoSignal(conn, nd, run.net_file(site_dir), actuated_from_site(nd), mode="plan", day=str(date), seed=seed)
+                 for nd, _ in run.neighbours(site_dir)]             # field timing, whatever controls the site
         sig = SumoSignal(conn, site_dir, run.net_file(site_dir), policy, mode=mode, day=str(date), plan=plan,
-                         free_max=free_max, schedule=schedule, skip_uncalled=skip_uncalled)
+                         free_max=free_max, schedule=schedule, skip_uncalled=skip_uncalled, seed=seed)
         prev = {e: set() for e in approach}
         crossings = defaultdict(list)
         backlog = Counter()
@@ -63,6 +71,8 @@ def run_window(site_dir, date, begin_h, end_h, policy, mode="plan", plan=None, f
         while conn.simulation.getTime() < b1 + drain_s:
             conn.simulationStep()
             sig.step()
+            for ns in nsigs:
+                ns.step()
             t = conn.simulation.getTime()
             teleports += conn.simulation.getStartingTeleportNumber()
             for e in approach:
@@ -86,6 +96,9 @@ def run_window(site_dir, date, begin_h, end_h, policy, mode="plan", plan=None, f
                 continue
             vid = el.get("id")
             col, tbin = vid.split(".")[0], int(vid.split(".")[1])
+            if col not in mv:                                    # neighbour flows are not scored
+                el.clear()
+                continue
             if b0 <= tbin < b1:
                 dl = float(el.get("timeLoss")) + float(el.get("departDelay"))
                 tot[col] += dl

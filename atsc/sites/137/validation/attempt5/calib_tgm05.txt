@@ -1,0 +1,7 @@
+simulation {'jmTimegapMinor': 0.5}: activations ending ... (share)
+| left turn | n | protected | permissive | other |
+|---|---|---|---|---|
+| WB_L | 341 | 33% | 66% | 1% |
+| EB_L | 603 | 28% | 71% | 1% |
+| NB_L | 191 | 61% | 33% | 6% |
+| SB_L | 171 | 54% | 44% | 2% |

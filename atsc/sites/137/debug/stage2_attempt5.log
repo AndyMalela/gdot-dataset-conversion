@@ -1,0 +1,78 @@
+Mon Nov 16 02:00:08 PM JST 2026
+== scale x1.25 Mon Nov 16 02:00:08 PM JST 2026
+  35/35
+480 clean hours on 20 validation weekdays -> /home/andy/Downloads/GDOT/atsc/sites/137/eval_x1.25/conditions.csv
+| ars_s3 | 30.9 (20d) · 0 tp · 54/480 h | - |
+| ars_s4 | 32.1 (20d) · 0 tp · 50/480 h | - |
+| lstdq_v2_s0 | 31.0 (20d) · 0 tp · 23/480 h | 65.4 (5d) · 0 tp · 37/120 h |
+| lstdq_v2_s1 | 26.3 (20d) · 0 tp · 26/480 h | - |
+| lstdq_v2_s2 | 29.7 (20d) · 0 tp · 21/480 h | - |
+| lstdq_v2_s3 | 25.1 (20d) · 0 tp · 23/480 h | - |
+| lstdq_v2_s4 | 25.5 (20d) · 0 tp · 17/480 h | - |
+| qlearn_s0 | 38.7 (20d) · 0 tp · 59/480 h | 179.0 (5d) · 0 tp · 54/120 h |
+| qlearn_s1 | 33.4 (20d) · 0 tp · 52/480 h | - |
+| qlearn_s2 | 36.0 (20d) · 0 tp · 49/480 h | - |
+| qlearn_s3 | 36.2 (20d) · 0 tp · 54/480 h | - |
+| qlearn_s4 | 35.9 (20d) · 0 tp · 54/480 h | - |
+== scale x1.5 Mon Nov 16 02:04:28 PM JST 2026
+  35/35
+480 clean hours on 20 validation weekdays -> /home/andy/Downloads/GDOT/atsc/sites/137/eval_x1.5/conditions.csv
+| ars_s3 | 30.9 (20d) · 0 tp · 54/480 h | - | - |
+| ars_s4 | 32.1 (20d) · 0 tp · 50/480 h | - | - |
+| lstdq_v2_s0 | 31.0 (20d) · 0 tp · 23/480 h | 65.4 (5d) · 0 tp · 37/120 h | 308.8 (5d) · 0 tp · 73/120 h |
+| lstdq_v2_s1 | 26.3 (20d) · 0 tp · 26/480 h | - | - |
+| lstdq_v2_s2 | 29.7 (20d) · 0 tp · 21/480 h | - | - |
+| lstdq_v2_s3 | 25.1 (20d) · 0 tp · 23/480 h | - | - |
+| lstdq_v2_s4 | 25.5 (20d) · 0 tp · 17/480 h | - | - |
+| qlearn_s0 | 38.7 (20d) · 0 tp · 59/480 h | 179.0 (5d) · 0 tp · 54/120 h | 954.1 (5d) · 0 tp · 79/120 h |
+| qlearn_s1 | 33.4 (20d) · 0 tp · 52/480 h | - | - |
+| qlearn_s2 | 36.0 (20d) · 0 tp · 49/480 h | - | - |
+| qlearn_s3 | 36.2 (20d) · 0 tp · 54/480 h | - | - |
+| qlearn_s4 | 35.9 (20d) · 0 tp · 54/480 h | - | - |
+== scale x1.75 Mon Nov 16 02:11:11 PM JST 2026
+  35/35
+480 clean hours on 20 validation weekdays -> /home/andy/Downloads/GDOT/atsc/sites/137/eval_x1.75/conditions.csv
+| ars_s3 | 30.9 (20d) · 0 tp · 54/480 h | - | - | - |
+| ars_s4 | 32.1 (20d) · 0 tp · 50/480 h | - | - | - |
+| lstdq_v2_s0 | 31.0 (20d) · 0 tp · 23/480 h | 65.4 (5d) · 0 tp · 37/120 h | 308.8 (5d) · 0 tp · 73/120 h | 1101.5 (5d) · 0 tp · 83/120 h |
+| lstdq_v2_s1 | 26.3 (20d) · 0 tp · 26/480 h | - | - | - |
+| lstdq_v2_s2 | 29.7 (20d) · 0 tp · 21/480 h | - | - | - |
+| lstdq_v2_s3 | 25.1 (20d) · 0 tp · 23/480 h | - | - | - |
+| lstdq_v2_s4 | 25.5 (20d) · 0 tp · 17/480 h | - | - | - |
+| qlearn_s0 | 38.7 (20d) · 0 tp · 59/480 h | 179.0 (5d) · 0 tp · 54/120 h | 954.1 (5d) · 0 tp · 79/120 h | 2749.6 (5d) · 0 tp · 83/120 h |
+| qlearn_s1 | 33.4 (20d) · 0 tp · 52/480 h | - | - | - |
+| qlearn_s2 | 36.0 (20d) · 0 tp · 49/480 h | - | - | - |
+| qlearn_s3 | 36.2 (20d) · 0 tp · 54/480 h | - | - | - |
+| qlearn_s4 | 35.9 (20d) · 0 tp · 54/480 h | - | - | - |
+== scale x2.0 Mon Nov 16 02:23:36 PM JST 2026
+  35/35
+480 clean hours on 20 validation weekdays -> /home/andy/Downloads/GDOT/atsc/sites/137/eval_x2.0/conditions.csv
+| ars_s3 | 30.9 (20d) · 0 tp · 54/480 h | - | - | - | - |
+| ars_s4 | 32.1 (20d) · 0 tp · 50/480 h | - | - | - | - |
+| lstdq_v2_s0 | 31.0 (20d) · 0 tp · 23/480 h | 65.4 (5d) · 0 tp · 37/120 h | 308.8 (5d) · 0 tp · 73/120 h | 1101.5 (5d) · 0 tp · 83/120 h | 2434.3 (5d) · 1 tp · 85/120 h |
+| lstdq_v2_s1 | 26.3 (20d) · 0 tp · 26/480 h | - | - | - | - |
+| lstdq_v2_s2 | 29.7 (20d) · 0 tp · 21/480 h | - | - | - | - |
+| lstdq_v2_s3 | 25.1 (20d) · 0 tp · 23/480 h | - | - | - | - |
+| lstdq_v2_s4 | 25.5 (20d) · 0 tp · 17/480 h | - | - | - | - |
+| qlearn_s0 | 38.7 (20d) · 0 tp · 59/480 h | 179.0 (5d) · 0 tp · 54/120 h | 954.1 (5d) · 0 tp · 79/120 h | 2749.6 (5d) · 0 tp · 83/120 h | 4414.5 (5d) · 0 tp · 84/120 h |
+| qlearn_s1 | 33.4 (20d) · 0 tp · 52/480 h | - | - | - | - |
+| qlearn_s2 | 36.0 (20d) · 0 tp · 49/480 h | - | - | - | - |
+| qlearn_s3 | 36.2 (20d) · 0 tp · 54/480 h | - | - | - | - |
+| qlearn_s4 | 35.9 (20d) · 0 tp · 54/480 h | - | - | - | - |
+== scale x2.5 Mon Nov 16 02:45:18 PM JST 2026
+  35/35
+480 clean hours on 20 validation weekdays -> /home/andy/Downloads/GDOT/atsc/sites/137/eval_x2.5/conditions.csv
+| ars_s3 | 30.9 (20d) · 0 tp · 54/480 h | - | - | - | - | - |
+| ars_s4 | 32.1 (20d) · 0 tp · 50/480 h | - | - | - | - | - |
+| lstdq_v2_s0 | 31.0 (20d) · 0 tp · 23/480 h | 65.4 (5d) · 0 tp · 37/120 h | 308.8 (5d) · 0 tp · 73/120 h | 1101.5 (5d) · 0 tp · 83/120 h | 2434.3 (5d) · 1 tp · 85/120 h | 5357.7 (5d) · 1 tp · 92/120 h |
+| lstdq_v2_s1 | 26.3 (20d) · 0 tp · 26/480 h | - | - | - | - | - |
+| lstdq_v2_s2 | 29.7 (20d) · 0 tp · 21/480 h | - | - | - | - | - |
+| lstdq_v2_s3 | 25.1 (20d) · 0 tp · 23/480 h | - | - | - | - | - |
+| lstdq_v2_s4 | 25.5 (20d) · 0 tp · 17/480 h | - | - | - | - | - |
+| qlearn_s0 | 38.7 (20d) · 0 tp · 59/480 h | 179.0 (5d) · 0 tp · 54/120 h | 954.1 (5d) · 0 tp · 79/120 h | 2749.6 (5d) · 0 tp · 83/120 h | 4414.5 (5d) · 0 tp · 84/120 h | 7442.0 (5d) · 1 tp · 91/120 h |
+| qlearn_s1 | 33.4 (20d) · 0 tp · 52/480 h | - | - | - | - | - |
+| qlearn_s2 | 36.0 (20d) · 0 tp · 49/480 h | - | - | - | - | - |
+| qlearn_s3 | 36.2 (20d) · 0 tp · 54/480 h | - | - | - | - | - |
+| qlearn_s4 | 35.9 (20d) · 0 tp · 54/480 h | - | - | - | - | - |
+Mon Nov 16 03:32:16 PM JST 2026
+STAGE2 DONE

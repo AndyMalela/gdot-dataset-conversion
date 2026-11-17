@@ -1,0 +1,13 @@
+# Demand-scale sweep (137, preliminary subset of validation days, simulation seed 1)
+
+Every 5-min count of the real day multiplied by k (labelled sensitivity experiment, not real traffic). Cell: vehicle-weighted mean delay s/veh (days run) · teleports · hours with a queue reaching the leg end / hours. Controllers trained at x1 only.
+
+| Controller | x1 | x1.25 | x1.5 | x1.75 | x2 | x2.5 |
+|---|---|---|---|---|---|---|
+| actuated | 17.0 (5d) · 0 tp · 3/120 h | 21.7 (5d) · 0 tp · 16/120 h | 48.0 (5d) · 0 tp · 44/120 h | 178.5 (5d) · 0 tp · 68/120 h | 714.8 (5d) · 0 tp · 81/120 h | 2974.4 (5d) · 0 tp · 86/120 h |
+| gdot | 20.9 (5d) · 0 tp · 6/120 h | 32.2 (5d) · 0 tp · 22/120 h | 84.0 (5d) · 0 tp · 53/120 h | 290.0 (5d) · 0 tp · 71/120 h | 1036.1 (5d) · 0 tp · 81/120 h | 3230.1 (5d) · 1 tp · 81/120 h |
+| maxpressure | 17.8 (5d) · 0 tp · 2/120 h | 22.2 (5d) · 0 tp · 22/120 h | 40.1 (5d) · 0 tp · 50/120 h | 157.9 (5d) · 0 tp · 75/120 h | 669.5 (5d) · 0 tp · 79/120 h | 3785.0 (5d) · 3 tp · 86/120 h |
+| webster | 72.5 (5d) · 0 tp · 17/120 h | 142.6 (5d) · 0 tp · 51/120 h | 856.0 (5d) · 0 tp · 78/120 h | 1809.7 (5d) · 0 tp · 77/120 h | 2813.1 (5d) · 0 tp · 85/120 h | 5240.3 (5d) · 0 tp · 92/120 h |
+| ars_s0 | 18.3 (5d) · 0 tp · 6/120 h | 22.5 (5d) · 0 tp · 25/120 h | 47.3 (5d) · 0 tp · 52/120 h | 307.4 (5d) · 0 tp · 69/120 h | 1421.4 (5d) · 0 tp · 85/120 h | 4680.4 (5d) · 0 tp · 85/120 h |
+| lstdq_v2_s0 | 17.5 (5d) · 0 tp · 2/120 h | 21.6 (5d) · 0 tp · 14/120 h | 51.1 (5d) · 0 tp · 44/120 h | 250.2 (5d) · 0 tp · 66/120 h | 966.6 (5d) · 1 tp · 80/120 h | 4505.7 (5d) · 2 tp · 87/120 h |
+| qlearn_s0 | 17.1 (5d) · 0 tp · 1/120 h | 22.4 (5d) · 0 tp · 11/120 h | 58.5 (5d) · 0 tp · 38/120 h | 234.8 (5d) · 0 tp · 56/120 h | 949.1 (5d) · 1 tp · 83/120 h | 3498.0 (5d) · 3 tp · 90/120 h |

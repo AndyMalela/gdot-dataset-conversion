@@ -1,0 +1,139 @@
+{
+ "signal_id": "137",
+ "name": "W. Paces Ferry Rd @ E. Andrews Dr/Slaton Dr",
+ "lat": 33.84166,
+ "lon": -84.38459,
+ "node": "69545429",
+ "node_type": "traffic_light",
+ "dist_m": 3.2,
+ "tls": [
+  "69545429"
+ ],
+ "approaches": [
+  {
+   "edge": "9269817#3",
+   "osm_way": "9269817",
+   "name": "Slaton Drive Northwest",
+   "label": "NB",
+   "heading_deg": 27,
+   "lanes": 3,
+   "lanes_tag": "4",
+   "turn_lanes_tag": "left|through|right",
+   "lane_moves": [
+    "R",
+    "T",
+    "L"
+   ],
+   "movements": {
+    "R": [
+     "-289670475#9"
+    ],
+    "T": [
+     "-9273981#14"
+    ],
+    "L": [
+     "1302258405#0"
+    ]
+   },
+   "length_m": 335,
+   "upstream_m": 335
+  },
+  {
+   "edge": "-1303415424",
+   "osm_way": "1303415424",
+   "name": "West Paces Ferry Road Northwest",
+   "label": "EB",
+   "heading_deg": 133,
+   "lanes": 2,
+   "lanes_tag": "3",
+   "turn_lanes_tag": null,
+   "lane_moves": [
+    "T",
+    "L"
+   ],
+   "movements": {
+    "T": [
+     "-289670475#9"
+    ],
+    "L": [
+     "-9273981#14"
+    ]
+   },
+   "length_m": 96,
+   "upstream_m": 329
+  },
+  {
+   "edge": "9273981#9",
+   "osm_way": "9273981",
+   "name": "East Andrews Drive Northwest",
+   "label": "SB",
+   "heading_deg": 210,
+   "lanes": 3,
+   "lanes_tag": "4",
+   "turn_lanes_tag": "left|through|right",
+   "lane_moves": [
+    "R",
+    "T",
+    "L"
+   ],
+   "movements": {
+    "R": [
+     "1302258405#0"
+    ],
+    "T": [
+     "-9269817#8"
+    ],
+    "L": [
+     "-289670475#9"
+    ]
+   },
+   "length_m": 177,
+   "upstream_m": 377
+  },
+  {
+   "edge": "289670475#2",
+   "osm_way": "289670475",
+   "name": "West Paces Ferry Road Northwest",
+   "label": "WB",
+   "heading_deg": 310,
+   "lanes": 2,
+   "lanes_tag": "3",
+   "turn_lanes_tag": "left|through",
+   "lane_moves": [
+    "T",
+    "L"
+   ],
+   "movements": {
+    "T": [
+     "1302258405#0"
+    ],
+    "L": [
+     "-9269817#8"
+    ]
+   },
+   "length_m": 176,
+   "upstream_m": 219
+  }
+ ],
+ "flags": [
+  "EB approach (West Paces Ferry Road Northwest) heads 133\u00b0, 43\u00b0 off the compass label; check the label",
+  "WB approach (West Paces Ferry Road Northwest) heads 310\u00b0, 40\u00b0 off the compass label; check the label",
+  "ATSPM counts EB_TR but the OSM EB approach has no 'R' movement",
+  "ATSPM counts WB_TR but the OSM WB approach has no 'R' movement"
+ ],
+ "smoke_test": {
+  "flows": 10,
+  "returncode": 0,
+  "loaded": 200,
+  "inserted": 200,
+  "running": 0,
+  "waiting": 0,
+  "teleports": 0,
+  "jams": 0,
+  "collisions": 0,
+  "warnings": 0,
+  "errors": []
+ },
+ "net_file": "137.net.xml",
+ "source": "tools/osm_build.py 137 --rebuild with network/osm_tag_fixes.json (2026-11-16 04:00: EB two lanes per user check), copied from intersections/137/network/"
+}

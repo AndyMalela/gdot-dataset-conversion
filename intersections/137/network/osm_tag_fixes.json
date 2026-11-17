@@ -1,0 +1,86 @@
+[
+ {
+  "way": "289670475",
+  "set": {
+   "lanes": "3",
+   "lanes:backward": "1",
+   "lanes:forward": "2",
+   "turn:lanes:forward": "left|through"
+  },
+  "why": "W Paces Ferry Rd, east leg (WB approach = forward direction). OSM tags 1 WB lane. USER CHECK 2026-11-16 03:10 (portal/map): W Paces Ferry has one left-turn lane and one combined through+right lane in each direction -> WB left|through. Backward (EB exit, towards 138) 1 lane, the EB through lane's continuation."
+ },
+ {
+  "way": "9269817",
+  "set": {
+   "lanes": "4",
+   "lanes:forward": "3",
+   "lanes:backward": "1",
+   "turn:lanes:forward": "left|through|right"
+  },
+  "why": "Slaton Dr, south leg (NB approach = forward direction). OSM: lanes=2 total, split guessed by netconvert (1 NB lane). GDOT's configuration has three NB stop-bar zones: Left (13709, P3), Thru (13732, P8) and Right (13731, P8). ASSUMPTION 2026-11-16: one lane per zone at the stop line, applied to the whole 333 m way (the real widening is probably a short bay), so NB storage is overstated; not verified on aerial imagery."
+ },
+ {
+  "way": "9273981",
+  "set": {
+   "lanes": "4",
+   "lanes:forward": "3",
+   "lanes:backward": "1",
+   "turn:lanes:forward": "left|through|right"
+  },
+  "why": "E Andrews Dr, north leg (SB approach = forward direction). OSM has no lanes tag (netconvert default 1 lane). GDOT's configuration has three SB stop-bar zones: Left (13729, P7), Thru (13712, P4) and Right (13711, P4). ASSUMPTION 2026-11-16: one lane per zone, applied to the whole way; not verified on aerial imagery."
+ },
+ {
+  "way": "1303415424",
+  "set": {
+   "lanes": "3",
+   "lanes:backward": "2",
+   "lanes:forward": "1"
+  },
+  "why": "W Paces Ferry Rd, west leg, EB approach (backward direction). USER CHECK 2026-11-16 04:00: EB has a long, continuous left lane next to the through/right lane (no bay branching off); 'left turn only' is marked from ~65 m before the intersection. OSM maps this stretch as 1 EB lane, which made the left queue block the only lane. Set to 2 EB lanes; the left-only designation stays on the last way (40 m in OSM, vs ~65 m real)."
+ },
+ {
+  "way": "1381067409",
+  "set": {
+   "lanes": "3",
+   "lanes:backward": "2",
+   "lanes:forward": "1"
+  },
+  "why": "W Paces Ferry Rd, west leg, EB approach (backward direction). USER CHECK 2026-11-16 04:00: EB has a long, continuous left lane next to the through/right lane (no bay branching off); 'left turn only' is marked from ~65 m before the intersection. OSM maps this stretch as 1 EB lane, which made the left queue block the only lane. Set to 2 EB lanes; the left-only designation stays on the last way (40 m in OSM, vs ~65 m real)."
+ },
+ {
+  "way": "1381889427",
+  "set": {
+   "lanes": "3",
+   "lanes:backward": "2",
+   "lanes:forward": "1"
+  },
+  "why": "W Paces Ferry Rd, west leg, EB approach (backward direction). USER CHECK 2026-11-16 04:00: EB has a long, continuous left lane next to the through/right lane (no bay branching off); 'left turn only' is marked from ~65 m before the intersection. OSM maps this stretch as 1 EB lane, which made the left queue block the only lane. Set to 2 EB lanes; the left-only designation stays on the last way (40 m in OSM, vs ~65 m real)."
+ },
+ {
+  "way": "1303415422",
+  "set": {
+   "lanes": "4",
+   "lanes:backward": "2",
+   "lanes:forward": "2"
+  },
+  "why": "W Paces Ferry Rd, west leg, EB approach (backward direction). USER CHECK 2026-11-16 04:00: EB has a long, continuous left lane next to the through/right lane (no bay branching off); 'left turn only' is marked from ~65 m before the intersection. OSM maps this stretch as 1 EB lane, which made the left queue block the only lane. Set to 2 EB lanes; the left-only designation stays on the last way (40 m in OSM, vs ~65 m real)."
+ },
+ {
+  "way": "1303415423",
+  "set": {
+   "lanes": "4",
+   "lanes:backward": "2",
+   "lanes:forward": "2"
+  },
+  "why": "W Paces Ferry Rd, west leg, EB approach (backward direction). USER CHECK 2026-11-16 04:00: EB has a long, continuous left lane next to the through/right lane (no bay branching off); 'left turn only' is marked from ~65 m before the intersection. OSM maps this stretch as 1 EB lane, which made the left queue block the only lane. Set to 2 EB lanes; the left-only designation stays on the last way (40 m in OSM, vs ~65 m real)."
+ },
+ {
+  "way": "1379854670",
+  "set": {
+   "lanes": "3",
+   "lanes:backward": "2",
+   "lanes:forward": "1"
+  },
+  "why": "W Paces Ferry Rd, west leg, EB approach (backward direction). USER CHECK 2026-11-16 04:00: EB has a long, continuous left lane next to the through/right lane (no bay branching off); 'left turn only' is marked from ~65 m before the intersection. OSM maps this stretch as 1 EB lane, which made the left queue block the only lane. Set to 2 EB lanes; the left-only designation stays on the last way (40 m in OSM, vs ~65 m real)."
+ }
+]

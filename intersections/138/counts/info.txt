@@ -1,0 +1,9 @@
+Signal:        138
+Intersection:  W. Paces Ferry Rd @ Paces Ferry Pl
+Source:        GDOT ATSPM, Turning Movement Counts (https://traffic.dot.ga.gov/ATSPM/DefaultCharts)
+Bin size:      5 min
+Days cached:   65 (2026-03-02 to 2026-05-29)
+Complete days: 58   partial: 7   no data: 0
+Movements:     EB_L EB_T WB_L WB_T NB_TL SB_TL
+Outage rule:   >= 3 consecutive all-zero bins -> status=outage, counts blank
+Updated:       2026-11-16 02:53

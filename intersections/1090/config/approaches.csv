@@ -1,0 +1,9 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Eastbound,SR 10 EBL,1,6,,,,,,
+Westbound,SR 10 WBT,2,,,,,,,55
+Northbound,SR 53 NBL,3,8,,,,,,
+Southbound,SR 53 SBT,4,,,,,,,
+Westbound,SR 10 WBL,5,2,,,,,,
+Eastbound,SR 10 EBT,6,,,,,,,55
+Southbound,SR 53 SBL,7,4,,,,,,
+Northbound,SR 53 NBT,8,,,,,,,

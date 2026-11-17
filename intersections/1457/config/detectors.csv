@@ -1,0 +1,12 @@
+Detector ID,Det. Channel,Direction,Phase,Perm. Phase,Overlap,Enabled,Detection Types,Detection Hardware,Latency Correction,Movement Type,Lane Number,Lane Type,Dist. From Stop Bar,Decision Point,Move. Delay,Min Speed Filter,Comment
+145701,1,NB,1,6,False,True,Lane-by-lane Count; Stop Bar Presence,Inductive Loops,0,Left,1,Vehicle,,,,,
+145703,3,SB,2,,False,True,Advanced Count; Lane-by-lane Count,Inductive Loops,0,Thru,1,Vehicle,330,,,,
+145704,4,SB,2,,False,True,Advanced Count; Lane-by-lane Count,Inductive Loops,0,Thru,2,Vehicle,330,,,,
+145709,9,EB,3,8,False,True,Lane-by-lane Count; Stop Bar Presence,Video,0,Left,1,Vehicle,,,,,
+145711,11,WB,4,,False,True,Lane-by-lane Count; Stop Bar Presence,Video,0,Thru,1,Vehicle,,,,,
+145719,19,SB,5,2,False,True,Lane-by-lane Count; Stop Bar Presence,Video,0,Left,1,Vehicle,,,,,
+145721,21,NB,6,,False,True,Advanced Count; Lane-by-lane Count,Inductive Loops,0,Thru,1,Vehicle,330,,,,
+145722,22,NB,6,,False,True,Advanced Count; Lane-by-lane Count,Inductive Loops,0,Thru,2,Vehicle,330,,,,
+145723,23,NB,6,,False,True,Advanced Count; Lane-by-lane Count,Inductive Loops,0,Thru,3,Vehicle,330,,,,
+145731,31,EB,8,,False,True,Lane-by-lane Count; Stop Bar Presence,Video,0,Thru,1,Vehicle,,,,,
+145738,38,WB,7,4,False,True,Lane-by-lane Count; Stop Bar Presence,Video,0,Left,1,Vehicle,,,,,

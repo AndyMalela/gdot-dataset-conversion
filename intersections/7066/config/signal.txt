@@ -1,0 +1,12 @@
+Signal:        7066
+Name:          SR 141 @ Maple Drive
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 141
+Secondary Name:Maple Drive
+Latitude:      33.84301
+Longitude:     -84.37254
+Versions:      3/27/2024 - VLAN IP Update | 9/7/2023 - SigOps Central Review (Removed Exit Zones) | 3/3/2023 - SigOps Central Review | 4/30/2019 - Mark 1 | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-12 22:11
+Detectors:     17   Approaches: 6

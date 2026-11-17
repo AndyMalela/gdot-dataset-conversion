@@ -1,0 +1,45 @@
+{
+ "signal_id": "138",
+ "net_file": "../../network/137.net.xml",
+ "node": "69548021",
+ "tls": [
+  "69548021"
+ ],
+ "approaches": [
+  {
+   "edge": "-1378035586#1",
+   "label": "EB",
+   "name": "West Paces Ferry Road Northwest",
+   "heading_deg": 115,
+   "lanes": 3,
+   "lane_moves": [
+    "T",
+    "T",
+    "L"
+   ]
+  },
+  {
+   "edge": "1160003917",
+   "label": "WB",
+   "name": "West Paces Ferry Road Northwest",
+   "heading_deg": 298,
+   "lanes": 3,
+   "lane_moves": [
+    "R",
+    "T",
+    "T"
+   ]
+  },
+  {
+   "edge": "-9269949#3",
+   "label": "SB",
+   "name": "Paces Ferry Place Northwest",
+   "heading_deg": 204,
+   "lanes": 1,
+   "lane_moves": [
+    "LR"
+   ]
+  }
+ ],
+ "source": "2026-11-16 attempt 6: OSM node 69548021 in 137's network (tools/osm_build.py 137); the field driveway leg (NB, P4) is not in OSM"
+}

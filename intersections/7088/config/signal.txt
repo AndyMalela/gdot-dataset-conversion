@@ -1,0 +1,12 @@
+Signal:        7088
+Name:          SR 9 @ Pharr Road
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 9
+Secondary Name:Pharr Road
+Latitude:      33.83707
+Longitude:     -84.38142
+Versions:      1/14/2025 - SigOps Central Review | 6/19/2019 - Mark 1 | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-16 01:43
+Detectors:     5   Approaches: 7

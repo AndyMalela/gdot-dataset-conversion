@@ -2,8 +2,8 @@ Signal:        137
 Intersection:  W. Paces Ferry Rd @ E. Andrews Dr/Slaton Dr
 Source:        GDOT ATSPM, Turning Movement Counts (https://traffic.dot.ga.gov/ATSPM/DefaultCharts)
 Bin size:      5 min
-Days cached:   7 (2026-09-26 to 2026-10-02)
-Complete days: 5   partial: 2   no data: 0
+Days cached:   113 (2026-03-02 to 2026-10-02)
+Complete days: 104   partial: 8   no data: 1
 Movements:     EB_L EB_TR WB_L WB_TR NB_L NB_T NB_R SB_L SB_T SB_R EXIT_EB_T
 Outage rule:   >= 3 consecutive all-zero bins -> status=outage, counts blank
-Updated:       2026-10-05 02:46
+Updated:       2026-11-16 02:44
