@@ -83,8 +83,14 @@ def policy(ctrl):
     sys.path.insert(0, str(HERE))
     from train_lstdq import out_dir
     d = out_dir(seed, version)
+    # isolation runs (amendment 1, post hoc): ATSC_LSTDQ_ROOT = another copy of the site's weights (e.g. an archive),
+    # ATSC_LSTDQ_IT = force an iterate ("5" = the final one) instead of selected.json
+    if os.environ.get("ATSC_LSTDQ_ROOT"):
+        d = HERE / os.environ["ATSC_LSTDQ_ROOT"] / d.relative_to(HERE)
     sel = d / "selected.json"                    # TEST_PLAN.md amendment 1, F4: iterate chosen on train days
     it = json.loads(sel.read_text())["iterate"] if sel.exists() else LSTDQ_IT
+    if os.environ.get("ATSC_LSTDQ_IT"):
+        it = int(os.environ["ATSC_LSTDQ_IT"])
     w = np.load(d / f"w_it{it}.npy")
     return LSTDQPolicy(HERE, w=w, version=version), {"mode": "free"}
 

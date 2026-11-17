@@ -1,0 +1,4 @@
+condition,hours,Actuated,MaxPressure,LSTDQ,Q-learning,ARS,GDOT plan,Webster
+"steady, cv < 0.15",254,26.53,25.65,26.41,34.96,33.43,35.76,50.97
+"variable, 0.15–0.25",78,27.37,34.83,32.03,56.52,53.33,33.45,119.14
+"very variable, cv ≥ 0.25",148,16.3,20.0,19.17,23.46,19.38,20.99,34.26

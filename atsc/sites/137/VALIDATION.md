@@ -653,3 +653,22 @@ controller (refit passage times) as their behaviour policy. Both were therefore 
 (5 seeds each, `debug/attempt7_retrain.sh`) and re-evaluated on the 20 validation days; old weights are in
 `archive_attempt6_model_2026-11-17/`. LSTDQ 27.5 -> 26.7 s/veh, Q-learning 37.3 -> 37.6 s/veh (seeds pooled). ARS
 (no behaviour policy), MaxPressure and Webster are unaffected. Every method in `eval/` is now on the attempt-7 model.
+
+## Attempt 8 — TEST_PLAN.md amendment 1 (registered there before running)
+
+Attempt 7 + engine fix F1 (no barrier crossing without a conflicting call, coordinated dwell, dual entry on the
+throughs), F2 (undeparted vehicles scored; no effect on the plan-mode validation runs), F3 (measured saturation flow
+in `sim.json`; used only by the queue estimate and Webster, not by the GDOT replica). Same train-day refit and
+criteria. Run 2026-11-17 17:13–17:46 (`validation/attempt8/`). Refit unchanged: passage P1 6, P3 6, P4 4, P5 6,
+P7 6, P8 8 s, no max recall.
+
+Saturation flow (`sat_flow.py`, 33 train weekdays 15:30–19:30, headways from the 5th queued vehicle): through
+P2 2,176, P4 2,057, P6 2,175, P8 2,078 veh/h/lane; left P7 1,964 (333 headways); P1, P3, P5 too few protected
+queued headways → pooled left 1,963. Faster than both values it replaces (1,950 / 1,900) and than the 1,650
+noted in attempt 3 (a different, start-up-inclusive measure on one lane).
+
+Result: V1 34/35 (worst 3.1 s) PASS, V2 28/35 (worst 28) PASS, V5 PASS → **accepted**; V3 skips 18/35 (reported).
+Per-pair differences move by ≤ 2 points from attempt 7: **F1 does not explain the V3 skip mismatch** (the
+review's guess). In plan mode the coordinated phases already hold until their force-off, and the side-street
+lefts are skipped less in the model than in the field because they are called more often, not because the
+engine served them uncalled. The F1 effect is in free mode (actuated, MaxPressure, learners) at light demand.

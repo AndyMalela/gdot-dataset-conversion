@@ -1,0 +1,11 @@
+{
+ "iterate": 3,
+ "selection_delay_s": {
+  "1": 26.68,
+  "2": 32.59,
+  "3": 24.73,
+  "4": 25.71,
+  "5": 27.52
+ },
+ "source": "select_iterate.py (TEST_PLAN.md amendment 1, F4): 3 train weekdays x 4 windows, seed 1"
+}

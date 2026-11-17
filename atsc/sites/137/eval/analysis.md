@@ -8,28 +8,28 @@
 
 | condition | hours | Actuated | MaxPressure | LSTDQ | Q-learning | ARS | GDOT plan | Webster | ranking (adaptive) |
 |---|---|---|---|---|---|---|---|---|---|
-| light, Y < 0.3 | 164 | 14.5 | 16.1 | 16.6 | 15.5 | 15.6 | 15.1 | 26.6 | Actuated > Q-learning > ARS > MaxPressure > LSTDQ |
-| moderate, 0.3–0.45 | 42 | 20.1 | 20.8 | 22.0 | 23.1 | 22.0 | 22.9 | 43.5 | Actuated > MaxPressure > ARS > LSTDQ > Q-learning |
-| busy, 0.45–0.6 | 164 | 24.5 | 22.1 | 23.4 | 24.6 | 24.1 | 27.5 | 49.9 | MaxPressure > LSTDQ > ARS > Actuated > Q-learning |
-| heavy, Y ≥ 0.6 | 110 | 31.5 | 36.5 | 34.4 | 62.6 | 58.0 | 49.7 | 87.2 | Actuated > LSTDQ > MaxPressure > ARS > Q-learning |
+| light, Y < 0.3 | 164 | 11.8 | 13.9 | 14.2 | 11.8 | 12.3 | 12.6 | 46.0 | Q-learning > Actuated > ARS > MaxPressure > LSTDQ |
+| moderate, 0.3–0.45 | 42 | 19.0 | 22.0 | 19.1 | 21.9 | 21.6 | 22.2 | 127.7 | Actuated > LSTDQ > ARS > Q-learning > MaxPressure |
+| busy, 0.45–0.6 | 164 | 24.2 | 22.3 | 22.3 | 23.5 | 23.6 | 27.7 | 79.7 | MaxPressure > LSTDQ > Q-learning > ARS > Actuated |
+| heavy, Y ≥ 0.6 | 110 | 31.5 | 39.0 | 31.3 | 48.5 | 62.0 | 50.6 | 193.2 | LSTDQ > Actuated > MaxPressure > Q-learning > ARS |
 
 ### By time of day
 
 | condition | hours | Actuated | MaxPressure | LSTDQ | Q-learning | ARS | GDOT plan | Webster | ranking (adaptive) |
 |---|---|---|---|---|---|---|---|---|---|
-| night 00–06 | 120 | 12.8 | 16.8 | 15.6 | 15.0 | 14.7 | 12.8 | 24.0 | Actuated > ARS > Q-learning > LSTDQ > MaxPressure |
-| AM peak 06–10 | 80 | 27.4 | 30.7 | 27.0 | 39.3 | 36.6 | 30.6 | 39.3 | LSTDQ > Actuated > MaxPressure > ARS > Q-learning |
-| midday 10–15 | 100 | 28.2 | 31.6 | 28.7 | 42.0 | 42.0 | 50.4 | 58.1 | Actuated > LSTDQ > MaxPressure > ARS > Q-learning |
-| PM peak 15–19 | 80 | 26.2 | 23.5 | 28.4 | 33.8 | 30.5 | 27.0 | 35.3 | MaxPressure > Actuated > LSTDQ > ARS > Q-learning |
-| evening 19–24 | 100 | 22.5 | 20.7 | 23.5 | 38.0 | 34.8 | 25.7 | 127.6 | MaxPressure > Actuated > LSTDQ > ARS > Q-learning |
+| night 00–06 | 120 | 9.2 | 13.8 | 12.4 | 9.8 | 10.1 | 9.2 | 23.2 | Actuated > Q-learning > ARS > LSTDQ > MaxPressure |
+| AM peak 06–10 | 80 | 27.1 | 34.0 | 25.8 | 36.5 | 38.7 | 31.2 | 49.1 | LSTDQ > Actuated > MaxPressure > Q-learning > ARS |
+| midday 10–15 | 100 | 28.0 | 33.1 | 27.8 | 38.5 | 49.5 | 51.2 | 98.6 | LSTDQ > Actuated > MaxPressure > Q-learning > ARS |
+| PM peak 15–19 | 80 | 26.0 | 23.5 | 24.3 | 27.6 | 28.5 | 27.1 | 93.6 | MaxPressure > LSTDQ > Actuated > Q-learning > ARS |
+| evening 19–24 | 100 | 21.7 | 20.2 | 21.3 | 24.4 | 29.1 | 25.2 | 290.7 | MaxPressure > LSTDQ > Actuated > Q-learning > ARS |
 
 ### By within-hour variability (cv of the twelve 5-min totals)
 
 | condition | hours | Actuated | MaxPressure | LSTDQ | Q-learning | ARS | GDOT plan | Webster | ranking (adaptive) |
 |---|---|---|---|---|---|---|---|---|---|
-| steady, cv < 0.15 | 254 | 26.5 | 25.7 | 26.4 | 35.0 | 33.4 | 35.8 | 51.0 | MaxPressure > LSTDQ > Actuated > ARS > Q-learning |
-| variable, 0.15–0.25 | 78 | 27.4 | 34.8 | 32.0 | 56.5 | 53.3 | 33.5 | 119.1 | Actuated > LSTDQ > MaxPressure > ARS > Q-learning |
-| very variable, cv ≥ 0.25 | 148 | 16.3 | 20.0 | 19.2 | 23.5 | 19.4 | 21.0 | 34.3 | Actuated > LSTDQ > ARS > MaxPressure > Q-learning |
+| steady, cv < 0.15 | 254 | 26.3 | 26.5 | 24.7 | 30.3 | 34.8 | 36.1 | 106.8 | LSTDQ > Actuated > MaxPressure > Q-learning > ARS |
+| variable, 0.15–0.25 | 78 | 26.8 | 36.7 | 28.5 | 42.8 | 53.6 | 33.6 | 213.9 | Actuated > LSTDQ > MaxPressure > Q-learning > ARS |
+| very variable, cv ≥ 0.25 | 148 | 14.1 | 19.3 | 16.4 | 19.3 | 17.9 | 19.5 | 76.6 | Actuated > LSTDQ > ARS > MaxPressure > Q-learning |
 
 - steady, cv < 0.15: mean volume 1894 veh/h
 - variable, 0.15–0.25: mean volume 1379 veh/h
@@ -45,45 +45,45 @@ Per controller: cycle length; per phase group: average green per service, share 
 
 | controller | cycle s | main through P2/P6 | side through P4/P8 | main lefts P1/P5 | side lefts P3/P7 |
 |---|---|---|---|---|---|
-| Actuated | 49 | 25.9 s · 100 % · max 0 % | 11.7 s · 17 % · max 0 % | 8.6 s · 11 % · max 3 % | 7.7 s · 89 % · max 1 % |
-| MaxPressure | 93 | 69.0 s · 100 % · max 32 % | 10.5 s · 28 % · max 0 % | 6.7 s · 13 % · max 0 % | 7.9 s · 81 % · max 0 % |
-| LSTDQ | 102 | 73.8 s · 100 % · max 42 % | 19.1 s · 29 % · max 10 % | 7.8 s · 14 % · max 12 % | 9.3 s · 81 % · max 1 % |
-| Q-learning | 48 | 25.9 s · 100 % · max 0 % | 9.6 s · 17 % · max 0 % | 6.5 s · 11 % · max 0 % | 7.2 s · 89 % · max 0 % |
-| ARS | 74 | 43.3 s · 100 % · max 4 % | 14.8 s · 24 % · max 4 % | 6.5 s · 16 % · max 0 % | 14.1 s · 85 % · max 53 % |
-| GDOT plan | 50 | 27.3 s · 100 % · max 0 % | 11.8 s · 16 % · max 0 % | 8.6 s · 11 % · max 2 % | 7.7 s · 90 % · max 1 % |
+| Actuated | 95 | 69.1 s · 100 % · max 0 % | 10.6 s · 74 % · max 0 % | 8.7 s · 15 % · max 3 % | 9.7 s · 32 % · max 6 % |
+| MaxPressure | 118 | 93.2 s · 100 % · max 24 % | 10.0 s · 71 % · max 0 % | 6.7 s · 15 % · max 0 % | 8.6 s · 37 % · max 1 % |
+| LSTDQ | 110 | 71.7 s · 100 % · max 0 % | 24.6 s · 74 % · max 45 % | 7.5 s · 20 % · max 8 % | 13.8 s · 33 % · max 0 % |
+| Q-learning | 91 | 67.3 s · 100 % · max 0 % | 9.3 s · 75 % · max 0 % | 6.5 s · 14 % · max 0 % | 8.3 s · 31 % · max 0 % |
+| ARS | 102 | 72.1 s · 100 % · max 0 % | 16.1 s · 73 % · max 9 % | 7.4 s · 17 % · max 8 % | 10.6 s · 33 % · max 28 % |
+| GDOT plan | 99 | 73.6 s · 100 % · max 0 % | 10.6 s · 74 % · max 0 % | 8.6 s · 15 % · max 3 % | 9.8 s · 32 % · max 6 % |
 
 ### moderate, 0.3–0.45 (42 hours)
 
 | controller | cycle s | main through P2/P6 | side through P4/P8 | main lefts P1/P5 | side lefts P3/P7 |
 |---|---|---|---|---|---|
-| Actuated | 68 | 29.5 s · 100 % · max 0 % | 14.8 s · 57 % · max 1 % | 9.5 s · 45 % · max 7 % | 11.8 s · 78 % · max 13 % |
-| MaxPressure | 70 | 36.2 s · 100 % · max 1 % | 11.4 s · 61 % · max 0 % | 6.6 s · 44 % · max 0 % | 9.3 s · 75 % · max 1 % |
-| LSTDQ | 95 | 54.5 s · 100 % · max 21 % | 15.9 s · 70 % · max 2 % | 7.3 s · 47 % · max 3 % | 10.3 s · 75 % · max 3 % |
-| Q-learning | 59 | 27.4 s · 100 % · max 0 % | 10.7 s · 55 % · max 0 % | 6.5 s · 40 % · max 0 % | 8.9 s · 77 % · max 0 % |
-| ARS | 67 | 28.9 s · 100 % · max 0 % | 13.0 s · 58 % · max 0 % | 6.5 s · 46 % · max 0 % | 12.8 s · 76 % · max 58 % |
-| GDOT plan | 102 | 61.3 s · 100 % · max 0 % | 16.0 s · 61 % · max 1 % | 9.2 s · 43 % · max 3 % | 11.9 s · 83 % · max 4 % |
+| Actuated | 69 | 31.4 s · 100 % · max 0 % | 14.6 s · 74 % · max 1 % | 9.6 s · 44 % · max 8 % | 11.8 s · 55 % · max 19 % |
+| MaxPressure | 69 | 36.7 s · 100 % · max 1 % | 11.5 s · 73 % · max 0 % | 6.6 s · 41 % · max 0 % | 8.9 s · 59 % · max 1 % |
+| LSTDQ | 73 | 36.9 s · 100 % · max 0 % | 14.7 s · 75 % · max 6 % | 7.1 s · 44 % · max 1 % | 9.7 s · 58 % · max 1 % |
+| Q-learning | 60 | 29.2 s · 100 % · max 0 % | 10.8 s · 75 % · max 0 % | 6.5 s · 40 % · max 0 % | 8.6 s · 53 % · max 0 % |
+| ARS | 66 | 30.8 s · 100 % · max 0 % | 12.9 s · 75 % · max 1 % | 8.1 s · 43 % · max 14 % | 10.8 s · 55 % · max 32 % |
+| GDOT plan | 105 | 64.5 s · 100 % · max 0 % | 15.5 s · 77 % · max 0 % | 9.1 s · 43 % · max 2 % | 12.2 s · 64 % · max 5 % |
 
 ### busy, 0.45–0.6 (164 hours)
 
 | controller | cycle s | main through P2/P6 | side through P4/P8 | main lefts P1/P5 | side lefts P3/P7 |
 |---|---|---|---|---|---|
-| Actuated | 86 | 32.5 s · 100 % · max 0 % | 19.5 s · 86 % · max 2 % | 10.3 s · 64 % · max 14 % | 12.2 s · 81 % · max 25 % |
-| MaxPressure | 71 | 31.4 s · 100 % · max 0 % | 11.9 s · 86 % · max 0 % | 6.6 s · 55 % · max 0 % | 8.5 s · 79 % · max 2 % |
-| LSTDQ | 96 | 50.3 s · 100 % · max 12 % | 15.3 s · 91 % · max 1 % | 7.6 s · 59 % · max 4 % | 9.2 s · 82 % · max 5 % |
-| Q-learning | 66 | 27.7 s · 100 % · max 0 % | 11.6 s · 85 % · max 0 % | 6.5 s · 54 % · max 0 % | 8.3 s · 78 % · max 0 % |
-| ARS | 72 | 28.0 s · 100 % · max 0 % | 13.8 s · 83 % · max 0 % | 6.6 s · 59 % · max 0 % | 11.3 s · 79 % · max 55 % |
-| GDOT plan | 129 | 75.5 s · 100 % · max 0 % | 20.2 s · 94 % · max 0 % | 8.8 s · 59 % · max 0 % | 10.4 s · 89 % · max 0 % |
+| Actuated | 85 | 32.6 s · 100 % · max 0 % | 19.6 s · 89 % · max 2 % | 10.4 s · 63 % · max 14 % | 12.1 s · 74 % · max 27 % |
+| MaxPressure | 69 | 30.4 s · 100 % · max 0 % | 12.0 s · 89 % · max 0 % | 6.6 s · 55 % · max 0 % | 8.2 s · 73 % · max 2 % |
+| LSTDQ | 83 | 39.7 s · 100 % · max 0 % | 14.6 s · 91 % · max 2 % | 7.4 s · 57 % · max 2 % | 8.8 s · 76 % · max 3 % |
+| Q-learning | 66 | 27.9 s · 100 % · max 0 % | 11.8 s · 89 % · max 0 % | 6.5 s · 54 % · max 0 % | 7.9 s · 71 % · max 0 % |
+| ARS | 72 | 29.8 s · 100 % · max 0 % | 13.6 s · 88 % · max 0 % | 9.0 s · 56 % · max 24 % | 9.0 s · 73 % · max 19 % |
+| GDOT plan | 129 | 75.7 s · 100 % · max 0 % | 20.2 s · 95 % · max 0 % | 8.8 s · 60 % · max 0 % | 10.3 s · 87 % · max 0 % |
 
 ### heavy, Y ≥ 0.6 (110 hours)
 
 | controller | cycle s | main through P2/P6 | side through P4/P8 | main lefts P1/P5 | side lefts P3/P7 |
 |---|---|---|---|---|---|
-| Actuated | 99 | 38.5 s · 100 % · max 1 % | 22.6 s · 94 % · max 6 % | 10.6 s · 72 % · max 17 % | 12.3 s · 84 % · max 39 % |
-| MaxPressure | 76 | 34.0 s · 100 % · max 1 % | 12.3 s · 93 % · max 0 % | 6.6 s · 60 % · max 0 % | 8.1 s · 82 % · max 6 % |
-| LSTDQ | 105 | 55.9 s · 100 % · max 16 % | 15.7 s · 96 % · max 1 % | 7.8 s · 65 % · max 6 % | 9.3 s · 87 % · max 11 % |
-| Q-learning | 68 | 27.6 s · 100 % · max 0 % | 11.7 s · 92 % · max 0 % | 6.5 s · 60 % · max 0 % | 7.7 s · 80 % · max 0 % |
-| ARS | 74 | 27.8 s · 100 % · max 0 % | 14.3 s · 90 % · max 0 % | 6.8 s · 64 % · max 1 % | 11.1 s · 80 % · max 56 % |
-| GDOT plan | 133 | 75.4 s · 100 % · max 0 % | 22.0 s · 98 % · max 0 % | 8.8 s · 65 % · max 0 % | 9.8 s · 92 % · max 0 % |
+| Actuated | 99 | 38.6 s · 100 % · max 1 % | 22.8 s · 94 % · max 6 % | 10.6 s · 72 % · max 17 % | 12.2 s · 82 % · max 39 % |
+| MaxPressure | 73 | 31.7 s · 100 % · max 0 % | 12.2 s · 94 % · max 0 % | 6.6 s · 60 % · max 0 % | 7.9 s · 79 % · max 5 % |
+| LSTDQ | 92 | 45.2 s · 100 % · max 2 % | 15.3 s · 95 % · max 2 % | 7.7 s · 63 % · max 6 % | 8.5 s · 83 % · max 6 % |
+| Q-learning | 69 | 28.5 s · 100 % · max 0 % | 11.9 s · 94 % · max 0 % | 6.5 s · 59 % · max 0 % | 7.5 s · 77 % · max 0 % |
+| ARS | 76 | 30.0 s · 100 % · max 0 % | 14.5 s · 93 % · max 1 % | 9.5 s · 63 % · max 31 % | 8.6 s · 79 % · max 18 % |
+| GDOT plan | 133 | 75.3 s · 100 % · max 0 % | 22.1 s · 98 % · max 0 % | 8.8 s · 66 % · max 0 % | 9.8 s · 92 % · max 0 % |
 
 ## RQ3: does the ranking hold?
 
@@ -92,7 +92,7 @@ Per controller: cycle length; per phase group: average green per service, share 
 | model | Actuated | MaxPressure | LSTDQ | Q-learning | ARS | GDOT plan | Webster | ranking (adaptive) |
 |---|---|---|---|---|---|---|---|---|
 | first pass (reported counts) | 17.1 | 19.0 | 18.0 | 46.9 | 19.6 | 20.9 | 48.5 | Actuated > LSTDQ > MaxPressure > ARS > Q-learning |
-| corrected counts (attempt 7 model) | 25.8 | 26.7 | 26.7 | 37.6 | 35.5 | 34.1 | 60.9 | Actuated > MaxPressure > LSTDQ > ARS > Q-learning |
+| corrected counts (attempt 7 model) | 25.3 | 27.6 | 24.6 | 31.5 | 36.5 | 34.3 | 122.0 | LSTDQ > Actuated > MaxPressure > Q-learning > ARS |
 
 The two models differ in the counted side-street and EB-left demand (and in pedestrians, passage times and left-turn calibration); the ranking change is the effect of the whole correction.
 
@@ -100,49 +100,49 @@ The two models differ in the counted side-street and EB-left demand (and in pede
 
 | learner | per seed | median | spread |
 |---|---|---|---|
-| LSTDQ | 25.0, 30.2, 25.8, 26.3, 26.2 | 26.2 | 5.2 |
-| Q-learning | 38.3, 36.3, 37.8, 38.1, 37.3 | 37.8 | 2.0 |
-| ARS | 45.0, 29.3, 36.3, 36.5, 30.6 | 36.3 | 15.7 |
+| LSTDQ | 23.8, 24.2, 24.7, 24.5, 25.7 | 24.5 | 1.9 |
+| Q-learning | 34.0, 31.1, 32.4, 27.0, 32.8 | 32.4 | 7.0 |
+| ARS | 37.2, 31.3, 40.0, 32.2, 41.6 | 37.2 | 10.3 |
 
 ### (c) Worst-served movement: 95th-percentile delay of the worst movement in the hour (s), by saturation
 
 | condition | Actuated | MaxPressure | LSTDQ | Q-learning | ARS | GDOT plan | Webster |
 |---|---|---|---|---|---|---|---|
-| light, Y < 0.3 | 45 | 106 | 99 | 71 | 62 | 54 | 68 |
-| moderate, 0.3–0.45 | 68 | 103 | 134 | 116 | 96 | 117 | 158 |
-| busy, 0.45–0.6 | 78 | 105 | 125 | 123 | 94 | 160 | 156 |
-| heavy, Y ≥ 0.6 | 104 | 190 | 205 | 276 | 224 | 300 | 317 |
+| light, Y < 0.3 | 40 | 89 | 62 | 43 | 45 | 48 | 100 |
+| moderate, 0.3–0.45 | 67 | 118 | 92 | 104 | 95 | 117 | 409 |
+| busy, 0.45–0.6 | 77 | 106 | 100 | 112 | 98 | 162 | 253 |
+| heavy, Y ≥ 0.6 | 104 | 205 | 155 | 229 | 243 | 304 | 668 |
 
 ## Comparison with actuated, daily vehicle-weighted delay over the validation days (20 days)
 
-Pre-registered (TEST_PLAN.md). Primary: paired t-test on the daily log ratio ln(delay / actuated delay), Holm-adjusted over the six comparisons; ratio = geometric mean with its 95 % t interval. Equivalence (H1, margin per day max(2 s/veh, 5 % of actuated), fixed 2026-11-16): paired TOST at 5 %, t distribution. Secondary (reported, no verdict): mean and median difference, days won, Wilcoxon signed-rank (with 7 days its smallest possible two-sided p is 0.016). Learners: mean over training seeds and simulation seeds per hour; other controllers: mean over simulation seeds.
+Pre-registered (TEST_PLAN.md). Primary: paired t-test on the daily log ratio ln(delay / actuated delay), Holm-adjusted over the six comparisons; ratio = geometric mean with its 95 % t interval. Equivalence (H1, margin per day max(2 s/veh, 5 % of actuated), fixed 2026-11-16): paired TOST at 5 %, t distribution. Secondary (reported, no verdict): mean and median difference, days won, Wilcoxon signed-rank (its smallest possible two-sided p is 1.91e-06 with 20 days). Learners: mean over training seeds and simulation seeds per hour; other controllers: mean over simulation seeds.
 
 | method | ratio to actuated (95 % CI) | p primary | p Holm | p TOST | mean diff (s/veh) | median diff | days won | p Wilcoxon | verdict |
 |---|---|---|---|---|---|---|---|---|---|
-| MaxPressure | 0.973 (0.892–1.060) | 0.5058 | 0.8584 | 0.291 | +0.76 | -2.06 | 17/20 | 0.0759 | inconclusive |
-| LSTDQ | 1.022 (0.966–1.081) | 0.4292 | 0.8584 | 0.112 | +0.92 | -0.26 | 12/20 | 0.7285 | inconclusive |
-| Q-learning | 1.215 (1.017–1.451) | 0.0336 | 0.1345 | 0.925 | +10.99 | -0.23 | 11/20 | 0.1536 | inconclusive |
-| ARS | 1.148 (0.972–1.355) | 0.0985 | 0.2956 | 0.866 | +9.04 | -0.53 | 12/20 | 0.6742 | inconclusive |
-| GDOT plan | 1.174 (1.044–1.321) | 0.0099 | 0.0496 | 0.867 | +7.97 | +2.81 | 0/20 | 0.0000 | worse |
-| Webster | 1.700 (1.300–2.223) | 0.0006 | 0.0033 | 0.984 | +32.89 | +7.62 | 0/20 | 0.0000 | worse |
+| MaxPressure | 1.003 (0.903–1.115) | 0.9460 | 0.9460 | 0.511 | +2.10 | -1.89 | 17/20 | 0.0759 | inconclusive |
+| LSTDQ | 0.958 (0.932–0.985) | 0.0042 | 0.0209 | 0.016 | -0.74 | -1.34 | 19/20 | 0.0007 | equivalent |
+| Q-learning | 1.098 (0.968–1.246) | 0.1372 | 0.3582 | 0.799 | +5.76 | -0.59 | 11/20 | 0.2455 | inconclusive |
+| ARS | 1.144 (0.963–1.359) | 0.1194 | 0.3582 | 0.836 | +10.44 | -0.25 | 11/20 | 0.4091 | inconclusive |
+| GDOT plan | 1.186 (1.050–1.340) | 0.0086 | 0.0342 | 0.871 | +8.57 | +2.78 | 0/20 | 0.0000 | worse |
+| Webster | 2.484 (1.626–3.795) | 0.0002 | 0.0015 | 0.989 | +90.41 | +15.49 | 0/20 | 0.0000 | worse |
 
 ### Per training seed against actuated (descriptive)
 
 | learner seed | delay (s/veh) | ratio to actuated (geometric mean) | days won |
 |---|---|---|---|
-| lstdq_v2_s0 | 25.0 | 0.969 | 17/20 |
-| lstdq_v2_s1 | 30.2 | 1.102 | 8/20 |
-| lstdq_v2_s2 | 25.8 | 0.984 | 17/20 |
-| lstdq_v2_s3 | 26.3 | 1.015 | 13/20 |
-| lstdq_v2_s4 | 26.2 | 1.010 | 12/20 |
-| qlearn_s0 | 38.3 | 1.224 | 10/20 |
-| qlearn_s1 | 36.3 | 1.186 | 11/20 |
-| qlearn_s2 | 37.8 | 1.226 | 10/20 |
-| qlearn_s3 | 38.1 | 1.217 | 10/20 |
-| qlearn_s4 | 37.3 | 1.208 | 11/20 |
-| ars_s0 | 45.0 | 1.313 | 8/20 |
-| ars_s1 | 29.3 | 1.021 | 13/20 |
-| ars_s2 | 36.3 | 1.166 | 10/20 |
-| ars_s3 | 36.5 | 1.125 | 11/20 |
-| ars_s4 | 30.6 | 1.041 | 13/20 |
+| lstdq_v2_s0 | 23.8 | 0.926 | 18/20 |
+| lstdq_v2_s1 | 24.2 | 0.945 | 19/20 |
+| lstdq_v2_s2 | 24.7 | 0.944 | 19/20 |
+| lstdq_v2_s3 | 24.5 | 0.951 | 19/20 |
+| lstdq_v2_s4 | 25.7 | 1.020 | 7/20 |
+| qlearn_s0 | 34.0 | 1.109 | 11/20 |
+| qlearn_s1 | 31.1 | 1.087 | 11/20 |
+| qlearn_s2 | 32.4 | 1.113 | 11/20 |
+| qlearn_s3 | 27.0 | 1.046 | 11/20 |
+| qlearn_s4 | 32.8 | 1.107 | 11/20 |
+| ars_s0 | 37.2 | 1.134 | 11/20 |
+| ars_s1 | 31.3 | 1.088 | 12/20 |
+| ars_s2 | 40.0 | 1.185 | 9/20 |
+| ars_s3 | 32.2 | 1.097 | 12/20 |
+| ars_s4 | 41.6 | 1.200 | 9/20 |
 

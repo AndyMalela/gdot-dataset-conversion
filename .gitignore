@@ -32,3 +32,7 @@ rlagent/experiments/EXP-009_significance/archive/**/demand/
 # atsc: generated demand (regenerate with atsc/sim/demand.write_routes)
 atsc/**/*.rou.xml
 !atsc/sites/*/network/smoke.rou.xml
+
+# === Obsidian: per-device UI state (changes constantly, conflicts between desktop and mobile) ===
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json

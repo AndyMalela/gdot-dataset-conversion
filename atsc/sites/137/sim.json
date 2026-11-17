@@ -19,5 +19,16 @@
  },
  "depart_lane": "sorted",
  "calibration_note": "uncalibrated: saturation flow and discharge headways not checked against the field; results are provisional until Phase 1.5/1.6 are done for 137",
- "vtype_source": "2026-11-16 attempt 5 (VALIDATION.md): calibration grid on train-day windows against the field share of left-turners clearing permissively; impatience 0.5 won by the registered rule (mean |diff| 0.135 vs 0.167 default)"
+ "vtype_source": "2026-11-16 attempt 5 (VALIDATION.md): calibration grid on train-day windows against the field share of left-turners clearing permissively; impatience 0.5 won by the registered rule (mean |diff| 0.135 vs 0.167 default)",
+ "sat_flow_veh_h_lane": {
+  "1": 1963,
+  "2": 2176,
+  "3": 1963,
+  "4": 2057,
+  "5": 1963,
+  "6": 2175,
+  "7": 1964,
+  "8": 2078
+ },
+ "sat_flow_source": "sat_flow.py (TEST_PLAN.md amendment 1, F3): simulated discharge, headways from the 5th queued vehicle in protected greens, GDOT plan, 29 train weekdays 15.5-19.5 h"
 }
