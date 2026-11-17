@@ -71,3 +71,31 @@ worst-served movement, per-training-seed ratios and days won, simulation-seed sp
 - The test is run once. If a bug is found afterwards, the fix is documented and both results are reported.
 - Known limitations carried with every result: V3 skips 19/35 (the model serves arrows more often than the field;
   permissive-left share 0.73–0.75 vs 0.85–0.88); ARS trained on attempt 6 (environment unchanged); one site.
+
+## Results (run once, 2026-11-17 14:04–16:29 JST; `eval_test/analysis.md`, `eval_test/report.md`)
+
+Test days used: 7 (05-18, 19, 20, 22, 26, 28, 29), 168 clean hours; 665 runs (19 controllers × 7 days × 5 simulation
+seeds), 0 failed, 0 teleports. Timing: `test_schedule.py` matched every band to a frozen plan except one 1-h plan
+(K, 05-22, added as T1); **05-22 fell back to 05-20's schedule** under the registered rule (two short "transition"
+bands count as a failed read, as in `make_signal.py`), although the field ran A–D that day: GDOT plan and 138's
+timing on 05-22 use the E/G program. The same rule already gave 05-14 and 05-15 (validation) the 05-13 schedule.
+
+Overall vehicle-weighted delay (s/veh): actuated 25.2, MaxPressure 26.1, ARS 30.8, LSTDQ 30.6, GDOT plan 31.3,
+Q-learning 35.3, Webster 94.0.
+
+| method | ratio to actuated (95 % CI) | p Holm | p TOST | days won | verdict |
+|---|---|---|---|---|---|
+| MaxPressure | 1.025 (0.912–1.151) | 0.626 | 0.212 | 4/7 | inconclusive |
+| LSTDQ | 1.198 (1.052–1.363) | 0.057 | 0.949 | 1/7 | inconclusive |
+| Q-learning | 1.328 (0.997–1.768) | 0.103 | 0.939 | 1/7 | inconclusive |
+| ARS | 1.196 (1.019–1.403) | 0.101 | 0.926 | 1/7 | inconclusive |
+| GDOT plan | 1.227 (1.070–1.406) | 0.053 | 0.965 | 0/7 | inconclusive |
+| Webster | 3.167 (1.748–5.738) | 0.019 | 0.993 | 0/7 | worse |
+
+No method is shown equivalent to or better than actuated; only Webster is significantly worse after Holm. Webster's
+94 s/veh comes from its train-day evening plan (20:00–22:00): EB through backs up to ~550 vehicles on 05-19
+(hour 22 mean 1,361 s), so late-May evening demand exceeds what that fixed plan serves; the residual queue also
+drives its "light" and "very variable" hour figures.
+
+Post hoc (labelled, not part of the registered analysis), without 05-22: same directions; ratios MaxPressure 1.038,
+LSTDQ 1.210, Q-learning 1.366, ARS 1.209, GDOT plan 1.251, Webster 2.905; no Holm p < 0.05 (6 days).

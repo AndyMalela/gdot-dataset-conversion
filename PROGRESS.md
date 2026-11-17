@@ -2,6 +2,16 @@
 
 Live status, newest first. Plan and framing: [PLAN.md](PLAN.md). Site details and deviations: [atsc/sites/137/README.md](atsc/sites/137/README.md).
 
+## Now (2026-11-17 16:30 JST): FINAL TEST done (locked days 05-18..29, run once, TEST_PLAN.md)
+
+7 test days x 19 controllers x 5 simulation seeds = 665 runs, 0 failed, 0 teleports. `atsc/sites/137/eval_test/`.
+Delay (s/veh): actuated 25.2, MaxPressure 26.1, LSTDQ 30.6, ARS 30.8, GDOT plan 31.3, Q-learning 35.3, Webster 94.0.
+Pre-registered verdicts vs actuated (log-ratio t-test, Holm; TOST 5 %/2 s): all inconclusive except Webster worse
+(ratio 3.17, p_Holm 0.019). Ratios: MaxPressure 1.025, LSTDQ 1.198 (p_Holm 0.057), Q-learning 1.328, ARS 1.196,
+GDOT plan 1.227 (0.053). Learners generalise worse than on validation (LSTDQ 1.02 -> 1.20; seed 1 41.4 s/veh);
+actuated is the most robust. 05-22 ran on 05-20's schedule (registered fallback rule; disclosed).
+Results section appended to TEST_PLAN.md.
+
 ## Now (2026-11-17 12:10 JST): every method on the validated attempt-7 model
 
 Attempt 7 = attempt 6 + floating force-off for P1/P5 (GDOT's Split Monitor: the lead lefts never exceed their split on
@@ -17,6 +27,13 @@ vs actuated: MaxPressure median -2.06, 17/20 days, Wilcoxon p 0.076; LSTDQ media
 ARS inconclusive; GDOT plan, Webster worse (0/20 days).
 Apr 28 surge: actuated 45.3, LSTDQ 52.3, MaxPressure 87.3, GDOT plan 152, Q-learning 160, ARS 166 s/veh.
 Without Apr 28 (post hoc): MaxPressure 23.3, actuated 24.7, LSTDQ 25.3, GDOT plan 27.5, ARS 28.2, Q-learning 30.7.
+
+Simulation-seed check (validation days, seeds 1-4, actuated / MaxPressure / LSTDQ s0; `debug/simseed_summary.py`):
+within-day seed SD ~0.2-0.3 s/veh (max 1.9 / 8.1 / 2.9 on a surge day) vs between-day SD 4.4-12.5; log-ratio seed SD
+0.015 vs between-day 0.04-0.18; overall ratios to actuated 0.973 -> 0.983 (MaxPressure), 0.969 -> 0.974 (LSTDQ s0).
+Seed noise is small next to day-to-day variation; the seed-1 validation conclusions stand.
+Final test: plan registered in `atsc/sites/137/TEST_PLAN.md` (commit 908f6298); NOT run yet: reading the locked
+test days needs the user's explicit unlock (the timing fetch was blocked).
 
 ## Earlier (2026-11-16 20:10 JST): methods rerun on the attempt-6 model (superseded by attempt 7)
 
