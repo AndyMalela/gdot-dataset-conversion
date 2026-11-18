@@ -1,6 +1,6 @@
 # Midterm script (final deck: eSocLab_MidtermTHISONE.pptx)
 
-Spoken length (bracketed parts not read aloud): about 2062 words: ~15:16 at 135 words a minute, ~14:44 at 140, counting slide 6 or 7, not both. These are the deck's speaker notes.
+Spoken length (bracketed parts not read aloud): about 1603 words: ~11:52 at 135 words a minute, ~11:27 at 140, counting slide 6 or 7, not both. These are the deck's speaker notes.
 
 ---
 
@@ -111,49 +111,23 @@ A tie means within 2 seconds, fixed before any result. Each method is compared w
 
 [Not read aloud - if asked: the test days were opened once under a plan written beforehand; after that run we found four errors, wrote the fixes down, reran once, and report both results (backup: Test Run and Rerun). Each learner is trained 5 times, on training days only, and results are the average of the 5. A tie is within 2 s/veh or 5 %, whichever is larger - a judgement call. Conditions: time of day, how busy the hour is, how uneven the traffic is, sudden surges. The what-if raises every count by 25 % on 5 development days; the learners trained on real counts only.]
 
-## Slide 13 — Results (~100 s)
+## Slide 13 — Results: Real Days (~45 s)
 
-On the 7 test days, the deployed GDOT plan has 31.2 seconds of delay per car. The same controller without its fixed cycle: 24.9. LSTDQ: 25.3. MaxPressure: 26.1. All three beat the deployed plan on all 7 days. So three methods cut delay by 5 to 6 seconds, and one of them does no learning at all.
+On the 7 test days, the real plan has 31.2 seconds of delay per car, and its side streets wait 50. The same controller without its fixed cycle: 24.9, shared evenly, 25 on both. LSTDQ ties it at 25.3, but by keeping the main street fast and making the side streets wait 34. Q-learning and ARS are about 5 seconds behind and not settled against the no-cycle controller.
 
-Against that no-cycle controller, LSTDQ is a tie: within 2 seconds, with p 0.026. The deployed plan is significantly worse, p 0.046. The other two learners, Q-learning at 30.6 and ARS at 30.4, beat the deployed plan on 5 of 7 days, but against the no-cycle controller they, and MaxPressure, are not settled: the days vary too much to call a tie or a difference. Webster's textbook timer is far behind, at 117.7.
+So beating today's plan needs no learning, and learning changes who waits. Likely why, not yet tested: the learners are rewarded per car, most cars are on the main street, and the side streets only have stop-line detectors.
 
-Why does nobody beat the no-cycle controller? It is GDOT's own controller, with GDOT's own detector settings, just without the fixed cycle. Once the cycle is gone, this simple rule already serves this intersection well, likely because it is rarely near capacity. Learning adds no clear gain on average: on the development days LSTDQ was slightly better, 24.6 against 25.3 seconds, so any gain is under a second. This is why the comparison matters: against the deployed plan, learning looks like a 5 to 6 second gain; against the same controller without its cycle, that gain disappears.
+[Point at: the All day column, then the red side-street numbers.]
 
-[Point at: the first three rows, then the p columns.]
+[Not read aloud: LSTDQ beats the real plan on 7 of 7 days, Q-learning and ARS on 5 of 7. Real plan vs no-cycle: worse, p 0.046 (paired t-test, Holm-corrected). LSTDQ tie: equivalence test p 0.026. Development days: real plan 34.3, no-cycle 25.3, LSTDQ 24.6, Q-learning 31.5, ARS 36.5. MaxPressure and Webster: appendix.]
 
-[Not read aloud: Webster is designed for a typical day and overflows on busy evenings. p diff. = paired t-test on the daily delay ratio, Holm-corrected over six methods; p tie = equivalence test, margin 2 s/veh or 5 %, whichever is larger. Development days (20), s/veh: GDOT plan 34.3, no-cycle 25.3, LSTDQ 24.6, MaxPressure 27.6, Q-learning 31.5, ARS 36.5, Webster 122.0.] [If asked: dropping the cycle gives up timing with the next signal; we count delay around this intersection only, so that benefit is not fully counted. Development days: LSTDQ better than no-cycle, 19 of 20 days, p 0.021 (Holm).]
+## Slide 14 — Results: When (~45 s)
 
-## Slide 14 — Results: Time of Day Difference (~55 s)
+No method wins everywhere. LSTDQ is best in the morning peak, 21.1. But the simple no-cycle rule wins the evening peak, and clearly in six hours with sudden side-street surges, picked after seeing the results: 39.1 against 58.0 for LSTDQ. With a quarter more traffic, a what-if on development days, it is also best: 45.0 against 51.7. Q-learning and ARS are best at night but fall far behind when traffic is heavy. The real plan is behind the no-cycle controller in every row except night, where they are equal: at night the real controller already runs without its cycle.
 
-When does each method win? At night, Q-learning is lowest, 8.1, with the no-cycle controller and the deployed plan at 8.2; LSTDQ and MaxPressure lose about 3 seconds. In the morning peak, LSTDQ is lowest: 21.1. At midday, LSTDQ again: 24.2. In the evening peak, the no-cycle controller wins: 27.8. In six hours with sudden side-street surges, picked after seeing the results, it wins clearly: 39.1, against 58.0 for LSTDQ and over 74 for the others. With every count up by a quarter, on 5 development days the learners never trained on, the no-cycle controller has 45.0; MaxPressure and LSTDQ about 51; Q-learning and ARS fall far behind.
+[Not read aloud: midday (10-15 h): real plan 35.0, no-cycle 25.8, LSTDQ 24.2, Q-learning 27.9, ARS 26.8. Night = 00-06 h, morning 06-10, evening peak 15-19. From +50 % every controller's queues keep growing for much of the day, so methods are not ranked above +25 %. MaxPressure: appendix.]
 
-No method wins everywhere. The simple rule is the safest default.
-
-[Not read aloud - full numbers moved off the slide, s/veh, in the order GDOT plan / no-cycle / MaxPressure / LSTDQ / Q-learning / ARS. Test days: night 00-06 8.2/8.2/11.2/11.6/8.1/8.5; morning peak 06-10 26.1/22.8/21.2/21.1/21.8/21.9; midday 10-15 35.0/25.8/26.0/24.2/27.9/26.8; evening peak 15-19 34.0/27.8/32.0/30.6/42.2/38.2; 6 surge hours 85.4/39.1/74.8/58.0/114.5/95.7. What-if on 5 development days: real counts 27.4/24.5/22.8/23.3/26.7/27.3; every count +25 % 63.1/45.0/51.3/51.7/76.9/100.4. From +50 % every controller's queues keep growing for much of the day, so methods are not ranked above +25 %. Green on the slide = lowest in the row. These by-condition numbers are descriptive: no statistical test.]
-
-## Slide 15 — Learners Compared (~70 s)
-
-The three learners get the same detector inputs and the same kind of linear model. The only difference is how they learn. LSTDQ solves for its weights from all recorded decisions at once. Q-learning nudges the weights a little after every decision. ARS tries random changes and keeps the ones that lower delay.
-
-LSTDQ is clearly the best of the three: 25.3 seconds all day, against about 30.5 for the other two, and it holds up in busy hours, 31.1 against about 41 to 42. Q-learning and ARS are better at night, 8.1 and 8.5 against 11.6, but they fall apart when traffic is heavy.
-
-Training tells the same story. LSTDQ settles after one round. Q-learning is best early and drifts if it keeps training. ARS stays noisy, even with about ten times more simulation runs.
-
-So with the same model, the learning method decides whether the controller is usable. That is why LSTDQ is our base method.
-
-[Not read aloud: busy hours = heavy-hour band on test days (validation: LSTDQ 31.3, Q 48.5, ARS 62.0; no-cycle 31.5). Days won against no-cycle on test: LSTDQ 4, Q-learning 2, ARS 1 of 7. Training budget of the kept iterate, 4-hour window-episodes: LSTDQ 44-110, Q-learning 22-44, ARS 220-1,100. Q-learning weights keep growing in later rounds in 4 of 5 seeds. ARS: random search, 11 directions per step on 312 weights. Verdicts vs no-cycle: LSTDQ tie (p 0.026); Q-learning and ARS not settled. The 'same model, different solver' argument is Lagoudakis & Parr 2003's case for least-squares methods.]
-
-## Slide 16 — Results: Who Waits (~60 s)
-
-Who waits? Test days, delay per car. The deployed GDOT plan favours the main street: 18 seconds there, 50 on the side streets. LSTDQ keeps the main street at 19 and cuts the side streets to 34, about 16 seconds less. The no-cycle controller shares the wait evenly: 25 on both.
-
-MaxPressure and the other learners also make the side streets wait longer: 34 to 42 seconds there, against 19 to 28 on the main street. So LSTDQ and the no-cycle controller have about the same average, but different people wait.
-
-Why? Our likely explanation, not yet tested: the learners are rewarded per car, and 58 percent of cars are on the main street. And the side streets only have detectors at the stop line, so a long side queue is mostly invisible.
-
-[Point at: the red side-street column.]
-
-## Slide 17 — Conclusion (~90 s)
+## Slide 15 — Conclusion (~90 s)
 
 For this one intersection. One: the simulation, built only from the agency's data, passed its check on unseen days; it checks how the signal behaves, not delay itself. Two: beating today's timing needs no learning - the deployed plan has 31.2 seconds, the same controller without its fixed cycle 24.9. We expected the learning methods to at least tie the best simple rule; only LSTDQ did, at 25.3. Three: learning changes who waits. And among the learners, how they learn matters most: LSTDQ holds up in busy hours, Q-learning and ARS do not.
 
@@ -166,9 +140,23 @@ Thank you.
 [Not read aloud - moved off the slide: the simple rule is more robust at night, in surges and with +25 % traffic; why the learners shift the wait is not yet tested. Limitations: the check covers controller behaviour, not delay itself; the test days were run twice, the rerun after fixes registered before it; side-street demand is a corrected estimate of GDOT's counts; delay is scored around this intersection, so the benefit of timing it with the next signal is not fully counted; one site; our own controller engine; left arrows are served more often than in the field.]
 [If asked 'why only one intersection so far?': building and validating the simulation took eight attempts here; we wanted one fully validated site first. 'What would a new intersection give?': it may not change the results, and that would be a finding too; but 137 cannot test heavy traffic (rarely near capacity), what the detectors see (side streets only have stop-line detectors), or a different setting (here one signal tied to one neighbour). A second site needs its own validation first.]
 
-## Slide 18 — SUMO Intersection Sim (~10 s)
+**16 — SUMO Intersection Sim.** (60 s) Preliminary findings, honest limits, and what comes next. The data finding is worth saying: GDOT's presence-zone counts undercount queued traffic - found at two intersections.
 
-(60 s) Preliminary findings, honest limits, and what comes next. The data finding is worth saying: GDOT's presence-zone counts undercount queued traffic - found at two intersections.
+**17 — Appendix: Learners Compared.** (appendix) The three learners get the same detector inputs. LSTDQ and Q-learning learn the same linear model; ARS learns a decision rule directly. The only difference is how they learn. LSTDQ solves for its weights from all recorded decisions at once. Q-learning nudges the weights a little after every decision. ARS tries random changes and keeps the ones that lower delay.
+
+LSTDQ is clearly the best of the three: 25.3 seconds all day, against about 30.5 for the other two, and it holds up in busy hours, 31.1 against about 41 to 42. Q-learning and ARS are better at night, 8.1 and 8.5 against 11.6, but they fall apart when traffic is heavy.
+
+Training tells the same story. LSTDQ settles after one round. Q-learning is best early and drifts if it keeps training. ARS stays noisy, even with about ten times more simulation runs.
+
+So with the same model, the learning method decides whether the controller is usable. That is why LSTDQ is our base method.
+
+[Not read aloud: busy hours = heavy-hour band on test days (validation: LSTDQ 31.3, Q 48.5, ARS 62.0; no-cycle 31.5). Days won against no-cycle on test: LSTDQ 4, Q-learning 2, ARS 1 of 7. Training budget of the kept iterate, 4-hour window-episodes: LSTDQ 44-110, Q-learning 22-44, ARS 220-1,100. Q-learning weights keep growing in later rounds in 4 of 5 seeds. ARS: random search, 11 directions per step on 312 weights. Verdicts vs no-cycle: LSTDQ tie (p 0.026); Q-learning and ARS not settled. The 'same model, different solver' argument is Lagoudakis & Parr 2003's case for least-squares methods.]
+
+**18 — Appendix: All Methods.** (appendix) Full test-day comparison with the statistical values (TEST_PLAN.md amendment 1). Development days (20): real plan 34.3, no-cycle 25.3, LSTDQ 24.6, MaxPressure 27.6, Q-learning 31.5, ARS 36.5, Webster 122.0. MaxPressure: green to the longest queue (Varaiya 2013). Webster: textbook fixed timer (Webster 1958), built for a typical day; it overflows in the evening (19-24 h: 344.9 s/veh).
+
+**19 — Appendix: By Condition.** (appendix) Full by-condition table, all adaptive methods and the real plan.
+
+**20 — Appendix: Who Waits.** (appendix) Main-street and side-street delay for every adaptive method, test days. Likely reasons the learners favour the main street (not yet tested): rewarded per car, and side streets only have stop-line detectors.
 
 ---
 
