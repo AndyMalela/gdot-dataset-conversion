@@ -1,88 +1,90 @@
-# Slides 3–4, broader version (proposal)
+# Slides 3, 4 and 9: proposal v2
 
-This version replaces "keep green or switch?" on slide 3 with the field problem: learned control looks promising in papers but rarely reaches the street. Slide 4 then gives four reasons the evidence falls short. Each reason maps onto O1–O3 on slide 5, which stays as it is.
-
-Every claim is either a quote or a count from a paper in `raw/papers/`. The line numbers refer to the pdftotext output, so you can check them.
+Every quote and count below was checked in the paper PDFs (`Things/gr-andy/raw/papers/`). "Line" means the line in the pdftotext output.
 
 ---
 
-## Slide 3: Problem: Promising in Papers, Rare on the Street
+## Slide 3: Problem
 
-**Top row: "Three types of signal control"** (Xiao et al., 2025; Chen et al., 2022). This is the standard split. Your instinct was right; the v4 split "fixed / actuated / learned" was not.
+**Opening line (big):** A traffic signal does one job: every second, keep the current green or switch.
+
+**"Signal control comes in three types"** (Xiao et al., 2025; Chen et al., 2022)
 
 | Fixed-time | Actuated | Adaptive |
 |---|---|---|
-| "predetermined timing schedules" | "adjusts signal phases based on real-time detection" | "interacting dynamically with traffic conditions" |
-| | 137 runs this, inside a fixed cycle shared with the next signal | Reinforcement learning (RL) is "one emerging approach to adaptive control" (Chen et al., 2022) |
+| A preset schedule; ignores the traffic actually there | Detectors stretch or end each green, within preset limits | Changes the timing itself as traffic changes |
+| | **137 runs this**, inside a fixed cycle shared with the next signal | **Rule-based:** a designed rule or optimiser (e.g. SCOOT, SCATS; Xiao et al., 2025) |
+| | | **Learned from data:** reinforcement learning (RL), "one emerging approach to adaptive control" (Chen et al., 2022) |
 
-**Middle row: two facts side by side.**
-- **In research:**
-  - 470 papers on RL signal control, 2015–2025 (Xiao et al., 2025).
-  - "significant improvements over fixed and actuated algorithms in simulations" (Chen et al., 2022).
-- **On the street:**
-  - "RL-based TSC algorithms have never been deployed" (Chen et al., 2022).
-  - "field deployment remains rare" (Zou et al., 2025).
+Adaptive does not mean RL. RL is one kind of adaptive control: the kind whose decision rule is learned from data. SCOOT and SCATS are adaptive with designed rules (Xiao 2025, line ~189: "reliance on preset rules"). MaxPressure is also rule-based adaptive.
 
-**Box at the bottom:**
-> **Problem:** an agency cannot tell from published results whether a learned controller would beat what it already runs, at its own intersection, with its own traffic.
+**Problem box:**
+> **Problem:** learned control looks promising in papers but rarely reaches the street, so an agency cannot tell whether it would beat what it already runs.
+> - **The methods:** agencies must be able to audit a controller against signal standards before deploying it, and this is an open barrier for RL (Chen et al., 2022).
+> - **The tests:** few compare against the controller actually installed, on real traffic (slide 4).
 
-**Sources checked:**
-- Xiao et al. 2025, intro p.1: "three categories: fixed-time control, actuated control, and adaptive control"; line 140 for the 470 papers.
-- Chen, Fang & Sadeh 2022, *The Real Deal*: §2.1, "Three main types ... fixed-time ... actuated ... adaptive"; §2.2, "One emerging approach to adaptive control has been reinforcement learning"; lines 60–61 and 66.
-- Zou et al. 2025, *Traffic-R1*: line 195.
+Small print under the box: 470 RL papers, 2015–2025 (Xiao et al., 2025); "field deployment remains rare" (Zou et al., 2025).
 
-## Slide 4: Why the Evidence Falls Short
+**Sources:**
+- Chen 2022, §1: "Jurisdictions cannot deploy RL-based signal controllers without assurances about compliance to standards (e.g., minimum green time) and safety requirements. The interpretability of models is important for ensuring that signalling plans can be audited and adjusted by stakeholders."
+- Chen 2022, §2.1–2.2: the three types, and RL as "one emerging approach to adaptive control".
+- Xiao 2025: intro ("three categories"), line 140 (470 papers), and SCOOT/SCATS as adaptive.
+- Zou 2025: line 195.
 
-**Four numbered rows. Each row: question, what the literature shows, and the objective it feeds.**
+**Why the problem box has two halves.** You asked whether to use only "agency cannot tell", or to add "methods are undeployable" and "never evaluated against the real deployed controller". I recommend keeping "agency cannot tell" as the headline and the other two as its reasons, with softer wording:
+- **Not "undeployable".** Chen 2022's barrier is that RL is hard to audit, not that it can't be deployed. Zou 2025 even reports a field test. Use "hard to audit", which leads to slide 9: *Sahachaiseree & Oguchi argue a linear learner is easier to inspect* (their argument, labelled as motivation, not our finding).
+- **Not "never evaluated against the deployed controller".** That is false:
+  - Meess 2024 compares against the real traffic-actuated control used in practice.
+  - Kwesiga 2025 compares against GDOT's own timing, running in the real controller software.
 
-1. **A realistic test?**
-   - "A majority of works (62%)" use synthetic road networks (Noaeen et al., 2022, cited in Chen et al., 2022).
-   - Real-data studies (Kwesiga et al., 2025; Meess et al., 2024; Li et al., 2024) build their simulation from field data. None reports checking it against the field, and they test on the same data.
-   - Feeds **O1**.
-2. **Better than what is installed?**
-   - Mostly compared with weak baselines\*.
-   - Tests against engineer-tuned actuated control "are rarely carried out" (Meess et al., 2024).
-   - Feeds **O2**.
-3. **When does it pay off?**
-   - Three papers give three answers on how traffic level changes the gain: it shrinks (Sahachaiseree & Oguchi, 2025), it grows (El-Tantawy et al., 2014), it stays the same (Alegre et al., 2020).
-   - In a field test of an adaptive system, the gain was largest at midday (Smith et al., 2013).
-   - Feeds **O2**.
-4. **Better for whom?**
-   - Results are reported as one average over all cars.
-   - Fairness, meaning "all road users receive equitable access", is listed as an open challenge (Xiao et al., 2025, §5.6).
-   - Feeds **O3**.
-
-**Footer:**
-- Base method: linear RL with LSTDQ (Sahachaiseree & Oguchi, 2025).
-- \* in the studies we reviewed
-
-**Sources checked:**
-- Chen et al. 2022: line 364 ("62% per [10]", where [10] = Noaeen et al.).
-- Smith et al. 2013, *SURTRAC*: Table 1 and "the largest improvement is observed during the Mid Day period".
-- Xiao et al. 2025: §5.6 Fairness.
-
-**Slide 5 then needs one small change.** The gap tags become:
-- O1 = gap 1
-- O2 = gaps 2, 3
-- O3 = gap 4
-
-**Caveats for you:**
-- SURTRAC is adaptive control, not RL. The deck's goal says "adaptive and learned", so it fits.
-- SURTRAC's figures are percentages from their paper. That's fine as a citation, but the script doesn't read them out.
-- Chen 2022's "never deployed" is as of 2022. That's why Zou 2025's "remains rare" sits next to it, since Zou reports its own field test.
+  What the studies we reviewed don't do is the careful part, and it goes on slide 4, row 2.
 
 ---
 
-## Slide 9: Methods Compared, grouped by the same three types
+## Slide 4: What Prior Work Leaves Open
 
-Use the same three headings as slide 3, so the audience sees where each method sits:
+Four rows. Each row has the question, what the literature shows, and the objective it feeds.
 
-| Fixed-time | Actuated | Adaptive |
-|---|---|---|
-| **Webster**: textbook schedule from train-day counts | **GDOT plan**: deployed today and checked against GDOT's log. Greens follow detectors inside a fixed cycle shared with the next signal | **MaxPressure**: green to the longest queue (rule-based) |
-| | **Actuated (no cycle)**: same controller and settings without the fixed cycle. A what-if, and the reference. Same as the GDOT plan at night | **LSTDQ** (base method), **Q-learning**, **ARS**: linear learners. Same features, different ways to learn the weights |
+**1. A realistic test?** → O1
+- "A majority of works (62%)" use synthetic road networks (Noaeen et al., 2022, cited in Chen et al., 2022).
+- Kwesiga 2025, Meess 2024 and Li 2024 build their simulation from real data. None reports checking it against the field afterwards, and they test on the same data\*.
 
-Keep the existing bottom line: "Same network, demand, detectors and safety rules for all: only the decision differs".
+**2. Better than what is installed?** → O2
+- Tests against engineer-tuned actuated control "are rarely carried out" (Meess et al., 2024).
+- The two that do it (Meess 2024; Kwesiga 2025) don't report checking the simulated installed controller against its field log. Kwesiga tests on the same afternoon the simulation was built from\*.
 
-**Note:** calling MaxPressure "adaptive" fits Chen 2022's definition ("more complex prediction and optimization algorithms"). If someone objects, it is a rule that responds to queues; label it "adaptive, rule-based".
+**3. When does it pay off?** → O2
+- Most studies vary one thing, total demand, and disagree: the gain shrinks (Sahachaiseree & Oguchi, 2025), grows (El-Tantawy et al., 2014), or stays the same (Alegre et al., 2020).
+- Other conditions matter too:
+  - In light traffic, NEMA actuated beat RL: 71.2 vs 92.2 s travel time (Lu et al., 2025).
+  - In a field test, an adaptive system's gain changed with the time of day (Smith et al., 2013).
+  - With test conditions more than 20% off its training conditions, RL lost its gain, while a simple feedback rule still helped (Han et al., 2023; ramp metering, in simulation).
+- No clean split into held-out days\*. Real days differ in all these ways at once: how busy, time of day, sudden surges.
 
+**4. Better for whom?** → O3
+- Results are one average over all cars. Fairness, meaning "all road users receive equitable access", is an open challenge (Xiao et al., 2025, §5.6).
+
+**Footer:** \* in the studies we reviewed.
+
+**Sources:**
+- Chen 2022, line 364.
+- Meess 2024, p.2: the "rarely carried out" quote, and the benchmark as "the already existing T-time-based traffic-actuated control".
+- Lu 2025, low-demand table: RL-TSC-AC 92.2, NEMA-actuated 71.2.
+- Smith 2013, Table 1 and "largest improvement ... Mid Day".
+- Han 2023, lines 540–543: RL −0.09% vs ALINEA +1.43% beyond 20% mismatch.
+- `queries/experimental-setup-across-papers.md`: "No paper in the wiki uses a clean temporal split with held-out days".
+
+**Slide 5:** the gap tags become O1 = gap 1, O2 = gaps 2 and 3, O3 = gap 4.
+
+---
+
+## Slide 9: Methods Compared (same three headings as slide 3)
+
+| Fixed-time | Actuated | Adaptive: rule-based | Adaptive: learned from data |
+|---|---|---|---|
+| **Webster**: textbook schedule from train-day counts | **GDOT plan**: deployed, and checked against GDOT's log. Detectors stretch or end greens inside a fixed cycle shared with the next signal | **MaxPressure**: green to the longest queue | **LSTDQ** (base method), **Q-learning**, **ARS**: linear learners. Same features, different ways to learn the weights |
+| | **Actuated (no cycle)**: the same controller without the fixed cycle. A what-if, and the reference. Same as the GDOT plan at night | | |
+
+**Bottom line:** "Same network, demand, detectors and safety rules for all: only the decision differs".
+
+**Base-method line (motivation, attributed):** "Linear: Sahachaiseree & Oguchi (2025) argue it is fast to train and easier to inspect."
