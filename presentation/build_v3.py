@@ -493,7 +493,7 @@ s = new_slide("How the Learner Decides", notes=(
     "rules still apply - minimum green, yellow, red. Learning happens offline on train days: run the current policy, "
     "record every decision and the delay that followed, solve one least-squares problem for the weights, and repeat "
     "five rounds. The first round follows the actuated controller. Of the five rounds, we keep the one with the lowest "
-    "delay on a fixed set of train days - never chosen on development or test days. It trains in minutes."))
+    "delay on a fixed set of train days - never chosen on development or test days."))
 text(s, 0.75, 1.35, 8.8, 0.4, para("Deciding: every second", size=15, color=BLUE, bold=True))
 dec = [("Detector readings", "occupancy and counts per lane", BOX),
        ("Features", "queue, time since last car, green so far, other ring", BOX),
@@ -527,7 +527,7 @@ arrow(s, xl, 5.27, xl, 5.5, color=RED, w=1.5, head=False)
 arrow(s, xl, 5.5, xf, 5.5, color=RED, w=1.5, head=False)
 arrow(s, xf, 5.5, xf, 5.28, color=RED, w=1.5)
 text(s, 1.5, 5.52, 6.5, 0.3, para("round 0 follows the actuated controller  ·  the best round on train days is "
-                                  "kept  ·  trains in minutes", size=10,
+                                  "kept", size=10,
                                   color=GREY, italic=True, align="ctr"))
 box(s, 0.75, 5.95, 8.78, 0.6, fill=PALEBLUE, margin=0.12, paras=[
     para([("Q-learning: ", {"bold": True}), ("same features, updates w after every decision.   ", {}),
@@ -541,8 +541,9 @@ s = new_slide("Evaluation Design", notes=(
     "how variable the demand is. To answer 'why', we look at what each controller did: cycle length, green per phase, "
     "skips. For reliability: five training seeds per learner and the worst-served movement. Every method is compared "
     "with actuated control, paired by day; what counts as a tie was fixed before any result. The test days were held "
-    "back and opened once, under an analysis plan written down beforehand. After that run we found and fixed errors in "
-    "our controller engine; the fix was written down before rerunning, and both results are kept."))
+    "back and opened once, under an analysis plan written down beforehand. After that run we found errors: in our "
+    "controller engine, in scoring cars that never got in, in the saturation rate, and in which saved learner weights "
+    "to use. The fixes were written down before rerunning, and both results are kept."))
 box(s, 0.75, 1.4, 8.78, 0.75, fill=BLUE, margin=0.18, paras=[
     para([("Measure: delay per vehicle", {"bold": True}),
           ("  =  time lost vs driving freely, incl. waiting to enter (s/veh), every hour", {})], size=14,
@@ -564,8 +565,8 @@ rules = [para([("Each method vs actuated, ", {"bold": True}), ("paired by day (2
                                                               {})], size=13, bullet="dot"),
          para([("Tie ", {"bold": True}), ("= within 2 s/veh (or 5 %, whichever is larger), fixed before any result",
                                          {})], size=13, bullet="dot", before=4),
-         para([("Test days opened once ", {"bold": True}), ("under a plan written beforehand; rerun once after a "
-                                                           "registered engine fix", {})], size=13, bullet="dot",
+         para([("Test days opened once ", {"bold": True}), ("under a plan written beforehand; rerun once after "
+                                                           "fixes registered before the rerun", {})], size=13, bullet="dot",
               before=4)]
 text(s, 0.75, 5.1, 8.8, 1.4, rules)
 
@@ -703,7 +704,7 @@ s = new_slide("Conclusion", notes=(
     "Limitations, stated honestly: the validation checks how the controller behaves, not delay itself; left arrows "
     "are served more often than in the field; side-street demand is our corrected estimate; delay is counted at this "
     "intersection only, so the benefit of timing it together with the next signal is not fully counted; the test "
-    "days were run twice, the second time after an engine fix written down in advance; one site, our own controller "
+    "days were run twice, the second time after fixes written down in advance; one site, our own controller "
     "engine."))
 box(s, 0.75, 1.4, 8.78, 1.95, fill=PALERED, margin=0.15, anchor="t", paras=[
     para("Findings (one site, 137)", size=14, color=TITLE, bold=True),
@@ -731,7 +732,7 @@ text(s, 5.38, 3.97, 4.05, 2.55, [
     para("Side-street demand is a corrected estimate", size=11, bullet="dot", before=3),
     para("Delay counted at this intersection only: benefit of timing with the next signal not fully counted",
          size=11, bullet="dot", before=3),
-    para("Test days run twice (rerun after a fix written down in advance)", size=11, bullet="dot", before=3),
+    para("Test days run twice (rerun after fixes written down in advance)", size=11, bullet="dot", before=3),
     para("One site; our own controller engine", size=11, bullet="dot", before=3)])
 
 # ================================================================ 16 Future work

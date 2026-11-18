@@ -121,7 +121,7 @@ higher = busier). Delay per vehicle (s/veh), lower is better; cycle length (s) i
   41.1 vs 31.5. The difference is how each reacts to sudden side-street surges (§5), not its average timing.
 - GDOT's coordinated plan runs 130–133 s in busy and heavy hours (shared cycle with 138) and has more delay than
   actuated at 137: busy hours +3.5 (validation) / +5.0 (test) s/veh, heavy hours +19.1 / +9.4 s/veh. That is the
-  local cost of corridor coordination, whose wider benefit is outside the model.
+  local cost of corridor coordination, whose wider benefit is only partly scored (§8).
 
 ## 3. Light traffic: LSTDQ fails at night, where Q-learning and ARS do not
 
@@ -280,7 +280,9 @@ actuated 26.0, test actuated best at 27.8 vs MaxPressure 32.0); individual seed 
 Caveats with everything: one site; few heavy hours (Y ≥ 0.6), beyond that only the demand sweep (learners trained
 on real demand only); V3 (the model serves left arrows more often than the field); side-street demand corrected
 from presence-zone counts (residual bias of unknown sign); the test days were run twice (amendment 1); learners
-never trained on 23–06 h; delay is scored at 137 only, so the corridor benefit of coordination is not counted.
+never trained on 23–06 h; only vehicles of 137's movements are scored (over their whole trip in the modelled
+network, so westbound vehicles' delay at 138 is included), so traffic that uses only 138 and the rest of the
+corridor are not counted: the corridor benefit of coordination is only partly scored.
 
 ## 9. What changed from earlier versions
 
