@@ -1,6 +1,6 @@
 # Midterm script (deck v10)
 
-Spoken length: about 1582 words: ~11:43 at 135 words a minute, ~11:18 at 140, counting only one of the two objective slides (6 or 7). These are the speaker notes in eSocLab_Midterm-v10.pptx.
+Spoken length: about 1340 words: ~9:56 at 135 words a minute, ~9:34 at 140, counting only one of the two objective slides (6 or 7). These are the speaker notes in eSocLab_Midterm-v10.pptx.
 
 ---
 
@@ -24,27 +24,17 @@ Learned control looks promising in papers: hundreds of studies report large gain
 
 So an agency cannot tell whether a learned controller would beat what it already runs, by how much, and under what conditions.
 
-## Slide 5 — Related Works (~165 s)
+## Slide 5 — Related Works (~75 s)
 
-Slide 5: Related Works
-1 Rarely compared against the real controller, and that controller's copy never checked*
-Tests against engineer-tuned actuated control "are rarely carried out" (Meess 2024)
-The two that do (Kwesiga 2025, Meess 2024) test only their own method, and don't check their simulated controller against what the real one did (how long each green lasted, why it ended)
-2 Studies disagree on when learned control pays off, and mostly vary only traffic volume
-Linear RL vs actuated: gain shrinks as traffic grows (Sahachaiseree & Oguchi 2025)
-Table-based RL vs fixed / actuated: gain grows (El-Tantawy 2014)
-Linear RL vs rule-based adaptive: no change (Alegre 2022)
-3 Most studies use deep RL; linear RL is rarely evaluated
-Deep RL can be costly to compute, and field controllers may run old hardware (Chen 2022)
-Linear RL is argued to be easier to inspect and quick to train (Sahachaiseree & Oguchi 2025)
-Footer: * in the studies we reviewed
-Optional tags: 1 → O1 + O2, 2 → O2, 3 → O2.
-Script (~55 s):
 In the studies we reviewed, I see three gaps.
-One: learned control is rarely tested against the controller that is actually installed. As Meess and colleagues put it, these tests "are rarely carried out". The two we found that do it test only their own method. And neither shows that their simulated copy of the real controller behaves like the real one. A real controller keeps its own records: how long each green lasted, and why it ended. Neither study compares against those records.
+
+One: learned control is rarely tested against the controller that is actually installed. As Meess and colleagues put it, these tests "are rarely carried out". The two we found that do it test only their own method, and neither shows that their simulated copy of the real controller matches the real one's own records: how long each green lasted, and why it ended.
+
 Two: studies disagree on when learned control pays off. One finds the gain shrinks as traffic grows, one finds it grows, one finds no change. But they used different methods against different baselines, and mostly varied only the amount of traffic.
-Three: most studies use deep neural networks. A review notes that this can be costly to compute, and that field controllers often run old hardware. Linear learners are argued to be easier to inspect and quicker to train, but they are rarely evaluated on real traffic.
-So we compare several methods, linear learners included, side by side, against GDOT's real plan, in a simulation where we checked that plan's copy against GDOT's own records.
+
+Three: most studies use deep neural networks, which can be costly to compute on old field hardware. Linear learners are argued to be easier to inspect and quicker to train, but they are rarely evaluated on real traffic.
+
+So we compare several methods side by side, against GDOT's real plan, in a simulation checked against GDOT's own records.
 
 ## Slide 6 — Study Objective (~55 s)
 
@@ -62,9 +52,9 @@ Three objectives, at one intersection. One: simulate and calibrate the intersect
 
 Before any result, we wrote down what we expected: in normal traffic, the methods that react to traffic would all do about equally well; near capacity, they would pull apart.
 
-## Slide 8 — Proposed Approach (~45 s)
+## Slide 8 — Proposed Approach (~30 s)
 
-The system in four steps. One: data - everything comes from GDOT's own signal data. Two: a simulation of the intersection and the next signal. Before we use it, we check it: we run GDOT's real timing in it on 20 days we did not tune on, and compare with GDOT's own log. If it fails, we find the cause, fix it and check again. Three: we train the learners on training days only, and run all seven methods. Four: results - delay per vehicle on 7 held-back test days. Every method gets the same roads, cars and detectors; only the decision differs.
+The system in four steps. Data: everything comes from GDOT's own signal data. Simulation: the intersection and the next signal, checked against the signal's own records before we use it; if it fails, we fix the cause and check again. Train and run: the learners train on training days only, then all seven methods run. Results: delay per vehicle on 7 held-back test days.
 
 ## Slide 9 — Calibration & Validation (~75 s)
 
