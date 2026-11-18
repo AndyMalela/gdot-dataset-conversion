@@ -19,19 +19,43 @@ overturned are listed in §9 so the change is visible.
 | GDOT plan | 1.186 | 1.239 | worse |
 | Webster | 2.48 | 4.35 | worse |
 
-## 1. Equal average delay is a transfer, not a gain
+## 1. Who gets served: against free actuated a transfer, against the deployed plan a side-street gain
+
+**Correction (2026-11-18, post hoc):** v2 of this section compared the learners only with free actuated and called
+the result "a transfer to the side street". Against the **GDOT plan** (the validated replica of the deployed
+controller) the picture is the opposite. Main street = EB/WB lefts and throughs (58 % of vehicles on test); side =
+all NB/SB movements. Vehicle-weighted, s/veh, test days (validation in brackets):
+
+| | main street | side street + lefts |
+|---|---|---|
+| GDOT plan (deployed) | 18.2 (18.7) | 49.6 (56.8) |
+| LSTDQ | 19.2 (20.9) | 33.8 (30.0) |
+| MaxPressure | 19.2 (24.3) | 35.9 (32.4) |
+| Q-learning | 22.8 (28.2) | 41.5 (36.1) |
+| ARS | 27.7 (41.2) | 34.2 (29.5) |
+| actuated (free) | 24.7 (25.9) | 25.1 (24.5) |
+
+- The deployed coordinated plan favours the arterial (its coordinated phases take the cycle's slack) and the side
+  street pays. LSTDQ keeps nearly the same main-street service (+1.0 s) and cuts side-street delay by 15.8 s.
+  Free actuated reaches the same overall average by spreading delay evenly (+6.5 s main, −24.5 s side).
+- Overall, test days: GDOT plan 31.2, LSTDQ 25.3, free actuated 24.9 s/veh. LSTDQ, MaxPressure and free actuated
+  are below the GDOT plan on 7/7 test days (Q-learning, ARS 5/7) and LSTDQ and actuated on 20/20 validation days
+  (descriptive; the registered comparisons are against free actuated, not the GDOT plan).
+- So "transfer" (below) is relative to free actuated only. Free actuated is a what-if: the deployed controller's
+  fitted settings run without its cycle, which the field does only at night (identical to the GDOT plan in every
+  night hour, checked); its daytime behaviour is not validated directly.
 
 Mean delay per movement (s/veh), test days; validation in brackets:
 
-| movement | share of veh | actuated | LSTDQ | MaxPressure | Q-learning | ARS |
-|---|---|---|---|---|---|---|
-| EB through (W Paces Ferry) | 31 % | 25.0 (25.2) | 17.9 (17.9) | 19.0 (19.2) | 24.8 (25.4) | 30.7 (30.7) |
-| WB through | 16 % | 27.3 (30.7) | 22.7 (28.2) | 21.4 (37.4) | 22.8 (39.2) | 28.6 (70.6) |
-| SB through (side) | 7.5 % | 38.4 (36.8) | 54.3 (44.3) | 75.0 (62.6) | 84.3 (70.4) | 63.5 (49.0) |
-| SB left (side) | 8.6 % | 31.4 (31.1) | 49.4 (43.5) | 48.0 (41.4) | 51.1 (50.8) | 38.4 (34.3) |
-| NB left (side) | 3.9 % | 33.4 (27.3) | 47.8 (36.6) | 35.2 (30.0) | 70.9 (32.4) | 61.0 (31.7) |
+| movement | share of veh | GDOT plan | actuated | LSTDQ | MaxPressure | Q-learning | ARS |
+|---|---|---|---|---|---|---|---|
+| EB through (W Paces Ferry) | 31 % | 18.9 (19.4) | 25.0 (25.2) | 17.9 (17.9) | 19.0 (19.2) | 24.8 (25.4) | 30.7 (30.7) |
+| WB through | 16 % | 18.0 (19.2) | 27.3 (30.7) | 22.7 (28.2) | 21.4 (37.4) | 22.8 (39.2) | 28.6 (70.6) |
+| SB through (side) | 7.5 % | 75.7 (112.1) | 38.4 (36.8) | 54.3 (44.3) | 75.0 (62.6) | 84.3 (70.4) | 63.5 (49.0) |
+| SB left (side) | 8.6 % | 75.6 (98.0) | 31.4 (31.1) | 49.4 (43.5) | 48.0 (41.4) | 51.1 (50.8) | 38.4 (34.3) |
+| NB left (side) | 3.9 % | 103.7 (54.5) | 33.4 (27.3) | 47.8 (36.6) | 35.2 (30.0) | 70.9 (32.4) | 61.0 (31.7) |
 
-- **Robust:** every LSTDQ seed has higher side-street delay than actuated on 7/7 test days and 19–20/20 validation
+- **Robust (against free actuated):** every LSTDQ seed has higher side-street delay than actuated on 7/7 test days and 19–20/20 validation
   days. Vehicle-weighted, LSTDQ saves 3.3 s/veh on the main street and adds 3.6 s/veh on the side street on the
   test days (net +0.4; validation net −0.7). It is close to one-for-one.
 - **HCM view (post hoc, control delay per movement):** SB through actuated 38 s (LOS D), LSTDQ 54 (D), MaxPressure
@@ -224,7 +248,7 @@ simulated horizon and is not a fair ranking (Song 2026). The meaningful range is
   struggled at higher demand).
 - **Cycle length vs lost time shows up clearly here.** Actuated lengthens its cycle with demand (89 → 97 → 110 s);
   Q-learning (81 s) and ARS (78 s) do not at ×1.25 and lose most. LSTDQ does lengthen (105 s) and still loses, which
-  points to its side-street transfer (§1): under higher demand the starved side queue grows instead of clearing.
+  points to its side-street transfer relative to free actuated (§1): under higher demand the starved side queue grows instead of clearing.
 - **Under oversaturation the long fixed cycle catches up.** GDOT's coordinated plan (111–115 s) goes from 1.28 at
   ×1.25 to 1.05 at ×2.5: when every phase is maxing out, the best a controller can do is run long cycles that
   minimise lost time, which actuated (maxing out to ~130 s) and the long fixed plan both do. Adaptivity has no value
