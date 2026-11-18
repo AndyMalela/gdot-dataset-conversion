@@ -606,11 +606,11 @@ box(s, 0.75, 5.7, 8.78, 0.85, fill=PALERED, margin=0.15, paras=[
 
 # ================================================================ 13 Results: by condition
 s = new_slide("Results: By Condition", notes=(
-    "(75 s) The same test days split by time of day; bold is the lowest delay in each row. The learners and "
-    "MaxPressure win the morning and midday; actuated wins the evening peak and the evening. At night LSTDQ and "
+    "(75 s) The same test days split by time of day; bold is the lowest delay in each row. In the morning peak all "
+    "four adaptive methods beat actuated; at midday only LSTDQ does; actuated wins the evening peak and the evening. At night LSTDQ and "
     "MaxPressure lose about 3 seconds: they hold long greens for very few cars, while Q-learning and ARS match the "
-    "deployed controller. Last row is a what-if on 5 development days: every count raised by 25 percent, more traffic "
-    "than any training day. Every adaptive method falls behind actuated there, and Q-learning and ARS fall behind "
+    "deployed controller. Last row is a what-if on 5 development days: every count raised by 25 percent, while the "
+    "learners were trained on real counts only. Every adaptive method falls behind actuated there, and Q-learning and ARS fall behind "
     "GDOT's own timing too. Beyond 25 percent the queues back up past the end of our modelled roads, so we don't rank "
     "methods there."))
 text(s, 0.75, 1.35, 8.78, 0.4, para([("Test days by time of day: delay per vehicle (s)  ", {"bold": True,
@@ -626,7 +626,7 @@ rows = [["", "GDOT plan", "Actuated", "MaxPressure", "LSTDQ", "Q-learning", "ARS
 table(s, 0.75, 1.82, 8.78, rows, colw=[1.88, 1.1, 1.1, 1.3, 1.1, 1.2, 1.1], rowh=0.4, size=12,
       bold_first_col=True)
 text(s, 0.75, 4.35, 8.78, 0.4, para([("What-if: every count +25 %  ", {"bold": True, "color": BLUE}),
-                                     ("· 5 development days, more traffic than any training day", {"color": GREY,
+                                     ("· 5 development days; learners trained on real counts only", {"color": GREY,
                                                                                                   "size": 12})],
                                     size=15))
 rows = [["", "GDOT plan", "Actuated", "MaxPressure", "LSTDQ", "Q-learning", "ARS"],
