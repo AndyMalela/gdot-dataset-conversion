@@ -8,24 +8,28 @@ Every claim is either a quote or a count from a paper in `raw/papers/`. The line
 
 ## Slide 3: Problem: Promising in Papers, Rare on the Street
 
-**Three columns:**
+**Top row: "Three types of signal control"** (Xiao et al., 2025; Chen et al., 2022). This is the standard split. Your instinct was right; the v4 split "fixed / actuated / learned" was not.
 
-| On the street today | In research | Reaching the street |
+| Fixed-time | Actuated | Adaptive |
 |---|---|---|
-| Timing plans set by engineers, plus detectors that extend or end a green | 470 papers on RL signal control, 2015–2025 (Xiao et al., 2025) | "RL-based TSC algorithms have never been deployed" (Chen et al., 2022) |
-| "Many deployed systems combine logic-triggered state changes with data-driven searches over sets of schedules" (Chen et al., 2022) | "significant improvements over fixed and actuated algorithms in simulations" (Chen et al., 2022) | "field deployment remains rare" (Zou et al., 2025) |
+| "predetermined timing schedules" | "adjusts signal phases based on real-time detection" | "interacting dynamically with traffic conditions" |
+| | 137 runs this, inside a fixed cycle shared with the next signal | Reinforcement learning (RL) is "one emerging approach to adaptive control" (Chen et al., 2022) |
+
+**Middle row: two facts side by side.**
+- **In research:**
+  - 470 papers on RL signal control, 2015–2025 (Xiao et al., 2025).
+  - "significant improvements over fixed and actuated algorithms in simulations" (Chen et al., 2022).
+- **On the street:**
+  - "RL-based TSC algorithms have never been deployed" (Chen et al., 2022).
+  - "field deployment remains rare" (Zou et al., 2025).
 
 **Box at the bottom:**
 > **Problem:** an agency cannot tell from published results whether a learned controller would beat what it already runs, at its own intersection, with its own traffic.
 
-Optional small picture: one signal head and the question "worth replacing?"
-
 **Sources checked:**
-- Chen, Fang & Sadeh 2022, *The Real Deal*: p.1, lines 44, 60–61 and 66.
-- Xiao et al. 2025: line 140 ("a total of 470 papers").
+- Xiao et al. 2025, intro p.1: "three categories: fixed-time control, actuated control, and adaptive control"; line 140 for the 470 papers.
+- Chen, Fang & Sadeh 2022, *The Real Deal*: §2.1, "Three main types ... fixed-time ... actuated ... adaptive"; §2.2, "One emerging approach to adaptive control has been reinforcement learning"; lines 60–61 and 66.
 - Zou et al. 2025, *Traffic-R1*: line 195.
-
----
 
 ## Slide 4: Why the Evidence Falls Short
 
@@ -66,3 +70,19 @@ Optional small picture: one signal head and the question "worth replacing?"
 - SURTRAC is adaptive control, not RL. The deck's goal says "adaptive and learned", so it fits.
 - SURTRAC's figures are percentages from their paper. That's fine as a citation, but the script doesn't read them out.
 - Chen 2022's "never deployed" is as of 2022. That's why Zou 2025's "remains rare" sits next to it, since Zou reports its own field test.
+
+---
+
+## Slide 9: Methods Compared, grouped by the same three types
+
+Use the same three headings as slide 3, so the audience sees where each method sits:
+
+| Fixed-time | Actuated | Adaptive |
+|---|---|---|
+| **Webster**: textbook schedule from train-day counts | **GDOT plan**: deployed today and checked against GDOT's log. Greens follow detectors inside a fixed cycle shared with the next signal | **MaxPressure**: green to the longest queue (rule-based) |
+| | **Actuated (no cycle)**: same controller and settings without the fixed cycle. A what-if, and the reference. Same as the GDOT plan at night | **LSTDQ** (base method), **Q-learning**, **ARS**: linear learners. Same features, different ways to learn the weights |
+
+Keep the existing bottom line: "Same network, demand, detectors and safety rules for all: only the decision differs".
+
+**Note:** calling MaxPressure "adaptive" fits Chen 2022's definition ("more complex prediction and optimization algorithms"). If someone objects, it is a rule that responds to queues; label it "adaptive, rule-based".
+

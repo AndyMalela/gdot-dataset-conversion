@@ -1,6 +1,6 @@
 # Midterm script (deck v4)
 
-Spoken length: 1192 words, about 9:10 at a calm 130 words a minute, about 8:50 at 135.
+Spoken length: 1214 words, about 9:20 at a calm 130 words a minute, about 9:00 at 135.
 Backup slides (16–21) are only for questions.
 
 ---
@@ -13,19 +13,19 @@ Good afternoon. I compare traffic signal controllers at one real intersection in
 
 Problem, approach, results.
 
-## Slide 3 — Problem: Promising in Papers, Rare on the Street (~45 s, 1:00)
+## Slide 3 — Problem: Promising in Papers, Rare on the Street (~60 s, 1:10)
 
-On the street today, engineers set timing plans, and detectors stretch or end a green when cars are there.
+Signal control comes in three types. Fixed-time runs the same schedule, whatever the traffic. Actuated uses detectors to stretch or end a green; that is what runs at our intersection. Adaptive changes the timing itself as traffic changes. Learned control, called reinforcement learning, is one newer kind of adaptive control.
 
-Research promises more. A 2025 review counted 470 papers on learned signal control, called reinforcement learning, since 2015. Reviews report clear gains over fixed and detector-based control, in simulation.
+Research on it is large: a 2025 review counted 470 papers since 2015. Reviews report clear gains over fixed-time and actuated control, in simulation.
 
 But it rarely reaches the street. A 2022 review found no learned controller had been deployed. A 2025 paper still calls field use rare.
 
 So the problem is this: an agency cannot tell from published results whether a learned controller would beat what it already runs, at its own intersection, with its own traffic.
 
-*Point at:* the box at the bottom.
+*Point at:* the three types, then the box at the bottom.
 
-## Slide 4 — Why the Evidence Falls Short (~65 s, 2:05)
+## Slide 4 — Why the Evidence Falls Short (~60 s, 2:10)
 
 In the studies we reviewed, I see four reasons.
 
@@ -37,9 +37,7 @@ Three: when does it pay off? Three papers give three different answers. And in a
 
 Four: better for whom? Results are one average over all cars. A 2025 review lists fairness, who waits, as an open problem.
 
-Our base method is the linear learner of Sahachaiseree and Oguchi.
-
-## Slide 5 — Research Objective (~45 s, 2:50)
+## Slide 5 — Research Objective (~45 s, 2:55)
 
 Our goal is the field problem: give agencies evidence on when, and why, learned control pays off over the control already on the street.
 
@@ -49,7 +47,7 @@ Three objectives. One: build the simulation and check it against the real contro
 
 Before any result, we wrote down what we expected: in normal traffic, the methods that react to traffic would all do about equally well.
 
-## Slide 6 — Proposed Approach (~30 s, 3:15)
+## Slide 6 — Proposed Approach (~30 s, 3:25)
 
 Left: every input comes from the agency's signal data portal. Five-minute counts, the real timing plans, and where the detectors are.
 
@@ -57,13 +55,13 @@ Middle: the simulation runs a loop every second. Cars drive, detectors see them,
 
 *Point at:* the "Controller" box.
 
-## Slide 7 — Dataset (~25 s, 3:40)
+## Slide 7 — Dataset (~25 s, 3:50)
 
 The intersection is West Paces Ferry Road at East Andrews Drive, in Atlanta: signal 137. The next signal, 138, is 260 metres east, and runs its real timing.
 
 We use weekdays from March to May 2026: 29 days to train, 20 to develop, and the last 7 held back as the test.
 
-## Slide 8 — Calibration & Validation (~60 s, 4:40)
+## Slide 8 — Calibration & Validation (~60 s, 4:50)
 
 Everything we tuned came from the agency's reports, on training days only.
 
@@ -75,19 +73,19 @@ The green time each movement gets matches within 3 seconds in 34 of 35 cases. Wh
 
 *Point at:* the dots on the diagonal.
 
-## Slide 9 — Methods Compared (~55 s, 5:35)
+## Slide 9 — Methods Compared (~55 s, 5:45)
 
-Seven controllers. Webster is the textbook fixed timer.
+Seven controllers, in the same three types.
 
-The GDOT plan is what runs on the street today, and the one we checked. It runs a fixed cycle, a fixed-length round of greens, shared with the next signal.
+Fixed-time: Webster, the textbook timer.
 
-Actuated is the same controller without the fixed cycle: it keeps a green as long as cars keep arriving, and ends it at a gap. On the street, that only happens at night, and then the two give the same delay. In daytime it is our what-if, and our reference.
+Actuated: the GDOT plan, what runs on the street today, and the one we checked. Its greens follow the detectors, but inside a fixed cycle: a fixed-length round of greens, shared with the next signal. Our second actuated controller is the same one without the fixed cycle. On the street that only happens at night, and then the two give the same delay. In daytime it is our what-if, and our reference.
 
-MaxPressure gives green to the longest queue.
+Adaptive: MaxPressure gives green to the longest queue. Three linear learners score "extend" and "end" from the detectors, and pick the higher. They differ only in how they learn. LSTDQ is our base method, from Sahachaiseree and Oguchi.
 
-Three linear learners score "extend" and "end" from the detectors, and pick the higher. They differ only in how they learn.
+*Point at:* the three column headings.
 
-## Slide 10 — Experiments (~30 s, 6:05)
+## Slide 10 — Experiments (~30 s, 6:15)
 
 We measure delay: the seconds each car loses compared with driving freely. Lower is better. For cars heading west, it includes their wait at signal 138.
 
@@ -95,7 +93,7 @@ A tie means within 2 seconds, fixed before any result.
 
 One honest note: we opened the test days once, then found four errors in our setup. We wrote the fixes down, reran once, and keep both results.
 
-## Slide 11 — Results: Real Days (~45 s, 6:45)
+## Slide 11 — Results: Real Days (~45 s, 6:55)
 
 Here is the answer on the 7 test days.
 
@@ -107,7 +105,7 @@ Against that no-cycle controller, LSTDQ is a tie: within 2 seconds, shown statis
 
 *Point at:* the first three rows.
 
-## Slide 12 — Results: When (~50 s, 7:35)
+## Slide 12 — Results: When (~50 s, 7:45)
 
 When does each method win?
 
@@ -117,7 +115,7 @@ Bottom: a what-if on 5 development days, every count up by a quarter. The learne
 
 No method wins everywhere. The simple rule is the safest default.
 
-## Slide 13 — Main Findings: Who Waits (~45 s, 8:20)
+## Slide 13 — Main Findings: Who Waits (~45 s, 8:30)
 
 The deployed GDOT plan favours the main street: 18 seconds there, 50 on the side streets.
 
@@ -131,7 +129,7 @@ Why? Our likely explanation, not yet tested: the learners are rewarded per car, 
 
 *Point at:* the red side-street bars.
 
-## Slide 14 — Conclusion (~35 s, 8:55)
+## Slide 14 — Conclusion (~35 s, 9:05)
 
 For this one intersection:
 
@@ -143,7 +141,7 @@ Three. Learning changes who waits.
 
 Whether methods split apart near capacity, we cannot test on real days here. This intersection is rarely that busy.
 
-## Slide 15 — Future Work (~15 s, 9:10)
+## Slide 15 — Future Work (~15 s, 9:20)
 
 Next: test whether the ranking survives errors in the counts. Check the simulation on the test days. Test why the side streets wait. And train on heavier traffic.
 
