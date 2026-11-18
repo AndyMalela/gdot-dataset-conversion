@@ -1,4 +1,4 @@
-# 137: what the results mean (v2, 2026-11-18, revised after an independent critique)
+# 137: what the results mean (v2, 2026-11-18, revised after an independent critique; §1 corrected later the same day)
 
 Sources: `eval/analysis.md` (20 validation days, sim seed 1), `eval_test/analysis.md` (7 test days, sim seeds 1–5),
 per-movement delay from `eval*/hour_mv.csv`, isolation runs `eval_iso_oldw/`, `eval_iso_last/`. All after
@@ -58,10 +58,11 @@ Mean delay per movement (s/veh), test days; validation in brackets:
 - **Robust (against free actuated):** every LSTDQ seed has higher side-street delay than actuated on 7/7 test days and 19–20/20 validation
   days. Vehicle-weighted, LSTDQ saves 3.3 s/veh on the main street and adds 3.6 s/veh on the side street on the
   test days (net +0.4; validation net −0.7). It is close to one-for-one.
-- **HCM view (post hoc, control delay per movement):** SB through actuated 38 s (LOS D), LSTDQ 54 (D), MaxPressure
-  75 (E), Q-learning 84 (F). Same average, different level of service for the side street.
+- **HCM view (post hoc, simulated delay used as control delay, per movement, test):** SB through actuated 38 s
+  (LOS D), LSTDQ 54 (D), MaxPressure 75 (E), GDOT plan 76 (E), Q-learning 84 (F). Same average, different level of
+  service for the side street.
 - Worst-served movement (95th-percentile delay) is lowest for actuated in every saturation band on both day sets.
-- **Two causes, both to state:**
+- **Two likely causes (neither tested yet), both to state:**
   1. *Objective.* All learners are trained on a vehicle-weighted signal (LSTDQ/Q-learning reward = minus
      vehicles × slowdown, `rl/agent.py`; ARS = minus window delay in s/veh), and MaxPressure weighs queues by vehicle
      count. 58 % of vehicles are on W Paces Ferry, so serving it is cheap per vehicle.
@@ -69,8 +70,10 @@ Mean delay per movement (s/veh), test days; validation in brackets:
      side-street throughs and all lefts have only ~12 m stop-bar zones (`detectors.json`). The queue estimate that
      feeds MaxPressure and the learners' state therefore sees only the first 1–2 vehicles of a side queue. The
      controllers cannot weigh what they cannot see. *To test:* log estimated vs true queue per phase.
-- Actuated's balance is not "no objective": its side-street passage times were fitted to GDOT's field gap-out
-  shares (P4 4 s, P8 8 s), so it carries the field's practice of serving the side street.
+- Actuated's even split is not "no objective": it is the deployed controller's detector settings (passage times
+  fitted to GDOT's field gap-out shares, P4 4 s, P8 8 s) without the cycle and split limits, so a side-street green
+  can run as long as cars keep coming. The field itself, under the coordinated plan, serves the side street worst
+  (table above).
 - **Domain reading:** for an adaptive controller, *what the detectors can see* and *what the objective counts* decide
   who gets served. "Equivalent average delay" is not equivalent service; HCM rates each approach separately.
 
@@ -179,7 +182,7 @@ differ in what is learned and how:
 ## 8. What is robust and what is not
 
 Robust (same direction on validation and test, all seeds): side-street penalty of every optimising controller
-(§1); actuated best on worst movement; actuated and gap logic best in light traffic and surges; Webster's evening
+relative to free actuated, and side-street gain of LSTDQ and MaxPressure relative to the GDOT plan (§1); actuated best on worst movement; actuated and gap logic best in light traffic and surges; Webster's evening
 collapse; Q-learning's divergence and ARS's max-out signature.
 
 Not robust: rankings inside a condition band when controllers are within ~5 % (heavy hours: validation LSTDQ >
@@ -202,7 +205,8 @@ trained on 23–06 h.
 | "retraining gave a little" | **within seed noise** |
 | short cycles explain heavy-hour losses | **half**: holds on validation, not on test |
 | Q-learning "every green at minimum"; ARS "same linear Q, ~600 weights"; deadly triad separates the learners | **corrected** in §7 |
-| "actuated is fairer because it has no objective" | **reframed**: its side passage times are fitted to field practice; detector layout is the other cause |
+| "actuated is fairer because it has no objective" | **reframed**: it is the deployed controller's settings without the cycle limits; detector layout is the other likely cause |
+| (v2, same day) "equal average delay is a transfer to the side street" | **relative to free actuated only**: against the deployed GDOT plan, LSTDQ cuts side-street delay by 15.8 s at +1.0 s main street (§1) |
 
 ## 10. Open analyses (ranked)
 
@@ -217,7 +221,8 @@ trained on 23–06 h.
 Fixes to the analysis outputs (no effect on the registered comparison): headers say "attempt 7" (now attempt 8);
 RQ2 mech tables use training seed 0 and, on test, keep one simulation seed per hour; the worst-movement metric
 has no minimum-volume filter and takes the max over 5 simulation seeds on test vs 1 on validation; Y bands use
-1,950 veh/h rather than the measured saturation flow; `evaluate.py` docstring still describes 7065.
+the HCM 1,900 veh/h (`evaluate.py` S_LANE; its docstring says 1,950) rather than the measured saturation flow;
+`evaluate.py` docstring still describes 7065.
 
 ## 11. Demand sweep on the amendment-1 model (post hoc, run 2026-11-18 00:20–04:10, `debug/after_amendment1.sh`)
 
