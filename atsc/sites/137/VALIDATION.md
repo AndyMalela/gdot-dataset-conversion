@@ -662,7 +662,7 @@ in `sim.json`; used only by the queue estimate and Webster, not by the GDOT repl
 criteria. Run 2026-11-17 17:13–17:46 (`validation/attempt8/`). Refit unchanged: passage P1 6, P3 6, P4 4, P5 6,
 P7 6, P8 8 s, no max recall.
 
-Saturation flow (`sat_flow.py`, 33 train weekdays 15:30–19:30, headways from the 5th queued vehicle): through
+Saturation flow (`sat_flow.py`, 29 train weekdays 15:30–19:30 [corrected 2026-11-18 from "33": `sim.json` sat_flow_source, written by the script, says 29], headways from the 5th queued vehicle): through
 P2 2,176, P4 2,057, P6 2,175, P8 2,078 veh/h/lane; left P7 1,964 (333 headways); P1, P3, P5 too few protected
 queued headways → pooled left 1,963. Faster than both values it replaces (1,950 / 1,900) and than the 1,650
 noted in attempt 3 (a different, start-up-inclusive measure on one lane).
