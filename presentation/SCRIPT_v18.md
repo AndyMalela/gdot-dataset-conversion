@@ -1,6 +1,6 @@
 # Midterm script (deck v18)
 
-Spoken length (bracketed parts not read aloud): about 1575 words: ~11:40 at 135 words a minute, ~11:15 at 140, counting only one of the two objective slides. These are the speaker notes in eSocLab_Midterm-v18.pptx.
+Spoken length (bracketed parts not read aloud): about 1602 words: ~11:52 at 135 words a minute, ~11:27 at 140, counting only one of the two objective slides. These are the speaker notes in eSocLab_Midterm-v18.pptx.
 
 ---
 
@@ -117,11 +117,11 @@ So beating today's plan needs no learning, and learning changes who waits. Likel
 
 [Not read aloud: all three, LSTDQ, Q-learning and ARS, have less delay than the real plan on average (LSTDQ on 7 of 7 days, Q-learning and ARS on 5 of 7). Real plan vs no-cycle: worse, p 0.046 (paired t-test, Holm-corrected). LSTDQ tie: equivalence test p 0.026. Development days: real plan 34.3, no-cycle 25.3, LSTDQ 24.6, Q-learning 31.5, ARS 36.5. MaxPressure and Webster: appendix.]
 
-## Slide 14 — Results: When (~30 s)
+## Slide 14 — Results: When (~45 s)
 
-No method wins everywhere. LSTDQ is best in the morning peak, 21.1. But the simple no-cycle rule wins the evening peak, and clearly in six hours with sudden side-street surges, picked after seeing the results: 39.1 against 58.0 for LSTDQ. With a quarter more traffic, a what-if on development days, it is also best: 45.0 against 51.7. Q-learning and ARS are best at night but fall far behind when traffic is heavy.
+No method wins everywhere. LSTDQ is best in the morning peak, 21.1. But the simple no-cycle rule wins the evening peak, and clearly in six hours with sudden side-street surges, picked after seeing the results: 39.1 against 58.0 for LSTDQ. With a quarter more traffic, a what-if on development days, it is also best: 45.0 against 51.7. Q-learning and ARS are best at night but fall far behind when traffic is heavy. The real plan is behind the no-cycle controller in every row except night, where they are equal: at night the real controller already runs without its cycle.
 
-[Not read aloud: midday (10-15 h): no-cycle 25.8, LSTDQ 24.2, Q-learning 27.9, ARS 26.8; real plan 35.0. Real plan by row: night 8.2, morning 26.1, evening 34.0, surges 85.4, +25 % 63.1. Night = 00-06 h, morning 06-10, evening peak 15-19. From +50 % every controller's queues keep growing for much of the day, so methods are not ranked above +25 %. MaxPressure and Webster: appendix.]
+[Not read aloud: midday (10-15 h): no-cycle 25.8, LSTDQ 24.2, Q-learning 27.9, ARS 26.8; real plan 35.0. Night = 00-06 h, morning 06-10, evening peak 15-19. From +50 % every controller's queues keep growing for much of the day, so methods are not ranked above +25 %. MaxPressure and Webster: appendix.]
 
 ## Slide 15 — Conclusion (~90 s)
 

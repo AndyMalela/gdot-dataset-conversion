@@ -207,13 +207,13 @@ clear(s)
 set_title(s, "Results: When")
 c = Canvas(s)
 c.text(L, 1.3, W, 0.5, [para("No method wins everywhere", 24, TITLE, bold=True)])
-rows = [["Delay (s)", "No cycle", "LSTDQ", "Q-learning", "ARS"],
-        ["Night", "8.2", "11.6", ("8.1", WIN), "8.5"],
-        ["Morning peak", "22.8", ("21.1", WIN), "21.8", "21.9"],
-        ["Evening peak", ("27.8", WIN), "30.6", "42.2", "38.2"],
-        ["Surges*", ("39.1", WIN), "58.0", "114.5", "95.7"],
-        ["+25 % traffic**", ("45.0", WIN), "51.7", "76.9", "100.4"]]
-c.table(L, 1.95, rows, colw=[2.78, 1.5, 1.5, 1.5, 1.5], rowh=0.55, size=22, head_size=18)
+rows = [["Delay (s)", "GDOT plan", "No cycle", "LSTDQ", "Q-learning", "ARS"],
+        ["Night", "8.2", "8.2", "11.6", ("8.1", WIN), "8.5"],
+        ["Morning peak", "26.1", "22.8", ("21.1", WIN), "21.8", "21.9"],
+        ["Evening peak", "34.0", ("27.8", WIN), "30.6", "42.2", "38.2"],
+        ["Surges*", "85.4", ("39.1", WIN), "58.0", "114.5", "95.7"],
+        ["+25 % traffic**", "63.1", ("45.0", WIN), "51.7", "76.9", "100.4"]]
+c.table(L, 1.95, rows, colw=[2.38, 1.32, 1.27, 1.2, 1.41, 1.2], rowh=0.55, size=21, head_size=16)
 c.text(L, 5.4, W, 0.8, [para("Green = lowest in the row · * 6 hours with sudden side-street surges, picked after "
                              "seeing the results · ** what-if: every count +25 %, on 5 development days · "
                              "descriptive, no statistical tests", 13, GREY, italic=True)])
@@ -221,9 +221,11 @@ s.notes_slide.notes_text_frame.text = (
     "(~35 s) No method wins everywhere. LSTDQ is best in the morning peak, 21.1. But the simple no-cycle rule wins "
     "the evening peak, and clearly in six hours with sudden side-street surges, picked after seeing the results: "
     "39.1 against 58.0 for LSTDQ. With a quarter more traffic, a what-if on development days, it is also best: "
-    "45.0 against 51.7. Q-learning and ARS are best at night but fall far behind when traffic is heavy.\n\n"
+    "45.0 against 51.7. Q-learning and ARS are best at night but fall far behind when traffic is heavy. The real "
+    "plan is behind the no-cycle controller in every row except night, where they are equal: at night the real "
+    "controller already runs without its cycle.\n\n"
     "[Not read aloud: midday (10-15 h): no-cycle 25.8, LSTDQ 24.2, Q-learning 27.9, ARS 26.8; real plan 35.0. "
-    "Real plan by row: night 8.2, morning 26.1, evening 34.0, surges 85.4, +25 % 63.1. Night = 00-06 h, morning "
+    "Night = 00-06 h, morning "
     "06-10, evening peak 15-19. From +50 % every controller's queues keep growing for much of the day, so methods "
     "are not ranked above +25 %. MaxPressure and Webster: appendix.]")
 
