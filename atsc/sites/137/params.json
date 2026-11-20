@@ -1,0 +1,669 @@
+[
+ {
+  "group": "controller",
+  "name": "P1 yellow (s)",
+  "value": 2.9,
+  "status": "assumed",
+  "source": "yellow/red not read for P1 (no green in the 5-min clearance window); P5's values used"
+ },
+ {
+  "group": "controller",
+  "name": "P1 red clearance (s)",
+  "value": 2.9,
+  "status": "assumed",
+  "source": "yellow/red not read for P1 (no green in the 5-min clearance window); P5's values used"
+ },
+ {
+  "group": "controller",
+  "name": "P1 min green (s)",
+  "value": 6.0,
+  "status": "measured",
+  "source": "shortest gap-out green, n=97"
+ },
+ {
+  "group": "controller",
+  "name": "P1 ped minimum (s)",
+  "value": 0.0,
+  "status": "assumed",
+  "source": "no pedestrian service modelled for this phase"
+ },
+ {
+  "group": "controller",
+  "name": "P1 recall",
+  "value": false,
+  "status": "measured",
+  "source": "P2, P6 on pedestrian recall (a walk in every cycle of all 48 train-day windows); others vehicle-called"
+ },
+ {
+  "group": "controller",
+  "name": "P1 max green, free mode (s)",
+  "value": 14.2,
+  "status": "estimated",
+  "source": "free mode: largest green any verified plan gives the phase (split - Y - R)"
+ },
+ {
+  "group": "controller",
+  "name": "P2 yellow (s)",
+  "value": 3.9,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
+ },
+ {
+  "group": "controller",
+  "name": "P2 red clearance (s)",
+  "value": 2.4,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
+ },
+ {
+  "group": "controller",
+  "name": "P2 min green (s)",
+  "value": 12.0,
+  "status": "measured",
+  "source": "shortest gap-out green, n=316"
+ },
+ {
+  "group": "controller",
+  "name": "P2 ped minimum (s)",
+  "value": 21.1,
+  "status": "measured",
+  "source": "walk + flashing don't walk from 48 Timing & Actuation windows on 3 train days (make_signal.py PED); P4, P8 only when a pedestrian call is pending (ped_actuated, ped_calls_per_h)"
+ },
+ {
+  "group": "controller",
+  "name": "P2 recall",
+  "value": true,
+  "status": "measured",
+  "source": "P2, P6 on pedestrian recall (a walk in every cycle of all 48 train-day windows); others vehicle-called"
+ },
+ {
+  "group": "controller",
+  "name": "P2 max green, free mode (s)",
+  "value": 93.7,
+  "status": "estimated",
+  "source": "free mode: largest green any verified plan gives the phase (split - Y - R)"
+ },
+ {
+  "group": "controller",
+  "name": "P3 yellow (s)",
+  "value": 2.8,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
+ },
+ {
+  "group": "controller",
+  "name": "P3 red clearance (s)",
+  "value": 2.9,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
+ },
+ {
+  "group": "controller",
+  "name": "P3 min green (s)",
+  "value": 6.0,
+  "status": "measured",
+  "source": "shortest gap-out green, n=197"
+ },
+ {
+  "group": "controller",
+  "name": "P3 ped minimum (s)",
+  "value": 0.0,
+  "status": "assumed",
+  "source": "no pedestrian service modelled for this phase"
+ },
+ {
+  "group": "controller",
+  "name": "P3 recall",
+  "value": false,
+  "status": "measured",
+  "source": "P2, P6 on pedestrian recall (a walk in every cycle of all 48 train-day windows); others vehicle-called"
+ },
+ {
+  "group": "controller",
+  "name": "P3 max green, free mode (s)",
+  "value": 14.3,
+  "status": "estimated",
+  "source": "free mode: largest green any verified plan gives the phase (split - Y - R)"
+ },
+ {
+  "group": "controller",
+  "name": "P4 yellow (s)",
+  "value": 2.8,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
+ },
+ {
+  "group": "controller",
+  "name": "P4 red clearance (s)",
+  "value": 2.1,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
+ },
+ {
+  "group": "controller",
+  "name": "P4 min green (s)",
+  "value": 7.8,
+  "status": "measured",
+  "source": "shortest gap-out green, n=272"
+ },
+ {
+  "group": "controller",
+  "name": "P4 ped minimum (s)",
+  "value": 24.5,
+  "status": "measured",
+  "source": "walk + flashing don't walk from 48 Timing & Actuation windows on 3 train days (make_signal.py PED); P4, P8 only when a pedestrian call is pending (ped_actuated, ped_calls_per_h)"
+ },
+ {
+  "group": "controller",
+  "name": "P4 recall",
+  "value": false,
+  "status": "measured",
+  "source": "P2, P6 on pedestrian recall (a walk in every cycle of all 48 train-day windows); others vehicle-called"
+ },
+ {
+  "group": "controller",
+  "name": "P4 max green, free mode (s)",
+  "value": 35.1,
+  "status": "estimated",
+  "source": "free mode: largest green any verified plan gives the phase (split - Y - R)"
+ },
+ {
+  "group": "controller",
+  "name": "P5 yellow (s)",
+  "value": 2.9,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
+ },
+ {
+  "group": "controller",
+  "name": "P5 red clearance (s)",
+  "value": 2.9,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
+ },
+ {
+  "group": "controller",
+  "name": "P5 min green (s)",
+  "value": 6.0,
+  "status": "measured",
+  "source": "shortest gap-out green, n=127"
+ },
+ {
+  "group": "controller",
+  "name": "P5 ped minimum (s)",
+  "value": 0.0,
+  "status": "assumed",
+  "source": "no pedestrian service modelled for this phase"
+ },
+ {
+  "group": "controller",
+  "name": "P5 recall",
+  "value": false,
+  "status": "measured",
+  "source": "P2, P6 on pedestrian recall (a walk in every cycle of all 48 train-day windows); others vehicle-called"
+ },
+ {
+  "group": "controller",
+  "name": "P5 max green, free mode (s)",
+  "value": 14.2,
+  "status": "estimated",
+  "source": "free mode: largest green any verified plan gives the phase (split - Y - R)"
+ },
+ {
+  "group": "controller",
+  "name": "P6 yellow (s)",
+  "value": 3.9,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
+ },
+ {
+  "group": "controller",
+  "name": "P6 red clearance (s)",
+  "value": 2.4,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
+ },
+ {
+  "group": "controller",
+  "name": "P6 min green (s)",
+  "value": 12.0,
+  "status": "measured",
+  "source": "shortest gap-out green, n=316"
+ },
+ {
+  "group": "controller",
+  "name": "P6 ped minimum (s)",
+  "value": 24.5,
+  "status": "measured",
+  "source": "walk + flashing don't walk from 48 Timing & Actuation windows on 3 train days (make_signal.py PED); P4, P8 only when a pedestrian call is pending (ped_actuated, ped_calls_per_h)"
+ },
+ {
+  "group": "controller",
+  "name": "P6 recall",
+  "value": true,
+  "status": "measured",
+  "source": "P2, P6 on pedestrian recall (a walk in every cycle of all 48 train-day windows); others vehicle-called"
+ },
+ {
+  "group": "controller",
+  "name": "P6 max green, free mode (s)",
+  "value": 93.7,
+  "status": "estimated",
+  "source": "free mode: largest green any verified plan gives the phase (split - Y - R)"
+ },
+ {
+  "group": "controller",
+  "name": "P7 yellow (s)",
+  "value": 3.1,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
+ },
+ {
+  "group": "controller",
+  "name": "P7 red clearance (s)",
+  "value": 2.9,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
+ },
+ {
+  "group": "controller",
+  "name": "P7 min green (s)",
+  "value": 6.0,
+  "status": "measured",
+  "source": "shortest gap-out green, n=216"
+ },
+ {
+  "group": "controller",
+  "name": "P7 ped minimum (s)",
+  "value": 0.0,
+  "status": "assumed",
+  "source": "no pedestrian service modelled for this phase"
+ },
+ {
+  "group": "controller",
+  "name": "P7 recall",
+  "value": false,
+  "status": "measured",
+  "source": "P2, P6 on pedestrian recall (a walk in every cycle of all 48 train-day windows); others vehicle-called"
+ },
+ {
+  "group": "controller",
+  "name": "P7 max green, free mode (s)",
+  "value": 14.0,
+  "status": "estimated",
+  "source": "free mode: largest green any verified plan gives the phase (split - Y - R)"
+ },
+ {
+  "group": "controller",
+  "name": "P8 yellow (s)",
+  "value": 2.8,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
+ },
+ {
+  "group": "controller",
+  "name": "P8 red clearance (s)",
+  "value": 2.1,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
+ },
+ {
+  "group": "controller",
+  "name": "P8 min green (s)",
+  "value": 7.8,
+  "status": "measured",
+  "source": "shortest gap-out green, n=257"
+ },
+ {
+  "group": "controller",
+  "name": "P8 ped minimum (s)",
+  "value": 22.1,
+  "status": "measured",
+  "source": "walk + flashing don't walk from 48 Timing & Actuation windows on 3 train days (make_signal.py PED); P4, P8 only when a pedestrian call is pending (ped_actuated, ped_calls_per_h)"
+ },
+ {
+  "group": "controller",
+  "name": "P8 recall",
+  "value": false,
+  "status": "measured",
+  "source": "P2, P6 on pedestrian recall (a walk in every cycle of all 48 train-day windows); others vehicle-called"
+ },
+ {
+  "group": "controller",
+  "name": "P8 max green, free mode (s)",
+  "value": 35.1,
+  "status": "estimated",
+  "source": "free mode: largest green any verified plan gives the phase (split - Y - R)"
+ },
+ {
+  "group": "controller",
+  "name": "P1 passage time (s)",
+  "value": 6.0,
+  "status": "fitted",
+  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)"
+ },
+ {
+  "group": "controller",
+  "name": "P3 passage time (s)",
+  "value": 6.0,
+  "status": "fitted",
+  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)"
+ },
+ {
+  "group": "controller",
+  "name": "P4 passage time (s)",
+  "value": 4.0,
+  "status": "fitted",
+  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)"
+ },
+ {
+  "group": "controller",
+  "name": "P5 passage time (s)",
+  "value": 6.0,
+  "status": "fitted",
+  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)"
+ },
+ {
+  "group": "controller",
+  "name": "P7 passage time (s)",
+  "value": 6.0,
+  "status": "fitted",
+  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)"
+ },
+ {
+  "group": "controller",
+  "name": "P8 passage time (s)",
+  "value": 8.0,
+  "status": "fitted",
+  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)"
+ },
+ {
+  "group": "controller",
+  "name": "passage time, other phases (s)",
+  "value": 2.0,
+  "status": "default",
+  "source": "engine default"
+ },
+ {
+  "group": "controller",
+  "name": "max recall",
+  "value": {},
+  "status": "fitted",
+  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)"
+ },
+ {
+  "group": "controller",
+  "name": "ring order / lead-lag",
+  "value": {
+   "1": [
+    [
+     1,
+     2
+    ],
+    [
+     3,
+     4
+    ]
+   ],
+   "2": [
+    [
+     5,
+     6
+    ],
+    [
+     7,
+     8
+    ]
+   ]
+  },
+  "status": "measured",
+  "source": "service order per barrier group (lead first), from clearance.json lead/lag"
+ },
+ {
+  "group": "controller",
+  "name": "plans (cycle, splits, coordinated phases)",
+  "value": [
+   "A",
+   "B",
+   "C",
+   "D",
+   "E",
+   "F",
+   "G",
+   "T1"
+  ],
+  "status": "measured",
+  "source": "A-D, every ring check ok (timing_plan_137.md, read 2026-10-02)"
+ },
+ {
+  "group": "controller",
+  "name": "time-of-day schedule",
+  "value": "63 dated days",
+  "status": "measured",
+  "source": "dated reads for 56 days (Split Monitor); 6 days with a failed read take the nearest dated day's schedule: {'2026-03-25': '2026-03-24', '2026-04-08': '2026-04-07', '2026-04-16': '2026-04-15', '2026-04-"
+ },
+ {
+  "group": "controller",
+  "name": "floating force-off phases",
+  "value": {
+   "A": [
+    1,
+    5
+   ],
+   "B": [
+    1,
+    5
+   ],
+   "C": [
+    1,
+    5
+   ],
+   "D": [
+    1,
+    5
+   ],
+   "E": [
+    1,
+    5
+   ],
+   "F": [
+    1,
+    5
+   ],
+   "G": [
+    1,
+    5
+   ],
+   "T1": [
+    1,
+    5
+   ]
+  },
+  "status": "measured",
+  "source": "Split Monitor rule (force_off_mode.py)"
+ },
+ {
+  "group": "controller",
+  "name": "plan transition",
+  "value": "new plan starts its cycle at the change",
+  "status": "assumed",
+  "source": "real controllers transition over several cycles (signal.py _plan_at)"
+ },
+ {
+  "group": "controller",
+  "name": "detector call delay / extend",
+  "value": 0,
+  "status": "measured",
+  "source": "VALIDATION.md finding 2026-11-16 09:30: call registers when the zone turns on and drops when it turns off"
+ },
+ {
+  "group": "controller",
+  "name": "pedestrian push rates (per hour)",
+  "value": "ped_calls_per_h",
+  "status": "estimated",
+  "source": "walk + flashing don't walk from 48 Timing & Actuation windows on 3 train days (make_signal.py PED); P4, P8 only when a pedestrian call is pending (ped_actuated, ped_calls_per_h) \u2014 48 windows on 3 days; to be replaced by Pedestrian Delay counts per window"
+ },
+ {
+  "group": "detectors",
+  "name": "stop-bar zone length (m)",
+  "value": 12.0,
+  "status": "assumed",
+  "source": "not published; same 40 ft presence zone as assumed at 7065"
+ },
+ {
+  "group": "detectors",
+  "name": "advance detector distance (m)",
+  "value": 79.25,
+  "status": "measured",
+  "source": "GDOT configuration: Wavetronix Advance count zones at 260 ft from the stop bar (13703 EB, 13721 WB)"
+ },
+ {
+  "group": "detectors",
+  "name": "ch69 P2 stopbar",
+  "value": "modelled",
+  "status": "assumed",
+  "source": "13769/13775 lane-by-lane COUNT zones at the stop line (both on the single shared through lane), modelled as one presence zone. DEVIATION: the field controller has no stop-bar presence on P2"
+ },
+ {
+  "group": "detectors",
+  "name": "ch96 P6 stopbar",
+  "value": "modelled",
+  "status": "assumed",
+  "source": "NO field zone: GDOT has no stop-bar detection on P6 (WB through). Modelled so that queue-based controllers and gap-out see the WB through queue. DEVIATION, disclosed"
+ },
+ {
+  "group": "detectors",
+  "name": "lane layout",
+  "value": "intersections/137/config/detectors.csv (GDOT ATSPM configuration table, scraped 2026-11-16); lanes: user check 2026-11-1",
+  "status": "measured",
+  "source": "GDOT configuration table + user check"
+ },
+ {
+  "group": "drivers",
+  "name": "impatience",
+  "value": 0.5,
+  "status": "fitted",
+  "source": "2026-11-16 attempt 5 (VALIDATION.md): calibration grid on train-day windows against the field share of left-turners clearing permissively; impatience 0.5 won by the registered rule (mean |diff| 0.135 vs 0.167 default)"
+ },
+ {
+  "group": "drivers",
+  "name": "tau",
+  "value": "SUMO default",
+  "status": "default",
+  "source": "never checked against the field"
+ },
+ {
+  "group": "drivers",
+  "name": "sigma",
+  "value": "SUMO default",
+  "status": "default",
+  "source": "never checked against the field"
+ },
+ {
+  "group": "drivers",
+  "name": "accel",
+  "value": "SUMO default",
+  "status": "default",
+  "source": "never checked against the field"
+ },
+ {
+  "group": "drivers",
+  "name": "decel",
+  "value": "SUMO default",
+  "status": "default",
+  "source": "never checked against the field"
+ },
+ {
+  "group": "drivers",
+  "name": "minGap",
+  "value": "SUMO default",
+  "status": "default",
+  "source": "never checked against the field"
+ },
+ {
+  "group": "drivers",
+  "name": "speedFactor",
+  "value": "SUMO default",
+  "status": "default",
+  "source": "never checked against the field"
+ },
+ {
+  "group": "drivers",
+  "name": "jmTimegapMinor",
+  "value": "SUMO default",
+  "status": "default",
+  "source": "never checked against the field"
+ },
+ {
+  "group": "drivers",
+  "name": "lcStrategic",
+  "value": "SUMO default",
+  "status": "default",
+  "source": "never checked against the field"
+ },
+ {
+  "group": "drivers",
+  "name": "saturation flow (veh/h/ln)",
+  "value": {
+   "1": 1963,
+   "2": 2176,
+   "3": 1963,
+   "4": 2057,
+   "5": 1963,
+   "6": 2175,
+   "7": 1964,
+   "8": 2078
+  },
+  "status": "estimated",
+  "source": "sat_flow.py (TEST_PLAN.md amendment 1, F3): simulated discharge, headways from the 5th queued vehicle in protected greens, GDOT plan, 29 train weekdays 15.5-19.5 h \u2014 measured on the simulation, not the field"
+ },
+ {
+  "group": "drivers",
+  "name": "vehicle mix",
+  "value": "passenger cars only",
+  "status": "assumed",
+  "source": "ATSPM has no classification"
+ },
+ {
+  "group": "demand",
+  "name": "turning-movement counts",
+  "value": "tmc 5-min",
+  "status": "measured",
+  "source": "GDOT Turning Movement Counts report"
+ },
+ {
+  "group": "demand",
+  "name": "presence-zone undercount factors",
+  "value": "intersections/<id>/counts/presence_factors_1900.json",
+  "status": "estimated",
+  "source": "time occupied / 1.895 s (HCM headway) on 72 Timing & Actuation windows"
+ },
+ {
+  "group": "demand",
+  "name": "right turns on the main street",
+  "value": "run as through",
+  "status": "assumed",
+  "source": "no right-turn zone on W Paces Ferry"
+ },
+ {
+  "group": "demand",
+  "name": "arrivals within a 5-min bin",
+  "value": "random (Poisson)",
+  "status": "assumed",
+  "source": "except platoons from modelled neighbours"
+ },
+ {
+  "group": "demand",
+  "name": "driveways between signals",
+  "value": "not modelled",
+  "status": "assumed",
+  "source": "not counted by ATSPM"
+ },
+ {
+  "group": "network",
+  "name": "road geometry",
+  "value": "OpenStreetMap",
+  "status": "assumed",
+  "source": "lanes checked by the user; bay lengths unverified"
+ }
+]
