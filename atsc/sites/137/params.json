@@ -590,9 +590,9 @@
  {
   "group": "drivers",
   "name": "tau",
-  "value": "SUMO default",
-  "status": "default",
-  "source": "never checked against the field"
+  "value": 1.2,
+  "status": "fitted",
+  "source": "2026-11-16 attempt 5 (VALIDATION.md): calibration grid on train-day windows against the field share of left-turners clearing permissively; impatience 0.5 won by the registered rule (mean |diff| 0.135 vs 0.167 default)"
  },
  {
   "group": "drivers",

@@ -712,3 +712,24 @@ passage was compensating for it. Outcome checks O1–O5 wait for the field numbe
   EB_L 12 m; zones without a field measurement keep 12 m. Uses no validation statistic.
 - **C redone** on the new zones (activations depend on zone length): closed-loop factors re-chosen with the same rule.
 - Everything else as attempt 9; criteria unchanged (V1–V5; O1–O5 as registered for attempt 9).
+
+## Results — attempt 10
+
+Run 2026-11-20 (`validation/attempt10/`). **V1 31/35 (worst 4.2 s) PASS**, V2 10/35 (worst 50) **FAIL**, V3 24/35
+(reported), V5 PASS → **not accepted**.
+- The zone lengths fixed the side-street throughs: P4/P8 gap-out error now 0–18 points (was 9–35), green length
+  within 0–2 s on most plans.
+- **The left arrows still gap out 15–50 points more than the field** (P1 +15–27, P3 +37–50, P5 +27–43, P7 +4–42).
+  Re-measuring the passage on the field charts with only greens that end before their maximum and with the zone
+  empty gives the same ~2.0–2.2 s for P1, P5, P7, so the passage is not the cause. On the field charts many left
+  arrows end early **while their zone is still occupied** (P1 42, P5 46, P7 31 of ~100–200 greens): an end that is
+  neither a gap-out nor a split-length force-off (likely fixed force-offs reached after a late start, or arrows
+  whose waiting vehicle is not extending). The model does not reproduce that mechanism yet.
+- **Closed-loop counts conflict with the zone lengths for the side throughs**: with the longer zones, no factor
+  reproduces GDOT's NB_T (best 0.76) or SB_T (0.45) counts, nor SB_L (0.42 at k = 1). The single-vehicle occupancy
+  (`pass_s`) of a through zone is long because vehicles slow or stop on it, which a longer simulated zone imitates
+  but then merges more vehicles into one activation than the field does. Zone length alone cannot match both
+  measurements: the detection model (radar zone behaviour) needs a different representation, not another length.
+
+Not accepted. Diagnosis needs per-cycle data on the left arrows (Phase Termination charts, cycle position of each
+end) before another attempt is registered; no further change is made to the model now.
