@@ -42,7 +42,21 @@ def build(site_dir, net_file, out_file, zone_override=None, spec=None):
         lane = edge.getLane(d["lane"])
         did = f"ch{d['ch']}"
         into = d.get("into_junction")
-        if d["kind"] == "stopbar" and into == "waiting_point":
+        if d["kind"] == "stopbar" and isinstance(into, (int, float)) and into > 0:
+            # zone continues `into` m past the stop line along the lane's straight movement (internal lane)
+            via = next(c.getViaLaneID() for c in lane.getOutgoing() if c.getDirection() == "s")
+            vl = net.getLane(via)
+            end = min(float(into), vl.getLength())
+            if zone < 0.5:
+                lines.append(f'  <laneAreaDetector id="{did}" lane="{via}" pos="0.00" endPos="{end:.2f}" '
+                             f'period="86400" file="NUL"/>')
+                rows.append((did, d["phase"], "stopbar", via, 0.0))
+            else:
+                pos = max(0.0, lane.getLength() - zone)
+                lines.append(f'  <laneAreaDetector id="{did}" lanes="{lane.getID()} {via}" pos="{pos:.2f}" '
+                             f'endPos="{end:.2f}" period="86400" file="NUL"/>')
+                rows.append((did, d["phase"], "stopbar", f"{lane.getID()}+{via}", round(pos, 1)))
+        elif d["kind"] == "stopbar" and into == "waiting_point":
             # zone continues past the stop line over the turn's first internal lane, up to SUMO's waiting point for
             # permissive turners (where a left turner stops to wait for a gap inside the junction)
             via = next(c.getViaLaneID() for c in lane.getOutgoing() if c.getDirection() in ("l", "L"))

@@ -824,3 +824,13 @@ with the dropouts removed the through demand fell (NB_T 3.2 → 0.6, SB_T 2.8 �
 long attempt-10 zones (36 / 20 m), whose behaviour does not match the field: train-day T&A shows the field through
 zone occupied at green start in 29 % of greens and clearing ~3 s after the green starts, the model's in ~100 % and
 after 9-17 s. A long zone merges a moving queue into one activation, so the closed loop now under-supplies.
+
+## Exploration after attempt 13 — side-street through zone geometry (train days, not an attempt)
+
+`explore_thruzones.py`: zone = u m before + d m past the stop line, attempt-13 demand. Field: occupied at green
+start 0.29 / 0.28 (ch12 / ch32), clear 3.1 / 3.2 s, single-activation occupancy 2.05 / 3.52 s, dropouts 0.65 / 0.61.
+Model: any u ≥ 2 m gives 0.94 / 0.76 occupied at start (every SUMO driver stops at the same point, on the zone);
+u = 0 gives 0.00; activation occupancy 1.0-2.0 s for every geometry; dropouts 0.00 always. No geometry reproduces
+the field zone's behaviour: on GDOT's radar the first stopped vehicle is sometimes on the zone, sometimes not, and is
+often lost and found again. This is detector behaviour, not zone length, and SUMO's detectors cannot show it.
+Stopped here: the next step needs a decision on method (see PROGRESS.md 2026-11-20 evening).
