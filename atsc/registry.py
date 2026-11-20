@@ -27,6 +27,7 @@ def build(site):
     rows = []
 
     def add(group, name, value, status, source):
+        value = round(value, 2) if isinstance(value, float) else value
         rows.append({"group": group, "name": name, "value": value, "status": status, "source": source})
 
     # ---- controller: phases
@@ -47,6 +48,19 @@ def build(site):
     for p, v in sorted(ctl.get("passage_s", {}).items(), key=lambda kv: int(kv[0])):
         add("controller", f"P{p} passage time (s)", v, "fitted", ctl.get("source", ""))
     add("controller", "passage time, other phases (s)", sim.get("passage_s"), "default", "engine default")
+    # direct measurements (atsc/measure.py), shown next to the model value until the model adopts them
+    mj = site / "measured.json"
+    if mj.exists():
+        meas = json.loads(mj.read_text())["phases"]
+        for p, m in sorted(meas.items(), key=lambda kv: int(kv[0])):
+            if m.get("passage_median_s") is not None:
+                add("measured, not yet in model", f"P{p} passage time (s)", m["passage_median_s"], "measured",
+                    f"atsc/measure.py: last zone-off -> end of green, median of n={m['passage_n']} (mode "
+                    f"{m['passage_mode_s']} s); model uses {ctl.get('passage_s', {}).get(str(p), sim.get('passage_s'))}")
+            if p in clr_assumed and m.get("yellow_s") is not None:
+                add("measured, not yet in model", f"P{p} yellow / red clearance (s)",
+                    f"{m['yellow_s']:.1f} / {m['red_clear_s']:.1f}", "measured",
+                    f"atsc/measure.py: display run lengths, n={m['yellow_n']}/{m['red_n']}; model uses an assumed value")
     add("controller", "max recall", ctl.get("max_recall", {}), "fitted", ctl.get("source", ""))
     add("controller", "ring order / lead-lag", sig["rings"], "measured", notes.get("rings", ""))
     add("controller", "plans (cycle, splits, coordinated phases)", sorted(sig["plans"]), "measured", notes.get("plans", ""))

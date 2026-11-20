@@ -2,6 +2,30 @@
 
 Live status, newest first. Plan and framing: [PLAN.md](PLAN.md). Site details and deviations: [atsc/sites/137/README.md](atsc/sites/137/README.md).
 
+## Now (2026-11-20): v3 tools — ATSPM chart reader, simulated ATSPM metrics, parameter registry, direct measurements
+
+Plan: `atsc/PIPELINE_PLAN.md`. Portal probe: `atsc/probe_2026-11-20/README.md`.
+- `tools/atspm_charts.py`: exact Split Failure / Approach Delay / PCD / Wait Time / Ped Delay numbers per window
+  (header OCR). Pull for every 137 study weekday running in the background (`debug/pull_atspm_137.sh`, ~19 h).
+- `atsc/sim/atspm_sim.py`: the same metrics from the simulation's own events (`run_window(record_events=True)`).
+- `atsc/registry.py` -> `atsc/sites/137/REGISTRY.md`: every model setting with status; 43 non-measured rows.
+- `atsc/measure.py` -> `atsc/sites/137/measured.json`: settings read directly from the 72 cached T&A windows.
+
+**Findings (exploration on train day 2026-03-10 07-09 and the cached train-day windows; model unchanged):**
+1. **Passage times measured directly are ~2 s (left arrows) and ~3.4 s (side throughs), not the fitted 6-8 s.**
+   The train-day fit to gap-out share pushed passage up to compensate for something else (plan weakness W2/W3).
+2. **P1 clearance measured: yellow 3.2 s, red 2.3 s** (model assumes P5's 2.9 / 2.9). Other phases' clearances
+   re-measured on Mar-Apr windows match the model within 0.2 s (P2/P6 display reading unreliable, not used).
+3. **Closed-loop count check (sim stop-bar activations vs GDOT's raw presence counts, 07-09):** SB_L 58 vs 252,
+   SB_T 116 vs 197, NB_T 57 vs 84, NB_L 75 vs 53, EB_L 195 vs 175. The simulated E. Andrews left zone sits under
+   a standing queue (few long activations): the corrected SB_L demand (x1.73 -> 435 veh vs 252 raw) and/or
+   permissive clearing is wrong. Same picture in the ATSPM-style metrics: P7 split failures 17 sim vs 8 field,
+   max wait ~1,000 s vs 96 s; field skips P7 in 32 % of cycles, the sim serves it almost every cycle.
+4. Main street matches well: arrivals on green 66/60 % sim vs 66/64 % field; approach delay 9.6/10.3 s vs 8/9 s.
+
+Next: calibrate the undercount factors so simulated activations match GDOT's raw counts per movement (closed
+loop, train days), adopt measured passage and P1 clearance, then calibrate discharge — in that order.
+
 ## Now (2026-11-17 16:30 JST): FINAL TEST done (locked days 05-18..29, run once, TEST_PLAN.md)
 
 7 test days x 19 controllers x 5 simulation seeds = 665 runs, 0 failed, 0 teleports. `atsc/sites/137/eval_test/`.

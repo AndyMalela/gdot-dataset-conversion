@@ -385,6 +385,55 @@
   "source": "engine default"
  },
  {
+  "group": "measured, not yet in model",
+  "name": "P1 passage time (s)",
+  "value": 1.91,
+  "status": "measured",
+  "source": "atsc/measure.py: last zone-off -> end of green, median of n=31 (mode 2.25 s); model uses 6.0"
+ },
+ {
+  "group": "measured, not yet in model",
+  "name": "P1 yellow / red clearance (s)",
+  "value": "3.2 / 2.3",
+  "status": "measured",
+  "source": "atsc/measure.py: display run lengths, n=31/40; model uses an assumed value"
+ },
+ {
+  "group": "measured, not yet in model",
+  "name": "P3 passage time (s)",
+  "value": 1.83,
+  "status": "measured",
+  "source": "atsc/measure.py: last zone-off -> end of green, median of n=44 (mode 2.25 s); model uses 6.0"
+ },
+ {
+  "group": "measured, not yet in model",
+  "name": "P4 passage time (s)",
+  "value": 3.37,
+  "status": "measured",
+  "source": "atsc/measure.py: last zone-off -> end of green, median of n=152 (mode 3.0 s); model uses 4.0"
+ },
+ {
+  "group": "measured, not yet in model",
+  "name": "P5 passage time (s)",
+  "value": 2.05,
+  "status": "measured",
+  "source": "atsc/measure.py: last zone-off -> end of green, median of n=52 (mode 2.25 s); model uses 6.0"
+ },
+ {
+  "group": "measured, not yet in model",
+  "name": "P7 passage time (s)",
+  "value": 2.2,
+  "status": "measured",
+  "source": "atsc/measure.py: last zone-off -> end of green, median of n=69 (mode 2.25 s); model uses 6.0"
+ },
+ {
+  "group": "measured, not yet in model",
+  "name": "P8 passage time (s)",
+  "value": 3.37,
+  "status": "measured",
+  "source": "atsc/measure.py: last zone-off -> end of green, median of n=128 (mode 3.0 s); model uses 8.0"
+ },
+ {
   "group": "controller",
   "name": "max recall",
   "value": {},

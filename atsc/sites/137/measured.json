@@ -1,0 +1,85 @@
+{
+ "source": "atsc/measure.py on tools/cache/tna_events",
+ "phases": {
+  "1": {
+   "yellow_s": 3.225806451612897,
+   "yellow_n": 31,
+   "red_clear_s": 2.346041055718473,
+   "red_n": 40,
+   "passage_mode_s": 2.25,
+   "passage_mode_share": 0.1935483870967742,
+   "passage_median_s": 1.906158357771261,
+   "passage_n": 31
+  },
+  "2": {
+   "yellow_s": 13.68078175895765,
+   "yellow_n": 12,
+   "red_clear_s": 9.375,
+   "red_n": 31,
+   "passage_mode_s": null,
+   "passage_mode_share": 0,
+   "passage_median_s": null,
+   "passage_n": 0
+  },
+  "3": {
+   "yellow_s": 2.9325513196480983,
+   "yellow_n": 40,
+   "red_clear_s": 2.9325513196480983,
+   "red_n": 63,
+   "passage_mode_s": 2.25,
+   "passage_mode_share": 0.22727272727272727,
+   "passage_median_s": 1.8328445747800615,
+   "passage_n": 44
+  },
+  "4": {
+   "yellow_s": 2.9325513196480983,
+   "yellow_n": 73,
+   "red_clear_s": 2.0527859237536745,
+   "red_n": 90,
+   "passage_mode_s": 3.0,
+   "passage_mode_share": 0.07236842105263158,
+   "passage_median_s": 3.3724340175953387,
+   "passage_n": 152
+  },
+  "5": {
+   "yellow_s": 2.9325513196480983,
+   "yellow_n": 46,
+   "red_clear_s": 2.9325513196480983,
+   "red_n": 68,
+   "passage_mode_s": 2.25,
+   "passage_mode_share": 0.2692307692307692,
+   "passage_median_s": 2.0527859237536745,
+   "passage_n": 52
+  },
+  "6": {
+   "yellow_s": 13.68078175895765,
+   "yellow_n": 12,
+   "red_clear_s": 9.375,
+   "red_n": 31,
+   "passage_mode_s": null,
+   "passage_mode_share": 0,
+   "passage_median_s": null,
+   "passage_n": 0
+  },
+  "7": {
+   "yellow_s": 2.9325513196480983,
+   "yellow_n": 52,
+   "red_clear_s": 2.9325513196480983,
+   "red_n": 67,
+   "passage_mode_s": 2.25,
+   "passage_mode_share": 0.2318840579710145,
+   "passage_median_s": 2.199413489736088,
+   "passage_n": 69
+  },
+  "8": {
+   "yellow_s": 2.9325513196480983,
+   "yellow_n": 64,
+   "red_clear_s": 2.0527859237536745,
+   "red_n": 82,
+   "passage_mode_s": 3.0,
+   "passage_mode_share": 0.1328125,
+   "passage_median_s": 3.3724340175953067,
+   "passage_n": 128
+  }
+ }
+}
