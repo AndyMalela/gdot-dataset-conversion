@@ -813,3 +813,14 @@ street demand and why NB_T, SB_T and SB_L could never be matched. (`measure_drop
   (right turns leave on red) as before. Same grid and rule otherwise.
 - Everything else as attempt 11 (through zones as attempt 10). Criteria unchanged.
 - Amendment before running: C's grid gains 0.6 and 0.8 (a dropout-corrected count can be below GDOT's raw count).
+
+## Results — attempt 13
+
+C (dropouts removed both sides): NB_L 1.4, NB_T 0.6, NB_R 1.2, SB_L 1.4, SB_T 1.0, SB_R 1.2, EB_L 1.4; confirmation
+ratios 0.99-1.03 for all but SB_L (0.75, flagged) — the first time the counts are reproduced. Run 2026-11-20
+(`validation/attempt13/`): V1 22/35 (worst 10.9 s) FAIL, V2 11/35 (worst 52) FAIL, V3 22/35, V5 PASS → **not
+accepted**. P1 now close (gap-out +4 to +16 on plans A-E). The side-street through greens are 5-11 s too short:
+with the dropouts removed the through demand fell (NB_T 3.2 → 0.6, SB_T 2.8 → 1.0), and the through zones are the
+long attempt-10 zones (36 / 20 m), whose behaviour does not match the field: train-day T&A shows the field through
+zone occupied at green start in 29 % of greens and clearing ~3 s after the green starts, the model's in ~100 % and
+after 9-17 s. A long zone merges a moving queue into one activation, so the closed loop now under-supplies.
