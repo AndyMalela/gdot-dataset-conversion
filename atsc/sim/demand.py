@@ -65,6 +65,9 @@ def counts_path(site_dir):
     ATSC_COUNTS=report in the environment, GDOT's turning-movement report as exported."""
     import os
     sig, mv, _ = _site(site_dir)
+    override = os.environ.get(f"ATSC_COUNTS_FILE_{sig['signal']}")   # calibration runs: explicit table for this site
+    if override:
+        return Path(override)
     name = mv.get("counts_file")
     if not name or os.environ.get("ATSC_COUNTS") == "report":
         name = f"tmc_{sig['signal']}_5min.csv"

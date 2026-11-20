@@ -672,3 +672,26 @@ Per-pair differences move by ≤ 2 points from attempt 7: **F1 does not explain 
 review's guess). In plan mode the coordinated phases already hold until their force-off, and the side-street
 lefts are skipped less in the model than in the field because they are called more often, not because the
 engine served them uncalled. The F1 effect is in free mode (actuated, MaxPressure, learners) at light demand.
+
+## Attempt 9 (v3) — registered 2026-11-20, before running
+
+Model changes, each from GDOT data or a standard, none fitted to a validation statistic (`atsc/PIPELINE_PLAN.md`,
+previous files in `archive_before_v3_2026-11-20/`):
+- **A. Passage times measured directly** (`atsc/measure.py`: last stop-bar zone-off → end of green, median over the
+  cached train-day Timing & Actuation windows): P1 1.9, P3 1.8, P4 3.4, P5 2.1, P7 2.2, P8 3.4 s (were fitted
+  6/6/4/6/6/8 s to the train-day gap-out share). **P1 clearance measured** 3.2 / 2.3 s (was P5's, assumed). This
+  removes the circularity between tuning and V2: gap-out share is no longer used to set anything.
+- **B. Discharge** calibrated to the HCM base saturation flow (field headways are not measurable at 137):
+  SUMO `tau` 1.2 → through 1,934, left 1,789 veh/h/ln (`calibrate_discharge.py`).
+- **C. Presence-zone undercount factors** re-chosen in closed loop (`calibrate_demand.py`, train days): the
+  factor per movement for which the simulated zone gives as many activations as GDOT reported.
+
+Criteria V1–V5 unchanged. **Added, written now, scored when the ATSPM outcome numbers for the validation days are
+read** (`tools/atspm_charts.py`, plan-band windows; simulated with the same definitions, `atsc/sim/atspm_sim.py`):
+- **O1 split failures** (count per plan band, per phase × plan; same band length on both sides), **O2 wait time** (average, per phase × plan),
+  **O3 arrivals on green** and **O4 approach delay** (P2, P6, advance detectors), **O5 closed-loop count ratio**
+  (simulated presence-zone activations / GDOT count, per movement).
+- A case passes when |median over validation days of (sim − field)| ≤ half the field's own day-to-day
+  interquartile range for that case (min. 5 days of field readings); only each phase's own approach chart is used. Reported with a bootstrap over days (share
+  of 1,000 resamples in which ≥ 80 % of cases pass). O1–O4 are reported (not acceptance criteria) for this first
+  outcome attempt; O5 passes per movement at 0.8–1.25.
