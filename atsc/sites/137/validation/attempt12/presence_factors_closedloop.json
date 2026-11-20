@@ -1,0 +1,134 @@
+{
+ "factor": {
+  "NB_L": 1.4,
+  "NB_T": 2.8,
+  "NB_R": 1.2,
+  "SB_L": 2.4,
+  "SB_T": 2.8,
+  "SB_R": 1.2,
+  "EB_L": 1.4
+ },
+ "flags": {
+  "NB_T": "peak below 1: zone model cannot reproduce the count",
+  "SB_L": "peak below 1: zone model cannot reproduce the count",
+  "SB_T": "peak below 1: zone model cannot reproduce the count"
+ },
+ "days": [
+  "2026-03-03",
+  "2026-03-06",
+  "2026-03-11",
+  "2026-03-16",
+  "2026-03-19",
+  "2026-03-26",
+  "2026-03-31",
+  "2026-04-03"
+ ],
+ "window_h": [
+  6,
+  22
+ ],
+ "grid": [
+  1.0,
+  1.2,
+  1.4,
+  1.6,
+  1.8,
+  2.0,
+  2.4,
+  2.8,
+  3.2
+ ],
+ "ratio_by_k": {
+  "1.0": {
+   "NB_L": 0.789,
+   "NB_T": 0.514,
+   "NB_R": 0.869,
+   "SB_L": 0.602,
+   "SB_T": 0.363,
+   "SB_R": 0.887,
+   "EB_L": 0.781
+  },
+  "1.2": {
+   "NB_L": 0.922,
+   "NB_T": 0.548,
+   "NB_R": 1.003,
+   "SB_L": 0.675,
+   "SB_T": 0.383,
+   "SB_R": 1.034,
+   "EB_L": 0.889
+  },
+  "1.4": {
+   "NB_L": 1.05,
+   "NB_T": 0.581,
+   "NB_R": 1.146,
+   "SB_L": 0.746,
+   "SB_T": 0.394,
+   "SB_R": 1.162,
+   "EB_L": 0.969
+  },
+  "1.6": {
+   "NB_L": 1.152,
+   "NB_T": 0.607,
+   "NB_R": 1.256,
+   "SB_L": 0.787,
+   "SB_T": 0.401,
+   "SB_R": 1.296,
+   "EB_L": 1.035
+  },
+  "1.8": {
+   "NB_L": 1.276,
+   "NB_T": 0.644,
+   "NB_R": 1.373,
+   "SB_L": 0.806,
+   "SB_T": 0.418,
+   "SB_R": 1.413,
+   "EB_L": 1.075
+  },
+  "2.0": {
+   "NB_L": 1.365,
+   "NB_T": 0.67,
+   "NB_R": 1.468,
+   "SB_L": 0.813,
+   "SB_T": 0.42,
+   "SB_R": 1.506,
+   "EB_L": 1.105
+  },
+  "2.4": {
+   "NB_L": 1.565,
+   "NB_T": 0.71,
+   "NB_R": 1.621,
+   "SB_L": 0.816,
+   "SB_T": 0.448,
+   "SB_R": 1.669,
+   "EB_L": 1.133
+  },
+  "2.8": {
+   "NB_L": 1.753,
+   "NB_T": 0.728,
+   "NB_R": 1.777,
+   "SB_L": 0.801,
+   "SB_T": 0.462,
+   "SB_R": 1.77,
+   "EB_L": 1.079
+  },
+  "3.2": {
+   "NB_L": 1.844,
+   "NB_T": 0.726,
+   "NB_R": 1.897,
+   "SB_L": 0.743,
+   "SB_T": 0.434,
+   "SB_R": 1.861,
+   "EB_L": 1.035
+  }
+ },
+ "confirmation_ratio": {
+  "NB_L": 1.058,
+  "NB_T": 0.709,
+  "NB_R": 1.01,
+  "SB_L": 0.929,
+  "SB_T": 0.487,
+  "SB_R": 1.074,
+  "EB_L": 0.907
+ },
+ "source": "atsc/sites/137/calibrate_demand.py (v3 step C, 2026-11-20): closed loop, simulated presence-zone activations = GDOT reported counts; model after steps A and B"
+}

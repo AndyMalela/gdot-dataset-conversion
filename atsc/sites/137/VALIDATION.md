@@ -784,3 +784,31 @@ demand factors up (EB_L 1.2 → 1.8) and with them the calls.
   (permissive phase green, arrow not) is closest to the field's (train-day T&A: P1 3.4, P3 4.4, P5 2.5, P7 2.2 s).
   A detector-level measurement; no termination or skip share is used.
 - **C redone** on the new zones, same rule. Everything else as attempt 11; criteria unchanged.
+
+## Results — attempt 12
+
+A4 chose u: P1 0, P5 3, P3 3, P7 3 m (field permissive-period medians P1 3.4, P5 2.5, P3 4.4, P7 2.2 s; P1's
+simulated median is 7.5-8.5 s for every u, so the rule fell to the smallest). C: NB_L 1.4, NB_T 2.8, NB_R 1.2,
+SB_L 2.4, SB_T 2.8, SB_R 1.2, EB_L 1.4. Run 2026-11-20 (`validation/attempt12/`): V1 24/29 (worst 8.1 s) FAIL,
+V2 16/35 (worst 45) FAIL, V3 20/35, V5 PASS → **not accepted**. **Design error in the grid:** u = 0 leaves only the
+junction part, which a WB-left vehicle stopped at the stop line during red never occupies, so P1 was almost
+never called (skips +17 to +76). The grid should have started where a stopped vehicle is covered.
+
+## Finding 2026-11-20 — presence-zone counts include radar dropouts
+
+Train-day T&A (9 days): share of zone activations that start and end while the movement has no green (own or
+permissive phase green, or the 3 s after it), so no vehicle can have left: EB_L (ch19) 0.07, NB_L (ch9) 0.19,
+SB_L (ch29) 0.43, SB_T (ch12) 0.65, NB_T (ch32) 0.61 (WB_L ch1 0.05, not a count source). The model's zones:
+0.00-0.08. A stopped vehicle that the radar loses and finds again is counted twice by GDOT's report. The
+closed-loop step (C) matched the model's activations to these inflated counts, which is why it raised the side
+street demand and why NB_T, SB_T and SB_L could never be matched. (`measure_dropouts.py`)
+
+## Attempt 13 (v3) — registered 2026-11-20, before running
+
+- **A4 corrected:** left zones = junction part + u = 3 m upstream for all four (3 m is the smallest grid value that
+  covers a vehicle stopped at the stop line; it was A4's choice for P3, P5, P7, and P1's measurement is flat
+  for u ≥ 3, so the tie rule gives 3).
+- **C corrected for dropouts:** for EB_L, NB_L, NB_T, SB_L, SB_T the closed-loop target is GDOT's count x (1 -
+  field dropout share), and the model's activations are counted the same way (dropouts excluded). NB_R, SB_R
+  (right turns leave on red) as before. Same grid and rule otherwise.
+- Everything else as attempt 11 (through zones as attempt 10). Criteria unchanged.

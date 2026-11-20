@@ -38,6 +38,9 @@ RAW = REPO / "intersections/137/counts/tmc_137_5min.csv"
 OUTDIR = HERE / "calibration_demand"
 ZONES = {"NB_L": "ch9", "NB_T": "ch32", "NB_R": "ch31", "SB_L": "ch29", "SB_T": "ch12", "SB_R": "ch11", "EB_L": "ch19"}
 GRID = [1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.4, 2.8, 3.2]
+# attempt 13: measured share of GDOT's presence-zone activations that are radar dropouts (measure_dropouts.py)
+_DP = REPO / "intersections/137/counts/presence_dropouts.json"
+DROPOUT = json.loads(_DP.read_text())["share"] if _DP.exists() else {}
 N_DAYS = 8
 H0, H1 = 6, 22
 MV = ["EB_L", "EB_TR", "WB_L", "WB_TR", "NB_L", "NB_T", "NB_R", "SB_L", "SB_T", "SB_R"]
@@ -65,17 +68,30 @@ def job(args):
     os.environ["ATSC_COUNTS_FILE_137"] = str(counts_file)
     from atsc.sim.episode import run_window
     from atsc.sim.signal import actuated_from_site
+    from measure_dropouts import ZONES as DZ, is_dropout
+    from diag_clear import merge
     res = run_window(HERE, day, float(H0), float(H1), actuated_from_site(HERE), mode="plan", seed=1, record_events=True)
     ev = res["events"]["stopbar"]
-    return tag, day, {m: sum(1 for a, _ in ev[ch] if H0 * 3600 <= a < H1 * 3600) for m, ch in ZONES.items()}
+    G = defaultdict(list)
+    for g in res["greens"]:
+        if g["end"] == g["end"]:
+            G[g["phase"]].append((g["start"], g["end"]))
+    out = {}
+    for m, ch in ZONES.items():
+        acts = [(a, b) for a, b in ev[ch] if H0 * 3600 <= a < H1 * 3600]
+        if m in DROPOUT:                    # attempt 13: count like the field minus its dropouts (both sides)
+            acts = [(a, b) for a, b in merge(acts) if not is_dropout(a, b, G, DZ[m][2])]
+        out[m] = len(acts)
+    return tag, day, out
 
 
 def raw_counts(days):
-    out = defaultdict(lambda: defaultdict(int))
+    """GDOT counts per day; movements with a measured dropout share are reduced by it (attempt 13)."""
+    out = defaultdict(lambda: defaultdict(float))
     for r in csv.DictReader(open(RAW)):
         if r["date"] in days and r["status"] == "ok" and f"{H0:02d}:00" <= r["time"] < f"{H1:02d}:00":
             for m in ZONES:
-                out[r["date"]][m] += int(r[m])
+                out[r["date"]][m] += int(r[m]) * (1 - DROPOUT.get(m, 0.0))
     return out
 
 
@@ -124,8 +140,10 @@ def main():
     out = {"factor": chosen, "flags": flags, "days": ds, "window_h": [H0, H1], "grid": GRID,
            "ratio_by_k": {str(v): {m: round(r[m], 3) for m in ZONES} for v, r in ratio.items()},
            "confirmation_ratio": {m: round(conf["chosen"][m][0] / conf["chosen"][m][1], 3) for m in ZONES},
+           "dropout_share": DROPOUT,
            "source": "atsc/sites/137/calibrate_demand.py (v3 step C, 2026-11-20): closed loop, simulated presence-zone "
-                     "activations = GDOT reported counts; model after steps A and B"}
+                     "activations = GDOT reported counts; model after steps A and B; from attempt 13 both sides "
+                     "without radar dropouts (count x (1 - dropout share); model activations that are dropouts removed)"}
     (REPO / "intersections/137/counts/presence_factors_closedloop.json").write_text(json.dumps(out, indent=1))
     write_counts(chosen, REPO / "intersections/137/counts/tmc_137_5min_closedloop.csv")
     print("wrote presence_factors_closedloop.json and tmc_137_5min_closedloop.csv")

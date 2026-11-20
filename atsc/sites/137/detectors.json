@@ -36,7 +36,8 @@
    "ch": 1,
    "hardware": "Wavetronix Matrix",
    "note": "13701 presence + 13765 count, same lane; no WB-left demand is counted, so this zone sees no vehicles",
-   "into_junction": "waiting_point"
+   "into_junction": "waiting_point",
+   "zone_m": 3.0
   },
   {
    "phase": 5,
@@ -46,7 +47,7 @@
    "ch": 19,
    "hardware": "Wavetronix Matrix",
    "note": "13719",
-   "zone_m": 12.0,
+   "zone_m": 3.0,
    "into_junction": "waiting_point"
   },
   {
@@ -95,7 +96,7 @@
    "ch": 9,
    "hardware": "Wavetronix Matrix",
    "note": "13709",
-   "zone_m": 16.0,
+   "zone_m": 3.0,
    "into_junction": "waiting_point"
   },
   {
@@ -126,7 +127,7 @@
    "ch": 29,
    "hardware": "Wavetronix Matrix",
    "note": "13729",
-   "zone_m": 24.0,
+   "zone_m": 3.0,
    "into_junction": "waiting_point"
   },
   {
@@ -155,5 +156,6 @@
   "right_filter": "atsc/sim/maxpressure.py and atsc/rl/agent.py drop a stop-bar zone from the queue/occupancy features when its note contains 'right' (right-turn lanes). 2026-11-16 04:20: ch69's note said 'through/right lane', so P2 had no stop-bar zone in the estimator and its queue reset to 0 every 6 s (MaxPressure starved EB). Fixed by rewording; only ch31, ch11 (right lanes) may contain it."
  },
  "zone_m_source": "2026-11-20 v3 (calibrate_zones.py): per-zone length whose simulated single-vehicle occupancy (median, activations inside one own green) matches the field's (pass_s, 72 train-day T&A windows); grid [8, 12, 16, 20, 24, 30, 36] m on 6 train weekdays; other zones keep stopbar_zone_m",
- "into_junction_source": "2026-11-20 v3 attempt 11: left-turn zones continue past the stop line over the turn's first internal lane to SUMO's waiting point for permissive turners (VALIDATION.md, diagnosis after attempt 10)"
+ "into_junction_source": "2026-11-20 v3 attempt 11: left-turn zones continue past the stop line over the turn's first internal lane to SUMO's waiting point for permissive turners (VALIDATION.md, diagnosis after attempt 10)",
+ "left_zone_upstream_source": "2026-11-20 v3 attempt 12 (calibrate_leftzones.py): left zones = junction part to the waiting point + zone_m upstream of the stop line, chosen so the simulated median occupancy of permissive-period activations matches the field's (train-day T&A, 9 days); grid [0, 3, 6, 9, 12] m; attempt 13: u = 3 m for all four (smallest value covering a vehicle stopped at the stop line)"
 }

@@ -47,10 +47,15 @@ def build(site_dir, net_file, out_file, zone_override=None, spec=None):
             # permissive turners (where a left turner stops to wait for a gap inside the junction)
             via = next(c.getViaLaneID() for c in lane.getOutgoing() if c.getDirection() in ("l", "L"))
             vl = net.getLane(via)
-            pos = max(0.0, lane.getLength() - zone)
-            lines.append(f'  <laneAreaDetector id="{did}" lanes="{lane.getID()} {via}" pos="{pos:.2f}" '
-                         f'endPos="{vl.getLength():.2f}" period="86400" file="NUL"/>')
-            rows.append((did, d["phase"], "stopbar", f"{lane.getID()}+{via}", round(pos, 1)))
+            if zone < 0.5:                   # junction part only
+                lines.append(f'  <laneAreaDetector id="{did}" lane="{via}" pos="0.00" endPos="{vl.getLength():.2f}" '
+                             f'period="86400" file="NUL"/>')
+                rows.append((did, d["phase"], "stopbar", via, 0.0))
+            else:
+                pos = max(0.0, lane.getLength() - zone)
+                lines.append(f'  <laneAreaDetector id="{did}" lanes="{lane.getID()} {via}" pos="{pos:.2f}" '
+                             f'endPos="{vl.getLength():.2f}" period="86400" file="NUL"/>')
+                rows.append((did, d["phase"], "stopbar", f"{lane.getID()}+{via}", round(pos, 1)))
         elif d["kind"] == "stopbar" and zone <= lane.getLength() - 0.1:
             lines.append(f'  <laneAreaDetector id="{did}" lane="{lane.getID()}" endPos="{lane.getLength():.2f}" '
                          f'length="{zone:.2f}" period="86400" file="NUL"/>')
