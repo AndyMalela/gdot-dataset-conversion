@@ -175,6 +175,22 @@ def read_chart(path, metric):
     return row
 
 
+def plan_windows(sig, dates):
+    """One window per timing-plan band of each day (atsc/sites/<id>/signal.json schedule_by_date), so every window
+    holds a single plan and the chart's single plan stripe equals the window total. Yields (start, minutes)."""
+    sched = json.loads((Path(__file__).resolve().parents[1] / "atsc" / "sites" / str(sig) / "signal.json")
+                       .read_text())["schedule_by_date"]
+    for d in dates:
+        bands = sched.get(str(d))
+        if not bands:
+            continue
+        starts = [dt.datetime.combine(d, dt.time(*map(int, b[0].split(":")))) for b in bands]
+        ends = starts[1:] + [dt.datetime.combine(d, dt.time(23, 59))]
+        for a, b in zip(starts, ends):
+            if (b - a).total_seconds() >= 600:
+                yield a, int((b - a).total_seconds() // 60)
+
+
 def windows(dates, hours, minutes):
     h0, h1 = hours
     for d in dates:
@@ -218,12 +234,14 @@ def main():
     ap.add_argument("--reread", action="store_true", help="no requests; rebuild the CSVs from the cache")
     ap.add_argument("--force-ocr", action="store_true", help="with --reread: redo OCR even where a result is cached")
     ap.add_argument("--no-csv", action="store_true", help="only fetch (for long pulls; rebuild once at the end)")
+    ap.add_argument("--plan-bands", action="store_true", help="one window per timing-plan band (overrides --hours/--window)")
     a = ap.parse_args()
     hours = tuple(int(x) for x in a.hours.split("-"))
     for metric in a.metrics:
         if not a.reread:
-            for t in windows(a.date, hours, a.window):
-                d, requested = fetch(a.signal, metric, t, a.window)
+            wins = plan_windows(a.signal, a.date) if a.plan_bands else ((t, a.window) for t in windows(a.date, hours, a.window))
+            for t, mins in wins:
+                d, requested = fetch(a.signal, metric, t, mins)
                 if requested:
                     print(f"  {metric} {t:%Y-%m-%d %H:%M} {'ok' if d else 'no chart'}", flush=True)
                     time.sleep(PAUSE_S)

@@ -10,7 +10,7 @@ while x<=d.date(2026,5,29):
     x+=d.timedelta(1)")
 for day in $days; do
   echo "== $day $(date +%H:%M)"
-  uv run python tools/atspm_charts.py 137 SplitFail ApproachDelay PCD WaitTime PedDelay --date $day --hours 0-24 --window 60 --no-csv 2>&1 | grep -cE " ok$| no chart$" ; true 
+  uv run python tools/atspm_charts.py 137 SplitFail ApproachDelay PCD WaitTime PedDelay --date $day --plan-bands --no-csv 2>&1 | grep -cE " ok$| no chart$" ; true 
 done
 uv run python tools/atspm_charts.py 137 --reread 2>&1 | grep -v Warning
 echo "DONE $(date)"
