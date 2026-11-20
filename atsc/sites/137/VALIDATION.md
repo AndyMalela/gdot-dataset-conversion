@@ -695,3 +695,20 @@ read** (`tools/atspm_charts.py`, plan-band windows; simulated with the same defi
   interquartile range for that case (min. 5 days of field readings); only each phase's own approach chart is used. Reported with a bootstrap over days (share
   of 1,000 resamples in which ≥ 80 % of cases pass). O1–O4 are reported (not acceptance criteria) for this first
   outcome attempt; O5 passes per movement at 0.8–1.25.
+
+## Results — attempt 9
+
+Run 2026-11-20 (`validation/attempt9/`). V1 28/35 (worst 6.4 s) **FAIL**, V2 10/35 (worst 55) **FAIL**, V3 21/35
+(reported), V5 PASS → **not accepted**. Every scored phase gaps out 15–55 points MORE often than the field and its
+green is 2–6 s shorter. With the passage time now measured (~2 s), the remaining free quantity in gap-out is how long
+a vehicle keeps the zone occupied, i.e. the zone length — assumed 12 m, not published by GDOT. The old 4–8 s fitted
+passage was compensating for it. Outcome checks O1–O5 wait for the field numbers.
+
+## Attempt 10 (v3) — registered 2026-11-20, before running
+
+- **A2. Stop-bar zone length per zone** (`calibrate_zones.py`, train days): the length whose simulated single-vehicle
+  occupancy (median of activations inside one own green) matches the field's measured one (`pass_s`, 72 train-day
+  T&A windows): NB_L 16, NB_T 36 (grid edge, field 3.5 s vs sim 3.0 s at 36 m), NB_R 8, SB_L 24, SB_T 20, SB_R 8,
+  EB_L 12 m; zones without a field measurement keep 12 m. Uses no validation statistic.
+- **C redone** on the new zones (activations depend on zone length): closed-loop factors re-chosen with the same rule.
+- Everything else as attempt 9; criteria unchanged (V1–V5; O1–O5 as registered for attempt 9).

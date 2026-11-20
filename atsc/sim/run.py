@@ -33,8 +33,12 @@ def start(site_dir, routes, begin, end, gui=False, step=1.0, seed=1, extra=()):
     else:
         import libsumo as conn
         binary = "sumo"
+    import json as _json
+    import os
     nb = neighbours(site_dir)
-    adds = [str(site_dir / "network" / "detectors.add.xml")] + [str(Path(d) / "network" / "detectors.add.xml") for d, _ in nb]
+    sid = _json.loads((site_dir / "signal.json").read_text())["signal"]
+    own_add = os.environ.get(f"ATSC_DETECTORS_ADD_{sid}") or str(site_dir / "network" / "detectors.add.xml")  # calibration runs
+    adds = [own_add] + [str(Path(d) / "network" / "detectors.add.xml") for d, _ in nb]
     cmd = [binary, "-n", str(net_file(site_dir)), "-r", str(routes),
            "-a", ",".join(adds),
            "-b", str(begin), "-e", str(end), "--step-length", str(step), "--seed", str(seed),

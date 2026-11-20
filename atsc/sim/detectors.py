@@ -29,12 +29,15 @@ def upstream_position(lane, dist):
     return lane, min(lane.getLength() - 0.1, max(0.0, lane.getLength() - left))
 
 
-def build(site_dir, net_file, out_file):
+def build(site_dir, net_file, out_file, zone_override=None):
+    """zone_override: stop-bar zone length in m for every zone (calibration runs); otherwise a detector's own
+    "zone_m" if set, else the site default stopbar_zone_m."""
     spec = json.loads((Path(site_dir) / "detectors.json").read_text())
     net = sumolib.net.readNet(str(net_file), withInternal=False)
-    zone = spec["stopbar_zone_m"]["value"]
+    default_zone = spec["stopbar_zone_m"]["value"]
     rows, lines = [], ["<additional>"]
     for d in [d for d in spec["detectors"] if d.get("modelled", True)]:     # advance radar: not modelled yet
+        zone = zone_override if zone_override is not None else d.get("zone_m", default_zone)
         edge = net.getEdge(spec["approaches"][d["leg"]]["edge"])
         lane = edge.getLane(d["lane"])
         did = f"ch{d['ch']}"
