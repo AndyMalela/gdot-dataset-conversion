@@ -34,6 +34,34 @@ def offsets(site_dir, sig_id):
     return out
 
 
+def zone_movement(site):
+    """stop-bar zone -> GDOT count column it produces (presence zones count one per activation)."""
+    det = json.loads((Path(site) / "detectors.json").read_text())
+    out = {}
+    for d in det["detectors"]:
+        if d["kind"] != "stopbar" or d.get("hardware") == "modelled only":
+            continue
+        lanes = det["approaches"][d["leg"]]["lanes"].split()          # right -> left, index = SUMO lane
+        role = lanes[d["lane"]] if d["lane"] < len(lanes) else "?"
+        out[f"ch{d['ch']}"] = (f"{d['leg']}_{role}", "count" in d.get("note", "").lower())
+    return out
+
+
+def count_check(site, sig_id, date, ev, h0, h1):
+    """Closed loop: simulated stop-bar activations vs GDOT's raw report count for the same zone's movement.
+    Valid only where the report counts presence-zone activations (137: side streets and EB_L)."""
+    raw = [r for r in csv.DictReader(open(Path("intersections") / str(sig_id) / "counts" / f"tmc_{sig_id}_5min.csv"))
+           if r["date"] == date and f"{h0:02d}:00" <= r["time"] < f"{h1:02d}:00"]
+    print(f"\n=== closed-loop count check {date} {h0:02d}-{h1:02d}: sim activations vs GDOT raw count")
+    for ch, (mv, count_zone) in zone_movement(site).items():
+        n = sum(1 for a, _ in ev["stopbar"].get(ch, []) if h0 * 3600 <= a < h1 * 3600)
+        col = mv if raw and mv in raw[0] else None
+        f = sum(int(float(r[col] or 0)) for r in raw) if col else None
+        ratio = f"{n / f:.2f}" if f else "-"
+        flag = "  (report column also fed by a count zone: ratio not meaningful)" if count_zone else ""
+        print(f"  {ch:5s} {mv:6s} sim {n:5d}  GDOT {f if f is not None else '-':>5}  ratio {ratio}{flag}")
+
+
 def field(sig_id, metric):
     p = Path("intersections") / str(sig_id) / "atspm" / f"{metric}.csv"
     return list(csv.DictReader(open(p))) if p.exists() else []
@@ -55,6 +83,7 @@ def main():
     off = offsets(site, sig_id)
     phases = sorted(ev["phases"])
     print(f"offsets (s): {off}")
+    count_check(site, sig_id, a.date, ev, a.h0, a.h1)
     for h in range(a.h0, a.h1):
         t0, t1 = h * 3600, (h + 1) * 3600
         key = f"{h:02d}:00"
