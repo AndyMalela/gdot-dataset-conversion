@@ -1,0 +1,159 @@
+{
+ "source": "intersections/137/config/detectors.csv (GDOT ATSPM configuration table, scraped 2026-11-16); lanes: user check 2026-11-16 03:10 (W Paces Ferry: left + through/right each way; E Andrews: right, through, left), Slaton assumed the same as E Andrews (one lane per detector zone), NOT yet confirmed",
+ "tls": "69545429",
+ "stopbar_zone_m": {
+  "value": 12.0,
+  "assumption": "not published; same 40 ft presence zone as assumed at 7065"
+ },
+ "setback_m": {
+  "value": 79.25,
+  "source": "GDOT configuration: Wavetronix Advance count zones at 260 ft from the stop bar (13703 EB, 13721 WB)"
+ },
+ "approaches": {
+  "NB": {
+   "edge": "9269817#3",
+   "lanes": "R T L"
+  },
+  "EB": {
+   "edge": "-1303415424",
+   "lanes": "TR L"
+  },
+  "SB": {
+   "edge": "9273981#9",
+   "lanes": "R T L"
+  },
+  "WB": {
+   "edge": "289670475#2",
+   "lanes": "TR L"
+  }
+ },
+ "detectors": [
+  {
+   "phase": 1,
+   "leg": "WB",
+   "kind": "stopbar",
+   "lane": 1,
+   "ch": 1,
+   "hardware": "Wavetronix Matrix",
+   "note": "13701 presence + 13765 count, same lane; no WB-left demand is counted, so this zone sees no vehicles",
+   "into_junction": "waiting_point"
+  },
+  {
+   "phase": 5,
+   "leg": "EB",
+   "kind": "stopbar",
+   "lane": 1,
+   "ch": 19,
+   "hardware": "Wavetronix Matrix",
+   "note": "13719",
+   "zone_m": 12.0,
+   "into_junction": "waiting_point"
+  },
+  {
+   "phase": 2,
+   "leg": "EB",
+   "kind": "setback",
+   "lane": 0,
+   "ch": 3,
+   "dist_m": 79.25,
+   "hardware": "Wavetronix Advance",
+   "note": "13703 advance count zone, 260 ft"
+  },
+  {
+   "phase": 2,
+   "leg": "EB",
+   "kind": "stopbar",
+   "lane": 0,
+   "ch": 69,
+   "hardware": "Wavetronix Matrix",
+   "note": "13769/13775 lane-by-lane COUNT zones at the stop line (both on the single shared through lane), modelled as one presence zone. DEVIATION: the field controller has no stop-bar presence on P2"
+  },
+  {
+   "phase": 6,
+   "leg": "WB",
+   "kind": "setback",
+   "lane": 0,
+   "ch": 21,
+   "dist_m": 79.25,
+   "hardware": "Wavetronix Advance",
+   "note": "13721 advance count zone, 260 ft (this is the zone the WB_TR report column counts)"
+  },
+  {
+   "phase": 6,
+   "leg": "WB",
+   "kind": "stopbar",
+   "lane": 0,
+   "ch": 96,
+   "hardware": "modelled only",
+   "note": "NO field zone: GDOT has no stop-bar detection on P6 (WB through). Modelled so that queue-based controllers and gap-out see the WB through queue. DEVIATION, disclosed"
+  },
+  {
+   "phase": 3,
+   "leg": "NB",
+   "kind": "stopbar",
+   "lane": 2,
+   "ch": 9,
+   "hardware": "Wavetronix Matrix",
+   "note": "13709",
+   "zone_m": 16.0,
+   "into_junction": "waiting_point"
+  },
+  {
+   "phase": 8,
+   "leg": "NB",
+   "kind": "stopbar",
+   "lane": 1,
+   "ch": 32,
+   "hardware": "Wavetronix Matrix",
+   "note": "13732",
+   "zone_m": 36.0
+  },
+  {
+   "phase": 8,
+   "leg": "NB",
+   "kind": "stopbar",
+   "lane": 0,
+   "ch": 31,
+   "hardware": "Wavetronix Matrix",
+   "note": "13731 right lane (right turns on P8, RTOR)",
+   "zone_m": 8.0
+  },
+  {
+   "phase": 7,
+   "leg": "SB",
+   "kind": "stopbar",
+   "lane": 2,
+   "ch": 29,
+   "hardware": "Wavetronix Matrix",
+   "note": "13729",
+   "zone_m": 24.0,
+   "into_junction": "waiting_point"
+  },
+  {
+   "phase": 4,
+   "leg": "SB",
+   "kind": "stopbar",
+   "lane": 1,
+   "ch": 12,
+   "hardware": "Wavetronix Matrix",
+   "note": "13712",
+   "zone_m": 20.0
+  },
+  {
+   "phase": 4,
+   "leg": "SB",
+   "kind": "stopbar",
+   "lane": 0,
+   "ch": 11,
+   "hardware": "Wavetronix Matrix",
+   "note": "13711 right lane (right turns on P4, RTOR)",
+   "zone_m": 8.0
+  }
+ ],
+ "notes": {
+  "field_vs_model": "In the field, P2 and P6 (W Paces Ferry through, coordinated) have advance count zones only (no stop-bar presence); every other phase has a stop-bar Matrix zone. The model adds stop-bar presence zones on P2 (where GDOT's count zones physically are) and P6 (no field zone) so that all controllers, incl. the actuated one, read the same detectors. Right-lane zones are excluded from queue estimates ('right' in note), as at 7065.",
+  "right_filter": "atsc/sim/maxpressure.py and atsc/rl/agent.py drop a stop-bar zone from the queue/occupancy features when its note contains 'right' (right-turn lanes). 2026-11-16 04:20: ch69's note said 'through/right lane', so P2 had no stop-bar zone in the estimator and its queue reset to 0 every 6 s (MaxPressure starved EB). Fixed by rewording; only ch31, ch11 (right lanes) may contain it."
+ },
+ "zone_m_source": "2026-11-20 v3 (calibrate_zones.py): per-zone length whose simulated single-vehicle occupancy (median, activations inside one own green) matches the field's (pass_s, 72 train-day T&A windows); grid [8, 12, 16, 20, 24, 30, 36] m on 6 train weekdays; other zones keep stopbar_zone_m",
+ "into_junction_source": "2026-11-20 v3 attempt 11: left-turn zones continue past the stop line over the turn's first internal lane to SUMO's waiting point for permissive turners (VALIDATION.md, diagnosis after attempt 10)"
+}

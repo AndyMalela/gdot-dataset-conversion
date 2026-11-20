@@ -765,3 +765,22 @@ position past the stop line (detection-model change), shorter through zones from
 - **C redone** on the new zones with the same rule (activations depend on the zone).
 - Everything else as attempt 10 (through zones stay as attempt 10; their count conflict stays flagged).
   Criteria unchanged (V1-V5; O1-O5 as registered for attempt 9).
+
+## Results — attempt 11
+
+Run 2026-11-20 (`validation/attempt11/`). C factors: NB_L 2.4, NB_T 3.2, NB_R 1.2, SB_L 1.0, SB_T 2.8, SB_R 1.2,
+EB_L 1.8 (NB_L, NB_T, SB_L, SB_T flagged: no factor reaches the count). **V1 33/35 (worst 4.2 s) PASS**, V2 14/35
+(worst 39) **FAIL**, V3 19/35 (reported), V5 PASS → **not accepted**. Left gap-out excess down from 15-50 to
+13-39 points; the model now skips the lefts less (P5 -17 to -29, P3 -19 to -24). Train-day check: a moving
+left turner occupies the new (12-24 m + junction) zone ~3.5 s at the 25th percentile vs ~1.7 s in the field, so
+the zone reaches too far back; a long zone merges vehicles into fewer activations, which pushes the closed-loop
+demand factors up (EB_L 1.2 → 1.8) and with them the calls.
+
+## Attempt 12 (v3) — registered 2026-11-20, before running
+
+- **A4. Upstream extent of the left zones** (`calibrate_leftzones.py`, train days): the zone keeps its
+  junction part (stop line to SUMO's waiting point) and reaches u m back from the stop line, u in {0, 3, 6, 9, 12}
+  per zone, chosen so that the simulated median occupancy of activations that start in the permissive period
+  (permissive phase green, arrow not) is closest to the field's (train-day T&A: P1 3.4, P3 4.4, P5 2.5, P7 2.2 s).
+  A detector-level measurement; no termination or skip share is used.
+- **C redone** on the new zones, same rule. Everything else as attempt 11; criteria unchanged.
