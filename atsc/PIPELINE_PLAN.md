@@ -134,7 +134,22 @@ uv run python -m atsc.pipeline <id> <stage>      # or: all
 | 12-12 → 12-19 | Second (busier) site through the pipeline: validated model + all methods on its locked test days. |
 | 12-20 → 01-20 | Thesis writing; any 137 rebuild only as a disclosed check (see D1). |
 
-## Decisions needed
+## Decisions (user, 2026-11-20)
+
+- D1: every training and test run will be redone once the system is polished; fresh test days will be taken
+  from GDOT data (plenty available). No need to protect 137's current test days.
+- D2/D3: second (and possibly third) site and the validation-day scheme — chosen later by the user.
+- D4: build a reader whenever the data is important.
+
+## Probe result (2026-11-20) — see `probe_2026-11-20/README.md`
+
+Aggregate Data Export gives exact XML but GDOT's aggregate tables are empty (all zeros). Default charts are images,
+but Split Failure, Approach Delay, PCD, Wait Time and Pedestrian Delay print exact per-plan summary numbers that
+OCR can read per window. So: (a) one generic **header/plan-stripe OCR reader** for these charts; (b) a
+**simulated-ATSPM module** that computes the same metrics from SUMO detector/phase events, so validation
+compares like with like; (c) bar/dot readers only for Left Turn Gap Analysis and Phase Termination.
+
+## Decisions needed (original list, now answered above)
 
 - **D1 (decide). What happens to 137's results if the v3 model differs?** 137's test days have already been opened,
   so new 137 numbers on the same days are a second look. Proposal: keep the accepted 137 model as the thesis model
