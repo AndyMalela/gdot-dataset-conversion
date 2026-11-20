@@ -37,7 +37,7 @@ SRC = REPO / "intersections/137/counts/tmc_137_5min_upstream.csv"
 RAW = REPO / "intersections/137/counts/tmc_137_5min.csv"
 OUTDIR = HERE / "calibration_demand"
 ZONES = {"NB_L": "ch9", "NB_T": "ch32", "NB_R": "ch31", "SB_L": "ch29", "SB_T": "ch12", "SB_R": "ch11", "EB_L": "ch19"}
-GRID = [1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.4, 2.8, 3.2]
+GRID = [0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.4, 2.8, 3.2]
 # attempt 13: measured share of GDOT's presence-zone activations that are radar dropouts (measure_dropouts.py)
 _DP = REPO / "intersections/137/counts/presence_dropouts.json"
 DROPOUT = json.loads(_DP.read_text())["share"] if _DP.exists() else {}

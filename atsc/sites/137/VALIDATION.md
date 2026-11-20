@@ -812,3 +812,4 @@ street demand and why NB_T, SB_T and SB_L could never be matched. (`measure_drop
   field dropout share), and the model's activations are counted the same way (dropouts excluded). NB_R, SB_R
   (right turns leave on red) as before. Same grid and rule otherwise.
 - Everything else as attempt 11 (through zones as attempt 10). Criteria unchanged.
+- Amendment before running: C's grid gains 0.6 and 0.8 (a dropout-corrected count can be below GDOT's raw count).
