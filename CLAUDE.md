@@ -43,6 +43,7 @@ contrasting (busier, near-capacity, more lanes/phases) intersection — likely 7
   (2–9× too low in daytime) — must be handled before it can be the busier second site.
 - **Next:** SARSA(λ) and DQN at 137 (same inputs, actions and rules; fixed tuning budget written into TEST_PLAN
   first); then the second site; strengthen validation (delay check, bootstrap over days).
+  The v3 plan for a tighter, reusable model + validation pipeline is `atsc/PIPELINE_PLAN.md` (decisions D1–D4 open).
 
 ## Where things are
 
