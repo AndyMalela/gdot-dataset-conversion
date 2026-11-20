@@ -2,6 +2,19 @@
 
 Live status, newest first. Plan and framing: [PLAN.md](PLAN.md). Site details and deviations: [atsc/sites/137/README.md](atsc/sites/137/README.md).
 
+## 2026-11-20 evening: v3 validation attempts 9-13 — not accepted; method decision needed
+
+Details: `atsc/sites/137/VALIDATION.md` (attempts 9-13, diagnosis, findings). Live model = attempt 13 (NOT accepted);
+accepted attempt-8 model in `atsc/sites/137/archive_before_v3_2026-11-20/`.
+- Best V2 so far 14/35 (attempt 11; needs 28). V1 passed in attempts 10-11.
+- Found and fixed: SUMO left turners wait off the zone (zones now reach the in-junction waiting point); GDOT
+  presence-zone counts include radar dropouts (SB_T 65 %, NB_T 61 %, SB_L 43 %) -> counts now reproduced.
+- Not reproducible with SUMO detectors: the field radar zones' behaviour (first stopped vehicle sometimes on the
+  zone, sometimes not; frequent dropouts). This drives the left arrows' and side-street extensions.
+- Decision needed: (a) keep measured passage times and report V2 as failing, (b) passage per phase as an
+  "effective extension" fitted on train days (like attempt 8; disclosed as absorbing unmodelled radar behaviour),
+  (c) use the accepted attempt-8 model for the Nov 30 runs and continue v3 later.
+
 ## Now (2026-11-20): v3 tools — ATSPM chart reader, simulated ATSPM metrics, parameter registry, direct measurements
 
 Plan: `atsc/PIPELINE_PLAN.md`. Portal probe: `atsc/probe_2026-11-20/README.md`.
