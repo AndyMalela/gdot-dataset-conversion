@@ -36,3 +36,6 @@ atsc/**/*.rou.xml
 # === Obsidian: per-device UI state (changes constantly, conflicts between desktop and mobile) ===
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
+
+# ATSPM chart images (large, re-fetchable); the OCR results (chart_*.json) and CSVs are tracked
+intersections/*/atspm/**/chart_*.jpg

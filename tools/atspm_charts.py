@@ -84,7 +84,7 @@ def fetch(sig, metric, start, minutes):
     mid, endpoint, extra, _ = METRICS[metric]
     d = sig_dir(sig, "atspm") / metric / f"{start:%Y%m%d_%H%M}_{minutes}m"
     if d.exists() and (any(d.glob("chart_*.jpg")) or (d / "none.txt").exists()):
-        return d if any(d.glob("chart_*.jpg")) else None
+        return (d if any(d.glob("chart_*.jpg")) else None), False
     d.mkdir(parents=True, exist_ok=True)
     body = {"SignalID": str(sig), "StartDate": fmt(start), "EndDate": fmt(start + dt.timedelta(minutes=minutes)),
             "YAxisMax": "", "Y2AxisMax": "", "MetricTypeID": mid, **extra}
@@ -104,12 +104,12 @@ def fetch(sig, metric, start, minutes):
     urls = re.findall(r'src="(https://[^"]+\.jpg)"', html)
     if not urls:
         (d / "none.txt").write_text(html[:2000])    # e.g. no detection for this metric at this signal
-        return None
+        return None, True
     for k, u in enumerate(urls):
         img = urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": UA}), timeout=120).read()
         (d / f"chart_{k:02d}.jpg").write_bytes(img)
         time.sleep(1)
-    return d
+    return d, True
 
 
 # ---------------------------------------------------------------- read
@@ -131,6 +131,21 @@ def header_text(path):
     if cur:
         lines.append(" ".join(s for _, s in sorted(cur)))
     return lines
+
+
+PARSER_V = 2                    # bump when read_chart changes, so cached OCR results are redone
+
+
+def read_chart_cached(path, metric, force=False):
+    """read_chart with the result stored next to the image (chart_xx.json)."""
+    js = Path(path).with_suffix(".json")
+    if js.exists() and not force:
+        r = json.loads(js.read_text())
+        if r.pop("_v", None) == PARSER_V:
+            return r
+    r = read_chart(path, metric)
+    js.write_text(json.dumps({"_v": PARSER_V, **r}))
+    return r
 
 
 def read_chart(path, metric):
@@ -170,7 +185,7 @@ def windows(dates, hours, minutes):
             t += dt.timedelta(minutes=minutes)
 
 
-def rebuild_csv(sig, metric):
+def rebuild_csv(sig, metric, force=False):
     root = sig_dir(sig, "atspm") / metric
     rows = []
     for d in sorted(p for p in root.iterdir() if p.is_dir()):
@@ -178,7 +193,7 @@ def rebuild_csv(sig, metric):
         if not m:
             continue
         for img in sorted(d.glob("chart_*.jpg")):
-            r = read_chart(img, metric)
+            r = read_chart_cached(img, metric, force)
             rows.append({"date": f"{m.group(1)[:4]}-{m.group(1)[4:6]}-{m.group(1)[6:]}",
                          "start": f"{m.group(2)[:2]}:{m.group(2)[2:]}", "minutes": int(m.group(3)),
                          "chart": img.name, **r})
@@ -200,17 +215,20 @@ def main():
     ap.add_argument("--date", nargs="+", type=dt.date.fromisoformat, default=[])
     ap.add_argument("--hours", default="0-24", help="e.g. 6-21")
     ap.add_argument("--window", type=int, default=60, help="minutes per request")
-    ap.add_argument("--reread", action="store_true", help="no requests; re-OCR the cache and rebuild the CSVs")
+    ap.add_argument("--reread", action="store_true", help="no requests; rebuild the CSVs from the cache")
+    ap.add_argument("--force-ocr", action="store_true", help="with --reread: redo OCR even where a result is cached")
+    ap.add_argument("--no-csv", action="store_true", help="only fetch (for long pulls; rebuild once at the end)")
     a = ap.parse_args()
     hours = tuple(int(x) for x in a.hours.split("-"))
     for metric in a.metrics:
         if not a.reread:
             for t in windows(a.date, hours, a.window):
-                d = fetch(a.signal, metric, t, a.window)
-                print(f"  {metric} {t:%Y-%m-%d %H:%M} {'ok' if d else 'no chart'}", flush=True)
-                time.sleep(PAUSE_S)
-        if (sig_dir(a.signal, "atspm") / metric).exists():
-            rebuild_csv(a.signal, metric)
+                d, requested = fetch(a.signal, metric, t, a.window)
+                if requested:
+                    print(f"  {metric} {t:%Y-%m-%d %H:%M} {'ok' if d else 'no chart'}", flush=True)
+                    time.sleep(PAUSE_S)
+        if not a.no_csv and (sig_dir(a.signal, "atspm") / metric).exists():
+            rebuild_csv(a.signal, metric, force=a.force_ocr)
 
 
 if __name__ == "__main__":
