@@ -753,3 +753,15 @@ with no detector rows (P2, P6); fallback added, other charts unchanged.
   `tau` cannot restore 1,900.
 Next candidate (to be registered before running): represent left zones as covering the driver's waiting
 position past the stop line (detection-model change), shorter through zones from the queue-clear measurement.
+
+## Attempt 11 (v3) — registered 2026-11-20, before running
+
+- **A3. Left-turn zones reach the waiting point inside the junction** (`detectors.json` `into_junction:
+  waiting_point` on ch1, ch19, ch9, ch29; `atsc/sim/detectors.py`). A permissive left turner in SUMO waits for its
+  gap at an internal stop point past the stop line, i.e. off a zone that ends at the stop line, so its call drops;
+  on GDOT's charts the waiting turner keeps the zone occupied (diagnosis above). The zone now covers the stop line
+  to that waiting point (5-12 m of junction lane; no length is fitted). Train-day check before registering:
+  permissive-period occupancy P1 p75 19.5 s (field 13.6, before 2.0), P5 9.5 (6.0, before 2.0).
+- **C redone** on the new zones with the same rule (activations depend on the zone).
+- Everything else as attempt 10 (through zones stay as attempt 10; their count conflict stays flagged).
+  Criteria unchanged (V1-V5; O1-O5 as registered for attempt 9).

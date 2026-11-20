@@ -29,11 +29,11 @@ def upstream_position(lane, dist):
     return lane, min(lane.getLength() - 0.1, max(0.0, lane.getLength() - left))
 
 
-def build(site_dir, net_file, out_file, zone_override=None):
+def build(site_dir, net_file, out_file, zone_override=None, spec=None):
     """zone_override: stop-bar zone length in m for every zone (calibration runs); otherwise a detector's own
     "zone_m" if set, else the site default stopbar_zone_m."""
-    spec = json.loads((Path(site_dir) / "detectors.json").read_text())
-    net = sumolib.net.readNet(str(net_file), withInternal=False)
+    spec = spec or json.loads((Path(site_dir) / "detectors.json").read_text())
+    net = sumolib.net.readNet(str(net_file), withInternal=True)
     default_zone = spec["stopbar_zone_m"]["value"]
     rows, lines = [], ["<additional>"]
     for d in [d for d in spec["detectors"] if d.get("modelled", True)]:     # advance radar: not modelled yet
@@ -41,7 +41,17 @@ def build(site_dir, net_file, out_file, zone_override=None):
         edge = net.getEdge(spec["approaches"][d["leg"]]["edge"])
         lane = edge.getLane(d["lane"])
         did = f"ch{d['ch']}"
-        if d["kind"] == "stopbar" and zone <= lane.getLength() - 0.1:
+        into = d.get("into_junction")
+        if d["kind"] == "stopbar" and into == "waiting_point":
+            # zone continues past the stop line over the turn's first internal lane, up to SUMO's waiting point for
+            # permissive turners (where a left turner stops to wait for a gap inside the junction)
+            via = next(c.getViaLaneID() for c in lane.getOutgoing() if c.getDirection() in ("l", "L"))
+            vl = net.getLane(via)
+            pos = max(0.0, lane.getLength() - zone)
+            lines.append(f'  <laneAreaDetector id="{did}" lanes="{lane.getID()} {via}" pos="{pos:.2f}" '
+                         f'endPos="{vl.getLength():.2f}" period="86400" file="NUL"/>')
+            rows.append((did, d["phase"], "stopbar", f"{lane.getID()}+{via}", round(pos, 1)))
+        elif d["kind"] == "stopbar" and zone <= lane.getLength() - 0.1:
             lines.append(f'  <laneAreaDetector id="{did}" lane="{lane.getID()}" endPos="{lane.getLength():.2f}" '
                          f'length="{zone:.2f}" period="86400" file="NUL"/>')
             rows.append((did, d["phase"], "stopbar", lane.getID(), round(lane.getLength() - zone, 1)))
