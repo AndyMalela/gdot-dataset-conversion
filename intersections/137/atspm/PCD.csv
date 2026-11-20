@@ -1,0 +1,5 @@
+date,start,minutes,chart,phase,title,n_plans,aog_pct,gt_pct,platoon_ratio,ocr_ok,ocr_text
+2026-03-10,07:00,60,chart_00.jpg,2,WPacesFerryEBT,1,79.0,70.0,1.13,1,Phase2:WPacesFerryEBT | AoG=79% | VolumePerHour | DetectorActivation Plan10 | Change to Green 79%A0G | Change toYellow 70%GT | Change to Red 1.13PR | AoG-ArrivalOn Green
+2026-03-10,07:00,60,chart_01.jpg,6,WPacesFerryWBT,1,68.0,69.0,0.99,1,Phase6:WPacesFerryWBT | AoG=68% | VolumePerHour | DetectorActivation Plan10 | Change to Green 68%AoG | Change toYellow 69%GT | Change to Red 0.99PR | AoG-ArrivalOn Green
+2026-03-10,08:00,60,chart_00.jpg,2,WPacesFerryEBT,1,66.0,63.0,1.03,1,Phase2:WPacesFerryEBT | AoG=66% | VolumePerHour | DetectorActivation Plan10 | Change to Green 65%AoG | Change toYellow 63%GT | Change to Red 1.03PR | AoG-ArrivalOn Green
+2026-03-10,08:00,60,chart_01.jpg,6,WPacesFerryWBT,1,64.0,60.0,1.05,1,Phase6:WPacesFerryWBT | AoG=64% | VolumePerHour | DetectorActivation Plan10 | Change to Green 63%AoG | Change toYellow 60%GT | Change to Red 1.05PR | AoG-ArrivalOn Green

@@ -1,0 +1,5 @@
+date,start,minutes,chart,phase,title,n_plans,delay_per_veh_s,total_delay_h,ocr_ok,ocr_text
+2026-03-10,07:00,60,chart_00.jpg,2,WPacesFerryEBT,1,4.0,0.8,1,Phase2:WPacesFerryEBT | Approach Delay | ApproachDelayPerVehicle Plan10 | 4AD | 0.8TD | 40 10
+2026-03-10,07:00,60,chart_01.jpg,6,WPacesFemyWBT,1,6.0,1.3,1,Phase6:WPacesFemyWBT | AverageDelayPerVehicle（AD)=6seconds:TotalDelayForSelectedPeriod（TD)=1.3hours | Approach Delay | ApproachDelayPerVehicle Plan10 | 6AD | 1.3TD | 60 10
+2026-03-10,08:00,60,chart_00.jpg,2,WPacesFerryEBT,1,8.0,1.6,1,Phase2:WPacesFerryEBT | Average DelayPerVehicle(AD)=8seconds:TotalDelayForSelectedPeriod（TD)=1.6hours | Approach Delay | ApproachDelayPerVehicle Plan10 | 8AD | 1.6TD | 10 10
+2026-03-10,08:00,60,chart_01.jpg,6,WPacesFemyWBT,1,9.0,2.0,1,Phase6:WPacesFemyWBT | AverageDelayPerVehicle（AD)=9 seconds:TotalDelayForSelectedPeriod（TD)=2hours | Approach Delay | ApproachDelayPerVehicle Plan10 | 9AD | 2TD | 10 10

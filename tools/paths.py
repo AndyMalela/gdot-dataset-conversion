@@ -5,6 +5,7 @@ intersections/<id>/timing    timing plans + charts     (atspm_plans.py, atspm_ti
 intersections/<id>/network   SUMO network from OSM     (osm_build.py)
 intersections/<id>/sim       SUMO simulation           (build_sim.py)
 intersections/<id>/dataset   processed day table + profiles (dataset_7065.py)
+intersections/<id>/atspm     exact chart summary numbers per window (atspm_charts.py)
 tools/cache/                 screening downloads, not curated
 """
 from pathlib import Path

@@ -1,0 +1,17 @@
+date,start,minutes,chart,phase,title,n_plans,avg_wait_s,max_wait_s,ocr_ok,ocr_text
+2026-03-10,07:00,60,chart_00.jpg,1,WPacesFeryWBL,1,23.2,29.8,1,Phase1:WPacesFeryWBL | StopBarDetection | VolumePerHour | Gap Out Plan10 | MaxOut AvgWait:23.2s | ForceOff MaxWait:29.8s | Unknown 60 80 | AverageWait
+2026-03-10,07:00,60,chart_01.jpg,2,WPacesFeryEBT,1,30.0,54.6,1,Phase2:WPacesFeryEBT | Advance Detection | VolumePerHour | Gap Out Plan 10 | MaxOut AvgWait:30.0s | ForceOff MaxWait:54.6s | Unknown 60 1000 | AverageWait
+2026-03-10,07:00,60,chart_02.jpg,3,SlatonDrNB,1,47.0,98.4,1,Phase3:SlatonDrNB | StopBarDetection | VolumePerHour | Gap Out Plan10 | MaxOut AvgWait:47.0s | ForceOff MaxWait:98.4s | Unknown 120 30 | AverageWait
+2026-03-10,07:00,60,chart_03.jpg,4,EAndrewsDrSB,1,56.0,126.9,1,Phase4:EAndrewsDrSB | StopBarDetection | VolumePerHour | Gap Out Plan10 | MaxOut AvgWait:56.0s | ForceOff MaxWait:126.9s | Unknown 180 250 | AverageWait
+2026-03-10,07:00,60,chart_04.jpg,5,WPacesFeryEBL,1,29.1,42.4,1,Phase5:WPacesFeryEBL | StopBarDetection | VolumePerHour | Gap Out Plan10 | MaxOut AvgWait:29.1s | ForceOff MaxWait:42.4s | Unknown 60 100 | AverageWait
+2026-03-10,07:00,60,chart_05.jpg,6,WPacesFerryWBT,1,28.8,53.4,1,Phase6:WPacesFerryWBT | Advance Detection | VolumePerHour | Gap Out Plan 10 | MaxOut AvgWait:28.8s | ForceOff MaxWait:53.4s | Unknown 60 1000 | AverageWait
+2026-03-10,07:00,60,chart_06.jpg,7,EAndrewsSBL,1,60.9,94.6,1,Phase7:EAndrewsSBL | StopBarDetection | VolumePerHour | Gap Out Plan10 | MaxOut AvgWait:60.9s | ForceOff MaxWait:94.6s | Unknown 120 200 | AverageWait
+2026-03-10,07:00,60,chart_07.jpg,8,SlatonDriveNB,1,66.4,114.3,1,Phase8:SlatonDriveNB | StopBarDetection | VolumePerHour | Gap Out Plan10 | MaxOut AvgWait:66.4s | ForceOff MaxWait:114.3s | Unknown 120 120 | AverageWait
+2026-03-10,08:00,60,chart_00.jpg,1,WPacesFeryWBL,1,27.2,58.6,1,Phase1:WPacesFeryWBL | StopBarDetection | VolumePerHour | Gap Out Plan10 | MaxOut AvgWait:27.2s | ForceOff MaxWait:58.6s | Unknown 60 80 | AverageWait
+2026-03-10,08:00,60,chart_01.jpg,2,WPacesFeryEBT,1,39.7,59.0,1,Phase2:WPacesFeryEBT | Advance Detection | VolumePerHour | Gap Out Plan10 | MaxOut AvgWait:39.7s | ForceOff MaxWait:59.0s | Unknown 60 800 | AverageWait
+2026-03-10,08:00,60,chart_02.jpg,3,SlatonDrNB,1,64.7,106.4,1,Phase3:SlatonDrNB | StopBarDetection | VolumePerHour | Gap Out Plan10 | MaxOut AvgWait:64.7s | ForceOff MaxWait:106.4s | Unknown 120 40 | AverageWait
+2026-03-10,08:00,60,chart_03.jpg,4,EAndrewsDrSB,1,63.3,103.1,1,Phase4:EAndrewsDrSB | StopBarDetection | VolumePerHour | Gap Out Plan10 | MaxOut AvgWait:63.3s | ForceOff MaxWait:103.1s | Unknown 120 250 | AverageWait
+2026-03-10,08:00,60,chart_04.jpg,5,WPacesFeryEBL,1,29.4,48.5,1,Phase5:WPacesFeryEBL | StopBarDetection | VolumePerHour | Gap Out Plan10 | MaxOut AvgWait:29.4s | ForceOff MaxWait:48.5s | Unknown 60 140 | AverageWait
+2026-03-10,08:00,60,chart_05.jpg,6,WPacesFerryWBT,1,40.9,58.9,1,Phase6:WPacesFerryWBT | Advance Detection | VolumePerHour | Gap Out Plan 10 | MaxOut AvgWait:40.9s | ForceOff MaxWait:58.9s | Unknown 60 1200 | AverageWait
+2026-03-10,08:00,60,chart_06.jpg,7,EAndrewsSBL,1,63.5,95.8,1,Phase7:EAndrewsSBL | StopBarDetection | VolumePerHour | Gap Out Plan10 | MaxOut AvgWait:63.5s | ForceOff MaxWait:95.8s | Unknown 120 160 | AverageWait
+2026-03-10,08:00,60,chart_07.jpg,8,SlatonDriveNB,1,73.4,114.1,1,Phase8:SlatonDriveNB | StopBarDetection | VolumePerHour | Gap Out Plan10 | MaxOut AvgWait:73.4s | ForceOff MaxWait:114.1s | Unknown 120 160 | AverageWait

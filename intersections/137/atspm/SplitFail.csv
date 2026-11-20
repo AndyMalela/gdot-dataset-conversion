@@ -1,0 +1,21 @@
+date,start,minutes,chart,phase,title,n_plans,split_failures,ocr_ok,ocr_text
+2026-03-10,07:00,60,chart_00.jpg,1,WPacesFerryWBL,1,0.0,1,Phase1:WPacesFerryWBL | Total SplitFailures=0 | SplitFail | Plan10 | GOR-GapOut | OSF | GOR-ForceOff | ROR-GapOut 0%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,07:00,60,chart_01.jpg,2,WPacesFemyEBL,1,0.0,1,Phase2:WPacesFemyEBL | Total Split Failures=0 | SplitFail | Plan10 | GOR-GapOut | OSF | GOR-ForceOff | ROR-GapOut 0%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,07:00,60,chart_02.jpg,3,SlatonDrNB,1,2.0,1,Phase3:SlatonDrNB | Total Split Failures=2 | SplitFail | Plan10 | GOR-GapOut | 2SF | GOR-ForceOff | ROR-GapOut 11%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,07:00,60,chart_03.jpg,4,EAndrewsSBL,1,1.0,1,Phase4:EAndrewsSBL | Total Split Failures=1 | SplitFail | Plan10 | GOR-GapOut | 1SF | GOR-ForceOff | ROR-GapOut 4%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,07:00,60,chart_04.jpg,4,EAndrewsDrSB,1,0.0,1,Phase4:EAndrewsDrSB | Total SplitFailures=0 | SplitFail | Plan10 | GOR-GapOut | OSF | GOR-ForceOff | ROR-GapOut 0%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,07:00,60,chart_05.jpg,5,WPacesFeryEBL,1,0.0,1,Phase5:WPacesFeryEBL | Total SplitFailures=0 | SplitFail | Plan10 | GOR-GapOut | OSF | GOR-ForceOff | ROR-GapOut 0%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,07:00,60,chart_06.jpg,6,WPacesFeryWBL,1,0.0,1,Phase6:WPacesFeryWBL | Total Split Failures=0 | SplitFail | Plan10 | GOR-GapOut | OSF | GOR-ForceOff | ROR-GapOut 0%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,07:00,60,chart_07.jpg,7,EAndrewsSBL,1,1.0,1,Phase7:EAndrewsSBL | Total SplitFailures=1 | SplitFail | Plan10 | GOR-GapOut | 1SF | GOR-ForceOff | ROR-GapOut 5%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,07:00,60,chart_08.jpg,8,SlatonDrNB,1,0.0,1,Phase8:SlatonDrNB | Total Split Failures=0 | SplitFail | Plan10 | GOR-GapOut | OSF | GOR-ForceOff | ROR-GapOut 0%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,07:00,60,chart_09.jpg,8,SlatonDriveNB,1,0.0,1,Phase8:SlatonDriveNB | Total SplitFailures=0 | SplitFail | Plan10 | GOR-GapOut | OSF | GOR-ForceOff | ROR-GapOut 0%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,08:00,60,chart_00.jpg,1,WPacesFeryWBL,1,0.0,1,Phase1:WPacesFeryWBL | Total SplitFailures=0 | SplitFail | Plan10 | GOR-GapOut | OSF | GOR-ForceOff | ROR-GapOut 0%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,08:00,60,chart_01.jpg,2,WPacesFemyEBL,1,0.0,1,Phase2:WPacesFemyEBL | Total Split Failures=0 | SplitFail | Plan10 | GOR-GapOut | OSF | GOR-ForceOff | ROR-GapOut 0%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,08:00,60,chart_02.jpg,3,SlatonDrNB,1,1.0,1,Phase3:SlatonDrNB | Total Split Failures=1 | SplitFail | Plan10 | GOR-GapOut | 1SF | GOR-ForceOff | ROR-GapOut 5%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,08:00,60,chart_03.jpg,4,EAndrewsSBL,1,3.0,1,Phase4:EAndrewsSBL | Total Split Failures=3 | SplitFail | Plan10 | GOR-GapOut | 3SF | GOR-ForceOff | ROR-GapOut 11%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,08:00,60,chart_04.jpg,4,EAndrewsDrSB,1,0.0,1,Phase4:EAndrewsDrSB | Total SplitFailures=0 | SplitFail | Plan10 | GOR-GapOut | OSF | GOR-ForceOff | ROR-GapOut 0%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,08:00,60,chart_05.jpg,5,WPacesFeryEBL,1,3.0,1,Phase5:WPacesFeryEBL | Total SplitFailures=3 | SplitFail | Plan10 | GOR-GapOut | 3SF | GOR-ForceOff | ROR-GapOut 18%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,08:00,60,chart_06.jpg,6,WPacesFeryWBL,1,1.0,1,Phase6:WPacesFeryWBL | Total SplitFailures=1 | SplitFail | Plan10 | GOR-GapOut | 1SF | GOR-ForceOff | ROR-GapOut 4%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,08:00,60,chart_07.jpg,7,EAndrewsSBL,1,8.0,1,Phase7:EAndrewsSBL | Total Split Failures=8 | SplitFail | Plan10 | GOR-GapOut | 8SF | GOR-ForceOff | ROR-GapOut 38%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,08:00,60,chart_08.jpg,8,SlatonDrNB,1,0.0,1,Phase8:SlatonDrNB | Total Split Failures=0 | SplitFail | Plan10 | GOR-GapOut | OSF | GOR-ForceOff | ROR-GapOut 0%SF | ROR-ForceOff 100 | Avg.ROR
+2026-03-10,08:00,60,chart_09.jpg,8,SlatonDriveNB,1,0.0,1,Phase8:SlatonDriveNB | Total SplitFailures=0 | SplitFail | Plan10 | GOR-GapOut | OSF | GOR-ForceOff | ROR-GapOut 0%SF | ROR-ForceOff 100 | Avg.ROR

@@ -1,0 +1,12 @@
+{
+ "SignalID": "137",
+ "StartDate": "03/10/2026 08:00 AM",
+ "EndDate": "03/10/2026 09:00 AM",
+ "YAxisMax": "",
+ "Y2AxisMax": "",
+ "MetricTypeID": 8,
+ "SelectedBinSize": "15",
+ "ShowPlanStatistics": true,
+ "ShowTotalDelayPerHour": true,
+ "ShowDelayPerVehicle": true
+}

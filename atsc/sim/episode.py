@@ -38,8 +38,10 @@ def _tripinfos(ti, site_dir, date, seed):
 
 
 def run_window(site_dir, date, begin_h, end_h, policy, mode="plan", plan=None, free_max=None, vtype=None,
-               seed=1, warmup_s=900, drain_s=900, step=None, gui=False, schedule=None, skip_uncalled=True):
-    """vtype / step default to the site's calibrated sim.json."""
+               seed=1, warmup_s=900, drain_s=900, step=None, gui=False, schedule=None, skip_uncalled=True,
+               record_events=False):
+    """vtype / step default to the site's calibrated sim.json.
+    record_events: also return res["events"], the detector/pedestrian log for atsc/sim/atspm_sim.py."""
     site_dir = Path(site_dir)
     cal = json.loads((site_dir / "sim.json").read_text()) if (site_dir / "sim.json").exists() else {}
     vtype = cal.get("vtype", {}) if vtype is None else vtype
@@ -64,6 +66,8 @@ def run_window(site_dir, date, begin_h, end_h, policy, mode="plan", plan=None, f
                  for nd, _ in run.neighbours(site_dir)]             # field timing, whatever controls the site
         sig = SumoSignal(conn, site_dir, run.net_file(site_dir), policy, mode=mode, day=str(date), plan=plan,
                          free_max=free_max, schedule=schedule, skip_uncalled=skip_uncalled, seed=seed)
+        if record_events:
+            sig.enable_recording()
         prev = {e: set() for e in approach}
         crossings = defaultdict(list)
         backlog = Counter()
@@ -85,6 +89,7 @@ def run_window(site_dir, date, begin_h, end_h, policy, mode="plan", plan=None, f
                 backlog[c] = max(backlog[c], n)
                 backlog_h[(int(t // 3600), c)] = max(backlog_h[(int(t // 3600), c)], n)
         greens = sig.greens_table()
+        events = sig.recorded_events()
         plan_log = sig.plan_log
         cycle_starts = list(sig.engine.cycle_starts)
         conn.close()
@@ -122,4 +127,4 @@ def run_window(site_dir, date, begin_h, end_h, policy, mode="plan", plan=None, f
             "delay_by_hour": {h: v for h, v in sorted(hour.items())},
             "by_hour_mv": by_hour_mv,
             "crossings": dict(crossings), "greens": greens, "plan_log": plan_log, "cycle_starts": cycle_starts,
-            "backlog_max": dict(backlog), "teleports": teleports}
+            "backlog_max": dict(backlog), "teleports": teleports, "events": events}

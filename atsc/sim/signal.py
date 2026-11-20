@@ -140,6 +140,7 @@ class SumoSignal:
         self.now = 0.0
         self._last_state = None
         self.plan_log = []              # (time, plan name) at every change
+        self.rec = None                 # event log, see enable_recording()
 
     # ---- time-of-day plans
     def _schedule(self, date):
@@ -196,6 +197,8 @@ class SumoSignal:
         dt = self.conn.simulation.getDeltaT()
         h = int(self.now // 3600) % 24
         peds = {p for p, r in self.ped_rate.items() if self.ped_rng.random() < r[h] / 3600 * dt}
+        if self.rec is not None:
+            self._record(peds)
         disp = self.engine.tick(self.now, calls, ends, peds)
         state = link_state(disp, self.lp, self.n_links)
         if state != self._last_state:
@@ -205,3 +208,37 @@ class SumoSignal:
 
     def greens_table(self):
         return [dataclasses.asdict(g) for g in self.engine.greens]
+
+    # ---- optional event log for ATSPM-style metrics (atsc/sim/atspm_sim.py); read-only, changes no behaviour
+    def enable_recording(self):
+        """Log stop-bar detector on/off intervals, setback detector vehicle arrivals and pedestrian pushes."""
+        self.rec = {"stopbar": {d: [] for ids in self.stopbar.values() for d in ids},
+                    "setback": {d: [] for ids in self.setback.values() for d in ids}, "ped": []}
+        self._on_since = {d: None for d in self.rec["stopbar"]}
+        self._seen = {d: set() for d in self.rec["setback"]}
+
+    def _record(self, peds):
+        la, il = self.conn.lanearea, self.conn.inductionloop
+        for d, iv in self.rec["stopbar"].items():
+            occ = la.getLastStepVehicleNumber(d) > 0
+            if occ and self._on_since[d] is None:
+                self._on_since[d] = self.now
+            elif not occ and self._on_since[d] is not None:
+                iv.append((self._on_since[d], self.now))
+                self._on_since[d] = None
+        for d, times in self.rec["setback"].items():
+            ids = set(il.getLastStepVehicleIDs(d))
+            times.extend(self.now for _ in ids - self._seen[d])
+            self._seen[d] = ids
+        self.rec["ped"].extend((self.now, p) for p in sorted(peds))
+
+    def recorded_events(self):
+        """Close open detector intervals and return the log (None if recording was not enabled)."""
+        if self.rec is None:
+            return None
+        for d, t0 in self._on_since.items():
+            if t0 is not None:
+                self.rec["stopbar"][d].append((t0, self.now))
+        return {"stopbar": self.rec["stopbar"], "setback": self.rec["setback"], "ped": self.rec["ped"],
+                "phases": {int(k): {"yellow": v["yellow"], "red": v["red"]} for k, v in self.sig["phases"].items()},
+                "stopbar_by_phase": self.stopbar, "setback_by_phase": self.setback}
