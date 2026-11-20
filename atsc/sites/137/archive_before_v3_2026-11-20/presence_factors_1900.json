@@ -1,0 +1,35 @@
+{
+ "saturation_flow": 1900.0,
+ "headway_s": 1.895,
+ "pass_s": {
+  "SB_T": 2.05,
+  "NB_R": 1.61,
+  "SB_R": 1.76,
+  "EB_L": 1.91,
+  "NB_T": 3.52,
+  "SB_L": 2.64,
+  "NB_L": 1.91
+ },
+ "factor": {
+  "EB_L": 1.411,
+  "NB_L": 2.522,
+  "NB_R": 2.95,
+  "NB_T": 1.455,
+  "SB_L": 1.727,
+  "SB_R": 2.721,
+  "SB_T": 2.285
+ },
+ "windows": 72,
+ "days": [
+  "2026-03-03",
+  "2026-03-05",
+  "2026-03-10",
+  "2026-03-12",
+  "2026-03-18",
+  "2026-03-24",
+  "2026-03-31",
+  "2026-04-08",
+  "2026-04-14"
+ ],
+ "method": "GDOT's report counts one vehicle per zone activation (VALIDATION.md, finding 09:30). A queue discharging over the\nzone keeps it occupied, so several vehicles register as one. From Timing & Actuation charts with zone occupancy\n(tools/lanecheck/tna_events.py, train days only), per activation [on, off]:"
+}

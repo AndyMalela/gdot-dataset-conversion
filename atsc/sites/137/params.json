@@ -2,16 +2,16 @@
  {
   "group": "controller",
   "name": "P1 yellow (s)",
-  "value": 2.9,
-  "status": "assumed",
-  "source": "yellow/red not read for P1 (no green in the 5-min clearance window); P5's values used"
+  "value": 3.2,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
  },
  {
   "group": "controller",
   "name": "P1 red clearance (s)",
-  "value": 2.9,
-  "status": "assumed",
-  "source": "yellow/red not read for P1 (no green in the 5-min clearance window); P5's values used"
+  "value": 2.3,
+  "status": "measured",
+  "source": "Timing & Actuation interval lengths (clearance.json)"
  },
  {
   "group": "controller",
@@ -37,7 +37,7 @@
  {
   "group": "controller",
   "name": "P1 max green, free mode (s)",
-  "value": 14.2,
+  "value": 14.5,
   "status": "estimated",
   "source": "free mode: largest green any verified plan gives the phase (split - Y - R)"
  },
@@ -338,44 +338,44 @@
  {
   "group": "controller",
   "name": "P1 passage time (s)",
-  "value": 6.0,
+  "value": 1.9,
   "status": "fitted",
-  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)"
+  "source": "2026-11-20 v3: passage MEASURED directly (atsc/measure.py: last stop-bar zone-off -> end of green, median over the cached train-day Timing & Actuation windows, ~0.3 s/pixel); the previous train-day fit to gap-out share is kept in passage_previous_fit. max_recall: none (train-day rule, unchanged)."
  },
  {
   "group": "controller",
   "name": "P3 passage time (s)",
-  "value": 6.0,
+  "value": 1.8,
   "status": "fitted",
-  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)"
+  "source": "2026-11-20 v3: passage MEASURED directly (atsc/measure.py: last stop-bar zone-off -> end of green, median over the cached train-day Timing & Actuation windows, ~0.3 s/pixel); the previous train-day fit to gap-out share is kept in passage_previous_fit. max_recall: none (train-day rule, unchanged)."
  },
  {
   "group": "controller",
   "name": "P4 passage time (s)",
-  "value": 4.0,
+  "value": 3.4,
   "status": "fitted",
-  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)"
+  "source": "2026-11-20 v3: passage MEASURED directly (atsc/measure.py: last stop-bar zone-off -> end of green, median over the cached train-day Timing & Actuation windows, ~0.3 s/pixel); the previous train-day fit to gap-out share is kept in passage_previous_fit. max_recall: none (train-day rule, unchanged)."
  },
  {
   "group": "controller",
   "name": "P5 passage time (s)",
-  "value": 6.0,
+  "value": 2.1,
   "status": "fitted",
-  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)"
+  "source": "2026-11-20 v3: passage MEASURED directly (atsc/measure.py: last stop-bar zone-off -> end of green, median over the cached train-day Timing & Actuation windows, ~0.3 s/pixel); the previous train-day fit to gap-out share is kept in passage_previous_fit. max_recall: none (train-day rule, unchanged)."
  },
  {
   "group": "controller",
   "name": "P7 passage time (s)",
-  "value": 6.0,
+  "value": 2.2,
   "status": "fitted",
-  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)"
+  "source": "2026-11-20 v3: passage MEASURED directly (atsc/measure.py: last stop-bar zone-off -> end of green, median over the cached train-day Timing & Actuation windows, ~0.3 s/pixel); the previous train-day fit to gap-out share is kept in passage_previous_fit. max_recall: none (train-day rule, unchanged)."
  },
  {
   "group": "controller",
   "name": "P8 passage time (s)",
-  "value": 8.0,
+  "value": 3.4,
   "status": "fitted",
-  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)"
+  "source": "2026-11-20 v3: passage MEASURED directly (atsc/measure.py: last stop-bar zone-off -> end of green, median over the cached train-day Timing & Actuation windows, ~0.3 s/pixel); the previous train-day fit to gap-out share is kept in passage_previous_fit. max_recall: none (train-day rule, unchanged)."
  },
  {
   "group": "controller",
@@ -389,56 +389,49 @@
   "name": "P1 passage time (s)",
   "value": 1.91,
   "status": "measured",
-  "source": "atsc/measure.py: last zone-off -> end of green, median of n=31 (mode 2.25 s); model uses 6.0"
- },
- {
-  "group": "measured, not yet in model",
-  "name": "P1 yellow / red clearance (s)",
-  "value": "3.2 / 2.3",
-  "status": "measured",
-  "source": "atsc/measure.py: display run lengths, n=31/40; model uses an assumed value"
+  "source": "atsc/measure.py: last zone-off -> end of green, median of n=31 (mode 2.25 s); model uses 1.9"
  },
  {
   "group": "measured, not yet in model",
   "name": "P3 passage time (s)",
   "value": 1.83,
   "status": "measured",
-  "source": "atsc/measure.py: last zone-off -> end of green, median of n=44 (mode 2.25 s); model uses 6.0"
+  "source": "atsc/measure.py: last zone-off -> end of green, median of n=44 (mode 2.25 s); model uses 1.8"
  },
  {
   "group": "measured, not yet in model",
   "name": "P4 passage time (s)",
   "value": 3.37,
   "status": "measured",
-  "source": "atsc/measure.py: last zone-off -> end of green, median of n=152 (mode 3.0 s); model uses 4.0"
+  "source": "atsc/measure.py: last zone-off -> end of green, median of n=152 (mode 3.0 s); model uses 3.4"
  },
  {
   "group": "measured, not yet in model",
   "name": "P5 passage time (s)",
   "value": 2.05,
   "status": "measured",
-  "source": "atsc/measure.py: last zone-off -> end of green, median of n=52 (mode 2.25 s); model uses 6.0"
+  "source": "atsc/measure.py: last zone-off -> end of green, median of n=52 (mode 2.25 s); model uses 2.1"
  },
  {
   "group": "measured, not yet in model",
   "name": "P7 passage time (s)",
   "value": 2.2,
   "status": "measured",
-  "source": "atsc/measure.py: last zone-off -> end of green, median of n=69 (mode 2.25 s); model uses 6.0"
+  "source": "atsc/measure.py: last zone-off -> end of green, median of n=69 (mode 2.25 s); model uses 2.2"
  },
  {
   "group": "measured, not yet in model",
   "name": "P8 passage time (s)",
   "value": 3.37,
   "status": "measured",
-  "source": "atsc/measure.py: last zone-off -> end of green, median of n=128 (mode 3.0 s); model uses 8.0"
+  "source": "atsc/measure.py: last zone-off -> end of green, median of n=128 (mode 3.0 s); model uses 3.4"
  },
  {
   "group": "controller",
   "name": "max recall",
   "value": {},
   "status": "fitted",
-  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)"
+  "source": "2026-11-20 v3: passage MEASURED directly (atsc/measure.py: last stop-bar zone-off -> end of green, median over the cached train-day Timing & Actuation windows, ~0.3 s/pixel); the previous train-day fit to gap-out share is kept in passage_previous_fit. max_recall: none (train-day rule, unchanged)."
  },
  {
   "group": "controller",
