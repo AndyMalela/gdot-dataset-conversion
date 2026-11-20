@@ -31,10 +31,10 @@ N_DAYS = 8
 
 
 def job(args):
-    day, tau = args
+    day, tau, *extra = args                      # extra: optional dict of further vType attributes
     import atsc.sim.episode as ep
     cal = json.loads((HERE / "sim.json").read_text())
-    vt = dict(cal.get("vtype", {}), tau=tau)
+    vt = dict(cal.get("vtype", {}), tau=tau, **(extra[0] if extra else {}))
     orig = ep.run_window
 
     def with_vtype(*a, **k):                  # sat_flow.job imports run_window at call time: give it this vtype

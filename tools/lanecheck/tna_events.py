@@ -74,6 +74,19 @@ def frame(path):
     colrun = dark.sum(axis=0)
     xs = [x for x in range(W) if colrun[x] > 0.35 * H]
     x0, x1 = xs[0], xs[-1]
+    if x1 - x0 < 0.6 * W:
+        # charts with few rows (e.g. coordinated phases: display + two event rows) can miss the 35 % column rule;
+        # take the plot edges from the longest horizontal dark run instead (a grid line spans the whole plot)
+        best = (0, 0, 0)
+        for y in range(H):
+            r = np.flatnonzero(dark[y])
+            if len(r) > best[0] and len(r) > 0.5 * W:
+                best = (len(r), r[0], r[-1])
+        if best[0]:
+            ys = [y for y in range(H) if dark[y, best[1]:best[2] + 1].mean() > 0.97]
+            band = dark[ys[0]:ys[-1] + 1]
+            cols = np.flatnonzero(band.mean(axis=0) > 0.9)     # vertical plot border / grid lines
+            x0, x1 = int(cols[0]), int(cols[-1])
     inner = dark[:, x0 + 2:x1 - 1]
     lines = []
     for y in range(H):

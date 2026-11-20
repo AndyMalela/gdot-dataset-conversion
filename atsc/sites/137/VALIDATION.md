@@ -733,3 +733,23 @@ Run 2026-11-20 (`validation/attempt10/`). **V1 31/35 (worst 4.2 s) PASS**, V2 10
 
 Not accepted. Diagnosis needs per-cycle data on the left arrows (Phase Termination charts, cycle position of each
 end) before another attempt is registered; no further change is made to the model now.
+
+## Diagnosis after attempt 10 (2026-11-20, train days only; no model change yet)
+
+Tools: `diag_train.py` (Split Monitor shares on train days), `diag_clear.py` (zone occupancy around arrow
+starts, field T&A vs simulation). Reader fix: `tools/lanecheck/tna_events.py` misplaced the plot edges on charts
+with no detector rows (P2, P6); fallback added, other charts unchanged.
+- Train days show the same pattern as validation: served left arrows gap out 64-96 % in the model vs 17-60 % in
+  the field; the model also skips the lefts less.
+- Field left zones stay occupied long after the arrow starts (median 6-9 s; 35-41 % of arrows end with the zone
+  occupied) vs the model (median 2.5-7 s; 4-36 %). Field through zones clear fast (median ~3 s) while the model's
+  long through zones (20-36 m from attempt 10) stay occupied 9-17 s: the pass_s-based zone lengths are wrong
+  for the throughs.
+- Left vehicles that arrive during the permissive period: field zone occupancy p75 6-14 s, p90 21-35 s (they wait
+  on the zone for a gap); model p75 2 s (SUMO moves them to its waiting point inside the junction, off the zone,
+  or they find a gap at once). So in the field the waiting permissive turners keep calling and are still on the
+  zone when the arrow starts; in the model they are not.
+- SUMO `startupDelay` (driver start-up) was probed and rejected: 1 s already cuts saturation flow to ~1,700 and
+  `tau` cannot restore 1,900.
+Next candidate (to be registered before running): represent left zones as covering the driver's waiting
+position past the stop line (detection-model change), shorter through zones from the queue-clear measurement.
