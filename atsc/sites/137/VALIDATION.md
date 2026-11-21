@@ -834,3 +834,15 @@ u = 0 gives 0.00; activation occupancy 1.0-2.0 s for every geometry; dropouts 0.
 the field zone's behaviour: on GDOT's radar the first stopped vehicle is sometimes on the zone, sometimes not, and is
 often lost and found again. This is detector behaviour, not zone length, and SUMO's detectors cannot show it.
 Stopped here: the next step needs a decision on method (see PROGRESS.md 2026-11-20 evening).
+
+## Attempt 14 (v3) — registered 2026-11-21, before running (user: "for 137 do whatever you want to do")
+
+- Model = attempt 13 (measured clearances, HCM discharge, left zones to the waiting point, counts without radar
+  dropouts), plus an **effective gap time per phase** fitted on train days with attempt 2's rule, unchanged: max
+  recall by the train-day rule, then per phase the passage in {2, 3, 4, 6, 8} s with the smallest mean |sim − field|
+  gap-out share over the plans (ties: mean |split difference|). **Disclosed deviation**: the field's measured gap
+  times are ~2-3.4 s (kept in `sim.json` `passage_measured`); the fitted value stands in for radar-zone behaviour
+  SUMO's detectors do not reproduce (stopping position on/off the zone, dropouts, waiting turners), found in the
+  diagnosis and exploration above. Because the fit uses the gap-out share on train days, V2 on validation days
+  tests whether that effective value carries over to other days, not whether the gap time itself is right.
+- Criteria unchanged (V1, V2, V5; V3 reported; O1-O5 reported when the field outcome numbers are read).

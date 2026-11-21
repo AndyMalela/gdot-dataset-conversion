@@ -181,8 +181,14 @@ def fit_controller():
     for r in rows:
         print(r)
     cal = json.loads((HERE / "sim.json").read_text())
-    cal["controller"] = {"source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)",
+    prev = cal.get("controller", {})
+    measured = prev.get("passage_measured") or (prev.get("passage_s") if "MEASURED" in prev.get("source", "") else None)
+    cal["controller"] = {"source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md); from attempt 14 an "
+                                   "EFFECTIVE gap time: it absorbs radar-zone behaviour the model's detectors do not "
+                                   "reproduce (VALIDATION.md); the measured field values are in passage_measured",
                          "max_recall": recall, "passage_s": {str(k): v for k, v in best.items()}}
+    if measured:
+        cal["controller"]["passage_measured"] = measured
     (HERE / "sim.json").write_text(json.dumps(cal, indent=1) + "\n")
     print("wrote sim.json controller:", cal["controller"])
 

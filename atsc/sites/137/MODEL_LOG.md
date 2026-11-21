@@ -172,3 +172,13 @@ Open decision (2026-11-20): (a) keep measured gap times and report V2 failing; (
 - **Ways it could pass**: (a) model the radar's behaviour in SUMO from the T&A charts (chance that a stopped car is
   on the zone, dropout rate) instead of a fixed zone; (b) an effective gap time per phase fitted on train days,
   disclosed; (c) an intersection whose side streets have count zones or loops (true counts).
+
+## Attempt 14 — effective gap time on top of attempt 13 (registered 2026-11-21)
+
+- **Why**: attempts 9–13 showed that with the measured ~2 s gap times the model cannot copy how the field greens
+  end, because GDOT's radar zones behave differently from SUMO's detectors (see exploration). The user chose to
+  look for a better-equipped second intersection and left 137's method to me.
+- **Change**: keep every measured input of attempt 13; choose the gap time per phase on the 29 train days, from
+  {2, 3, 4, 6, 8} s, so the simulated gap-out share is closest to GDOT's Split Monitor (same rule as attempt 2).
+- **How to report it**: an "effective" gap time, not the controller's real setting (real: ~2–3.4 s). It absorbs
+  the radar behaviour the model lacks. The validation days then test whether this carries over to unseen days.
