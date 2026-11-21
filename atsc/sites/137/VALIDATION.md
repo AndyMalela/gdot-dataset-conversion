@@ -846,3 +846,20 @@ Stopped here: the next step needs a decision on method (see PROGRESS.md 2026-11-
   diagnosis and exploration above. Because the fit uses the gap-out share on train days, V2 on validation days
   tests whether that effective value carries over to other days, not whether the gap time itself is right.
 - Criteria unchanged (V1, V2, V5; V3 reported; O1-O5 reported when the field outcome numbers are read).
+
+## Results — attempt 14
+
+Fit (train days): max recall none; effective gap time P1 4, P3 6, P4 8, P5 4, P7 8, P8 8 s (measured 1.9, 1.8,
+3.4, 2.1, 2.2, 3.4). Run 2026-11-21 (`validation/attempt14/`): V1 23/35 (worst 6.8 s) **FAIL**, V2 28/35 but worst
+34 points (P7 plan D, cap 30) **FAIL**, V3 23/35, V5 PASS → **not accepted**. How greens end now matches except one
+pair; green LENGTH does not: P4 −2 to −4 s, P8 −2 to −7 s, P7 +3 to +5 s. P4 and P8 sit on the grid's top value.
+
+## Attempt 15 (v3) — registered 2026-11-21, before running
+
+- **Pedestrian calls from GDOT's Pedestrian Delay report** (`ped_from_atspm.py`, train days only): per hour, the
+  band's "cycles with pedestrian requests" per hour, median over train days, turned into a push rate with the
+  band's cycle length (λ = −(3600/C)·ln(1 − CPR·C/3600), so that the model's cycles with a request match; free
+  bands: CPR as is). Replaces the rates read from 48 T&A windows on 3 days.
+- **Gap-time grid extended** to {2, 3, 4, 6, 8, 10, 12} s (two phases chose the old top value 8); rule unchanged.
+- Everything else as attempt 14. Criteria unchanged.
+- Note for the report: the validation days have now judged 15 model versions; the test days stay locked.

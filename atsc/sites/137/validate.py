@@ -21,7 +21,7 @@ from atsc.sim.demand import day_quality, day_set, load_counts, schedule  # noqa:
 OUT = HERE / "validation"
 SCORED = (1, 3, 4, 5, 7, 8)
 WEEKDAY_PLANS = ("A", "B", "C", "D", "E", "F", "G")
-PASSAGES = (2.0, 3.0, 4.0, 6.0, 8.0)
+PASSAGES = (2.0, 3.0, 4.0, 6.0, 8.0, 10.0, 12.0)
 RECALL_FORCE_PCT, RECALL_SKIP_PCT = 90.0, 1.0      # max-recall rule (CONTROLLER.md)
 G8_C = 55 - 3.6 - 3.0
 

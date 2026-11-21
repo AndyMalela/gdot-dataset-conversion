@@ -193,3 +193,22 @@ Open decision (2026-11-20): (a) keep measured gap times and report V2 failing; (
   max wait, 29 charts) both values are left blank, not guessed.
 - Fully read: Split Failure 3,680/3,680, Approach Delay 603/722, PCD 534/718, Wait Time ~2,720/2,832 (P1 has no
   wait-time data), Ped Delay 463/478. These feed the outcome checks O1–O5 (reported, not pass/fail).
+
+## Attempt 14 — result (2026-11-21)
+
+- Fitted effective gap times: P1 4, P3 6, P4 8, P5 4, P7 8, P8 8 s (measured 1.9, 1.8, 3.4, 2.1, 2.2, 3.4 s).
+- **Result**: V2 28/35 pairs within 15 points (the number needed), but one pair (P7, plan D) is 34 points off,
+  over the 30-point cap → FAIL. V1 23/35 → FAIL. How greens end now matches; how LONG the cross-street greens are
+  does not: P4 2–4 s short, P8 2–7 s short, P7 3–5 s long. P4 and P8 chose the top of the grid (8 s).
+
+## Attempt 15 — pedestrian calls from GDOT's report, wider gap-time grid (registered 2026-11-21)
+
+- **Why**: a pedestrian push on the cross street makes P4/P8 run their walk + flashing don't walk (22–24 s). The
+  model's push rates came from 48 T&A windows on 3 days. GDOT's Pedestrian Delay report (now read for every band
+  of every day) gives "cycles with pedestrian requests". On train days the model had too few on P8 (morning 0 vs
+  1.6 per hour, midday 0.7 vs 2.8).
+- **Method** (`ped_from_atspm.py`): per plan band, requests per hour on train days; converted to a push rate with
+  the band's cycle length so that the model's cycles with a request match (several pushes in one cycle count once);
+  median over train days for each hour. New rates P4 0.3–3.7, P8 0.15–3.2 per hour (by hour of day).
+- **Gap-time grid** widened to {2, 3, 4, 6, 8, 10, 12} s because two phases chose the old top value; same rule.
+- Note for the report: the validation days have now judged 15 model versions; the locked test days are untouched.

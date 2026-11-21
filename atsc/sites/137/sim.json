@@ -7,23 +7,23 @@
  "step": 0.5,
  "passage_s": 2.0,
  "controller": {
-  "source": "2026-11-20 v3: passage MEASURED directly (atsc/measure.py: last stop-bar zone-off -> end of green, median over the cached train-day Timing & Actuation windows, ~0.3 s/pixel); the previous train-day fit to gap-out share is kept in passage_previous_fit. max_recall: none (train-day rule, unchanged).",
+  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md); from attempt 14 an EFFECTIVE gap time: it absorbs radar-zone behaviour the model's detectors do not reproduce (VALIDATION.md); the measured field values are in passage_measured",
   "max_recall": {},
   "passage_s": {
+   "1": 4.0,
+   "3": 6.0,
+   "4": 8.0,
+   "5": 4.0,
+   "7": 8.0,
+   "8": 8.0
+  },
+  "passage_measured": {
    "1": 1.9,
    "3": 1.8,
    "4": 3.4,
    "5": 2.1,
    "7": 2.2,
    "8": 3.4
-  },
-  "passage_previous_fit": {
-   "1": 6.0,
-   "3": 6.0,
-   "4": 4.0,
-   "5": 6.0,
-   "7": 6.0,
-   "8": 8.0
   }
  },
  "depart_lane": "sorted",
