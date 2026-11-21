@@ -156,3 +156,19 @@ come** and **how long each car keeps the zone on**. Neither is measured directly
 
 Open decision (2026-11-20): (a) keep measured gap times and report V2 failing; (b) gap time per phase as an
 "effective" value fitted on train days, disclosed; (c) use attempt 8 for the Nov 30 runs and continue v3 later.
+
+## Note 2026-11-21 — is the check stricter, and what would make 137 pass
+
+- **The pass criteria did not change** (V1, V2, V5 as written 2026-11-16). The outcome checks O1–O5 added in
+  attempt 9 are reported only. What changed is the model: attempt 8's gap times were fitted on train days to the
+  same quantity V2 measures (gap-out share), which makes V2 easier to pass on held-out days. From attempt 9 nothing
+  is fitted to a gap-out or green-length share, so the same test is harder to pass.
+- **Which counts are real vehicle counts**: EB through/right (advance zone), WB through/right (advance zone) and WB
+  left (count zone ch65). The other 7 of 10 movements — all of Slaton NB (L, T, R), all of E. Andrews SB (L, T, R)
+  and the EB left — are radar zone activations. So both side streets and the EB left lack true counts.
+- **Two separate problems**: (1) unknown side-street demand → green LENGTH (V1); (2) the radar zones behave
+  differently from SUMO's (drivers stop at different spots, stopped cars are lost and found, waiting turners stay on
+  the zone) → HOW greens end (V2). Problem 2 also hits the WB left, whose count is real.
+- **Ways it could pass**: (a) model the radar's behaviour in SUMO from the T&A charts (chance that a stopped car is
+  on the zone, dropout rate) instead of a fixed zone; (b) an effective gap time per phase fitted on train days,
+  disclosed; (c) an intersection whose side streets have count zones or loops (true counts).
