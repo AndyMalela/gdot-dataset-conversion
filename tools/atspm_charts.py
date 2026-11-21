@@ -52,14 +52,15 @@ METRICS = {
              "ShowVolumes": True},
             {"aog_pct": r"AoG\s*=\s*" + NUM + r"\s*%", "gt_pct": NUM + r"\s*%\s*GT", "platoon_ratio": NUM + r"\s*PR"}),
     "WaitTime": (32, "GetWaitTimeMetric", {"ShowPlanStripes": True},
-                 {"avg_wait_s": r"Avg\s*Wait:?\s*" + NUM, "max_wait_s": r"Max\s*Wait:?\s*" + NUM}),
+                 {"avg_wait_s": r"Avg\s*W[a-z]{1,4}:?\s*" + NUM,          # OCR misreads "Wait" (Wsit, Ws)
+                  "max_wait_s": r"M[a-z]{1,2}\s*W[a-z]{0,4}:?\s*" + NUM}),
     "PedDelay": (3, "GetPedDelayMetric",
                  {"TimeBuffer": "15", "ShowPedBeginWalk": True, "ShowCycleLength": True, "ShowPercentDelay": True,
                   "ShowPedRecall": True, "PedRecallThreshold": "75"},
                  {"ped_presses": r"\(PP\)\s*=\s*" + NUM, "cycles_with_requests": r"\(CPR\)\s*=\s*" + NUM,
                   "buffered_presses": r"\(TBP\)\s*=\s*" + NUM, "min_delay_s": r"Min\s*Delay\s*=\s*" + NUM,
                   "max_delay_s": r"Max\s*Delay\s*=\s*" + NUM, "avg_delay_s": r"Average\s*Delay\s*\(AD\)\s*=\s*" + NUM,
-                  "avg_cycle_s": r"avg\s*CL:?\s*" + NUM}),
+                  "avg_cycle_s": r"CL:\s*" + NUM}),                   # "avg" often misread (?g, svg)
 }
 HEADER_BOX = (0, 110, 1400, 285)     # title block + summary line + plan stripes, above the plot (1400 x 720 charts)
 SCALE = 3
@@ -133,7 +134,7 @@ def header_text(path):
     return lines
 
 
-PARSER_V = 2                    # bump when read_chart changes, so cached OCR results are redone
+PARSER_V = 4                    # bump when parsing changes: cached results are re-parsed from their stored OCR text
 
 
 def read_chart_cached(path, metric, force=False):
@@ -143,14 +144,20 @@ def read_chart_cached(path, metric, force=False):
         r = json.loads(js.read_text())
         if r.pop("_v", None) == PARSER_V:
             return r
+        if "ocr_text" in r:                     # older parser: re-parse the stored text, no new OCR
+            r = parse_text(r["ocr_text"], metric)
+            js.write_text(json.dumps({"_v": PARSER_V, **r}))
+            return r
     r = read_chart(path, metric)
     js.write_text(json.dumps({"_v": PARSER_V, **r}))
     return r
 
 
 def read_chart(path, metric):
-    lines = header_text(path)
-    text = " | ".join(lines)
+    return parse_text(" | ".join(header_text(path)), metric)
+
+
+def parse_text(text, metric):
     row = {"title": "", "phase": "", "n_plans": len(re.findall(r"\bPlan\s*\w+", text))}
     m = re.search(r"Phase\s*(\d+)\s*:?\s*([^|]*)", text) or re.search(r"Phase\s*(\d+)", text)
     if m:
@@ -170,6 +177,10 @@ def read_chart(path, metric):
                 break
         row[name] = float(v.group(1)) if v else ""
         ok &= v is not None
+    if metric == "WaitTime" and ok and row["avg_wait_s"] > row["max_wait_s"]:
+        # OCR dropped a decimal point (e.g. "44.2" read "442"); the true digits are unknown: leave blank, not guessed
+        row["avg_wait_s"] = row["max_wait_s"] = ""
+        ok = False
     row["ocr_ok"] = int(ok and row["phase"] != "")
     row["ocr_text"] = text
     return row

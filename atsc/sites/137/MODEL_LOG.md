@@ -182,3 +182,14 @@ Open decision (2026-11-20): (a) keep measured gap times and report V2 failing; (
   {2, 3, 4, 6, 8} s, so the simulated gap-out share is closest to GDOT's Split Monitor (same rule as attempt 2).
 - **How to report it**: an "effective" gap time, not the controller's real setting (real: ~2–3.4 s). It absorbs
   the radar behaviour the model lacks. The validation days then test whether this carries over to unseen days.
+
+## GDOT outcome reports read for all study days (2026-11-21)
+
+- `tools/atspm_charts.py` pulled Split Failure, Approach Delay, Arrivals on Green (PCD), Wait Time and Pedestrian
+  Delay for every study weekday, one chart window per timing-plan band (`debug/pull_atspm_137.sh`, finished
+  2026-11-21 07:10). Numbers are read from the chart header text by OCR.
+- Reader fixes (no model change): OCR misspells "Wait" ("Wsit", "Ws") and "avg" — patterns made tolerant;
+  re-parsed from the stored OCR text (no new OCR). Where OCR dropped a decimal point (average wait larger than
+  max wait, 29 charts) both values are left blank, not guessed.
+- Fully read: Split Failure 3,680/3,680, Approach Delay 603/722, PCD 534/718, Wait Time ~2,720/2,832 (P1 has no
+  wait-time data), Ped Delay 463/478. These feed the outcome checks O1–O5 (reported, not pass/fail).
