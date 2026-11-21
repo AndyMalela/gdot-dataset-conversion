@@ -1,0 +1,35 @@
+{
+ "share": {
+  "EB_L": 0.067,
+  "NB_L": 0.188,
+  "SB_L": 0.432,
+  "SB_T": 0.651,
+  "NB_T": 0.608
+ },
+ "n": {
+  "EB_L": 493,
+  "NB_L": 160,
+  "SB_L": 507,
+  "SB_T": 435,
+  "NB_T": 217
+ },
+ "dropouts": {
+  "EB_L": 33,
+  "NB_L": 30,
+  "SB_L": 219,
+  "SB_T": 283,
+  "NB_T": 132
+ },
+ "days": [
+  "2026-03-03",
+  "2026-03-05",
+  "2026-03-10",
+  "2026-03-12",
+  "2026-03-18",
+  "2026-03-24",
+  "2026-03-31",
+  "2026-04-08",
+  "2026-04-14"
+ ],
+ "source": "atsc/sites/137/measure_dropouts.py: train-day T&A charts; activation that starts and ends with no green for its movement (+3.0 s) and spans no green start"
+}

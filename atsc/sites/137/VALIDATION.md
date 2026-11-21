@@ -863,3 +863,20 @@ pair; green LENGTH does not: P4 −2 to −4 s, P8 −2 to −7 s, P7 +3 to +5 s
 - **Gap-time grid extended** to {2, 3, 4, 6, 8, 10, 12} s (two phases chose the old top value 8); rule unchanged.
 - Everything else as attempt 14. Criteria unchanged.
 - Note for the report: the validation days have now judged 15 model versions; the test days stay locked.
+
+## Results — attempt 15
+
+Fit (train days): effective gap time P1 4, P3 6, P4 10, P5 4, P7 12, P8 6 s. Run 2026-11-21
+(`validation/attempt15/`): V1 25/35 (worst 7.3 s) **FAIL**, V2 27/35 (worst 25) **FAIL**, V3 24/35, V5 PASS →
+**not accepted**. Remaining error is cross-street demand: P7 (SB left) greens +3 to +7 s and skipped too little
+(too many SB-left cars: its closed-loop factor is the flagged one, chosen at the peak), P8 (NB through) greens
+−3 to −6 s and skipped too often (too few NB-through cars). No gap time can fix demand, and 137 has no true count
+for these movements.
+
+## Decision 2026-11-21 — v3 stopped at attempt 15; live model set back to attempt 8
+
+v3 is archived in `archive_v3_attempt15_2026-11-21/` (with README). The live site is again the accepted attempt-8
+model (`archive_before_v3_2026-11-20/`), for the learning runs due 2026-11-30. The validation days have judged 15
+versions; no further attempt is made on them for 137. The v3 findings (left turners' waiting position, radar
+dropouts in the counts, pedestrian calls from the Pedestrian Delay report) are reported as limitations of the
+attempt-8 model.

@@ -1,0 +1,137 @@
+{
+ "source": "count column -> leg/edges: intersections/137/network/movement_map.csv (tools/osm_build.py 137 --rebuild, 2026-11-16); phases: phase_map.json; lanes: user check 2026-11-16 03:10 (W Paces Ferry left + through/right each way; E Andrews R/T/L), Slaton R/T/L assumed from its three detector zones (unconfirmed)",
+ "movements": {
+  "EB_L": {
+   "leg": "EB",
+   "move": "L",
+   "from": "-1303415424",
+   "to": "-9273981#14",
+   "phases": [
+    5,
+    2
+   ],
+   "lanes": 1,
+   "counted_at": "stopbar"
+  },
+  "EB_TR": {
+   "leg": "EB",
+   "move": "T",
+   "from": "-1303415424",
+   "to": "-289670475#9",
+   "phases": [
+    2
+   ],
+   "lanes": 1,
+   "counted_at": "stopbar"
+  },
+  "WB_L": {
+   "leg": "WB",
+   "move": "L",
+   "from": "289670475#2",
+   "to": "-9269817#8",
+   "phases": [
+    1,
+    2
+   ],
+   "lanes": 1,
+   "counted_at": "stopbar"
+  },
+  "WB_TR": {
+   "leg": "WB",
+   "move": "T",
+   "from": "289670475#2",
+   "to": "1302258405#0",
+   "phases": [
+    6
+   ],
+   "lanes": 1,
+   "counted_at": "setback"
+  },
+  "NB_L": {
+   "leg": "NB",
+   "move": "L",
+   "from": "9269817#3",
+   "to": "1302258405#0",
+   "phases": [
+    3,
+    8
+   ],
+   "lanes": 1,
+   "counted_at": "stopbar"
+  },
+  "NB_T": {
+   "leg": "NB",
+   "move": "T",
+   "from": "9269817#3",
+   "to": "-9273981#14",
+   "phases": [
+    8
+   ],
+   "lanes": 1,
+   "counted_at": "stopbar"
+  },
+  "NB_R": {
+   "leg": "NB",
+   "move": "R",
+   "from": "9269817#3",
+   "to": "-289670475#9",
+   "phases": [
+    8
+   ],
+   "lanes": 1,
+   "counted_at": "stopbar"
+  },
+  "SB_L": {
+   "leg": "SB",
+   "move": "L",
+   "from": "9273981#9",
+   "to": "-289670475#9",
+   "phases": [
+    7,
+    4
+   ],
+   "lanes": 1,
+   "counted_at": "stopbar"
+  },
+  "SB_T": {
+   "leg": "SB",
+   "move": "T",
+   "from": "9273981#9",
+   "to": "-9269817#8",
+   "phases": [
+    4
+   ],
+   "lanes": 1,
+   "counted_at": "stopbar"
+  },
+  "SB_R": {
+   "leg": "SB",
+   "move": "R",
+   "from": "9273981#9",
+   "to": "1302258405#0",
+   "phases": [
+    4
+   ],
+   "lanes": 1,
+   "counted_at": "stopbar"
+  }
+ },
+ "counts_note": "2026-11-16 03:40 (agreed): WB_TR from the upstream signal 138 per 5-min bin (WB_T(138) + NB_TL(138) - WB_L(137)); 137's own WB advance zone swings 8.8k-20.7k/day, 1.4-2.8x what 138 sends, while every other movement is steady (tools/lanecheck/build_upstream_counts_137.py). Every other column as 137 reports it. Study period 2026-03-02..05-29: the only period where GDOT's report counts EB_TR and WB_L (from ~August both read 0 and an EXIT_EB_T column appears). EB_TR/WB_TR are shared through+right columns run as through (no right zone on W Paces Ferry). Nothing is scaled.",
+ "entry_edges": {
+  "NB": "9269817#3",
+  "EB": "-1381067409",
+  "SB": "9273981#5",
+  "WB": "828479500#3"
+ },
+ "notes": {
+  "phases": "first = protected phase; lefts also run permissive in the opposing through phase (phase_map.json)",
+  "rights": "NB_R and SB_R counted (Matrix right-lane zones) and carried; EB/WB rights are inside EB_TR/WB_TR and run as through",
+  "entry_edges": "where vehicles enter: NB 335 m, EB 160 m (2026-11-16 04:10: moved from 329 m to the start of the two-lane stretch that leads to both stop-line lanes; further upstream OSM's lanes belong to other junctions' turn lanes, so a left-turner could not reach the left lane without a lane change; a queue beyond 160 m waits to enter and is scored as delay), SB 310 m, WB 310 m",
+  "wb_left": "WB_L counted in the study period (zone 13765); runs protected on P1 and permissive on P2 (phase_map.json)"
+ },
+ "counts_file": "tmc_137_5min_closedloop.csv",
+ "counts_file_before_attempt4": "tmc_137_5min_upstream.csv",
+ "counts_note_attempt4": "2026-11-16 attempt 4 (VALIDATION.md): daytime NB_L, NB_T, NB_R, SB_L, SB_T, SB_R, EB_L multiplied by per-movement factors estimated from stop-bar zone occupancy (presence_factors_1900.json); model-based estimates, not GDOT's numbers",
+ "counts_file_previous": "tmc_137_5min_estimated.csv",
+ "counts_file_note": "2026-11-20 v3 step C: presence-zone movements x closed-loop factors (presence_factors_closedloop.json, calibrate_demand.py): NB_L 2.0, NB_T 2.4, NB_R 1.2, SB_L 1.4 (flagged: no factor reproduces the count), SB_T 2.4, SB_R 1.2, EB_L 1.2; 06:00-22:00 bins, nights as reported; WB through from signal 138 as before"
+}

@@ -212,3 +212,22 @@ Open decision (2026-11-20): (a) keep measured gap times and report V2 failing; (
   median over train days for each hour. New rates P4 0.3–3.7, P8 0.15–3.2 per hour (by hour of day).
 - **Gap-time grid** widened to {2, 3, 4, 6, 8, 10, 12} s because two phases chose the old top value; same rule.
 - Note for the report: the validation days have now judged 15 model versions; the locked test days are untouched.
+
+## Attempt 15 — result, and stopping v3 (2026-11-21)
+
+- Fitted effective gap times: P1 4, P3 6, P4 10, P5 4, P7 12, P8 6 s.
+- **Result**: V1 25/35 FAIL, V2 27/35 FAIL. Greens end the right way for most phases, but the cross-street green
+  lengths point at demand, not the controller: E. Andrews SB left (P7) greens 3–7 s too long and called too often
+  → too many of those cars in the model; Slaton NB through (P8) greens 3–6 s too short and called too rarely →
+  too few. Both demands come from radar-activation counts that cannot be turned into vehicle counts reliably here.
+- **Decision**: stop v3 for 137. Each further attempt would be one more look at the validation days (15 so far),
+  which weakens what "validated" means. The live model goes back to the accepted attempt 8 for the Nov 30 SARSA /
+  DQN runs; v3 is archived (`archive_v3_attempt15_2026-11-21/`).
+- **What v3 gives the paper** (method findings, all from GDOT data):
+  1. Measured controller settings from T&A charts (clearances, gap times ~2–3.4 s) differ from the fitted ones.
+  2. SUMO parks waiting permissive left turners inside the junction, off a stop-line zone; GDOT's radar keeps them.
+  3. GDOT's presence-zone counts include radar dropouts (one stopped car counted 2+ times): SB through 65 %,
+     NB through 61 %, SB left 43 % of activations; and also miss cars in queues. So at 137 the cross-street and
+     EB-left "counts" cannot be turned into vehicle counts reliably.
+  4. With measured settings, the remaining mismatch is demand on movements without true counts → choose sites
+     whose approaches have count zones or loops (true counts) for a fully measured model.
