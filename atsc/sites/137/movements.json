@@ -129,9 +129,7 @@
   "entry_edges": "where vehicles enter: NB 335 m, EB 160 m (2026-11-16 04:10: moved from 329 m to the start of the two-lane stretch that leads to both stop-line lanes; further upstream OSM's lanes belong to other junctions' turn lanes, so a left-turner could not reach the left lane without a lane change; a queue beyond 160 m waits to enter and is scored as delay), SB 310 m, WB 310 m",
   "wb_left": "WB_L counted in the study period (zone 13765); runs protected on P1 and permissive on P2 (phase_map.json)"
  },
- "counts_file": "tmc_137_5min_closedloop.csv",
+ "counts_file": "tmc_137_5min_estimated.csv",
  "counts_file_before_attempt4": "tmc_137_5min_upstream.csv",
- "counts_note_attempt4": "2026-11-16 attempt 4 (VALIDATION.md): daytime NB_L, NB_T, NB_R, SB_L, SB_T, SB_R, EB_L multiplied by per-movement factors estimated from stop-bar zone occupancy (presence_factors_1900.json); model-based estimates, not GDOT's numbers",
- "counts_file_previous": "tmc_137_5min_estimated.csv",
- "counts_file_note": "2026-11-20 v3 step C: presence-zone movements x closed-loop factors (presence_factors_closedloop.json, calibrate_demand.py): NB_L 2.0, NB_T 2.4, NB_R 1.2, SB_L 1.4 (flagged: no factor reproduces the count), SB_T 2.4, SB_R 1.2, EB_L 1.2; 06:00-22:00 bins, nights as reported; WB through from signal 138 as before"
+ "counts_note_attempt4": "2026-11-16 attempt 4 (VALIDATION.md): daytime NB_L, NB_T, NB_R, SB_L, SB_T, SB_R, EB_L multiplied by per-movement factors estimated from stop-bar zone occupancy (presence_factors_1900.json); model-based estimates, not GDOT's numbers"
 }

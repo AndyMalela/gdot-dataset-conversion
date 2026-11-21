@@ -1,0 +1,14 @@
+{
+ "SignalID": "137",
+ "StartDate": "05/07/2026 03:32 PM",
+ "EndDate": "05/07/2026 07:02 PM",
+ "YAxisMax": "",
+ "Y2AxisMax": "",
+ "MetricTypeID": 3,
+ "TimeBuffer": "15",
+ "ShowPedBeginWalk": true,
+ "ShowCycleLength": true,
+ "ShowPercentDelay": true,
+ "ShowPedRecall": true,
+ "PedRecallThreshold": "75"
+}

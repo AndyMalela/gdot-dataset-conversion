@@ -1,29 +1,20 @@
 {
  "source": "2026-11-16: NO capacity calibration for 137 yet (7065's Phase 1.5 step not done here). Driver model = SUMO defaults. Controller settings: passage times from the old pipeline's fit to the recorded greens (intersections/137/sim/README.md: 4 s through, 3 s left, fitted on 2026-10-02 with 20 m stop-bar zones), max recall where the Split Monitor shows < 5 % gap-outs (plan B: P3, P7).",
  "vtype": {
-  "impatience": 0.5,
-  "tau": 1.2
+  "impatience": 0.5
  },
  "step": 0.5,
  "passage_s": 2.0,
  "controller": {
-  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md); from attempt 14 an EFFECTIVE gap time: it absorbs radar-zone behaviour the model's detectors do not reproduce (VALIDATION.md); the measured field values are in passage_measured",
+  "source": "fitted on train weekdays (validate.py fit-passage, CONTROLLER.md)",
   "max_recall": {},
   "passage_s": {
-   "1": 4.0,
+   "1": 6.0,
    "3": 6.0,
-   "4": 8.0,
-   "5": 4.0,
-   "7": 8.0,
+   "4": 4.0,
+   "5": 6.0,
+   "7": 6.0,
    "8": 8.0
-  },
-  "passage_measured": {
-   "1": 1.9,
-   "3": 1.8,
-   "4": 3.4,
-   "5": 2.1,
-   "7": 2.2,
-   "8": 3.4
   }
  },
  "depart_lane": "sorted",
@@ -39,50 +30,5 @@
   "7": 1964,
   "8": 2078
  },
- "sat_flow_source": "sat_flow.py (TEST_PLAN.md amendment 1, F3): simulated discharge, headways from the 5th queued vehicle in protected greens, GDOT plan, 29 train weekdays 15.5-19.5 h",
- "vtype_tau_source": "2026-11-20 v3 step B (calibrate_discharge.py): HCM base 1,900 veh/h/ln target (field headways not measurable at 137); grid [1.0, 1.1, 1.2, 1.3, 1.4, 1.5] on 8 train weekdays 15:30-19:30; through 1934, left 1789 veh/h/ln at tau 1.2",
- "discharge_grid": [
-  {
-   "tau": 1.0,
-   "through_veh_h_ln": 2137,
-   "left_veh_h_ln": 1981,
-   "n_through": 5351,
-   "n_left": 123
-  },
-  {
-   "tau": 1.1,
-   "through_veh_h_ln": 2044,
-   "left_veh_h_ln": 1863,
-   "n_through": 5396,
-   "n_left": 125
-  },
-  {
-   "tau": 1.2,
-   "through_veh_h_ln": 1934,
-   "left_veh_h_ln": 1789,
-   "n_through": 5389,
-   "n_left": 123
-  },
-  {
-   "tau": 1.3,
-   "through_veh_h_ln": 1848,
-   "left_veh_h_ln": 1724,
-   "n_through": 5428,
-   "n_left": 124
-  },
-  {
-   "tau": 1.4,
-   "through_veh_h_ln": 1758,
-   "left_veh_h_ln": 1652,
-   "n_through": 5511,
-   "n_left": 123
-  },
-  {
-   "tau": 1.5,
-   "through_veh_h_ln": 1678,
-   "left_veh_h_ln": 1611,
-   "n_through": 5526,
-   "n_left": 119
-  }
- ]
+ "sat_flow_source": "sat_flow.py (TEST_PLAN.md amendment 1, F3): simulated discharge, headways from the 5th queued vehicle in protected greens, GDOT plan, 29 train weekdays 15.5-19.5 h"
 }

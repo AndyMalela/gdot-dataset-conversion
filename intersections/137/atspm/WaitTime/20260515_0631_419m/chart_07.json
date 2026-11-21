@@ -1,0 +1,1 @@
+{"_v": 4, "title": "SlatonDriveNB", "phase": 8, "n_plans": 2, "avg_wait_s": 73.3, "max_wait_s": 125.6, "ocr_ok": 1, "ocr_text": "Phase8:SlatonDriveNB | StopBarDetection | VolumePerHour | Gap Out Plan 10 Plan20 | MaxOut AvgWait:73.3s AvgWait:67.5s | ForceOff MaxWait:125.6s MaxWait:190.4s | Unknown 240 200 | AverageWait"}

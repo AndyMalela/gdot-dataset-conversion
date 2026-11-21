@@ -231,3 +231,6 @@ Open decision (2026-11-20): (a) keep measured gap times and report V2 failing; (
      EB-left "counts" cannot be turned into vehicle counts reliably.
   4. With measured settings, the remaining mismatch is demand on movements without true counts → choose sites
      whose approaches have count zones or loops (true counts) for a fully measured model.
+- **Check after restoring** (2026-11-21): the restored attempt-8 files, run with today's code on the validation days,
+  give exactly attempt 8's table (V1 34/35, V2 28/35, V5 pass → accepted). The v3 code changes (detector builder,
+  chart reader) do not change the attempt-8 model.

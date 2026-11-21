@@ -1,1 +1,1 @@
-{"_v": 2, "title": "WPacesFeryEBT", "phase": 2, "n_plans": 1, "avg_wait_s": 39.7, "max_wait_s": 59.0, "ocr_ok": 1, "ocr_text": "Phase2:WPacesFeryEBT | Advance Detection | VolumePerHour | Gap Out Plan10 | MaxOut AvgWait:39.7s | ForceOff MaxWait:59.0s | Unknown 60 800 | AverageWait"}
+{"_v": 4, "title": "WPacesFeryEBT", "phase": 2, "n_plans": 1, "avg_wait_s": 39.7, "max_wait_s": 59.0, "ocr_ok": 1, "ocr_text": "Phase2:WPacesFeryEBT | Advance Detection | VolumePerHour | Gap Out Plan10 | MaxOut AvgWait:39.7s | ForceOff MaxWait:59.0s | Unknown 60 800 | AverageWait"}

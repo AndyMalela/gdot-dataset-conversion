@@ -1,17 +1,15 @@
 {
  "factor": {
-  "NB_L": 2.0,
-  "NB_T": 3.2,
+  "NB_L": 1.4,
+  "NB_T": 0.6,
   "NB_R": 1.2,
-  "SB_L": 1.0,
-  "SB_T": 2.8,
+  "SB_L": 1.4,
+  "SB_T": 1.0,
   "SB_R": 1.2,
-  "EB_L": 1.2
+  "EB_L": 1.4
  },
  "flags": {
-  "NB_T": "peak below 1: zone model cannot reproduce the count",
-  "SB_L": "peak below 1: zone model cannot reproduce the count",
-  "SB_T": "peak below 1: zone model cannot reproduce the count"
+  "SB_L": "peak below 1: zone model cannot reproduce the count"
  },
  "days": [
   "2026-03-03",
@@ -28,6 +26,8 @@
   22
  ],
  "grid": [
+  0.6,
+  0.8,
   1.0,
   1.2,
   1.4,
@@ -39,96 +39,121 @@
   3.2
  ],
  "ratio_by_k": {
+  "0.6": {
+   "NB_L": 0.593,
+   "NB_T": 1.01,
+   "NB_R": 0.558,
+   "SB_L": 0.55,
+   "SB_T": 0.855,
+   "SB_R": 0.561,
+   "EB_L": 0.562
+  },
+  "0.8": {
+   "NB_L": 0.727,
+   "NB_T": 1.173,
+   "NB_R": 0.723,
+   "SB_L": 0.638,
+   "SB_T": 0.961,
+   "SB_R": 0.725,
+   "EB_L": 0.697
+  },
   "1.0": {
-   "NB_L": 0.689,
-   "NB_T": 0.514,
+   "NB_L": 0.852,
+   "NB_T": 1.303,
    "NB_R": 0.866,
-   "SB_L": 0.383,
-   "SB_T": 0.362,
-   "SB_R": 0.886,
-   "EB_L": 0.861
+   "SB_L": 0.702,
+   "SB_T": 1.025,
+   "SB_R": 0.887,
+   "EB_L": 0.815
   },
   "1.2": {
-   "NB_L": 0.772,
-   "NB_T": 0.55,
-   "NB_R": 1.001,
-   "SB_L": 0.381,
-   "SB_T": 0.384,
-   "SB_R": 1.03,
-   "EB_L": 1.003
+   "NB_L": 0.952,
+   "NB_T": 1.393,
+   "NB_R": 1.002,
+   "SB_L": 0.701,
+   "SB_T": 1.072,
+   "SB_R": 1.029,
+   "EB_L": 0.923
   },
   "1.4": {
-   "NB_L": 0.846,
-   "NB_T": 0.583,
-   "NB_R": 1.146,
-   "SB_L": 0.371,
-   "SB_T": 0.395,
-   "SB_R": 1.162,
-   "EB_L": 1.112
+   "NB_L": 1.048,
+   "NB_T": 1.469,
+   "NB_R": 1.141,
+   "SB_L": 0.702,
+   "SB_T": 1.098,
+   "SB_R": 1.161,
+   "EB_L": 0.997
   },
   "1.6": {
-   "NB_L": 0.893,
-   "NB_T": 0.609,
+   "NB_L": 1.108,
+   "NB_T": 1.544,
    "NB_R": 1.251,
-   "SB_L": 0.344,
-   "SB_T": 0.399,
-   "SB_R": 1.293,
-   "EB_L": 1.22
+   "SB_L": 0.674,
+   "SB_T": 1.117,
+   "SB_R": 1.296,
+   "EB_L": 1.058
   },
   "1.8": {
-   "NB_L": 0.955,
-   "NB_T": 0.644,
+   "NB_L": 1.184,
+   "NB_T": 1.617,
    "NB_R": 1.371,
-   "SB_L": 0.311,
-   "SB_T": 0.415,
-   "SB_R": 1.409,
-   "EB_L": 1.289
+   "SB_L": 0.619,
+   "SB_T": 1.133,
+   "SB_R": 1.413,
+   "EB_L": 1.089
   },
   "2.0": {
-   "NB_L": 0.995,
-   "NB_T": 0.668,
-   "NB_R": 1.452,
-   "SB_L": 0.273,
-   "SB_T": 0.418,
-   "SB_R": 1.514,
-   "EB_L": 1.349
+   "NB_L": 1.225,
+   "NB_T": 1.683,
+   "NB_R": 1.461,
+   "SB_L": 0.573,
+   "SB_T": 1.1,
+   "SB_R": 1.513,
+   "EB_L": 1.114
   },
   "2.4": {
-   "NB_L": 1.057,
-   "NB_T": 0.707,
-   "NB_R": 1.621,
-   "SB_L": 0.189,
-   "SB_T": 0.451,
-   "SB_R": 1.67,
-   "EB_L": 1.408
+   "NB_L": 1.297,
+   "NB_T": 1.788,
+   "NB_R": 1.618,
+   "SB_L": 0.479,
+   "SB_T": 1.107,
+   "SB_R": 1.669,
+   "EB_L": 1.122
   },
   "2.8": {
-   "NB_L": 1.051,
-   "NB_T": 0.717,
-   "NB_R": 1.775,
-   "SB_L": 0.149,
-   "SB_T": 0.452,
-   "SB_R": 1.783,
-   "EB_L": 1.38
+   "NB_L": 1.347,
+   "NB_T": 1.806,
+   "NB_R": 1.77,
+   "SB_L": 0.411,
+   "SB_T": 1.06,
+   "SB_R": 1.759,
+   "EB_L": 1.043
   },
   "3.2": {
-   "NB_L": 1.006,
-   "NB_T": 0.728,
-   "NB_R": 1.902,
-   "SB_L": 0.142,
-   "SB_T": 0.43,
-   "SB_R": 1.866,
-   "EB_L": 1.328
+   "NB_L": 1.305,
+   "NB_T": 1.822,
+   "NB_R": 1.908,
+   "SB_L": 0.39,
+   "SB_T": 1.024,
+   "SB_R": 1.862,
+   "EB_L": 0.987
   }
  },
  "confirmation_ratio": {
-  "NB_L": 1.044,
-  "NB_T": 0.759,
-  "NB_R": 1.015,
-  "SB_L": 0.417,
-  "SB_T": 0.388,
-  "SB_R": 1.089,
-  "EB_L": 0.933
+  "NB_L": 1.005,
+  "NB_T": 1.027,
+  "NB_R": 1.006,
+  "SB_L": 0.746,
+  "SB_T": 1.018,
+  "SB_R": 1.025,
+  "EB_L": 1.02
  },
- "source": "atsc/sites/137/calibrate_demand.py (v3 step C, 2026-11-20): closed loop, simulated presence-zone activations = GDOT reported counts; model after steps A and B"
+ "dropout_share": {
+  "EB_L": 0.067,
+  "NB_L": 0.188,
+  "SB_L": 0.432,
+  "SB_T": 0.651,
+  "NB_T": 0.608
+ },
+ "source": "atsc/sites/137/calibrate_demand.py (v3 step C, 2026-11-20): closed loop, simulated presence-zone activations = GDOT reported counts; model after steps A and B; from attempt 13 both sides without radar dropouts (count x (1 - dropout share); model activations that are dropouts removed)"
 }

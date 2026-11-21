@@ -1,0 +1,13 @@
+{
+ "SignalID": "137",
+ "StartDate": "04/17/2026 10:01 PM",
+ "EndDate": "04/17/2026 11:59 PM",
+ "YAxisMax": "",
+ "Y2AxisMax": "",
+ "MetricTypeID": 6,
+ "SelectedBinSize": "15",
+ "SelectedDotSize": "1",
+ "SelectedLineSize": "1",
+ "ShowPlanStatistics": true,
+ "ShowVolumes": true
+}

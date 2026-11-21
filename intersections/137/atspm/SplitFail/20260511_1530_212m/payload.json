@@ -1,0 +1,12 @@
+{
+ "SignalID": "137",
+ "StartDate": "05/11/2026 03:30 PM",
+ "EndDate": "05/11/2026 07:02 PM",
+ "YAxisMax": "",
+ "Y2AxisMax": "",
+ "MetricTypeID": 12,
+ "FirstSecondsOfRed": "5",
+ "ShowFailLines": true,
+ "ShowAvgLines": true,
+ "ShowPercentFailLines": true
+}

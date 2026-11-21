@@ -1,0 +1,6 @@
+
+
+<script type="text/javascript">
+    function ShowMetricUrl() {
+        window.history.pushState("none", "none", "http://traffic.dot.ga.gov/ATSPM/DefaultCharts/GetPedDelayMetricByUrl?&SignalID=137&TimeBuffer=15&ShowPedBeginWalk=True&ShowCycleLength=True&ShowPercentDelay=True&ShowPedRecall=True&PedRecallThreshold=75&StartDate=5/18/2026%2012:01:00%20AM&EndDate=5/18/2026%206:31:00%20AM");
+    }</script>
