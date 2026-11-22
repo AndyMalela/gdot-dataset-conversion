@@ -35,3 +35,14 @@ A = moving-vehicle count (count-only zone/loop, or advance count on the through)
 stop-bar presence, C = radar zone that is count + presence (137's problem), - = none. Exit-lane counts listed
 apart. Check on known sites: 137 A3/C5, 7130 A4/C4/-3 (+4 exit legs), 7144 A2/B5 (all counted), 7696 A2/C5.
 Output: `tools/atspm_signals/sensor_screening.csv`, ranked (all A/B first).
+
+### District 7 result (2026-11-22)
+
+2,689 signals screened, 0 failures. First-listed hardware: inductive loops ~1,680, video ~400, Wavetronix Matrix
+~310, SmartMicro ~80, Gridsmart ~60. 1,491 have every movement group graded A or B (most are loop sites = B:
+count + presence on one loop, queue merging possible). **130 have every group A**, 63 of them with ≥ 6 movement
+groups (`signals_sensorA.csv`): mostly Wavetronix Matrix sites with separate count-only zones per lane (the zone
+type that behaved well at 137, ch65), Gridsmart fisheye-camera sites and a few loop sites.
+Caveat: "configured" is not "working" — next, 2 weekdays of turning-movement counts (Nov 11-12) for those 63 to
+check data, completeness and volume (`screen.py`). Note: the jurisdiction column of signals_all.csv says "Cobb" for
+most District 7 signals, including Atlanta ones; not used.
