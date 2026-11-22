@@ -25,3 +25,13 @@ Notes:
 - 7696: the main street (Hollowell) is counted per lane; the cross street (Lowery) only by presence zones, and the
   SmartMicro NB-left zone shows the same kind of short bursts during red as the Wavetronix zones.
 - None of the four has a moving-vehicle count on every non-right movement.
+
+## Statewide sensor screen (`tools/atspm_signals/sensor_screen.py`, started 2026-11-22)
+
+Signals with Turning Movement Counts, Timing and Actuation and Split Monitor (7,200 statewide; District 7 =
+metro Atlanta first, 2,689). One configuration request per signal, cached in `tools/cache/config/`. Each
+movement group (approach x lane movement, right-only lanes left out) gets its best count source:
+A = moving-vehicle count (count-only zone/loop, or advance count on the through), B = loop that is count +
+stop-bar presence, C = radar zone that is count + presence (137's problem), - = none. Exit-lane counts listed
+apart. Check on known sites: 137 A3/C5, 7130 A4/C4/-3 (+4 exit legs), 7144 A2/B5 (all counted), 7696 A2/C5.
+Output: `tools/atspm_signals/sensor_screening.csv`, ranked (all A/B first).
