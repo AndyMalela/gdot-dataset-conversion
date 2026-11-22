@@ -11,7 +11,7 @@ Right turns (right turn on red) will be inferred at every site. Details per site
 |---|---|---|---|---|
 | name | W Paces Ferry @ E Andrews / Slaton | SR 237 Piedmont Ave @ Monroe Dr | SR 3 Northside Dr @ W Wesley Rd | SR 8 Hollowell Pkwy @ J E Lowery Blvd |
 | hardware | Wavetronix radar | Wavetronix radar | **inductive loops** | SmartMicro radar |
-| vehicles/day (sum of counts) | ~10,000 | ~30,000-37,000 (exits) | ~20,000 | ~32,000 |
+| vehicles/day (sum of counts) | ~33,000-41,000 (corrected 2026-11-22; was wrongly "~10,000") | ~30,000-37,000 (exits) | ~20,000 | ~32,000 |
 | main-street throughs | advance counts ✓ | advance (Piedmont) + exit counts ✓ | advance loops ✓ (one lane listed per direction) | advance + lane counts, 2 lanes each ✓ |
 | main-street lefts | WB count zone ✓, EB presence ✗ | presence ✗ | SB presence loop; NB no bay (shared through-left) | WB in shared through-left lane; no EB left phase |
 | cross-street movements | presence zones ✗ | lefts presence ✗; throughs from exits ✓ | presence loops (left, through-right) | presence zones (left, through-left, through-right) ✗ |
@@ -46,3 +46,25 @@ type that behaved well at 137, ch65), Gridsmart fisheye-camera sites and a few l
 Caveat: "configured" is not "working" — next, 2 weekdays of turning-movement counts (Nov 11-12) for those 63 to
 check data, completeness and volume (`screen.py`). Note: the jurisdiction column of signals_all.csv says "Cobb" for
 most District 7 signals, including Atlanta ones; not used.
+
+### Turning-movement check of the 63 all-A signals (Nov 11-12, 2026)
+
+48 of 63 return counts, all 100 % complete on both days; 15 return nothing (configured, not working). Entering
+volume recomputed from approach movements only (screen.py's `hourly_volume` adds exit and bike counts). Full list:
+`tools/atspm_signals/candidates_sensorA.csv`. Four-leg sites with a left-turn bay counted on all four approaches
+(8-phase layout like 137), ranked by vehicles/day:
+
+| signal | name | vehicles/day | hardware | movement groups |
+|---|---|---|---|---|
+| 236 | North Ave @ Techwood Dr | ~56,000 | Gridsmart (camera) | 8 |
+| 7025 | N Highland Ave @ North Ave | ~46,300 | Gridsmart | 12 |
+| 7027 | SR 42 (Moreland Ave) @ SR 8 | ~43,100 | Wavetronix Matrix count zones | 11 |
+| 7111 | SR 9 @ Collier Rd | ~41,800 | Wavetronix Matrix | 8 |
+| 7718 | SR 154 @ Maynard Terrace | ~37,800 | Wavetronix Matrix | 9 |
+| 8185 | Perimeter Center Pkwy @ Hammond Dr | ~33,300 | Wavetronix Matrix | 9 |
+
+Three-bay sites of note: 255 North Ave @ Luckie St (~47,900), 7160 SR 3 @ Magnolia St (~46,500), 7013 Moreland @
+Hosea L Williams (~46,000), 7066 SR 141 @ Maple Dr (~40,100), 7084 SR 9 @ Habersham Rd (~35,000). For comparison
+137 carries ~33,000-41,000 vehicles/day (raw counts).
+Not yet checked for these: T&A behaviour of the count zones, timing-plan reads, neighbours, lanes on the aerial.
+Gridsmart volumes need a plausibility check (183 Spring St shows ~95,000/day on three legs).
