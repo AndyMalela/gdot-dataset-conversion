@@ -47,3 +47,14 @@ volume, but 7111's SB right turns are not counted, so part of it is expected. Wi
 approach counts agree to 2-5 %. Which side is closer to the truth is not known from these data (loops usually
 count better than side-fire radar). Next check: 7111's own advance radar counts (Approach Volume report, NB/SB
 at 260 ft) against its stop-line lane counts and against 7110.
+
+## Advance radar counts (Approach Volume report, daily totals, Nov 2-13) — 2026-11-22
+
+`counts/av_daily_7111_7110.csv` (tools/lanecheck/av_window.py, whole-day windows).
+- **7111's own Wavetronix Advance counts are broken**: NB 584-4,436 vehicles/day and SB 4,473-9,119, against
+  ~14,100-16,000 NB and ~14,700-18,700 SB from its stop-line lane counts, and jumping from day to day. They cannot
+  settle the 7111-vs-7110 question. Consequence: GDOT's arrival-based reports at 7111 that use the advance
+  detectors (Purdue Coordination Diagram / arrivals on green, Approach Delay) are not usable for validation there.
+- 7110's advance loop counts are steady (NB 17,400-19,200, SB 19,700-22,800/day) and match its own turning-movement
+  report.
+- So on the north link the comparison stays: 7111's radar exit count is ~11-16 % below 7110's loops.
