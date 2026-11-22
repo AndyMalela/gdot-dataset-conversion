@@ -68,3 +68,12 @@ Hosea L Williams (~46,000), 7066 SR 141 @ Maple Dr (~40,100), 7084 SR 9 @ Habers
 137 carries ~33,000-41,000 vehicles/day (raw counts).
 Not yet checked for these: T&A behaviour of the count zones, timing-plan reads, neighbours, lanes on the aerial.
 Gridsmart volumes need a plausibility check (183 Spring St shows ~95,000/day on three legs).
+
+### Deep checks so far (2026-11-22) — details in `<id>/SCREENING.md`
+
+| signal | verdict | main reason |
+|---|---|---|
+| 7111 Peachtree Rd @ Collier Rd | **first site (user, 2026-11-22)** | every non-right movement counted per lane; own in/out balance fits; ~11-16 % below 7110's loops |
+| 8185 Perimeter Center Pkwy @ Hammond Dr | strong second candidate | every movement incl. rights counted; protected dual lefts; exits ~10 % below entries |
+| 7027 Ponce de Leon @ Moreland | rejected | exits exceed entries by 18-35 %; disagrees with 7028; unexplained pseudo-phases |
+| 7718 Memorial Dr @ Maynard Ter | not now | configuration changed mid-period; east exit undercounts (0.33-0.41 of neighbour) |
