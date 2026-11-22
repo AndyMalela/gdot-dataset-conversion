@@ -1,0 +1,12 @@
+Signal:        8185
+Name:          Perimeter Center Pkwy @ Hammond Dr
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  Perimeter Center Pkwy
+Secondary Name:Hammond Dr
+Latitude:      33.92059
+Longitude:     -84.345468
+Versions:      8/14/2026 - Wavetronix Upgrade | 10/12/2023 - SigOps Central Review (2) | 9/1/2023 - Temp IP | 2/20/2023 - SigOps Central Review | 12/30/2019 - Mark 1 | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-22 21:30
+Detectors:     41   Approaches: 8

@@ -1,0 +1,12 @@
+Signal:        7718
+Name:          SR 154 @ Maynard Terrace
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 154
+Secondary Name:Maynard Terrace
+Latitude:      33.74746
+Longitude:     -84.33324
+Versions:      11/6/2026 - Count Zone Configurations | 2/27/2026 - Traffic Combo 4 | 11/15/2024 - SigOps Central Review | 3/5/2023 - Copy of Mark 1 | 5/5/2020 - Mark 1 | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-22 21:28
+Detectors:     22   Approaches: 8

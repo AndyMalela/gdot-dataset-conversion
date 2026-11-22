@@ -1,0 +1,8 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Northbound,Perimeter Center Pkwy NB LT,1,2,,,,,,
+Southbound,Perimeter Center Pkwy SB,2,,,,,,,35
+Eastbound,State Farm Exit,4,4,,,,,,
+Southbound,Perimeter Center Pkwy SB LT,5,6,,,,,,
+Northbound,Perimeter Center Pkwy NB,6,,,,,,,35
+Westbound,Marriott Entrance WB LT,8,8,,,,,,
+Westbound,Marriott Entrance WB RT,8,8,,,,,,

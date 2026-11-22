@@ -1,0 +1,9 @@
+Signal:        8186
+Intersection:  Perimeter Center Pkwy @ MARTA
+Source:        GDOT ATSPM, Turning Movement Counts (https://traffic.dot.ga.gov/ATSPM/DefaultCharts)
+Bin size:      5 min
+Days cached:   10 (2026-11-02 to 2026-11-13)
+Complete days: 4   partial: 6   no data: 0
+Movements:     EB_L EB_T WB_L WB_TR NB_L NB_T NB_R SB_L SB_T SB_TR EXIT_EB_T EXIT_NB_T EXIT_SB_T EXIT_WB_T
+Outage rule:   >= 3 consecutive all-zero bins -> status=outage, counts blank
+Updated:       2026-11-22 21:34

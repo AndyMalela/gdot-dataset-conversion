@@ -1,0 +1,11 @@
+date,weekday,status,total_volume_valid_bins,valid_bins,outage_bins,outage_pct
+2026-11-02,Mon,partial,373,167,121,42.0
+2026-11-03,Tue,partial,668,220,68,23.6
+2026-11-04,Wed,partial,652,208,80,27.8
+2026-11-05,Thu,partial,689,211,77,26.7
+2026-11-06,Fri,partial,372,214,74,25.7
+2026-11-09,Mon,partial,461,208,80,27.8
+2026-11-10,Tue,partial,756,203,85,29.5
+2026-11-11,Wed,partial,721,212,76,26.4
+2026-11-12,Thu,partial,817,206,82,28.5
+2026-11-13,Fri,partial,527,204,84,29.2

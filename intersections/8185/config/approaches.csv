@@ -1,0 +1,9 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Northbound,Perimeter Center Pkwy NB LT,1,,,,,,,
+Southbound,Perimeter Center Pkwy SB,2,,,,,,2,35
+Westbound,Hammond Dr WB LT,3,,,,,,,
+Eastbound,Hammond Dr EB,4,,,,,,4,35
+Southbound,Perimeter Center Pkwy SB LT,5,,,,,,,
+Northbound,Perimeter Center Pkwy NB,6,,,,,,6,35
+Eastbound,Hammond Dr EB LT,7,,,,,,,
+Westbound,Hammond Dr WB,8,,,,,,8,35

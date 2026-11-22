@@ -1,0 +1,13 @@
+Detector ID,Det. Channel,Direction,Phase,Perm. Phase,Overlap,Enabled,Detection Types,Detection Hardware,Latency Correction,Movement Type,Lane Number,Lane Type,Dist. From Stop Bar,Decision Point,Move. Delay,Min Speed Filter,Comment
+818403,3,SB,5,6,False,True,Stop Bar Presence,Sensys,0,Left,1,Vehicle,,,,,
+818404,4,SB,5,6,False,True,Lane-by-lane Count; Stop Bar Presence,Sensys,0,Left,1,Vehicle,,,,,
+818405,5,SB,2,,False,True,Advanced Count; Lane-by-lane Count,Sensys,0,Thru,1,Vehicle,260,,,,
+818406,6,SB,2,,False,True,Advanced Count; Lane-by-lane Count,Sensys,0,Thru,2,Vehicle,260,,,,
+818411,11,EB,4,4,False,True,Stop Bar Presence,Sensys,0,Thru-Right,3,Vehicle,,,,,
+818412,12,EB,4,4,False,True,Lane-by-lane Count; Stop Bar Presence,Sensys,0,Thru-Right,4,Vehicle,,,,,
+818421,21,NB,1,2,False,True,Stop Bar Presence,Sensys,0,Left,1,Vehicle,,,,,
+818422,22,NB,1,2,False,True,Lane-by-lane Count; Stop Bar Presence,Sensys,0,Left,1,Vehicle,,,,,
+818423,23,NB,6,,False,True,Advanced Count; Lane-by-lane Count,Sensys,0,Thru,1,Vehicle,300,,,,
+818424,24,NB,6,,False,True,Advanced Count; Lane-by-lane Count,Sensys,0,Thru-Right,2,Vehicle,300,,,,
+818431,31,WB,8,8,False,True,Lane-by-lane Count; Stop Bar Presence,Inductive Loops,0,Left,1,Vehicle,,,,,
+818432,32,WB,8,8,False,True,Lane-by-lane Count; Stop Bar Presence,Inductive Loops,0,Thru-Right,1,Vehicle,,,,,

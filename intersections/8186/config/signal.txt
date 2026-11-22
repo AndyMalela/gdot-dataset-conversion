@@ -1,0 +1,12 @@
+Signal:        8186
+Name:          Perimeter Center Pkwy @ MARTA
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  Perimeter Center Pkwy
+Secondary Name:MARTA
+Latitude:      33.92213
+Longitude:     -84.34548
+Versions:      9/1/2026 - Wavetronix Update | 2/21/2024 - SigOps Central Review | 7/12/2019 - Mark 1 | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-22 21:32
+Detectors:     27   Approaches: 8

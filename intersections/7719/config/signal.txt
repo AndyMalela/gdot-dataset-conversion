@@ -1,0 +1,12 @@
+Signal:        7719
+Name:          SR 154 @ Clifton Street
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 154
+Secondary Name:Clifton Street
+Latitude:      33.74744
+Longitude:     -84.33185
+Versions:      8/28/2026 - SigOps Central Review | 1/1/2023 - Copy of Mark 1 | 5/5/2020 - Mark 1 | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-22 21:36
+Detectors:     6   Approaches: 5

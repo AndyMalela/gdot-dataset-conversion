@@ -1,0 +1,6 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Eastbound,SR 154 Memorial EBL,1,2,,,,,,25
+Westbound,SR 154 Memorial WB,2,,,,,,,35
+Northbound,Clifton St NB,4,,,,,,,
+Eastbound,SR 154 Memorial EBT,6,,,,,,,35
+Southbound,Clifton St SB,8,,,,,,,
