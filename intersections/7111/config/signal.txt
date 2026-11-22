@@ -1,0 +1,12 @@
+Signal:        7111
+Name:          SR 9 @ Collier Road
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 9
+Secondary Name:Collier Road
+Latitude:      33.80671
+Longitude:     -84.39388
+Versions:      7/24/2026 - SigOps Central Review | 10/24/2024 - IP Update - Fiber Restored | 10/1/2024 - IP Update | 12/13/2023 - Controller IP Update | 5/2/2019 - Mark 1 | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-22 19:37
+Detectors:     28   Approaches: 7

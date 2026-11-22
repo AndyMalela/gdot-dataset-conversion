@@ -1,0 +1,9 @@
+Signal:        7027
+Intersection:  SR 42 @ SR 8
+Source:        GDOT ATSPM, Turning Movement Counts (https://traffic.dot.ga.gov/ATSPM/DefaultCharts)
+Bin size:      5 min
+Days cached:   10 (2026-11-02 to 2026-11-13)
+Complete days: 10   partial: 0   no data: 0
+Movements:     EB_L EB_T EB_TR WB_L WB_T WB_TR NB_L NB_TR SB_L SB_T SB_TR EXIT_EB_T EXIT_NB_T EXIT_SB_T EXIT_WB_T
+Outage rule:   >= 3 consecutive all-zero bins -> status=outage, counts blank
+Updated:       2026-11-22 19:39

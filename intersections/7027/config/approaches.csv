@@ -1,0 +1,12 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Eastbound,SR 8 Ponce De Leon Ave EBLT,1,2,,,,,,25
+Westbound,SR 8 Ponce De Leon Ave WBT,2,,,,,,,35
+Southbound,Briarciff Rd SBLT,3,4,,,,,,25
+Northbound,SR 42 Moreland Ave NBTR,4,,,,,,,35
+Westbound,SR 8 Ponce De Leon Ave WBLT,5,6,,,,,,25
+Eastbound,SR 8 Ponce De Leon Ave EBT,6,,,,,,,35
+Northbound,SR 42 Moreland NBLT,7,8,,,,,,25
+Southbound,Briarcliff Rd SBT,8,,,,,,,35
+Eastbound,SR 8 Ponce De Leon Ave EBLT DS,11,,,,,,,
+Westbound,SR 8 Ponce De Leon Ave WBLT DS,16,,,,,,,25
+Northbound,SR 42 Moreland Ave NBLT DS,17,,,,,,,25

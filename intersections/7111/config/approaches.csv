@@ -1,0 +1,8 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Northbound,SR 9 Peachtree Rd NB LT,1,6,,,,,,
+Southbound,SR 9 Peachtree Rd SB,2,,,,,,,35
+Eastbound,Collier Rd EB LT,3,,,,,,,
+Westbound,Collier Rd WB,4,,,,,,,
+Southbound,SR 9 Peachtree Rd SB LT,5,2,,,,,,
+Northbound,SR 9 Peachtree Rd NB,6,,,,,,,35
+Eastbound,Collier Rd EB,8,,,,,,,

@@ -1,0 +1,12 @@
+Signal:        7027
+Name:          SR 42 @ SR 8
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 42
+Secondary Name:SR 8
+Latitude:      33.77383
+Longitude:     -84.34898
+Versions:      2/24/2026 - SigOps Central Review | 10/7/2022 - SigOps Central Review | 7/20/2021 - Copy of Mark 1 | 7/31/2019 - Mark 1 | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-22 19:37
+Detectors:     31   Approaches: 11
