@@ -1,0 +1,12 @@
+Signal:        7144
+Name:          SR 3/Northside Drive @ West Wesley Road
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 3/Northside Drive
+Secondary Name:West Wesley Road
+Latitude:      33.82872
+Longitude:     -84.40749
+Versions:      1/13/2026 - Palo Alto | 2/8/2024 - SigOps Review | 2/8/2024 - SigOps Review | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-22 11:54
+Detectors:     7   Approaches: 7

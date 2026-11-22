@@ -1,0 +1,8 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Eastbound,West Wesley Rd EBL,0,8,,,,,,
+Southbound,SR 3 SBT,2,,,,,,,35
+Westbound,West Wesley Rd WBL,3,4,,,,,,
+Eastbound,West Wesley Rd EBT,4,,,,,,,
+Southbound,SR 3 SBL,5,,,,,,,
+Northbound,SR 3 NBT,6,,,,,,,35
+Westbound,West Wesley Rd WBT,8,,,,,,,

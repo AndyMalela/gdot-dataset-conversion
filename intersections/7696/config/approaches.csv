@@ -1,0 +1,8 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Westbound,Hollowell Pkwy WB,2,,,,,,,
+Northbound,Lowery Blvd NB LT,3,4,,,,,,
+Southbound,Lowery Blvd SBT,4,,,,,,,
+Westbound,Hollowell Pkwy WBL,5,2,,,,,,
+Eastbound,Hollowell Pkwy EB,6,,,,,,,
+Southbound,Lowery Blvd SBL,7,8,,,,,,
+Northbound,Lowery Blvd NBT,8,,,,,,,

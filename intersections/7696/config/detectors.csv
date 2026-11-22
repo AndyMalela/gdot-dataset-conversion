@@ -1,0 +1,10 @@
+Detector ID,Det. Channel,Direction,Phase,Perm. Phase,Overlap,Enabled,Detection Types,Detection Hardware,Latency Correction,Movement Type,Lane Number,Lane Type,Dist. From Stop Bar,Decision Point,Move. Delay,Min Speed Filter,Comment
+769603,3,WB,2,,False,True,Advanced Count; Lane-by-lane Count,SmartMicro,0,Thru,1,Vehicle,,,,,
+769604,4,WB,2,,False,True,Advanced Count; Lane-by-lane Count,SmartMicro,0,Thru,2,Vehicle,,,,,
+769609,9,NB,3,4,False,True,Lane-by-lane Count; Stop Bar Presence,SmartMicro,0,Left,1,Vehicle,,,,,
+769611,11,SB,4,,False,True,Lane-by-lane Count; Stop Bar Presence,SmartMicro,0,Thru-Left,1,Vehicle,,,,,
+769619,19,WB,5,2,False,True,Lane-by-lane Count; Stop Bar Presence,SmartMicro,0,Thru-Left,1,Vehicle,,,,,
+769621,21,EB,6,,False,True,Advanced Count; Lane-by-lane Count,SmartMicro,0,Thru,1,Vehicle,,,,,
+769622,22,EB,6,,False,True,Advanced Count; Lane-by-lane Count,SmartMicro,0,Thru,2,Vehicle,,,,,
+769629,29,SB,7,8,False,True,Lane-by-lane Count; Stop Bar Presence,SmartMicro,0,Left,1,Vehicle,,,,,
+769631,31,NB,8,,False,True,Lane-by-lane Count; Stop Bar Presence,SmartMicro,0,Thru-Right,1,Vehicle,,,,,

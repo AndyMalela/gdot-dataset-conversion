@@ -1,0 +1,12 @@
+Signal:        7696
+Name:          SR 8 @ Joseph E Lowery Boulevard
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 8
+Secondary Name:Joseph E Lowery Boulevard
+Latitude:      33.77302
+Longitude:     -84.41738
+Versions:      1/15/2026 - Palo Alto | 7/5/2024 - Temp 4G (Signal Rebuild) | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-22 11:55
+Detectors:     9   Approaches: 7
