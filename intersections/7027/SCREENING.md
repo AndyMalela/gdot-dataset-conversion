@@ -15,3 +15,12 @@ Data: configuration, counts for 10 weekdays Nov 2-13 2026, one T&A window (2026-
 - Neighbours: 7028 at ~175 m, 7458 at ~180 m.
 
 Verdict: well counted on paper, but more complex control (pseudo-phases) and two data-quality flags.
+
+## Check against neighbouring signals (2026-11-22, Nov 2-13 weekdays)
+
+7028 (Briarcliff @ St Charles Pl) ~175 m north, Wavetronix with count-only and exit zones.
+- 7027 north exit vs 7028 NB arrivals (NB left + through-right): ratio 0.24-0.34 until Nov 6, then rises to
+  0.96-0.98 by Nov 12-13 → 7027's north exit zone was miscounting and seems to have been fixed around Nov 9-12.
+- 7027 SB arrivals (left + through + through-right) vs 7028 south exit: 1.15-1.75 → 7027 counts 15-75 % more SB
+  traffic than 7028 sends; one of the two is wrong (St Charles Pl turns cannot explain 40-75 %).
+Verdict: **rejected** for now — counts not consistent with the neighbour.

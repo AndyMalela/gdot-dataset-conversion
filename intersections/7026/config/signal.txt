@@ -1,0 +1,12 @@
+Signal:        7026
+Name:          SR 42/Moreland Ave @ North Avenue
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 42/Moreland Ave
+Secondary Name:North Avenue
+Latitude:      33.77108
+Longitude:     -84.349
+Versions:      8/20/2026 - SigOps Central Review (Wavetronix) | 9/23/2025 - PI 0012827 | 3/1/2024 - Fiber damage repaired | 2/23/2024 - Copy of Radar Setbacks | 12/16/2023 - Radar Setbacks | 10/18/2023 - 4G Router Installed | 7/21/2021 - Copy of Initial | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-22 20:33
+Detectors:     16   Approaches: 6

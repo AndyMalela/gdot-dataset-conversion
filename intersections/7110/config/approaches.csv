@@ -1,0 +1,8 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Northbound,SR 9 Peachtree Rd NB LT,1,2,,,,,,
+Southbound,SR 9 Peachtree Rd SB,2,,,,,,,35
+Westbound,Brighton Rd WB LT,3,4,,,,,,
+Eastbound,Brighton Road EB,4,4,,,,,,
+Southbound,SR 9 Peachtree Rd SB LT,5,6,,,,,,
+Northbound,SR 9 Peachtree Rd NB,6,,,,,,,35
+Westbound,Brighton Road WB,8,,,,,,,

@@ -1,0 +1,7 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Northbound,Perm NBL SR 42 (Briarcliff Rd),0,2,,,,,,25
+Southbound,Perm SBL SR 42 (Briarcliff Rd),0,6,,,,,,25
+Southbound,SBT SR 42 (Briarcliff Rd),2,,2,,,,,35
+Eastbound,EB St Charles Place,4,,4,,,,,25
+Northbound,NBT SR 42 (Briarcliff Rd),6,,6,,,,,35
+Westbound,WBT St Charles Place,8,,8,,,,,25

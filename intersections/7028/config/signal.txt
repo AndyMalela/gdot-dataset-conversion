@@ -1,0 +1,12 @@
+Signal:        7028
+Name:          SR 42 (Briarcliff Rd) @ St. Charles Place
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 42 (Briarcliff Rd)
+Secondary Name:St. Charles Place
+Latitude:      33.77539
+Longitude:     -84.34874
+Versions:      8/19/2026 - SigOps Central Review (Wavetronix) | 9/24/2025 - PI 0012827 | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-22 20:33
+Detectors:     18   Approaches: 6

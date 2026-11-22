@@ -1,0 +1,12 @@
+Signal:        7110
+Name:          SR 9 @ Brighton Road
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 9
+Secondary Name:Brighton Road
+Latitude:      33.8084
+Longitude:     -84.39355
+Versions:      5/2/2019 - Mark 1 | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-22 20:32
+Detectors:     11   Approaches: 7

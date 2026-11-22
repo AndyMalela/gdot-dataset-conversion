@@ -1,0 +1,7 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Northbound,NBL SR 42 (Moreland Ave),1,2,,,,,,25
+Southbound,SB SR 42 (Moreland Ave),2,,2,,,,,35
+Eastbound,EBT North Ave,4,,4,,,,,30
+Northbound,NBT SR 42 (Moreland Ave),6,,6,,,,,35
+Eastbound,EBL North Ave,7,8,,,,,,25
+Westbound,WB North Ave,8,,8,,,,,30

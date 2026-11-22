@@ -1,0 +1,12 @@
+Signal:        7112
+Name:          SR 9 @ Palisades Road
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 9
+Secondary Name:Palisades Road
+Latitude:      33.80484
+Longitude:     -84.39363
+Versions:      1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-22 20:32
+Detectors:     9   Approaches: 4

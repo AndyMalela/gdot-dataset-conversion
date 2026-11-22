@@ -27,3 +27,23 @@ window (2026-11-11 17:00, `tools/cache/tna_events/7111_20261111_1700_5m_p1234567
   platoons matter; both would need their timing (as 138 for 137).
 
 Verdict: the best-counted candidate so far; simpler phase layout than 7027; busier than 137.
+
+## Check against neighbouring signals (2026-11-22, Nov 2-13 weekdays)
+
+Neighbours on Peachtree Rd: 7110 Brighton Rd ~190 m north (inductive loops: advance count loops on NB/SB
+through, count + presence loops on lefts and side street), 7112 Palisades Rd ~210 m south (loops; **its SB
+through count is 0 on every day** — not reporting, so the south link can only be checked northbound).
+
+| link | 7111 side | neighbour side | ratio (10 days) |
+|---|---|---|---|
+| NB, 7111 → 7110 | 7111 north exit (2 Matrix exit zones) | 7110 NB through (advance loops) + NB left | 0.84-0.87, the same every hour (0.78-0.89, 05-22 h) |
+| SB, 7110 → 7111 | 7111 SB through + left (SB rights not counted) | 7110 SB through (advance loops) + WB left (EB rights not included) | 0.66-0.82; lowest 13-17 h (0.68-0.72), highest at night (0.85-0.90) |
+| NB, 7112 → 7111 | 7111 NB through + left (NB rights not counted) | 7112 NB through + through-left (includes Palisades NB lefts) | 0.79-0.91 (8 days) |
+
+Reading: 7111's Matrix counts come out ~13-16 % below 7110's loops on the north link, at a constant ratio at
+every hour (so not a queue or volume effect: a steady per-vehicle miss, or steady inflow from driveways in the
+190 m — Piedmont Hospital entrances are on this block; not checked). Southbound the gap is larger and grows with
+volume, but 7111's SB right turns are not counted, so part of it is expected. Within 7111 its own exit and
+approach counts agree to 2-5 %. Which side is closer to the truth is not known from these data (loops usually
+count better than side-fire radar). Next check: 7111's own advance radar counts (Approach Volume report, NB/SB
+at 260 ft) against its stop-line lane counts and against 7110.

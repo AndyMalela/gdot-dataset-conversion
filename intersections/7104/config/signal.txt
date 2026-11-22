@@ -1,0 +1,12 @@
+Signal:        7104
+Name:          SR 9 @ Brookwood Valley Circle
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 9
+Secondary Name:Brookwood Valley Circle
+Latitude:      33.81007
+Longitude:     -84.39285
+Versions:      4/24/2025 - SigOps Central Review | 1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-22 20:33
+Detectors:     9   Approaches: 6
