@@ -24,3 +24,12 @@ Verdict: well counted on paper, but more complex control (pseudo-phases) and two
 - 7027 SB arrivals (left + through + through-right) vs 7028 south exit: 1.15-1.75 → 7027 counts 15-75 % more SB
   traffic than 7028 sends; one of the two is wrong (St Charles Pl turns cannot explain 40-75 %).
 Verdict: **rejected** for now — counts not consistent with the neighbour.
+
+## Whole-intersection balance (2026-11-22)
+
+Every movement is counted at 7027 (rights inside the through-right counts), so vehicles counted leaving (four
+exits) should equal vehicles counted entering. They do not: exits exceed entries by **+18 % to +35 %** on every
+day (Nov 2-13), and by +28-35 % after the north exit zone started counting properly (Nov 12-13). Some approach
+zones undercount, or some exit zones overcount, by about a quarter — on top of the disagreement with 7028.
+Inferring 7027's demand from neighbours would first need to find which of its ~20 count zones are biased; with
+7458 (west) not reporting counts and only 7028 / 7026 as anchors, that is not determined by the data.

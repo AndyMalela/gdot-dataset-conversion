@@ -58,3 +58,9 @@ at 260 ft) against its stop-line lane counts and against 7110.
 - 7110's advance loop counts are steady (NB 17,400-19,200, SB 19,700-22,800/day) and match its own turning-movement
   report.
 - So on the north link the comparison stays: 7111's radar exit count is ~11-16 % below 7110's loops.
+
+## Whole-intersection balance (2026-11-22)
+
+Exits minus entries: −1 % to +12 % per day (mean ~+6 %). Expected to be positive, because the Peachtree NB and SB
+right turns leave through the exits but are not counted on entry; the gap (≈ 0-5,200 vehicles/day) is a plausible
+size for those right turns.
