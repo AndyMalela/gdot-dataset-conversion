@@ -33,3 +33,10 @@ vehicles/day each way. It has its own phase (P4) and is modelled, but the inters
 (which has a real four-leg cross street). Consequence for the thesis' "simple vs busier/more complex" contrast:
 7111 is busier than 137 but not more complex in layout; 8185 (true four legs, dual lefts everywhere) is the
 more complex candidate.
+
+## Note 2026-11-22 — leg layout of the corridor (user check)
+
+7111 (Collier Rd NW) and 7112 (Palisades Rd NE): public cross street on one side, signalized driveway to a
+building/complex on the other (user, Google Maps; OpenStreetMap agrees). 7110 (Brighton Rd): three-leg (user);
+GDOT's configuration still lists EB and WB Brighton approaches with counts (EB ~990/day, WB ~2,400/day) — open.
+All driveway approaches that have a signal phase are modelled with that phase and their counted demand.

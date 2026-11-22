@@ -59,3 +59,14 @@ Specific questions from the ATSPM configuration of 7111:
 ---
 For 8185 (Perimeter Center Pkwy @ Hammond Dr) the same list applies later, plus: confirm dual left lanes on all
 four approaches and the right-turn lanes on NB, SB, WB, and look at the MARTA station access between 8185 and 8186.
+
+---
+## Answers so far
+
+- 2026-11-22 (user, Google Maps): **7111 Collier Rd** and **7112 Palisades Rd** are physically four-leg; at each,
+  one leg only leads to a building / complex (a driveway). **7110 Brighton Rd** is three-leg.
+  - OpenStreetMap agrees for 7111 (east leg = service roads) and 7112 (Palisades Rd NE from the east; the west leg
+    is a 3-lane service road).
+  - Open question: GDOT's configuration at 7110 has both an EB and a WB Brighton approach, each with counts
+    (EB ~990 vehicles/day: left ~360 + through-right ~630; WB ~2,400/day). If Brighton is a T, which side is the
+    EB approach — a driveway, or does Brighton cross?
