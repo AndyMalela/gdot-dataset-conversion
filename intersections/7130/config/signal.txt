@@ -1,0 +1,12 @@
+Signal:        7130
+Name:          SR 237 @ Monroe Drive
+Controller Type:MaxTime
+Description:   District 7
+Primary Name:  SR 237
+Secondary Name:Monroe Drive
+Latitude:      33.79711
+Longitude:     -84.36897
+Versions:      1/1/1900 - Initial
+Source:        https://traffic.dot.ga.gov/ATSPM/Signals/SignalDetail (SignalDetailResult, ConfigurationTable)
+Downloaded:    2026-11-22 11:40
+Detectors:     22   Approaches: 8

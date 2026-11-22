@@ -1,0 +1,23 @@
+Detector ID,Det. Channel,Direction,Phase,Perm. Phase,Overlap,Enabled,Detection Types,Detection Hardware,Latency Correction,Movement Type,Lane Number,Lane Type,Dist. From Stop Bar,Decision Point,Move. Delay,Min Speed Filter,Comment
+713001,1,NB,1,2,False,True,Lane-by-lane Count; Stop Bar Presence,Wavetronix Matrix,0,Left,1,Vehicle,,,,,
+713005,5,NB,6,,False,True,Advanced Count,Wavetronix Advance,0,Thru,1,Vehicle,260,,,,
+713009,9,NB,6,,False,True,Stop Bar Presence,Wavetronix Matrix,0,Thru,1,Vehicle,,,,,
+713010,10,NB,6,,False,True,Stop Bar Presence,Wavetronix Matrix,0,Thru-Right,2,Vehicle,,,,,
+713013,13,NB,6,,False,True,Lane-by-lane Count; Lane-by-lane with Speed Restriction,Wavetronix Matrix,0,Thru,1,Exit,,,,,
+713014,14,NB,6,,False,True,Lane-by-lane Count; Lane-by-lane with Speed Restriction,Wavetronix Matrix,0,Thru,2,Exit,,,,,
+713017,17,SB,5,6,False,True,Lane-by-lane Count; Stop Bar Presence,Wavetronix Matrix,0,Left,1,Vehicle,,,,,
+713021,21,SB,2,,False,True,Advanced Count,Wavetronix Advance,0,Thru,1,Vehicle,260,,,,Lanes 1 & 2 wired to channel 22 (radar)
+713025,25,SB,2,,False,True,Stop Bar Presence,Wavetronix Matrix,0,Thru,1,Vehicle,,,,,
+713026,26,SB,2,,False,True,Stop Bar Presence,Wavetronix Matrix,0,Thru-Right,2,Vehicle,,,,,
+713029,29,SB,2,,False,True,Lane-by-lane Count; Lane-by-lane with Speed Restriction,Wavetronix Matrix,0,Thru,1,Exit,,,,,
+713030,30,SB,2,,False,True,Lane-by-lane Count; Lane-by-lane with Speed Restriction,Wavetronix Matrix,0,Thru,2,Exit,,,,,
+713033,33,EB,3,4,False,True,Lane-by-lane Count; Stop Bar Presence,Wavetronix Matrix,0,Left,1,Vehicle,,,,,
+713041,41,EB,8,,False,True,Stop Bar Presence,Wavetronix Matrix,0,Thru,1,Vehicle,,,,,
+713042,42,EB,8,,False,True,Stop Bar Presence,Wavetronix Matrix,0,Thru-Right,2,Vehicle,,,,,
+713045,45,EB,8,,False,True,Lane-by-lane Count; Lane-by-lane with Speed Restriction,Wavetronix Matrix,0,Thru,1,Exit,,,,,
+713046,46,EB,8,,False,True,Lane-by-lane Count; Lane-by-lane with Speed Restriction,Wavetronix Matrix,0,Thru,2,Exit,,,,,
+713049,49,WB,7,8,False,True,Lane-by-lane Count; Stop Bar Presence,Wavetronix Matrix,0,Left,1,Vehicle,,,,,
+713057,57,WB,4,,False,True,Stop Bar Presence,Wavetronix Matrix,0,Thru,1,Vehicle,,,,,6' x 6'
+713058,58,WB,4,,False,True,Stop Bar Presence,Wavetronix Matrix,0,Thru,2,Vehicle,,,,,
+713061,61,WB,4,,False,True,Lane-by-lane Count; Lane-by-lane with Speed Restriction,Wavetronix Matrix,0,Thru,1,Exit,,,,,
+713062,62,WB,4,,False,True,Lane-by-lane Count; Lane-by-lane with Speed Restriction,Wavetronix Matrix,0,Thru,2,Exit,,,,,

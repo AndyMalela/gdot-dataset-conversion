@@ -1,0 +1,9 @@
+Direction,Description,Protected Phase,Permissive Phase,Pedestrian Phase,Protected Phase Overlap,Perm. Phase Overlap,Ped. Phase Overlap,Ped. Detector(s),Approach Speed (MPH)
+Northbound,SR 237 Piedmont Ave NB LT,1,2,,,,,,
+Southbound,SR 237 Piedmont Ave SB,2,,,,,,,
+Eastbound,Monroe Dr EB LT,3,4,,,,,,
+Westbound,Monroe Dr WB,4,,,,,,,
+Southbound,SR 237 Piedmont Ave SB LT,5,6,,,,,,
+Northbound,SR 237 Piedmont Ave NB,6,,,,,,,
+Westbound,Monroe Dr WB LT,7,8,,,,,,
+Eastbound,Monroe Dr EB,8,,,,,,,
