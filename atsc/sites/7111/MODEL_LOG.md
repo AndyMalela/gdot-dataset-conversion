@@ -24,3 +24,12 @@ why, data, rule, result.
   windows on train days (controller measurements) and the outcome reports.
 - Rule: no train / validation / test split is chosen yet; until it is written down (VALIDATION.md for 7111),
   the data are only checked for completeness, not analysed.
+
+## Note 2026-11-22 — 7111 is a three-leg public intersection plus a signalized driveway
+
+User pointed out that Peachtree @ Collier is a T. OpenStreetMap confirms: Collier Rd NW meets Peachtree from the
+west only; the east approach in GDOT's configuration is a driveway (service roads only in OSM), carrying ~1,900
+vehicles/day each way. It has its own phase (P4) and is modelled, but the intersection is simpler than 137
+(which has a real four-leg cross street). Consequence for the thesis' "simple vs busier/more complex" contrast:
+7111 is busier than 137 but not more complex in layout; 8185 (true four legs, dual lefts everywhere) is the
+more complex candidate.

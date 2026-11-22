@@ -64,3 +64,13 @@ at 260 ft) against its stop-line lane counts and against 7110.
 Exits minus entries: −1 % to +12 % per day (mean ~+6 %). Expected to be positive, because the Peachtree NB and SB
 right turns leave through the exits but are not counted on entry; the gap (≈ 0-5,200 vehicles/day) is a plausible
 size for those right turns.
+
+## Legs (2026-11-22, user question; OpenStreetMap check)
+
+OpenStreetMap around the signal has only two public roads: Peachtree Rd NE (trunk, 6 lanes) and Collier Rd NW
+(tertiary, 4 lanes), which meets Peachtree from the **west**. Everything else within 45 m is service roads and
+footways. So 7111 is a **three-leg public intersection** (Peachtree north, Peachtree south, Collier west); the
+fourth, east approach in GDOT's configuration ("Collier Rd WB", phase P4, left + through-right lanes) is a
+signalized **driveway** into private property. Its counts fit that: ~1,900-2,000 vehicles/day in (WB left ~900 +
+through-right ~1,000) and ~1,800-1,950/day out (east exit). It is still a signal phase and must be modelled,
+but it is a minor leg. Lanes and what the driveway serves: to confirm on the aerial (MANUAL_CHECKS.md).

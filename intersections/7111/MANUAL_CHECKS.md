@@ -16,7 +16,8 @@ Specific questions from the ATSPM configuration of 7111:
 - [ ] Peachtree SB: 3 through lanes + 1 left bay?
 - [ ] Peachtree NB and SB right turns: own right-turn lane, or from the outer through lane?
 - [ ] Collier EB: really 2 left-turn lanes, plus 1 through-right lane?
-- [ ] Collier WB: 1 left lane + 1 through-right lane?
+- [ ] East leg (GDOT "Collier Rd WB"): OpenStreetMap shows only service roads there, so it is a driveway — what
+      does it serve, and is it 1 left lane + 1 through-right lane leaving the property?
 - [ ] 7112 Palisades: NB lane 1 is shared through-left (no left bay)?
 
 ## B. Turning rules
