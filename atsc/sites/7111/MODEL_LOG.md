@@ -135,3 +135,19 @@ went.
   - radar misses at the exit zones.
 - Only on training days, after the test days are locked. The cached 2026-11-11 window is inside the proposed test
   window and is not used.
+
+## Step 2 — day split locked; site selection written; how busy (2026-11-27)
+
+- **Day split** (`split.json`, `VALIDATION.md`):
+  - train Aug 31 – Oct 9 (29 weekdays);
+  - validation Oct 13 – Nov 6 (19 weekdays);
+  - **test locked Nov 9 – 20 (9 weekdays)**;
+  - federal holidays (Sep 7, Oct 12, Nov 11) excluded.
+  - Exposure before the split is disclosed: screening saw daily count totals of Nov 9–13.
+- **Site selection record:** `intersections/SITE_SELECTION.md` (criteria, funnel 2,689 → 130 → 63 → 48 → 6,
+  decisions, weaknesses).
+- **How busy** (`atsc/sites/y_compare.py` → `atsc/sites/Y_COMPARISON.md`, train days):
+  - peak Y = 0.47 at both 7111 and 137 (137 as reported; 0.58 with its undercount estimate);
+  - 7111 carries ~1.8× the vehicles/h of 137 but over more lanes;
+  - 7111's non-coordinated phases hit force-off/max-out in 38–76 % of cycles (137: 15–52 %).
+  - So 7111 = more volume, tighter timing, more complex layout; **not** a higher flow ratio. Reported as such.
