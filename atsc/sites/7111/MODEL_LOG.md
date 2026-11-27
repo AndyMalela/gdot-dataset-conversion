@@ -67,3 +67,23 @@ Consequences for the model (to agree before results):
    constant (e.g. a statutory default), and it would have to be flagged.
 3. **Bus stop on Peachtree NB, far side.** Not modelled unless a pull-out is ruled out and buses are frequent; any
    such data would be outside ATSPM. Flag as a known simplification.
+
+### Step 1c — follow-up answers (2026-11-27)
+
+- The two-way left-turn lane runs the whole length of each block. There is no fixed bay length.
+- Peachtree rights use the outer through lane (shared through-right); there is no right-turn lane.
+- Collier's double left: 86 m at full width + 12 m taper.
+- The driveway exit has 2 lanes: left only, and through-right.
+- No "No Turn on Red" signs, so right turn on red is allowed on all approaches. No U-turn signs.
+- No bus signs seen.
+
+Proposed network treatment (to agree before results):
+- **Peachtree left-turn storage.** SUMO has no shared two-way left lane. Proposal: split each block's centre lane at
+  the middle, so each direction gets about half the block (~95–105 m) as its left-turn lane at its own signal.
+  - This is a disclosed simplification: both directions can really use the whole lane.
+  - It is only a binding limit if a left-turn queue goes past half the block.
+  - Check after building: the simulated maximum left queue against the half-block length.
+- **Peachtree rights** come from the shared outer lane (no inferred turn bay).
+- **Right turn on red** is allowed on every approach (no signs).
+- **No U-turns** are modelled: ATSPM counts none.
+- **No buses** are modelled.

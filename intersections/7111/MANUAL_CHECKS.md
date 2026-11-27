@@ -105,13 +105,17 @@ the north leg). Screenshots not stored in the repo (Google imagery); described h
 - **Bus stop**: the aerial shows a bus-stop icon on the east side of the north leg, just past the intersection
   (Peachtree NB, far side).
 
-Still open for 7111:
-- [ ] Peachtree NB and SB left-turn bays: length of the solid-white part (stop line to where the two-way left-turn
-      lane ends). Google Maps "Measure distance" on the aerial.
-- [ ] Peachtree right turns: from the outer through lane (shared), or own right-turn lane? SB rights go into
-      Collier, NB rights go into the Chick-fil-A driveway.
-- [ ] Collier EB: what is at 86 m, where the two left lanes begin (a taper from 1 lane, another street, a
-      driveway)?
-- [ ] Driveway: 1 left lane + 1 through-right lane leaving the property (as GDOT's configuration says)?
-- [ ] "No Turn on Red" signs on any approach? U-turn allowed or prohibited on Peachtree?
-- [ ] Bus stop: a pull-out bay, or does the bus stop in the outer NB lane?
+Follow-up answers (user, 2026-11-27):
+- [x] Peachtree left-turn bays: the two-way left-turn lane **runs the whole way** between the signals; there is no
+      separate bay with a fixed length.
+- [x] Peachtree right turns: **no right-turn lane**; rights are made from the outer through lane (shared
+      through-right).
+- [x] Collier EB: the two left lanes are full width for **86 m**, plus a **12 m taper** before that (98 m in total).
+- [x] Driveway (Chick-fil-A) exit: **2 lanes** — left-only on the left, through-right on the right (as GDOT's
+      configuration says).
+- [x] No "No Turn on Red" signs (right turn on red allowed everywhere). No U-turn signs seen.
+- [x] No bus signs seen at the stop marked by Google Maps (the icon is from Google's transit layer; not confirmed
+      on the ground).
+
+7111 manual checks are complete for the model. Not checked: driveways along the blocks to 7110 and 7112 (section C),
+bike lanes, detector mounts.
