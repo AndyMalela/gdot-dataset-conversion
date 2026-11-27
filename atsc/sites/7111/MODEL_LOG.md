@@ -99,3 +99,39 @@ that nothing counts).
   (~950 vehicles/day). That left needs its own storage at 7110. To resolve with the user: the length of 7110's NB
   left bay (the solid-white part on the aerial), or another rule.
 - 7112 has no conflict: its NB left is shared with through (lane 1), and there is no SB left on Peachtree there.
+
+### Step 1e — can the driveway's through/right split be inferred? (2026-11-27)
+
+Question (user): can the driveway's through vs right split (GDOT "WB_TR", ~1,040/day) be inferred from the exit
+counts, or from the split monitor?
+
+**(a) Daily flow balance at the four exits.**
+- Data: 37 complete weekdays, Sep 1 – Nov 6. Days from Nov 9 on were not used (proposed test window).
+- Unknowns: driveway through and right; Collier through and right; Peachtree NB right; Peachtree SB right.
+- Assumption: Peachtree rights are made from the shared outer through lane (user check), so its lane count zone
+  counts them inside NB_T and SB_T.
+- Six equations (4 exits + the 2 combined through-right counts) but only five independent, because total in =
+  total out. So **one unknown stays free**.
+- Requiring every flow ≥ 0 leaves a range:
+  - 32 of 37 days: driveway through ~0 to 50–1,100 per day, and right correspondingly ~0–1,100. **Too wide to use.**
+  - 5 of 37 days: no non-negative solution (Sep 1, Sep 16, Oct 7, Nov 3, Nov 5). The counts there do not balance
+    (exits − entries +2,400 to +6,300).
+- Script: inline check, not kept. Result recorded here.
+
+**(b) Split Monitor.** Reports only how long each phase was green and why it ended. It cannot say where vehicles
+went.
+
+**(c) Proposed: exit-zone hits timed against the phase that is green.**
+- Uses the event log behind Timing & Actuation. Exit zones: north ch107/108, east (Chick-fil-A) ch123, south
+  ch75-77, west (Collier) ch91.
+- During P4 (driveway green), Peachtree is red and Collier's left (P3) is not running. So:
+  - north-exit hits = driveway rights;
+  - west-exit hits = driveway throughs.
+- During P8 (Collier through-right green), east-exit hits = Collier throughs.
+- Then the other splits follow from the counts.
+- Error sources to quantify:
+  - right turn on red from other approaches into the same exit (allowed everywhere);
+  - the travel time from stop line to exit zone (offset to fit);
+  - radar misses at the exit zones.
+- Only on training days, after the test days are locked. The cached 2026-11-11 window is inside the proposed test
+  window and is not used.
