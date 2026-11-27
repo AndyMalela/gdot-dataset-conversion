@@ -70,3 +70,48 @@ four approaches and the right-turn lanes on NB, SB, WB, and look at the MARTA st
   - Open question: GDOT's configuration at 7110 has both an EB and a WB Brighton approach, each with counts
     (EB ~990 vehicles/day: left ~360 + through-right ~630; WB ~2,400/day). If Brighton is a T, which side is the
     EB approach — a driveway, or does Brighton cross?
+
+### 2026-11-27 — 7111 Peachtree Rd @ Collier Rd (user, Google Maps: Street View dated 2025; aerial)
+
+User's notes and five screenshots (aerial of the north leg, plus the signal heads on each mast arm, clockwise from
+the north leg). Screenshots not stored in the repo (Google imagery); described here.
+
+- **Legs**: four physical legs. The east leg (GDOT "Collier Rd WB", P4) is the **Chick-fil-A drive-through and
+  parking**. Street View from 2018 looks very different, but the driveway was already there.
+- **Collier Rd (west leg, GDOT "EB")**: 3 lanes inbound, 1 lane outbound. Inbound = **2 left-only lanes** + **1
+  through-right lane**. The two left lanes run the full **86 m** back from the stop line (user's measurement).
+- **Peachtree**: 3 lanes southbound, 2 lanes northbound, and a centre lane between them.
+  - The centre lane is a **two-way left-turn lane** (aerial: yellow solid outer line + yellow dashed inner line,
+    left-turn arrows painted for both directions). Between the signals, drivers from both directions use it to
+    turn left into driveways.
+  - Near the intersection, the centre lane becomes a **left-turn bay** (solid white line, left arrow at the stop
+    line).
+- **Signal heads** (Street View 2025), mapped by mast arm. Heads hung over a leg face the traffic coming toward it.
+  - Over the north leg (faces **Peachtree NB**): flashing-yellow-arrow left head + sign "LEFT TURN YIELD ON
+    FLASHING YELLOW ARROW" + 2 ball heads.
+  - Over the east leg (faces **Collier EB**): **2 left-arrow heads (red arrow, 3-section) and no flashing-yellow
+    sign** → the dual left is **protected only** + 2 ball heads.
+  - Over the south leg (faces **Peachtree SB**): flashing-yellow-arrow left head + sign + 3 ball heads; street sign
+    "Collier Rd NW →".
+  - Over the west leg (faces the **driveway**): flashing-yellow-arrow left head + sign + 2 ball heads; street
+    sign "Peachtree".
+- **Agreement with GDOT's configuration**: matches in every point. P1 NB left and P5 SB left are protected +
+  permissive (permissive in P6 / P2) = flashing yellow arrow; P3 EB left is protected only on 2 lanes; P4
+  driveway left is permissive. Lanes match the detector lanes: NB 2 through + left, SB 3 through + left, EB
+  2 left + through-right, driveway left + through-right.
+- **Pedestrians**: push buttons and zebra crosswalks on **all four legs**.
+- **Speed limit**: no sign seen. GDOT's configuration gives 35 mph for Peachtree NB and SB; Collier and the
+  driveway are blank.
+- **Bus stop**: the aerial shows a bus-stop icon on the east side of the north leg, just past the intersection
+  (Peachtree NB, far side).
+
+Still open for 7111:
+- [ ] Peachtree NB and SB left-turn bays: length of the solid-white part (stop line to where the two-way left-turn
+      lane ends). Google Maps "Measure distance" on the aerial.
+- [ ] Peachtree right turns: from the outer through lane (shared), or own right-turn lane? SB rights go into
+      Collier, NB rights go into the Chick-fil-A driveway.
+- [ ] Collier EB: what is at 86 m, where the two left lanes begin (a taper from 1 lane, another street, a
+      driveway)?
+- [ ] Driveway: 1 left lane + 1 through-right lane leaving the property (as GDOT's configuration says)?
+- [ ] "No Turn on Red" signs on any approach? U-turn allowed or prohibited on Peachtree?
+- [ ] Bus stop: a pull-out bay, or does the bus stop in the outer NB lane?

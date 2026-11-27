@@ -40,3 +40,30 @@ more complex candidate.
 building/complex on the other (user, Google Maps; OpenStreetMap agrees). 7110 (Brighton Rd): three-leg (user);
 GDOT's configuration still lists EB and WB Brighton approaches with counts (EB ~990/day, WB ~2,400/day) — open.
 All driveway approaches that have a signal phase are modelled with that phase and their counted demand.
+
+## Step 1b — geometry and signal heads from imagery (2026-11-27)
+
+The user checked 7111 on Google Maps (Street View dated 2025, aerial). Full answers are in
+`intersections/7111/MANUAL_CHECKS.md` (section "Answers so far").
+
+Summary:
+- The east leg is a Chick-fil-A drive-through and parking (a driveway with its own phase, P4).
+- Collier: 2 left-only lanes (86 m long) + 1 through-right lane, and 1 lane out.
+- Peachtree: 3 SB lanes, 2 NB lanes and a two-way left-turn lane, which becomes the left-turn bay at the signal.
+- Left-turn signal heads match GDOT's phase table on all four approaches:
+  - flashing yellow arrow (protected + permissive) on Peachtree NB and SB and on the driveway;
+  - 2 red/green arrow heads with no flashing-yellow sign on Collier EB (protected only).
+- Crosswalks with push buttons on all four legs.
+- No speed sign seen. GDOT's configuration gives 35 mph on Peachtree.
+
+Consequences for the model (to agree before results):
+1. **Two-way left-turn lane between the signals.**
+   - The lane lets drivers turn left into driveways mid-block. Those turns are not counted anywhere.
+   - They are one possible part of the steady 13–16 % gap between 7111's north exit and 7110's NB count (Step 0
+     neighbour check), together with the hospital entrances.
+   - Planned treatment: no mid-block turns in the network. This is a disclosed deviation. The link mismatch is
+     reported as measured.
+2. **Collier speed.** No posted sign was seen and GDOT's field is blank. A Collier speed would need an outside
+   constant (e.g. a statutory default), and it would have to be flagged.
+3. **Bus stop on Peachtree NB, far side.** Not modelled unless a pull-out is ruled out and buses are frequent; any
+   such data would be outside ATSPM. Flag as a known simplification.
