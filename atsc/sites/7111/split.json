@@ -1,0 +1,30 @@
+{
+ "source": "7111 corridor (7111 study signal; 7110 and 7112 neighbours on real timing) study period 2026-08-31..2026-11-20 weekdays (data pulled 2026-11-22). Split written 2026-11-27 before any model, Split Monitor, outcome or Timing & Actuation analysis of these days. Chronological.",
+ "sets": {
+  "train": {
+   "from": "2026-08-31",
+   "to": "2026-10-09",
+   "use": "demand and turning-split estimation, controller-setting fits, RL training"
+  },
+  "validation": {
+   "from": "2026-10-13",
+   "to": "2026-11-06",
+   "use": "simulation validation and all evaluation before the final test"
+  },
+  "test": {
+   "from": "2026-11-09",
+   "to": "2026-11-20",
+   "use": "LOCKED: final evaluation only",
+   "locked": true
+  }
+ },
+ "day_types": "weekdays only",
+ "holidays": [
+  "2026-09-07",
+  "2026-10-12",
+  "2026-11-11"
+ ],
+ "holidays_note": "US federal holidays excluded from every set (same rule as 137): Labor Day 09-07, Columbus Day 10-12, Veterans Day 11-11",
+ "usable_day_rule": "per analysis, a day is used only if the signals it needs have count status ok or partial with outage <= 10 % (daily_summary.csv); stated again in VALIDATION.md",
+ "exposure_note": "before this split, site screening read daily count totals and Approach Volume daily totals for 2026-11-02..11-13 and one 5-min Timing & Actuation window (2026-11-11 17:00) at 7111; completeness status of all days was read. No Split Monitor statistics, outcome reports or simulation of any test day have been read. Disclosed in VALIDATION.md."
+}
