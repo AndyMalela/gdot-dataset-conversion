@@ -87,3 +87,15 @@ Proposed network treatment (to agree before results):
 - **Right turn on red** is allowed on every approach (no signs).
 - **No U-turns** are modelled: ATSPM counts none.
 - **No buses** are modelled.
+
+### Step 1d — decision on the two-way left-turn lane (user, 2026-11-27)
+
+The user decided: the centre lane is modelled as a **left-turn lane for traffic approaching 7111**, over the whole
+modelled length of each Peachtree leg. Use in the outbound direction is ignored (it is a mid-block driveway turn
+that nothing counts).
+- Replaces the "split at mid-block" proposal of Step 1c.
+- Disclosed simplification: in reality, mid-block lefts in both directions also use this lane.
+- **Open point for the corridor model.** The north block (7111–7110, ~190 m) is also the approach of 7110's NB left
+  (~950 vehicles/day). That left needs its own storage at 7110. To resolve with the user: the length of 7110's NB
+  left bay (the solid-white part on the aerial), or another rule.
+- 7112 has no conflict: its NB left is shared with through (lane 1), and there is no SB left on Peachtree there.
