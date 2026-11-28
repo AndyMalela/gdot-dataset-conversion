@@ -151,3 +151,47 @@ went.
   - 7111 carries ~1.8× the vehicles/h of 137 but over more lanes;
   - 7111's non-coordinated phases hit force-off/max-out in 38–76 % of cycles (137: 15–52 %).
   - So 7111 = more volume, tighter timing, more complex layout; **not** a higher flow ratio. Reported as such.
+
+## Step 3 — through/right split of the driveway and Collier approaches from exit zones (rule written 2026-11-28, before reading any window)
+
+**Problem.** The driveway (P4) and Collier (P8) each have one shared through-right lane, with a single count
+(WB_TR, EB_TR). The split decides where the traffic goes. The daily flow balance leaves one unknown free
+(Step 1e).
+
+**Data.** Timing & Actuation charts, 5-min windows, phases 1, 2, 3, 4, 5, 6, 8, with lane-by-lane count rows
+(`tools/lanecheck/tna_fetch.py`).
+- **Days:** every other usable train day, 13 days — 08-31, 09-02, 09-04, 09-09, 09-11, 09-15, 09-17, 09-21,
+  09-23, 09-25, 09-29, 10-06, 10-08.
+- **Windows:** 07:00, 08:30, 10:00, 12:00, 13:30, 15:00, 17:00, 18:30. Plus the format test window 09-16 12:00.
+- No validation or test day is used.
+
+**What the test window showed** (09-16 12:00, looked at only to check the chart format):
+- The exit zones are drawn as count rows: west exit ch91 on the P4 chart, north exit ch107/108 on P6, east exit
+  ch123 on P8, south exit ch75-77 on P2.
+- The approach lane-count zones (ch86, ch117) also fire during red. So they count **arrivals**, not departures, and
+  only the exit zones give departure times.
+
+**Rule.**
+1. **Driveway through** = west-exit (ch91) hits inside the P4 service window, minus the SB right-on-red estimate for
+   that window.
+   - **P4 service window** = P4 green start + 1 s to the end of P4 red clearance + 3 s (travel to the exit zone).
+   - Nothing else can reach the west exit then: Peachtree is red, NB left (P1/P6) is not running, Collier (P8)
+     goes east or south.
+2. **SB right-on-red rate** = west-exit hits per second during P3-only time (Collier left on, P4 not on), with the
+   same 3 s lag. In that time the only source for the west exit is the SB right on red. The rate is applied to the
+   P4 service window.
+3. **Collier through** = east-exit (ch123) hits inside the P8 service window, minus the NB right-on-red rate (east-exit
+   hits per second during P4-only time without P8 — if none exists, during P3 time without P8).
+4. **Exit-zone detection ratio:** west-exit hits during P1-protected-only time (NB left alone, Peachtree through red)
+   ÷ NB-left lane-count hits (ch65) in the same cycles. Reported. Used to judge whether the exit zone misses vehicles.
+   Shares (step 5) use the same zone for numerator and the approach count for the denominator, so a constant exit miss
+   rate biases the share downward by that ratio → **the share is divided by the detection ratio if it differs from
+   1 by more than 5 %**.
+5. **Through share** = Σ driveway throughs ÷ Σ WB_TR count (ch86) over the same windows. Same for Collier. Pooled
+   over all windows, and also reported by time-of-day window.
+   - Uncertainty: bootstrap over days.
+   - Right share = 1 − through share. Applied per 5-min bin to WB_TR and EB_TR in the demand.
+6. **Reading markers:** markers per row counted with `tools/lanecheck/tna_count.py`-style column blobs; times from
+   the plot frame (`tna_events.frame`). Any window whose phase displays cannot be read is dropped and listed.
+
+No outcome of this step is compared with validation statistics before the rule is applied in full.
