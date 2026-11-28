@@ -195,3 +195,38 @@ went.
    the plot frame (`tna_events.frame`). Any window whose phase displays cannot be read is dropped and listed.
 
 No outcome of this step is compared with validation statistics before the rule is applied in full.
+
+### Step 3 — amendment 1 (2026-11-28, before any estimate is computed)
+
+These changes come from the phase sequence and chart format, seen on the format test window only (09-16 12:00, plus
+a 1-min chart of 12:00–12:01 fetched to check the reader).
+
+**Phase sequence.**
+- Ring 1: … P2 → P4 → P3 (lagging Collier left) → P1 → P2 …
+- Ring 2: … P6 → P8 → P5 → P6 …
+- P8 (Collier through-right) runs during both P4 and P3.
+- The portal also draws an "Overlap 4"; it is not in the approach table and is not used.
+
+**Changes to the Step 3 rule.**
+1. **Cycle-matched denominators.** The lane count zones (ch86, ch117) fire when vehicles arrive, also during red. So
+   the denominator for one P4 service window is the ch86 hits from the end of the previous P4 service window to the
+   end of this one. Only cycles whose two window ends are both inside the chart are used. Same for P8 with ch117.
+2. **NB right-on-red into the east exit.** The fallback in rule 3 does not exist at 7111: P8 runs through the whole
+   side-street barrier, and P1 always runs with P5, which feeds the same exit. So the Collier through share is
+   reported as a **range**:
+   - upper = all east-exit hits in the P8 service window;
+   - lower = upper minus the SB right-on-red rate measured on the west exit (rule 2) × window length.
+   - Assumption for the lower bound: NB and SB right-on-red rates are alike (both from a shared outer through lane).
+3. **Detection-ratio check (rule 4) moves to the Collier double left.** The NB left also runs permissive in P6, so
+   its departures are not confined to P1. The Collier left is protected only. New check: north-exit hits (ch107 +
+   ch108) in the P3 service window ÷ Collier left arrivals (ch81 + ch82) in the matching cycle. The application rule
+   is unchanged (divide the shares if the ratio differs from 1 by more than 5 %).
+   - Caveat: both rows are dense platoons, where the 5-min chart can merge markers. So the ratio may be biased low.
+     It is reported with that caveat.
+
+**Reader check** (`atsc/sites/7111/tna_read.py`, 5-min chart against the 1-min chart, 12:00–12:01, read by eye) —
+same events within ~1 s on the sparse rows:
+- west exit ch91: 3/3;
+- driveway TR count ch86: 2/2;
+- east exit ch123: 4/4;
+- Collier TR count ch117: 4/4.
